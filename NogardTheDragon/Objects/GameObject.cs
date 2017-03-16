@@ -19,6 +19,18 @@ namespace NogardTheDragon.Objects
         protected Rectangle SourceRect = new Rectangle();
         protected Texture2D Texture;
 
+        // 
+
+        /* The lambda operator => can be interpreted as a block containing a single return statement.
+         * It is no different functionality wise, it just looks a bit cleaner to me.
+         * For example, the Source property below is the equivalent of
+         * 
+         public virtual Rectangle Source 
+         {
+            get { return new Rectangle(0, 0, Texture.Width, Texture.Height); }
+         }
+
+        */
         public virtual Rectangle Source => new Rectangle(0, 0, Texture.Width, Texture.Height);
 
         public virtual Rectangle Dest => new Rectangle((int) DrawPos.X, (int) DrawPos.Y, Texture.Width, Texture.Height);

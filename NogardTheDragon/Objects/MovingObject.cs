@@ -27,6 +27,10 @@ namespace NogardTheDragon.Objects
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
                 if (PixelCollision(this, gameObject))
                 {
+                    // This is just an inverted if statement. 
+                    // Instead of nesting found and collidingwith inside of if (this != gameObject), I just reversed the if statement
+                    // and told the foreach statement to go to the next thing if this == gameObject.
+                    // The reason is that we don't want to collide with ourselves.
                     if (this == gameObject) continue;
 
                     found = true;

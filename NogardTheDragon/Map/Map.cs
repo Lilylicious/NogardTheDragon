@@ -17,7 +17,11 @@ namespace NogardTheDragon.Map
         {
             foreach (var gObject in Objects)
             {
+                // o == null if gObject can't be cast to MovingObject
                 var o = gObject as MovingObject;
+
+                // o? short circuits if o is null, as in it only continues the line if o != null. This is equivalent to:
+                // if(o != null) { o.Update(gameTime); }
                 o?.Update(gameTime);
             }
         }

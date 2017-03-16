@@ -17,6 +17,14 @@ namespace NogardTheDragon.Managers
         {
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
             {
+                /*The keyword "as" tries to assign the variable o as a Player object. If it can't, o becomes null.
+                 * This is equivalent to doing the following
+                 * 
+                 * if(gameObject is Player){
+                 * Player = gameObject;
+                 * }
+                 */
+
                 var o = gameObject as Player;
                 if (o != null)
                     Player = o;

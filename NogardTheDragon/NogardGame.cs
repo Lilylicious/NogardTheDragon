@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Managers;
@@ -30,11 +31,10 @@ namespace NogardTheDragon
             Content.RootDirectory = "Content";
         }
 
+        // Here I'm just making the textures public, but making the setters private. You can only set the textures from here, but read from everywhere.
         public static Texture2D PlatformTexture { get; private set; }
 
         public static Texture2D PlayerSheet { get; private set; }
-
-        public static Texture2D GenSheet { get; private set; }
 
         public static SpriteFont Font { get; private set; }
 
@@ -80,6 +80,8 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.Pause:
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             base.Update(gameTime);
@@ -102,6 +104,8 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.Pause:
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             SpriteBatch.End();
 
