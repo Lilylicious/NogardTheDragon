@@ -10,7 +10,7 @@ namespace NogardTheDragon.Map
         public static Map ReadMap(string fileName)
         {
             var strings = new List<string>();
-            var sr = new StreamReader(fileName + ".txt");
+            var sr = new StreamReader("Content\\" + fileName + ".txt");
 
             while (!sr.EndOfStream)
                 strings.Add(sr.ReadLine());
