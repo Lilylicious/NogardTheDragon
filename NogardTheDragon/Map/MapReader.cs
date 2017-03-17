@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using NogardTheDragon.Objects;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Map
 {
@@ -9,44 +10,21 @@ namespace NogardTheDragon.Map
     {
         public static Map ReadMap(string fileName)
         {
-            var strings = new List<string>();
-            var sr = new StreamReader("Content\\" + fileName + ".txt");
-
-            while (!sr.EndOfStream)
-                strings.Add(sr.ReadLine());
-
-            sr.Close();
-            //kiiiiiiiii
-            //k
-            //k
-
             var objectList = new List<GameObject>();
+            var dummyList = BinarySerializer.ReadFromBinaryFile<List<DummyObject>>("Content\\" + fileName + ".bin");
 
-            var placeholder = "";
-
-            for (var i = 0; i < strings.Count; i++)
-            for (var k = 0; k < strings[i].Length; k++)
-            {
-                placeholder = strings[i][k].ToString();
-
-                var pos = new Vector2(Platform.PlatformWidth * k, Platform.PlatformWidth * i);
-
-                if (placeholder == "p")
-                    objectList.Add(new Platform(pos, NogardGame.PlatformTexture));
-                if (placeholder == "u")
+            foreach (var dObj in dummyList)
+                switch (dObj.Type)
                 {
-                    var p = new Player(pos + new Vector2(0, -25), NogardGame.PlayerSheet);
-                    objectList.Add(p);
-                    NogardGame.GamePlayManager.Player = p;
+                    case DummyObject.TypeEnum.Platform:
+                        objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY), NogardGame.PlatformTexture));
+                        break;
+                    case DummyObject.TypeEnum.Player:
+                        objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), NogardGame.PlayerSheet));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
-                if (placeholder == "g")
-                    //objectList.Add(new Goal(pos, MarioGame.GenSheet));
-                if (placeholder == "d")
-                    //objectList.Add(new DinoEnemy(pos, MarioGame.GenSheet));
-
-
-                        placeholder = "";
-            }
 
             return new Map(objectList);
         }
