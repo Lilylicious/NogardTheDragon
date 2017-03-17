@@ -10,7 +10,7 @@ namespace NogardTheDragon.Objects
         {
             DrawPos = pos;
             Texture = tex;
-            
+
             SetColorData();
         }
 

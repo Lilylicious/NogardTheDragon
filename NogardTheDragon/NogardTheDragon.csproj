@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Managers\GameOverManager.cs" />
+    <Compile Include="Managers\MapMakerManager.cs" />
     <Compile Include="Managers\GamePlayManager.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Map\MapReader.cs" />
@@ -49,6 +50,8 @@
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\BinarySerializer.cs" />
+    <Compile Include="Utilities\DummyObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -74,6 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\font1.spritefont">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SavedMap.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

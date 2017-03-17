@@ -11,7 +11,7 @@ namespace NogardTheDragon.Managers
 
         public void StartGame()
         {
-            ActiveMap = MapReader.ReadMap("map1");
+            ActiveMap = MapReader.ReadMap("SavedMap");
             NogardGame.GameOverManager.Init();
             NogardGame.GameState = NogardGame.GameStateEnum.GameActive;
         }

@@ -87,7 +87,5 @@ namespace NogardTheDragon.Objects
         {
             return Velocity;
         }
-
-        
     }
 }
