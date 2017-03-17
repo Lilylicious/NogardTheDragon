@@ -42,6 +42,11 @@ namespace NogardTheDragon.Objects
             return DrawPos;
         }
 
+        public Vector2 GetCenter()
+        {
+            return new Vector2(DrawPos.X + Texture.Width / 2, DrawPos.Y + Texture.Height / 2);
+        }
+
         public abstract void Draw(SpriteBatch spriteBatch);
 
         public abstract void CheckCollision();
