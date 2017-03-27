@@ -35,7 +35,10 @@ namespace NogardTheDragon.Objects
                 Direction.X = -1f;
 
             else
+            {
+                Direction.X = 0f;
                 Velocity.X = 0f;
+            }
 
             if (!Airborn && Keyboard.GetState().IsKeyDown(Keys.Up))
             {
