@@ -24,8 +24,7 @@ namespace NogardTheDragon
         public static GamePlayManager GamePlayManager;
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
-        private GraphicsDeviceManager Graphics;
-
+        public static GraphicsDeviceManager Graphics;
 
         public NogardGame()
         {
@@ -62,14 +61,16 @@ namespace NogardTheDragon
         {
         }
 
-
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
                 GamePlayManager.StartGame();
+            }
+
             if (Keyboard.GetState().IsKeyDown(Keys.Tab))
                 MapMakerManager.StartMapMaker();
 
@@ -91,7 +92,6 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
             base.Update(gameTime);
         }
 
@@ -99,7 +99,8 @@ namespace NogardTheDragon
         {
             GraphicsDevice.Clear(Color.White);
 
-            SpriteBatch.Begin();
+            SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GamePlayManager.ActiveMap?.cam.GetTransform());
+
             switch (GameState)
             {
                 case GameStateEnum.MainMenu:
@@ -118,6 +119,7 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             SpriteBatch.End();
 
             base.Draw(gameTime);

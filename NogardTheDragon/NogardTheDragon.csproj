@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Utilities\Camera.cs" />
     <Compile Include="Managers\GameOverManager.cs" />
     <Compile Include="Managers\MapMakerManager.cs" />
     <Compile Include="Managers\GamePlayManager.cs" />
