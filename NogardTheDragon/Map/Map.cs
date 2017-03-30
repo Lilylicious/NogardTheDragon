@@ -21,7 +21,7 @@ namespace NogardTheDragon.Map
         {
             foreach (var gObject in Objects)
             {
-                if (player == null && gObject is Player)
+                if (gObject is Player)
                     player = (Player)gObject;
 
                 // o == null if gObject can't be cast to MovingObject

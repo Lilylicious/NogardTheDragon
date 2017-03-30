@@ -99,13 +99,13 @@ namespace NogardTheDragon
         {
             GraphicsDevice.Clear(Color.White);
 
-            SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GamePlayManager.ActiveMap?.cam.GetTransform());
-
             switch (GameState)
             {
                 case GameStateEnum.MainMenu:
+                    SpriteBatch.Begin();
                     break;
                 case GameStateEnum.GameActive:
+                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GamePlayManager.ActiveMap?.cam.GetTransform());
                     GamePlayManager.Draw();
                     break;
                 case GameStateEnum.GameOver:

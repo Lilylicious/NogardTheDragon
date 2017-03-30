@@ -18,12 +18,17 @@ namespace NogardTheDragon.Managers
         private Vector2 MousePosition;
         public List<GameObject> Objects = new List<GameObject>();
         private ObjectEnum SelectedObject = ObjectEnum.Platform;
+        public Camera cam;
+        public Vector2 camPos;
+        float countX;
+        float countY;
 
         public MapMakerManager(NogardGame game)
         {
             Game = game;
+            cam = new Camera(game.GraphicsDevice.Viewport);
+            camPos = new Vector2(game.Window.ClientBounds.Width / 2, game.Window.ClientBounds.Height / 2);
         }
-
 
         public void StartMapMaker()
         {
@@ -49,6 +54,34 @@ namespace NogardTheDragon.Managers
             if (Keyboard.GetState().IsKeyDown(Keys.S) && !KState.IsKeyDown(Keys.S))
                 SaveToFile();
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                camPos.X += 1;
+                camPos.Y += 0;
+                countX += 1;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                camPos.X += -1;
+                camPos.Y += 0;
+                countX += -1;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                camPos.X += 0;
+                camPos.Y += -1;
+                countY += -1;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                camPos.X += 0;
+                camPos.Y += 1;
+                countY += 1;
+            }
+
+            cam.SetPos(camPos);
+
             var mState = Mouse.GetState();
             MousePosition = new Vector2(mState.Position.X, Mouse.GetState().Position.Y);
 
@@ -56,10 +89,10 @@ namespace NogardTheDragon.Managers
                 switch (SelectedObject)
                 {
                     case ObjectEnum.Platform:
-                        Objects.Add(new Platform(MousePosition, NogardGame.PlatformTexture));
+                        Objects.Add(new Platform(MousePosition + new Vector2(countX, countY), NogardGame.PlatformTexture));
                         break;
                     case ObjectEnum.Player:
-                        Objects.Add(new Player(MousePosition, NogardGame.PlayerSheet));
+                        Objects.Add(new Player(MousePosition + new Vector2(countX, countY), NogardGame.PlayerSheet));
                         break;
                     case ObjectEnum.Enemy:
                         throw new NotImplementedException();
@@ -78,13 +111,15 @@ namespace NogardTheDragon.Managers
 
         public void Draw()
         {
+            NogardGame.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransform());
+
             switch (SelectedObject)
             {
                 case ObjectEnum.Platform:
-                    Sb.Draw(NogardGame.PlatformTexture, MousePosition);
+                    Sb.Draw(NogardGame.PlatformTexture, MousePosition + new Vector2(countX, countY));
                     break;
                 case ObjectEnum.Player:
-                    Sb.Draw(NogardGame.PlayerSheet, MousePosition);
+                    Sb.Draw(NogardGame.PlayerSheet, MousePosition + new Vector2(countX, countY));
                     break;
                 case ObjectEnum.Enemy:
                     throw new NotImplementedException();
