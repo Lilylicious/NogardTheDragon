@@ -114,6 +114,7 @@ namespace NogardTheDragon
                 case GameStateEnum.Pause:
                     break;
                 case GameStateEnum.MapMaker:
+                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, MapMakerManager?.cam.GetTransform());
                     MapMakerManager.Draw();
                     break;
                 default:

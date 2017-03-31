@@ -111,8 +111,6 @@ namespace NogardTheDragon.Managers
 
         public void Draw()
         {
-            NogardGame.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransform());
-
             switch (SelectedObject)
             {
                 case ObjectEnum.Platform:
