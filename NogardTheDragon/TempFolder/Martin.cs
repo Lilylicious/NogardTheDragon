@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.TempFolder
 {
-    class LilyTest
+    class Martin
     {
     }
 }

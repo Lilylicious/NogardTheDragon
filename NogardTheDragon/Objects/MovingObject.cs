@@ -79,6 +79,7 @@ namespace NogardTheDragon.Objects
         public virtual void Update(GameTime gameTime)
         {
             CheckCollision();
+            HandleCollision();
 
             DrawPos += Velocity;
         }
@@ -86,6 +87,11 @@ namespace NogardTheDragon.Objects
         public Vector2 GetVelocity()
         {
             return Velocity;
+        }
+
+        public void ChangeVelocity(Vector2 vel)
+        {
+            Velocity += vel;
         }
     }
 }
