@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using NogardTheDragon.Objects;
 
 namespace NogardTheDragon.Abilities
 {
-    class DoubleJump : BaseAbility
+    internal class DoubleJump : BaseAbility
     {
         private bool CanTrigger = true;
 
