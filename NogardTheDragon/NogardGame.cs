@@ -24,8 +24,7 @@ namespace NogardTheDragon
         public static GamePlayManager GamePlayManager;
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
-        private GraphicsDeviceManager Graphics;
-
+        public static GraphicsDeviceManager Graphics;
 
         public NogardGame()
         {
@@ -62,7 +61,6 @@ namespace NogardTheDragon
         {
         }
 
-
         protected override void Update(GameTime gameTime)
         {
             KeyMouseReader.Update();
@@ -71,7 +69,10 @@ namespace NogardTheDragon
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
                 GamePlayManager.StartGame();
+            }
+
             if (Keyboard.GetState().IsKeyDown(Keys.Tab))
                 MapMakerManager.StartMapMaker();
 
@@ -93,7 +94,6 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
             base.Update(gameTime);
         }
 
@@ -101,12 +101,13 @@ namespace NogardTheDragon
         {
             GraphicsDevice.Clear(Color.White);
 
-            SpriteBatch.Begin();
             switch (GameState)
             {
                 case GameStateEnum.MainMenu:
+                    SpriteBatch.Begin();
                     break;
                 case GameStateEnum.GameActive:
+                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GamePlayManager.ActiveMap?.cam.GetTransform());
                     GamePlayManager.Draw();
                     break;
                 case GameStateEnum.GameOver:
@@ -115,11 +116,13 @@ namespace NogardTheDragon
                 case GameStateEnum.Pause:
                     break;
                 case GameStateEnum.MapMaker:
+                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, MapMakerManager?.cam.GetTransform());
                     MapMakerManager.Draw();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             SpriteBatch.End();
 
             base.Draw(gameTime);
