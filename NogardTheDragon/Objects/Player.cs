@@ -14,7 +14,7 @@ namespace NogardTheDragon.Objects
 
         public Player(Vector2 pos, Texture2D tex)
         {
-            Speed = 3;
+            Speed = 9;
             Health = 3;
 
             DrawPos = pos;
@@ -35,7 +35,10 @@ namespace NogardTheDragon.Objects
                 Direction.X = -1f;
 
             else
+            {
+                Direction.X = 0f;
                 Velocity.X = 0f;
+            }
 
             if (!Airborn && Keyboard.GetState().IsKeyDown(Keys.Up))
             {
@@ -48,7 +51,7 @@ namespace NogardTheDragon.Objects
 
             Velocity.Y += GravitySpeed;
 
-            Velocity += Direction * Speed * (float) gameTime.ElapsedGameTime.TotalSeconds;
+            Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) * (float) gameTime.ElapsedGameTime.TotalSeconds;
             Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), Velocity.Y);
         }
 
