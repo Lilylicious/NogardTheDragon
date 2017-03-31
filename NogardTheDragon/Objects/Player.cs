@@ -2,15 +2,17 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NogardTheDragon.Abilities;
 
 namespace NogardTheDragon.Objects
 {
-    public class Player : MovingObject
+    public class Player : MovingObject, IAbilityUser
     {
         private bool Airborn;
         public int Health;
         public int Score;
         public double Timer;
+        private DoubleJump DoubleJump;
 
         public Player(Vector2 pos, Texture2D tex)
         {
@@ -21,6 +23,8 @@ namespace NogardTheDragon.Objects
             Texture = tex;
 
             SetColorData();
+
+            RegisterAbilities();
         }
 
         public override void Update(GameTime gameTime)
@@ -37,11 +41,13 @@ namespace NogardTheDragon.Objects
             else
                 Velocity.X = 0f;
 
-            if (!Airborn && Keyboard.GetState().IsKeyDown(Keys.Up))
+            if (!Airborn && KeyMouseReader.KeyPressed(Keys.Up))
             {
                 Velocity.Y = -12f;
                 Airborn = true;
             }
+            else if (KeyMouseReader.KeyPressed(Keys.Up))
+                DoubleJump?.TriggerAbility();
 
             if (Health <= 0)
                 NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
@@ -66,6 +72,12 @@ namespace NogardTheDragon.Objects
             Airborn = false;
             Direction.Y = 0;
             Velocity.Y = 0;
+            DoubleJump?.Reset();
+        }
+
+        public void RegisterAbilities()
+        {
+            DoubleJump = new DoubleJump(this);
         }
     }
 }

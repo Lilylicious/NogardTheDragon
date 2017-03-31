@@ -87,5 +87,10 @@ namespace NogardTheDragon.Objects
         {
             return Velocity;
         }
+
+        public void ChangeVelocity(Vector2 vel)
+        {
+            Velocity += vel;
+        }
     }
 }
