@@ -11,8 +11,8 @@ namespace NogardTheDragon.Managers
 {
     public class MapMakerManager
     {
-        private readonly SpriteBatch Sb = NogardGame.SpriteBatch;
         private readonly NogardGame Game;
+        private readonly SpriteBatch Sb = NogardGame.SpriteBatch;
         private KeyboardState KState;
         private bool LastWasPressed;
         private Vector2 MousePosition;

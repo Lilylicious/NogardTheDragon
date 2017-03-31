@@ -8,6 +8,8 @@ namespace NogardTheDragon.Map
     {
         public List<GameObject> Objects = new List<GameObject>();
 
+        public List<Projectile> ProjectilesToAdd = new List<Projectile>();
+
         public Map(List<GameObject> objects)
         {
             Objects = objects;
@@ -15,6 +17,11 @@ namespace NogardTheDragon.Map
 
         public void Update(GameTime gameTime)
         {
+            foreach (var p in ProjectilesToAdd)
+                Objects.Add(p);
+
+            ProjectilesToAdd.Clear();
+
             foreach (var gObject in Objects)
             {
                 // o == null if gObject can't be cast to MovingObject
@@ -24,6 +31,8 @@ namespace NogardTheDragon.Map
                 // if(o != null) { o.Update(gameTime); }
                 o?.Update(gameTime);
             }
+
+            Objects.RemoveAll(item => item.Active == false);
         }
 
         public void Draw()
