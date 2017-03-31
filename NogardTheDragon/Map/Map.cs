@@ -21,7 +21,6 @@ namespace NogardTheDragon.Map
 
         public void Update(GameTime gameTime)
         {
-            cam.SetPos(player.GetPosition());
             foreach (var p in ProjectilesToAdd)
                 Objects.Add(p);
 
@@ -40,6 +39,7 @@ namespace NogardTheDragon.Map
                 o?.Update(gameTime);
 
             }
+            cam.SetPos(player.GetPosition());
             Objects.RemoveAll(item => item.Active == false);
 
         }
