@@ -36,9 +36,9 @@ namespace NogardTheDragon.Objects
         protected override void HandleCollision()
         {
             var target = CollidingWith as IDamageable;
-            if (Owner != target)
+            if (target != null && Owner != target)
             {
-                target?.TakeDamage(1);
+                target.TakeDamage(1);
                 Active = false;
             }
                 
