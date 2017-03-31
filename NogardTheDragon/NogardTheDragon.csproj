@@ -38,6 +38,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Abilities\BaseAbility.cs" />
+    <Compile Include="Abilities\BasePowerup.cs" />
+    <Compile Include="Abilities\DoubleJump.cs" />
+    <Compile Include="Abilities\IAbilityUser.cs" />
     <Compile Include="Managers\GameOverManager.cs" />
     <Compile Include="Managers\MapMakerManager.cs" />
     <Compile Include="Managers\GamePlayManager.cs" />
@@ -53,6 +57,7 @@
     <Compile Include="TempFolder\LilyTest.cs" />
     <Compile Include="Utilities\BinarySerializer.cs" />
     <Compile Include="Utilities\DummyObject.cs" />
+    <Compile Include="Utilities\KeyMouseReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
