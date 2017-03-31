@@ -63,6 +63,8 @@ namespace NogardTheDragon
 
         protected override void Update(GameTime gameTime)
         {
+            KeyMouseReader.Update();
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
