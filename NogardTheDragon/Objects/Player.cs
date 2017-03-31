@@ -43,7 +43,6 @@ namespace NogardTheDragon.Objects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            HandleCollision();
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
