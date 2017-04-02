@@ -3,7 +3,7 @@ using NogardTheDragon.Objects;
 
 namespace NogardTheDragon.Managers
 {
-    public class GameOverManager
+    public class GameOverManager : BaseManager
     {
         private readonly NogardGame Instance;
         private Player Player;
