@@ -10,10 +10,10 @@ namespace NogardTheDragon.Objects
     public class Player : MovingObject, IAbilityUser, IDamageable
     {
         private bool Airborn;
-        private DoubleJump DoubleJump;
+        private DoubleJumpAbility DoubleJumpAbility;
         public int Health;
         public int Score;
-        private ShootProjectile ShootProjectile;
+        private ShootProjectileAbility ShootProjectileAbility;
         public double Timer;
 
         public Player(Vector2 pos, Texture2D tex)
@@ -31,8 +31,8 @@ namespace NogardTheDragon.Objects
 
         public void RegisterAbilities()
         {
-            DoubleJump = new DoubleJump(this);
-            ShootProjectile = new ShootProjectile(this);
+            DoubleJumpAbility = new DoubleJumpAbility(this);
+            ShootProjectileAbility = new ShootProjectileAbility(this);
         }
 
         public void TakeDamage(int damage)
@@ -61,7 +61,7 @@ namespace NogardTheDragon.Objects
             }
 
             if (KeyMouseReader.KeyPressed(Keys.Space))
-                ShootProjectile?.TriggerAbility();
+                ShootProjectileAbility?.TriggerAbility();
 
             if (!Airborn && KeyMouseReader.KeyPressed(Keys.Up))
             {
@@ -70,7 +70,7 @@ namespace NogardTheDragon.Objects
             }
             else if (KeyMouseReader.KeyPressed(Keys.Up))
             {
-                DoubleJump?.TriggerAbility();
+                DoubleJumpAbility?.TriggerAbility();
             }
 
             if (Health <= 0)
@@ -97,7 +97,7 @@ namespace NogardTheDragon.Objects
             Airborn = false;
             Direction.Y = 0;
             Velocity.Y = 0;
-            DoubleJump?.Reset();
+            DoubleJumpAbility?.Reset();
         }
     }
 }
