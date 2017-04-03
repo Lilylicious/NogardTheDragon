@@ -37,12 +37,34 @@ namespace NogardTheDragon.Objects
 
         public void TakeDamage(int damage)
         {
-            Health -= damage;
+
+            if (Timer == 0)
+            {
+                Health -= damage;
+                Timer = 2;
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (Timer > 0)
+            {
+                Timer -= gameTime.ElapsedGameTime.TotalSeconds;
+                Color = Color.Red;
+            }
+
+            else
+            {
+                Timer = 0;
+                Color = Color.White;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.K))
+            {
+                TakeDamage(1);
+            }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
@@ -79,7 +101,7 @@ namespace NogardTheDragon.Objects
             Velocity.Y += GravitySpeed;
 
             Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
-                        (float) gameTime.ElapsedGameTime.TotalSeconds;
+                        (float)gameTime.ElapsedGameTime.TotalSeconds;
             Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), Velocity.Y);
         }
 
