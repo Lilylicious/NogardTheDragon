@@ -9,7 +9,7 @@ using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Managers
 {
-    public class MapMakerManager
+    public class MapMakerManager : BaseManager
     {
         private readonly NogardGame Game;
         private readonly SpriteBatch Sb = NogardGame.SpriteBatch;

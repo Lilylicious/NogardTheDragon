@@ -4,7 +4,7 @@ using NogardTheDragon.Objects;
 
 namespace NogardTheDragon.Managers
 {
-    public class GamePlayManager
+    public class GamePlayManager : BaseManager
     {
         public Map.Map ActiveMap;
         public Player Player;

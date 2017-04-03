@@ -3,9 +3,9 @@ using NogardTheDragon.Objects;
 
 namespace NogardTheDragon.Abilities
 {
-    internal class ShootProjectile : BaseAbility
+    internal class ShootProjectileAbility : BaseAbility
     {
-        public ShootProjectile(MovingObject owner) : base(owner)
+        public ShootProjectileAbility(MovingObject owner) : base(owner)
         {
         }
 
