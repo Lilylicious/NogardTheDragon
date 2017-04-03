@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using NogardTheDragon.Interfaces;
 
-namespace NogardTheDragon.TempFolder
+namespace NogardTheDragon
 {
-    class StandardEnemy
+    internal class BaseEnemy : MovingObject, IDamageable
     {
         private bool Airborn;
-        public int Health;
+        private int Health = 3;
         public int Score;
 
-        public StandardEnemy(Vector2 pos, Texture2D tex)
+        public BaseEnemy(Vector2 pos, Texture2D tex)
         {
-            Speed = 0;
-            Health = 1;
+            //Speed = 0;
+            //Health = 0;
 
             DrawPos = pos;
             Texture = tex;
@@ -27,9 +31,6 @@ namespace NogardTheDragon.TempFolder
         {
             base.Update(gameTime);
             HandleCollision();
-
-            if (Health <= 0)
-                remove;
 
             //for (int i = 0; i < Enemies.Count; i++)
             //{
@@ -56,12 +57,17 @@ namespace NogardTheDragon.TempFolder
 
         protected override void HandleCollision()
         {
-            if (CollidingWith == null || !(Velocity.Y > 0)) return;
+            if (CollidingWith == null || !(Velocity.Y > 0) || !(CollidingWith is Platform)) return;
 
             DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
             Airborn = false;
             Direction.Y = 0;
             Velocity.Y = 0;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
         }
     }
 }
