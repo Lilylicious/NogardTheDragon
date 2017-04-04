@@ -25,7 +25,7 @@ namespace NogardTheDragon.Managers
             NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
             Won = false;
         }
-
+        
         public override void Init()
         {
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
