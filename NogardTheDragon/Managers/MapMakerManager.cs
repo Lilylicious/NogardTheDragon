@@ -47,6 +47,8 @@ namespace NogardTheDragon.Managers
                 SelectedObject = ObjectEnum.Platform;
             if (KeyMouseReader.KeyPressed(Keys.U))
                 SelectedObject = ObjectEnum.Player;
+            if (KeyMouseReader.KeyPressed(Keys.G))
+                SelectedObject = ObjectEnum.Goal;
             if (KeyMouseReader.KeyPressed(Keys.C))
                 SelectedObject = ObjectEnum.None;
             if (KeyMouseReader.KeyPressed(Keys.S))
@@ -112,7 +114,8 @@ namespace NogardTheDragon.Managers
                     case ObjectEnum.Enemy:
                         throw new NotImplementedException();
                     case ObjectEnum.Goal:
-                        throw new NotImplementedException();
+                        Objects.Add(new Goal(PlacePosition, NogardGame.Goal));
+                        break;
                     case ObjectEnum.None:
                         Objects.RemoveAll(item => Vector2.Distance(item.GetCenter(), MousePosition) < 25);
                         break;
@@ -135,7 +138,8 @@ namespace NogardTheDragon.Managers
                 case ObjectEnum.Enemy:
                     throw new NotImplementedException();
                 case ObjectEnum.Goal:
-                    throw new NotImplementedException();
+                    Sb.Draw(NogardGame.Goal, PlacePosition);
+                    break;
                 case ObjectEnum.None:
                     break;
                 default:

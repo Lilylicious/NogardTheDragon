@@ -13,10 +13,7 @@ namespace NogardTheDragon.Objects
 
             SetColorData();
         }
-
-
-        public static int PlatformWidth { get; } = 47;
-
+        
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, DrawPos, Color.White);

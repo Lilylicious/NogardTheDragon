@@ -38,6 +38,7 @@ namespace NogardTheDragon
         public static Texture2D PlayerSheet { get; private set; }
 
         public static Texture2D IndicatorLine { get; private set; }
+        public static Texture2D Goal { get; private set; }
 
         public static SpriteFont Font { get; private set; }
 
@@ -53,6 +54,7 @@ namespace NogardTheDragon
             PlatformTexture = Content.Load<Texture2D>(@"plattform");
             PlayerSheet = Content.Load<Texture2D>(@"playersquare");
             IndicatorLine = Content.Load<Texture2D>(@"indicatorline");
+            Goal = Content.Load<Texture2D>(@"goal");
             Font = Content.Load<SpriteFont>(@"font1");
 
             GamePlayManager = new GamePlayManager();

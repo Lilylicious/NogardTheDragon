@@ -22,6 +22,9 @@ namespace NogardTheDragon.Map
                     case DummyObject.TypeEnum.Player:
                         objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), NogardGame.PlayerSheet));
                         break;
+                    case DummyObject.TypeEnum.Goal:
+                        objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), NogardGame.Goal));
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
