@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animation\Background.cs" />
     <Compile Include="Utilities\Camera.cs" />
     <Compile Include="Abilities\BaseAbility.cs" />
     <Compile Include="Abilities\BasePowerup.cs" />
@@ -72,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BaseEnemysquare.png" />
     <Content Include="Content\map1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
