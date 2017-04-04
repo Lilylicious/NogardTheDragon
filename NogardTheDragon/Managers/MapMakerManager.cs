@@ -83,7 +83,7 @@ namespace NogardTheDragon.Managers
             
             PlacePosition = MousePosition;
 
-            if(Objects.Count > 0)
+            if(Objects.Count > 0 && SelectedObject != ObjectEnum.Player)
             {
                 var closestObj = Objects[0];
                 foreach (GameObject obj in Objects)
@@ -127,6 +127,7 @@ namespace NogardTheDragon.Managers
             {
                 case ObjectEnum.Platform:
                     Sb.Draw(NogardGame.PlatformTexture, PlacePosition);
+                    Sb.Draw(NogardGame.IndicatorLine, PlacePosition + new Vector2(0, 200));
                     break;
                 case ObjectEnum.Player:
                     Sb.Draw(NogardGame.PlayerSheet, PlacePosition);
