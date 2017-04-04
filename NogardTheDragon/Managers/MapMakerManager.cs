@@ -16,12 +16,11 @@ namespace NogardTheDragon.Managers
         private KeyboardState KState;
         private bool LastWasPressed;
         private Vector2 MousePosition;
+        private Vector2 PlacePosition;
         public List<GameObject> Objects = new List<GameObject>();
         private ObjectEnum SelectedObject = ObjectEnum.Platform;
         public Camera cam;
         public Vector2 camPos;
-        float countX;
-        float countY;
 
         public MapMakerManager(NogardGame game)
         {
@@ -59,41 +58,60 @@ namespace NogardTheDragon.Managers
             {
                 camPos.X += 1;
                 camPos.Y += 0;
-                countX += 1;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 camPos.X += -1;
                 camPos.Y += 0;
-                countX += -1;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 camPos.X += 0;
                 camPos.Y += -1;
-                countY += -1;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 camPos.X += 0;
                 camPos.Y += 1;
-                countY += 1;
             }
 
             cam.SetPos(camPos);
 
             var mState = Mouse.GetState();
+            
+            
             MousePosition = new Vector2(mState.Position.X, Mouse.GetState().Position.Y);
+            var transform = Matrix.Invert(cam.GetTransform());
+            Vector2.Transform(ref MousePosition, ref transform, out MousePosition);
+            
+            PlacePosition = MousePosition;
+
+            if(Objects.Count > 0)
+            {
+                var closestObj = Objects[0];
+                foreach (GameObject obj in Objects)
+                    if (Vector2.Distance(obj.GetCenter(), MousePosition) < Vector2.Distance(closestObj.GetCenter(), MousePosition))
+                        closestObj = obj;
+
+                if (Vector2.Distance(closestObj.GetCenter(), MousePosition) < 25)
+                {
+                    if(closestObj.GetCenter().X - MousePosition.X < 0)
+                        PlacePosition = new Vector2(closestObj.Dest.Right, closestObj.Dest.Top);
+                    else
+                        PlacePosition = new Vector2(closestObj.Dest.Left - closestObj.Dest.Width, closestObj.Dest.Top);
+                }
+            }
+
 
             if (mState.LeftButton == ButtonState.Pressed && !LastWasPressed)
                 switch (SelectedObject)
                 {
                     case ObjectEnum.Platform:
-                        Objects.Add(new Platform(MousePosition + new Vector2(countX, countY), NogardGame.PlatformTexture));
+                        Objects.Add(new Platform(PlacePosition, NogardGame.PlatformTexture));
                         break;
                     case ObjectEnum.Player:
-                        Objects.Add(new Player(MousePosition + new Vector2(countX, countY), NogardGame.PlayerSheet));
+                        Objects.Add(new Player(PlacePosition, NogardGame.PlayerSheet));
                         break;
                     case ObjectEnum.Enemy:
                         throw new NotImplementedException();
@@ -115,10 +133,10 @@ namespace NogardTheDragon.Managers
             switch (SelectedObject)
             {
                 case ObjectEnum.Platform:
-                    Sb.Draw(NogardGame.PlatformTexture, MousePosition + new Vector2(countX, countY));
+                    Sb.Draw(NogardGame.PlatformTexture, PlacePosition);
                     break;
                 case ObjectEnum.Player:
-                    Sb.Draw(NogardGame.PlayerSheet, MousePosition + new Vector2(countX, countY));
+                    Sb.Draw(NogardGame.PlayerSheet, PlacePosition);
                     break;
                 case ObjectEnum.Enemy:
                     throw new NotImplementedException();
