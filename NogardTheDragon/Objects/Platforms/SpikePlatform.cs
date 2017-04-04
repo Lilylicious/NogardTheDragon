@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects
 {
-    class Class1 : BaseSpecialPlatform
+    class SpikePlatform : BaseSpecialPlatform
     {
     }
 }
