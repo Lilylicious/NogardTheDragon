@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    class BouncePlatform : BaseSpecialPlatform
+    class MovingPlatform : BaseSpecialPlatform
     {
     }
 }
