@@ -70,11 +70,11 @@ namespace NogardTheDragon
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
-                GamePlayManager.StartGame();
+                GamePlayManager.Init();
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Tab))
-                MapMakerManager.StartMapMaker();
+                MapMakerManager.Init();
 
             switch (GameState)
             {
@@ -84,7 +84,7 @@ namespace NogardTheDragon
                     GamePlayManager.Update(gameTime);
                     break;
                 case GameStateEnum.GameOver:
-                    GameOverManager.Update();
+                    GameOverManager.Update(gameTime);
                     break;
                 case GameStateEnum.Pause:
                     break;
