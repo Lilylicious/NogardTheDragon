@@ -7,10 +7,23 @@ namespace NogardTheDragon.Managers
     {
         private readonly NogardGame Instance;
         private Player Player;
+        private bool Won;
 
         public GameOverManager(NogardGame game)
         {
             Instance = game;
+        }
+
+        public void Win()
+        {
+            NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
+            Won = true;
+        }
+
+        public void Lose()
+        {
+            NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
+            Won = false;
         }
 
         public override void Init()
@@ -38,6 +51,8 @@ namespace NogardTheDragon.Managers
         public override void Draw()
         {
             Instance.GraphicsDevice.Clear(Color.Black);
+
+            //if won then Victory! If not won then Losing screen
         }
     }
 }
