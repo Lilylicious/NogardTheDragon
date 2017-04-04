@@ -30,12 +30,13 @@ namespace NogardTheDragon.Managers
             camPos = new Vector2(game.Window.ClientBounds.Width / 2, game.Window.ClientBounds.Height / 2);
         }
 
-        public void StartMapMaker()
+        public override void Init()
         {
             NogardGame.GameState = NogardGame.GameStateEnum.MapMaker;
             Game.IsMouseVisible = true;
             Objects.Clear();
         }
+
 
         private void SaveToFile()
         {
@@ -43,7 +44,7 @@ namespace NogardTheDragon.Managers
             BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/SavedMap.bin", dummyList);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.P))
                 SelectedObject = ObjectEnum.Platform;
@@ -109,7 +110,7 @@ namespace NogardTheDragon.Managers
             KState = Keyboard.GetState();
         }
 
-        public void Draw()
+        public override void Draw()
         {
             switch (SelectedObject)
             {
@@ -133,6 +134,7 @@ namespace NogardTheDragon.Managers
                 obj.Draw(Sb);
         }
 
+        
         private enum ObjectEnum
         {
             Platform,

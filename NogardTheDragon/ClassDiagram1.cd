@@ -211,7 +211,7 @@
       <FileName>Objects\Platforms\Platform.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="NogardTheDragon.Objects.Class1" Collapsed="true">
+  <Class Name="NogardTheDragon.Objects.SpikePlatform" Collapsed="true">
     <Position X="10.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

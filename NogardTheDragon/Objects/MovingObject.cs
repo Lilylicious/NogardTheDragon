@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Objects
 {
-    public class MovingObject : GameObject
+    public abstract class MovingObject : GameObject
     {
         protected int Acceleration = 2;
         protected int AccelerationConstant = 2;

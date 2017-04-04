@@ -13,7 +13,7 @@ namespace NogardTheDragon.Managers
             Instance = game;
         }
 
-        public void Init()
+        public override void Init()
         {
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
             {
@@ -31,11 +31,11 @@ namespace NogardTheDragon.Managers
             }
         }
 
-        public void Update()
+        public override void Update(GameTime gameTime)
         {
         }
 
-        public void Draw()
+        public override void Draw()
         {
             Instance.GraphicsDevice.Clear(Color.Black);
         }
