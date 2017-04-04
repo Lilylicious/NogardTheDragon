@@ -38,7 +38,7 @@ namespace NogardTheDragon.Managers
         private void SaveToFile()
         {
             var dummyList = Objects.Select(obj => new DummyObject(obj)).ToList();
-            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/SavedMap.bin", dummyList);
+            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/" + DateTime.Now.Ticks + ".bin", dummyList);
         }
 
         public override void Update(GameTime gameTime)
