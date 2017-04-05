@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Abilities;
 using NogardTheDragon.Interfaces;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Objects
 {
@@ -117,7 +118,7 @@ namespace NogardTheDragon.Objects
             if (CollidingWith == null || !(Velocity.Y > 0)) return;
 
 
-            if (CollidingWith is Platform)
+            if (CollidingWith is Platform || CollidingWith is MovingPlatform)
             {
                 DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
                 Airborn = false;

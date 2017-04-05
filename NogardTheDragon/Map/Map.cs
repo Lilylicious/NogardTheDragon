@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Managers;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Map
 {
@@ -37,8 +38,8 @@ namespace NogardTheDragon.Map
                 // o? short circuits if o is null, as in it only continues the line if o != null. This is equivalent to:
                 // if(o != null) { o.Update(gameTime); }
                 o?.Update(gameTime);
-
             }
+
             cam.SetPos(player.GetPosition());
             Objects.RemoveAll(item => item.Active == false);
 

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Utilities;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Managers
 {
@@ -44,6 +45,8 @@ namespace NogardTheDragon.Managers
         {
             if (KeyMouseReader.KeyPressed(Keys.P))
                 SelectedObject = ObjectEnum.Platform;
+            if (KeyMouseReader.KeyPressed(Keys.O))
+                SelectedObject = ObjectEnum.MovingPlatform;
             if (KeyMouseReader.KeyPressed(Keys.U))
                 SelectedObject = ObjectEnum.Player;
             if (KeyMouseReader.KeyPressed(Keys.G))
@@ -106,6 +109,9 @@ namespace NogardTheDragon.Managers
                     case ObjectEnum.Platform:
                         Objects.Add(new Platform(PlacePosition, TextureManager.StandardPlatformTex));
                         break;
+                    case ObjectEnum.MovingPlatform:
+                        Objects.Add(new MovingPlatform(PlacePosition, TextureManager.MovingPlatformTex));
+                        break;
                     case ObjectEnum.Player:
                         Objects.Add(new Player(PlacePosition, TextureManager.PlayerTex));
                         break;
@@ -130,6 +136,9 @@ namespace NogardTheDragon.Managers
                     Sb.Draw(TextureManager.StandardPlatformTex, PlacePosition);
                     Sb.Draw(TextureManager.IndicatorLineTex, PlacePosition + new Vector2(0, 200));
                     break;
+                case ObjectEnum.MovingPlatform:
+                    Sb.Draw(TextureManager.MovingPlatformTex, PlacePosition);
+                    break;
                 case ObjectEnum.Player:
                     Sb.Draw(TextureManager.PlayerTex, PlacePosition);
                     break;
@@ -151,6 +160,7 @@ namespace NogardTheDragon.Managers
         private enum ObjectEnum
         {
             Platform,
+            MovingPlatform,
             Player,
             Enemy,
             Goal,

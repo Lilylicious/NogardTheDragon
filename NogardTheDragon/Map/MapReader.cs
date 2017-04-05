@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Utilities;
 using NogardTheDragon.Managers;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Map
 {
@@ -19,6 +20,9 @@ namespace NogardTheDragon.Map
                 {
                     case DummyObject.TypeEnum.Platform:
                         objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.StandardPlatformTex));
+                        break;
+                    case DummyObject.TypeEnum.MovingPlatform:
+                        objectList.Add(new MovingPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.MovingPlatformTex));
                         break;
                     case DummyObject.TypeEnum.Player:
                         objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlayerTex));
