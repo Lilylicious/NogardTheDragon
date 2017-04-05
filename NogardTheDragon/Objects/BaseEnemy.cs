@@ -26,15 +26,14 @@ namespace NogardTheDragon.Objects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            HandleCollision();
 
-            if (BaseEnemy.Hitbox.Intersects(Player.Hitbox))
-            {
-                if (Player.PixelCollision(BaseEnemy))
-                {
-                    Health -= damage;
-                }
-            }
+            //if (BaseEnemy.Hitbox.Intersects(Player.Hitbox))
+            //{
+            //    if (Player.PixelCollision(BaseEnemy))
+            //    {
+            //        Health -= damage;
+            //    }
+            //}
 
             //for (int i = 0; i < Enemies.Count; i++)
             //{
@@ -56,12 +55,21 @@ namespace NogardTheDragon.Objects
 
         protected override void HandleCollision()
         {
-            if (CollidingWith == null || !(Velocity.Y > 0) || !(CollidingWith is Platform)) return;
+            if (CollidingWith == null || !(Velocity.Y > 0)) return;
 
-            DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
-            Airborn = false;
-            Direction.Y = 0;
-            Velocity.Y = 0;
+
+            if (CollidingWith is Platform)
+            {
+                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
+                Airborn = false;
+                Direction.Y = 0;
+                Velocity.Y = 0;
+            }
+
+            else if (CollidingWith is BaseEnemy)
+            {
+                Health -= damage;
+            }
         }
 
         public void TakeDamage(int damage)
