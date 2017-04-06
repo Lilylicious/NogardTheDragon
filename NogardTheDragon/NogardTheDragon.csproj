@@ -44,7 +44,6 @@
     <Compile Include="Abilities\SlowWorldPower.cs" />
     <Compile Include="Abilities\UnlimitedPower.cs" />
     <Compile Include="Managers\BaseManager.cs" />
-    <Compile Include="Managers\MenuManager.cs" />
     <Compile Include="Objects\Goal.cs" />
     <Compile Include="Objects\Obstacles\BaseObstacle.cs" />
     <Compile Include="Objects\Platforms\BaseSpecialPlatform.cs" />
@@ -58,7 +57,6 @@
     <Compile Include="Objects\Obstacles\BoulderObstacle.cs" />
     <Compile Include="Objects\Obstacles\CaveMonsterObstacle.cs" />
     <Compile Include="Objects\Obstacles\SpikeObstacle.cs" />
-    <Compile Include="Utilities\AssetManager.cs" />
     <Compile Include="Utilities\Camera.cs" />
     <Compile Include="Abilities\BaseAbility.cs" />
     <Compile Include="Abilities\BasePowerup.cs" />
