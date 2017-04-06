@@ -35,9 +35,9 @@ namespace NogardTheDragon.Managers
 
             StandardPlatformTex = c.Load<Texture2D>(@"plattform");
             MovingPlatformTex = c.Load<Texture2D>(@"movingplatform");
-            //CloudPlatformTex = c.Load<Texture2D>(@"FILENAME");
-            //SpikePlatformTex = c.Load<Texture2D>(@"FILENAME");
-            //IcePlatformTex = c.Load<Texture2D>(@"FILENAME");
+            CloudPlatformTex = c.Load<Texture2D>(@"cloudplatform");
+            SpikePlatformTex = c.Load<Texture2D>(@"spikeplatform");
+            IcePlatformTex = c.Load<Texture2D>(@"iceplatform");
 
             IndicatorLineTex = c.Load<Texture2D>(@"indicatorline");
             GoalTex = c.Load<Texture2D>(@"goal");

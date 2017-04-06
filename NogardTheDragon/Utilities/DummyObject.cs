@@ -11,6 +11,9 @@ namespace NogardTheDragon.Utilities
         {
             Platform,
             MovingPlatform,
+            SpikePlatform,
+            CloudPlatform,
+            IcePlatform,
             Player,
             Goal
         }
@@ -25,6 +28,12 @@ namespace NogardTheDragon.Utilities
                 Type = TypeEnum.Platform;
             if (obj is MovingPlatform)
                 Type = TypeEnum.MovingPlatform;
+            if (obj is SpikePlatform)
+                Type = TypeEnum.SpikePlatform;
+            if (obj is CloudPlatform)
+                Type = TypeEnum.CloudPlatform;
+            if (obj is IcePlatform)
+                Type = TypeEnum.IcePlatform;
             if (obj is Player)
                 Type = TypeEnum.Player;
             if (obj is Goal)

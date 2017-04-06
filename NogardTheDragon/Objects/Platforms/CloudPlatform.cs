@@ -18,7 +18,7 @@ namespace NogardTheDragon.Objects.Platforms
 
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

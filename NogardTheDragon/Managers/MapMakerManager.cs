@@ -47,6 +47,12 @@ namespace NogardTheDragon.Managers
                 SelectedObject = ObjectEnum.Platform;
             if (KeyMouseReader.KeyPressed(Keys.O))
                 SelectedObject = ObjectEnum.MovingPlatform;
+            if (KeyMouseReader.KeyPressed(Keys.Y))
+                SelectedObject = ObjectEnum.SpikePlatform;
+            if (KeyMouseReader.KeyPressed(Keys.K))
+                SelectedObject = ObjectEnum.CloudPlatform;
+            if (KeyMouseReader.KeyPressed(Keys.I))
+                SelectedObject = ObjectEnum.IcePlatform;
             if (KeyMouseReader.KeyPressed(Keys.U))
                 SelectedObject = ObjectEnum.Player;
             if (KeyMouseReader.KeyPressed(Keys.G))
@@ -112,6 +118,15 @@ namespace NogardTheDragon.Managers
                     case ObjectEnum.MovingPlatform:
                         Objects.Add(new MovingPlatform(PlacePosition, TextureManager.MovingPlatformTex));
                         break;
+                    case ObjectEnum.SpikePlatform:
+                        Objects.Add(new SpikePlatform(PlacePosition, TextureManager.SpikePlatformTex));
+                        break;
+                    case ObjectEnum.CloudPlatform:
+                        Objects.Add(new CloudPlatform(PlacePosition, TextureManager.CloudPlatformTex));
+                        break;
+                    case ObjectEnum.IcePlatform:
+                        Objects.Add(new IcePlatform(PlacePosition, TextureManager.IcePlatformTex));
+                        break;
                     case ObjectEnum.Player:
                         Objects.Add(new Player(PlacePosition, TextureManager.PlayerTex));
                         break;
@@ -139,6 +154,15 @@ namespace NogardTheDragon.Managers
                 case ObjectEnum.MovingPlatform:
                     Sb.Draw(TextureManager.MovingPlatformTex, PlacePosition);
                     break;
+                case ObjectEnum.SpikePlatform:
+                    Sb.Draw(TextureManager.SpikePlatformTex, PlacePosition);
+                    break;
+                case ObjectEnum.CloudPlatform:
+                    Sb.Draw(TextureManager.CloudPlatformTex, PlacePosition);
+                    break;
+                case ObjectEnum.IcePlatform:
+                    Sb.Draw(TextureManager.IcePlatformTex, PlacePosition);
+                    break;
                 case ObjectEnum.Player:
                     Sb.Draw(TextureManager.PlayerTex, PlacePosition);
                     break;
@@ -161,6 +185,9 @@ namespace NogardTheDragon.Managers
         {
             Platform,
             MovingPlatform,
+            SpikePlatform,
+            CloudPlatform,
+            IcePlatform,
             Player,
             Enemy,
             Goal,

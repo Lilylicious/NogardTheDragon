@@ -30,13 +30,13 @@ namespace NogardTheDragon.Objects.Platforms
                 moveUp = true;
             }
 
-            if (moveUp == true)
-            {
-                DrawPos.Y -= 1;
-            }
-            else if (moveUp == false)
+            if (moveUp == false)
             {
                 DrawPos.Y += 1f;
+            }
+            else if (moveUp == true)
+            {
+                DrawPos.Y -= 1;
             }
         }
     }

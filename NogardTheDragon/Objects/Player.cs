@@ -16,6 +16,8 @@ namespace NogardTheDragon.Objects
         public int Score;
         private ShootProjectileAbility ShootProjectileAbility;
         public double Timer;
+        bool left;
+        bool right;
 
         public Player(Vector2 pos, Texture2D tex)
         {
@@ -69,11 +71,15 @@ namespace NogardTheDragon.Objects
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
+                left = false;
+                right = true;
                 Direction.X = 1f;
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
+                right = false;
+                left = true;
                 Direction.X = -1f;
             }
 
@@ -99,11 +105,11 @@ namespace NogardTheDragon.Objects
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
 
-            Velocity.Y += GravitySpeed;
+                Velocity.Y += GravitySpeed;
 
-            Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
-                        (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), Velocity.Y);
+                Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
+                            (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), Velocity.Y);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -114,22 +120,51 @@ namespace NogardTheDragon.Objects
 
         protected override void HandleCollision()
         {
-
             if (CollidingWith == null || !(Velocity.Y > 0)) return;
-
 
             if (CollidingWith is Platform || CollidingWith is MovingPlatform)
             {
-                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
+                LandOnPlatform();
+            }
+            else if (CollidingWith is SpikePlatform)
+            {
+                LandOnPlatform();
+                TakeDamage(1);
+            }
+            else if (CollidingWith is CloudPlatform)
+            {
                 Airborn = false;
-                Direction.Y = 0;
-                Velocity.Y = 0;
+                Velocity.Y *= 0.3f;
                 DoubleJumpAbility?.Reset();
             }
             else if (CollidingWith is Goal)
             {
                 NogardGame.GameOverManager.Win();
             }
+            else if (CollidingWith is IcePlatform)
+            {
+                LandOnPlatform();
+
+                if (right)
+                {
+                    Direction.X += 1;
+                    Velocity.X += 1;
+                }
+                else if (left)
+                {
+                    Direction.X -= 1;
+                    Velocity.X -= 1;
+                }
+            }
+        }
+
+        private void LandOnPlatform()
+        {
+            DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
+            Airborn = false;
+            Direction.Y = 0;
+            Velocity.Y = 0;
+            DoubleJumpAbility?.Reset();
         }
     }
 }

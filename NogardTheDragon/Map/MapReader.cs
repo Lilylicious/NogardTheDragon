@@ -24,6 +24,15 @@ namespace NogardTheDragon.Map
                     case DummyObject.TypeEnum.MovingPlatform:
                         objectList.Add(new MovingPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.MovingPlatformTex));
                         break;
+                    case DummyObject.TypeEnum.SpikePlatform:
+                        objectList.Add(new SpikePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.SpikePlatformTex));
+                        break;
+                    case DummyObject.TypeEnum.CloudPlatform:
+                        objectList.Add(new CloudPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.CloudPlatformTex));
+                        break;
+                    case DummyObject.TypeEnum.IcePlatform:
+                        objectList.Add(new IcePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.IcePlatformTex));
+                        break;
                     case DummyObject.TypeEnum.Player:
                         objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlayerTex));
                         break;
