@@ -37,6 +37,9 @@ namespace NogardTheDragon
 
         public static Texture2D PlayerSheet { get; private set; }
 
+        public static Texture2D IndicatorLine { get; private set; }
+        public static Texture2D Goal { get; private set; }
+
         public static SpriteFont Font { get; private set; }
 
         protected override void Initialize()
@@ -50,6 +53,8 @@ namespace NogardTheDragon
 
             PlatformTexture = Content.Load<Texture2D>(@"plattform");
             PlayerSheet = Content.Load<Texture2D>(@"playersquare");
+            IndicatorLine = Content.Load<Texture2D>(@"indicatorline");
+            Goal = Content.Load<Texture2D>(@"goal");
             Font = Content.Load<SpriteFont>(@"font1");
 
             GamePlayManager = new GamePlayManager();
@@ -70,11 +75,11 @@ namespace NogardTheDragon
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
-                GamePlayManager.StartGame();
+                GamePlayManager.Init();
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Tab))
-                MapMakerManager.StartMapMaker();
+                MapMakerManager.Init();
 
             switch (GameState)
             {
@@ -84,7 +89,7 @@ namespace NogardTheDragon
                     GamePlayManager.Update(gameTime);
                     break;
                 case GameStateEnum.GameOver:
-                    GameOverManager.Update();
+                    GameOverManager.Update(gameTime);
                     break;
                 case GameStateEnum.Pause:
                     break;

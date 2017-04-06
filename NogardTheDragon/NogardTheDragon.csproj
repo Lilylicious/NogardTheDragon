@@ -44,6 +44,7 @@
     <Compile Include="Abilities\SlowWorldPower.cs" />
     <Compile Include="Abilities\UnlimitedPower.cs" />
     <Compile Include="Managers\BaseManager.cs" />
+    <Compile Include="Objects\Goal.cs" />
     <Compile Include="Objects\Obstacles\BaseObstacle.cs" />
     <Compile Include="Objects\Platforms\BaseSpecialPlatform.cs" />
     <Compile Include="Objects\Platforms\BouncePlatform.cs" />
@@ -91,6 +92,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\goal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\indicatorline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\map1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -106,7 +113,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content\font1.spritefont">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

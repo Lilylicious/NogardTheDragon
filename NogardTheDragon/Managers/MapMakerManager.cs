@@ -13,15 +13,12 @@ namespace NogardTheDragon.Managers
     {
         private readonly NogardGame Game;
         private readonly SpriteBatch Sb = NogardGame.SpriteBatch;
-        private KeyboardState KState;
-        private bool LastWasPressed;
         private Vector2 MousePosition;
+        private Vector2 PlacePosition;
         public List<GameObject> Objects = new List<GameObject>();
         private ObjectEnum SelectedObject = ObjectEnum.Platform;
         public Camera cam;
         public Vector2 camPos;
-        float countX;
-        float countY;
 
         public MapMakerManager(NogardGame game)
         {
@@ -30,99 +27,119 @@ namespace NogardTheDragon.Managers
             camPos = new Vector2(game.Window.ClientBounds.Width / 2, game.Window.ClientBounds.Height / 2);
         }
 
-        public void StartMapMaker()
+        public override void Init()
         {
             NogardGame.GameState = NogardGame.GameStateEnum.MapMaker;
             Game.IsMouseVisible = true;
             Objects.Clear();
         }
 
+
         private void SaveToFile()
         {
             var dummyList = Objects.Select(obj => new DummyObject(obj)).ToList();
-            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/SavedMap.bin", dummyList);
+            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/" + DateTime.Now.Ticks + ".bin", dummyList);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.P))
+            if (KeyMouseReader.KeyPressed(Keys.P))
                 SelectedObject = ObjectEnum.Platform;
-            if (Keyboard.GetState().IsKeyDown(Keys.U))
+            if (KeyMouseReader.KeyPressed(Keys.U))
                 SelectedObject = ObjectEnum.Player;
-            if (Keyboard.GetState().IsKeyDown(Keys.C))
+            if (KeyMouseReader.KeyPressed(Keys.G))
+                SelectedObject = ObjectEnum.Goal;
+            if (KeyMouseReader.KeyPressed(Keys.C))
                 SelectedObject = ObjectEnum.None;
-            if (Keyboard.GetState().IsKeyDown(Keys.S) && !KState.IsKeyDown(Keys.S))
+            if (KeyMouseReader.KeyPressed(Keys.S))
                 SaveToFile();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            if (KeyMouseReader.KeyDown(Keys.Right))
             {
                 camPos.X += 1;
                 camPos.Y += 0;
-                countX += 1;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            else if (KeyMouseReader.KeyDown(Keys.Left))
             {
                 camPos.X += -1;
                 camPos.Y += 0;
-                countX += -1;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            if (KeyMouseReader.KeyDown(Keys.Up))
             {
                 camPos.X += 0;
                 camPos.Y += -1;
-                countY += -1;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            else if (KeyMouseReader.KeyDown(Keys.Down))
             {
                 camPos.X += 0;
                 camPos.Y += 1;
-                countY += 1;
             }
 
             cam.SetPos(camPos);
 
-            var mState = Mouse.GetState();
-            MousePosition = new Vector2(mState.Position.X, Mouse.GetState().Position.Y);
 
-            if (mState.LeftButton == ButtonState.Pressed && !LastWasPressed)
+            MousePosition = KeyMouseReader.mousePosition;
+            var transform = Matrix.Invert(cam.GetTransform());
+            Vector2.Transform(ref MousePosition, ref transform, out MousePosition);
+            
+            PlacePosition = MousePosition;
+
+            if(Objects.Count > 0 && SelectedObject != ObjectEnum.Player)
+            {
+                var closestObj = Objects[0];
+                foreach (GameObject obj in Objects)
+                    if (Vector2.Distance(obj.GetCenter(), MousePosition) < Vector2.Distance(closestObj.GetCenter(), MousePosition))
+                        closestObj = obj;
+
+                if (Vector2.Distance(closestObj.GetCenter(), MousePosition) < 25)
+                {
+                    if(closestObj.GetCenter().X - MousePosition.X < 0)
+                        PlacePosition = new Vector2(closestObj.Dest.Right, closestObj.Dest.Top);
+                    else
+                        PlacePosition = new Vector2(closestObj.Dest.Left - closestObj.Dest.Width, closestObj.Dest.Top);
+                }
+            }
+
+
+            if (KeyMouseReader.LeftClick())
                 switch (SelectedObject)
                 {
                     case ObjectEnum.Platform:
-                        Objects.Add(new Platform(MousePosition + new Vector2(countX, countY), NogardGame.PlatformTexture));
+                        Objects.Add(new Platform(PlacePosition, NogardGame.PlatformTexture));
                         break;
                     case ObjectEnum.Player:
-                        Objects.Add(new Player(MousePosition + new Vector2(countX, countY), NogardGame.PlayerSheet));
+                        Objects.Add(new Player(PlacePosition, NogardGame.PlayerSheet));
                         break;
                     case ObjectEnum.Enemy:
                         throw new NotImplementedException();
                     case ObjectEnum.Goal:
-                        throw new NotImplementedException();
+                        Objects.Add(new Goal(PlacePosition, NogardGame.Goal));
+                        break;
                     case ObjectEnum.None:
                         Objects.RemoveAll(item => Vector2.Distance(item.GetCenter(), MousePosition) < 25);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-
-            LastWasPressed = Mouse.GetState().LeftButton == ButtonState.Pressed;
-            KState = Keyboard.GetState();
         }
 
-        public void Draw()
+        public override void Draw()
         {
             switch (SelectedObject)
             {
                 case ObjectEnum.Platform:
-                    Sb.Draw(NogardGame.PlatformTexture, MousePosition + new Vector2(countX, countY));
+                    Sb.Draw(NogardGame.PlatformTexture, PlacePosition);
+                    Sb.Draw(NogardGame.IndicatorLine, PlacePosition + new Vector2(0, 200));
                     break;
                 case ObjectEnum.Player:
-                    Sb.Draw(NogardGame.PlayerSheet, MousePosition + new Vector2(countX, countY));
+                    Sb.Draw(NogardGame.PlayerSheet, PlacePosition);
                     break;
                 case ObjectEnum.Enemy:
                     throw new NotImplementedException();
                 case ObjectEnum.Goal:
-                    throw new NotImplementedException();
+                    Sb.Draw(NogardGame.Goal, PlacePosition);
+                    break;
                 case ObjectEnum.None:
                     break;
                 default:
@@ -133,6 +150,7 @@ namespace NogardTheDragon.Managers
                 obj.Draw(Sb);
         }
 
+        
         private enum ObjectEnum
         {
             Platform,

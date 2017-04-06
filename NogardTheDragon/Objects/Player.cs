@@ -96,7 +96,7 @@ namespace NogardTheDragon.Objects
             }
 
             if (Health <= 0)
-                NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
+                NogardGame.GameOverManager.Lose();
 
             Velocity.Y += GravitySpeed;
 
@@ -113,13 +113,22 @@ namespace NogardTheDragon.Objects
 
         protected override void HandleCollision()
         {
-            if (CollidingWith == null || !(Velocity.Y > 0) || !(CollidingWith is Platform)) return;
 
-            DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
-            Airborn = false;
-            Direction.Y = 0;
-            Velocity.Y = 0;
-            DoubleJumpAbility?.Reset();
+            if (CollidingWith == null || !(Velocity.Y > 0)) return;
+
+
+            if (CollidingWith is Platform)
+            {
+                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
+                Airborn = false;
+                Direction.Y = 0;
+                Velocity.Y = 0;
+                DoubleJumpAbility?.Reset();
+            }
+            else if (CollidingWith is Goal)
+            {
+                NogardGame.GameOverManager.Win();
+            }
         }
     }
 }

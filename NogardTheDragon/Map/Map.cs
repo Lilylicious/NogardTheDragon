@@ -47,7 +47,6 @@ namespace NogardTheDragon.Map
         public void Draw()
         {
             foreach (var obj in Objects)
-                if (obj.Active)
                     obj.Draw(NogardGame.SpriteBatch);
         }
     }
