@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Managers;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon
 {
@@ -24,6 +25,7 @@ namespace NogardTheDragon
         public static GamePlayManager GamePlayManager;
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
+        public static MenuManager MenuManager;
         public static GraphicsDeviceManager Graphics;
 
         public NogardGame()
@@ -45,6 +47,8 @@ namespace NogardTheDragon
         protected override void Initialize()
         {
             base.Initialize();
+
+            IsMouseVisible = true;
         }
 
         protected override void LoadContent()
@@ -57,9 +61,33 @@ namespace NogardTheDragon
             Goal = Content.Load<Texture2D>(@"goal");
             Font = Content.Load<SpriteFont>(@"font1");
 
+            // Lägger in mediafiler, kolla i MenuManager för att se hur de hämtas
+            AssetManager.AddTexture("menuButtonBG", Content.Load<Texture2D>(@"playersquare"));
+            AssetManager.AddFont("menuFont", Content.Load<SpriteFont>("menufont"));
+
+            MenuManager = new MenuManager(this);
+            MenuManager.Init();
+
             GamePlayManager = new GamePlayManager();
             GameOverManager = new GameOverManager(this);
             MapMakerManager = new MapMakerManager(this);
+        }
+
+        internal void QuitGame()
+        {
+            //Kanske ha en prompt först som frågar om man är säker
+
+            Exit();
+        }
+
+        internal void StartMapMaker()
+        {
+            MapMakerManager.Init();
+        }
+
+        internal void StartGame()
+        {
+            GamePlayManager.Init();
         }
 
         protected override void UnloadContent()
@@ -84,6 +112,7 @@ namespace NogardTheDragon
             switch (GameState)
             {
                 case GameStateEnum.MainMenu:
+                    MenuManager.Update(gameTime);
                     break;
                 case GameStateEnum.GameActive:
                     GamePlayManager.Update(gameTime);
@@ -110,6 +139,7 @@ namespace NogardTheDragon
             {
                 case GameStateEnum.MainMenu:
                     SpriteBatch.Begin();
+                    MenuManager.Draw();
                     break;
                 case GameStateEnum.GameActive:
                     SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GamePlayManager.ActiveMap?.cam.GetTransform());
