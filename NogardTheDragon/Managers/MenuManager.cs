@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// By Lovisa, used on Caspers pc...
-
 namespace NogardTheDragon.Managers
 {
     public class MenuManager : BaseManager

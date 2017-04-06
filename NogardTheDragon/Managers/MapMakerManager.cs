@@ -34,6 +34,7 @@ namespace NogardTheDragon.Managers
             Objects.Clear();
         }
 
+
         private void SaveToFile()
         {
             var dummyList = Objects.Select(obj => new DummyObject(obj)).ToList();
@@ -100,19 +101,20 @@ namespace NogardTheDragon.Managers
                 }
             }
 
+
             if (KeyMouseReader.LeftClick())
                 switch (SelectedObject)
                 {
                     case ObjectEnum.Platform:
-                        Objects.Add(new Platform(PlacePosition, TextureManager.StandardPlatformTex));
+                        Objects.Add(new Platform(PlacePosition, NogardGame.PlatformTexture));
                         break;
                     case ObjectEnum.Player:
-                        Objects.Add(new Player(PlacePosition, TextureManager.PlayerTex));
+                        Objects.Add(new Player(PlacePosition, NogardGame.PlayerSheet));
                         break;
                     case ObjectEnum.Enemy:
                         throw new NotImplementedException();
                     case ObjectEnum.Goal:
-                        Objects.Add(new Goal(PlacePosition, TextureManager.GoalTex));
+                        Objects.Add(new Goal(PlacePosition, NogardGame.Goal));
                         break;
                     case ObjectEnum.None:
                         Objects.RemoveAll(item => Vector2.Distance(item.GetCenter(), MousePosition) < 25);
@@ -127,16 +129,16 @@ namespace NogardTheDragon.Managers
             switch (SelectedObject)
             {
                 case ObjectEnum.Platform:
-                    Sb.Draw(TextureManager.StandardPlatformTex, PlacePosition);
-                    Sb.Draw(TextureManager.IndicatorLineTex, PlacePosition + new Vector2(0, 200));
+                    Sb.Draw(NogardGame.PlatformTexture, PlacePosition);
+                    Sb.Draw(NogardGame.IndicatorLine, PlacePosition + new Vector2(0, 200));
                     break;
                 case ObjectEnum.Player:
-                    Sb.Draw(TextureManager.PlayerTex, PlacePosition);
+                    Sb.Draw(NogardGame.PlayerSheet, PlacePosition);
                     break;
                 case ObjectEnum.Enemy:
                     throw new NotImplementedException();
                 case ObjectEnum.Goal:
-                    Sb.Draw(TextureManager.GoalTex, PlacePosition);
+                    Sb.Draw(NogardGame.Goal, PlacePosition);
                     break;
                 case ObjectEnum.None:
                     break;
@@ -147,6 +149,7 @@ namespace NogardTheDragon.Managers
             foreach (var obj in Objects)
                 obj.Draw(Sb);
         }
+
         
         private enum ObjectEnum
         {

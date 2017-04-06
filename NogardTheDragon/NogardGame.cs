@@ -34,6 +34,14 @@ namespace NogardTheDragon
             Content.RootDirectory = "Content";
         }
 
+        // Here I'm just making the textures public, but making the setters private. You can only set the textures from here, but read from everywhere.
+        public static Texture2D PlatformTexture { get; private set; }
+
+        public static Texture2D PlayerSheet { get; private set; }
+
+        public static Texture2D IndicatorLine { get; private set; }
+        public static Texture2D Goal { get; private set; }
+
         public static SpriteFont Font { get; private set; }
 
         protected override void Initialize()
@@ -47,7 +55,10 @@ namespace NogardTheDragon
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            TextureManager.LoadTextures(Content);
+            PlatformTexture = Content.Load<Texture2D>(@"plattform");
+            PlayerSheet = Content.Load<Texture2D>(@"playersquare");
+            IndicatorLine = Content.Load<Texture2D>(@"indicatorline");
+            Goal = Content.Load<Texture2D>(@"goal");
             Font = Content.Load<SpriteFont>(@"font1");
 
             // Lägger in mediafiler, kolla i MenuManager för att se hur de hämtas

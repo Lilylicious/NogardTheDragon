@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Utilities;
-using NogardTheDragon.Managers;
 
 namespace NogardTheDragon.Map
 {
@@ -18,13 +17,13 @@ namespace NogardTheDragon.Map
                 switch (dObj.Type)
                 {
                     case DummyObject.TypeEnum.Platform:
-                        objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.StandardPlatformTex));
+                        objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY), NogardGame.PlatformTexture));
                         break;
                     case DummyObject.TypeEnum.Player:
-                        objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlayerTex));
+                        objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), NogardGame.PlayerSheet));
                         break;
                     case DummyObject.TypeEnum.Goal:
-                        objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), TextureManager.GoalTex));
+                        objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), NogardGame.Goal));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
