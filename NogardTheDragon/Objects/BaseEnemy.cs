@@ -27,14 +27,6 @@ namespace NogardTheDragon.Objects
         {
             base.Update(gameTime);
 
-            //if (BaseEnemy.Hitbox.Intersects(Player.Hitbox))
-            //{
-            //    if (Player.PixelCollision(BaseEnemy))
-            //    {
-            //        Health -= damage;
-            //    }
-            //}
-
             //for (int i = 0; i < Enemies.Count; i++)
             //{
             //    //If player intersects enemy
@@ -66,9 +58,9 @@ namespace NogardTheDragon.Objects
                 Velocity.Y = 0;
             }
 
-            else if (CollidingWith is BaseEnemy)
+            else if (CollidingWith is Player)
             {
-                Health -= damage;
+                ((Player)CollidingWith).TakeDamage(1);
             }
         }
 
