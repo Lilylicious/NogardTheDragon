@@ -56,6 +56,7 @@
     <Compile Include="Objects\Obstacles\BoulderObstacle.cs" />
     <Compile Include="Objects\Obstacles\CaveMonsterObstacle.cs" />
     <Compile Include="Objects\Obstacles\SpikeObstacle.cs" />
+    <Compile Include="TempFolder\Lovisa.cs" />
     <Compile Include="Utilities\Camera.cs" />
     <Compile Include="Abilities\BaseAbility.cs" />
     <Compile Include="Abilities\BasePowerup.cs" />
