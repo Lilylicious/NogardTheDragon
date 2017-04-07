@@ -1,5 +1,6 @@
 ﻿using System;
 using NogardTheDragon.Objects;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Utilities
 {
@@ -9,6 +10,10 @@ namespace NogardTheDragon.Utilities
         public enum TypeEnum
         {
             Platform,
+            MovingPlatform,
+            SpikePlatform,
+            CloudPlatform,
+            IcePlatform,
             Player,
             Goal
         }
@@ -21,6 +26,14 @@ namespace NogardTheDragon.Utilities
         {
             if (obj is Platform)
                 Type = TypeEnum.Platform;
+            if (obj is MovingPlatform)
+                Type = TypeEnum.MovingPlatform;
+            if (obj is SpikePlatform)
+                Type = TypeEnum.SpikePlatform;
+            if (obj is CloudPlatform)
+                Type = TypeEnum.CloudPlatform;
+            if (obj is IcePlatform)
+                Type = TypeEnum.IcePlatform;
             if (obj is Player)
                 Type = TypeEnum.Player;
             if (obj is Goal)
