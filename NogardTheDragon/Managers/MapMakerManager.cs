@@ -115,7 +115,7 @@ namespace NogardTheDragon.Managers
                 switch (SelectedObject)
                 {
                     case ObjectEnum.Platform:
-                        Objects.Add(new Platform(PlacePosition, NogardGame.PlatformTexture));
+                        Objects.Add(new Platform(PlacePosition, TextureManager.StandardPlatformTex));
                         break;
                     case ObjectEnum.MovingPlatform:
                         Objects.Add(new MovingPlatform(PlacePosition, TextureManager.MovingPlatformTex));
@@ -130,12 +130,12 @@ namespace NogardTheDragon.Managers
                         Objects.Add(new IcePlatform(PlacePosition, TextureManager.IcePlatformTex));
                         break;
                     case ObjectEnum.Player:
-                        Objects.Add(new Player(PlacePosition, NogardGame.PlayerSheet));
+                        Objects.Add(new Player(PlacePosition, TextureManager.PlayerTex));
                         break;
                     case ObjectEnum.Enemy:
                         throw new NotImplementedException();
                     case ObjectEnum.Goal:
-                        Objects.Add(new Goal(PlacePosition, NogardGame.Goal));
+                        Objects.Add(new Goal(PlacePosition, TextureManager.GoalTex));
                         break;
                     case ObjectEnum.None:
                         Objects.RemoveAll(item => Vector2.Distance(item.GetCenter(), MousePosition) < 25);
@@ -150,8 +150,8 @@ namespace NogardTheDragon.Managers
             switch (SelectedObject)
             {
                 case ObjectEnum.Platform:
-                    Sb.Draw(NogardGame.PlatformTexture, PlacePosition);
-                    Sb.Draw(NogardGame.IndicatorLine, PlacePosition + new Vector2(0, 200));
+                    Sb.Draw(TextureManager.StandardPlatformTex, PlacePosition);
+                    Sb.Draw(TextureManager.IndicatorLineTex, PlacePosition + new Vector2(0, 200));
                     break;
                 case ObjectEnum.MovingPlatform:
                     Sb.Draw(TextureManager.MovingPlatformTex, PlacePosition);
@@ -166,12 +166,12 @@ namespace NogardTheDragon.Managers
                     Sb.Draw(TextureManager.IcePlatformTex, PlacePosition);
                     break;
                 case ObjectEnum.Player:
-                    Sb.Draw(NogardGame.PlayerSheet, PlacePosition);
+                    Sb.Draw(TextureManager.PlayerTex, PlacePosition);
                     break;
                 case ObjectEnum.Enemy:
                     throw new NotImplementedException();
                 case ObjectEnum.Goal:
-                    Sb.Draw(NogardGame.Goal, PlacePosition);
+                    Sb.Draw(TextureManager.GoalTex, PlacePosition);
                     break;
                 case ObjectEnum.None:
                     break;

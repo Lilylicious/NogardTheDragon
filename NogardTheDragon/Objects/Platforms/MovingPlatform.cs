@@ -17,6 +17,7 @@ namespace NogardTheDragon.Objects.Platforms
             :base(pos, tex)
         {
             startPos = pos;
+            SetColorData();
         }
 
         public override void Update(GameTime gameTime)
