@@ -37,6 +37,8 @@ namespace NogardTheDragon
 
         public static Texture2D PlayerSheet { get; private set; }
 
+        public static Texture2D EnemySheet { get; private set; }
+
         public static SpriteFont Font { get; private set; }
 
         protected override void Initialize()
@@ -50,6 +52,7 @@ namespace NogardTheDragon
 
             PlatformTexture = Content.Load<Texture2D>(@"plattform");
             PlayerSheet = Content.Load<Texture2D>(@"playersquare");
+            EnemySheet = Content.Load<Texture2D>(@"BaseEnemysquare");
             Font = Content.Load<SpriteFont>(@"font1");
 
             GamePlayManager = new GamePlayManager();

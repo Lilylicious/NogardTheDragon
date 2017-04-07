@@ -49,6 +49,8 @@ namespace NogardTheDragon.Managers
                 SelectedObject = ObjectEnum.Platform;
             if (Keyboard.GetState().IsKeyDown(Keys.U))
                 SelectedObject = ObjectEnum.Player;
+            if (Keyboard.GetState().IsKeyDown(Keys.I))
+                SelectedObject = ObjectEnum.Enemy;
             if (Keyboard.GetState().IsKeyDown(Keys.C))
                 SelectedObject = ObjectEnum.None;
             if (Keyboard.GetState().IsKeyDown(Keys.S) && !KState.IsKeyDown(Keys.S))
@@ -95,7 +97,8 @@ namespace NogardTheDragon.Managers
                         Objects.Add(new Player(MousePosition + new Vector2(countX, countY), NogardGame.PlayerSheet));
                         break;
                     case ObjectEnum.Enemy:
-                        throw new NotImplementedException();
+                        Objects.Add(new BaseEnemy(MousePosition + new Vector2(countX, countY), NogardGame.EnemySheet));
+                        break;
                     case ObjectEnum.Goal:
                         throw new NotImplementedException();
                     case ObjectEnum.None:
@@ -120,7 +123,8 @@ namespace NogardTheDragon.Managers
                     Sb.Draw(NogardGame.PlayerSheet, MousePosition + new Vector2(countX, countY));
                     break;
                 case ObjectEnum.Enemy:
-                    throw new NotImplementedException();
+                    Sb.Draw(NogardGame.EnemySheet, MousePosition + new Vector2(countX, countY));
+                    break; ;
                 case ObjectEnum.Goal:
                     throw new NotImplementedException();
                 case ObjectEnum.None:

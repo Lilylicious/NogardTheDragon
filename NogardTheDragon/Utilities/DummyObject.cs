@@ -9,7 +9,8 @@ namespace NogardTheDragon.Utilities
         public enum TypeEnum
         {
             Platform,
-            Player
+            Player,
+            Enemy
         }
 
         public float PosX;
@@ -22,6 +23,8 @@ namespace NogardTheDragon.Utilities
                 Type = TypeEnum.Platform;
             if (obj is Player)
                 Type = TypeEnum.Player;
+            if (obj is Player)
+                Type = TypeEnum.Enemy;
 
             PosX = obj.GetPosition().X;
             PosY = obj.GetPosition().Y;
