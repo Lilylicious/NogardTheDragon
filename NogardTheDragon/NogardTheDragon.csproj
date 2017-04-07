@@ -44,13 +44,12 @@
     <Compile Include="Abilities\SlowWorldPower.cs" />
     <Compile Include="Abilities\UnlimitedPower.cs" />
     <Compile Include="Managers\BaseManager.cs" />
-    <Compile Include="Managers\TextureManager.cs" />
     <Compile Include="Objects\Goal.cs" />
     <Compile Include="Objects\Obstacles\BaseObstacle.cs" />
     <Compile Include="Objects\Platforms\BaseSpecialPlatform.cs" />
+    <Compile Include="Objects\Platforms\BouncePlatform.cs" />
     <Compile Include="Objects\Platforms\CloudPlatform.cs" />
     <Compile Include="Objects\Platforms\IcePlatform.cs" />
-    <Compile Include="Objects\Platforms\MovingPlatform.cs" />
     <Compile Include="Objects\Platforms\SpikePlatform.cs" />
     <Compile Include="Objects\Enemies\FlyingEnemy.cs" />
     <Compile Include="Objects\Enemies\ScoreEnemy.cs" />

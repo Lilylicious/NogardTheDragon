@@ -19,7 +19,7 @@ namespace NogardTheDragon.Map
                 switch (dObj.Type)
                 {
                     case DummyObject.TypeEnum.Platform:
-                        objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.StandardPlatformTex));
+                        objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY), NogardGame.PlatformTexture));
                         break;
                     case DummyObject.TypeEnum.MovingPlatform:
                         objectList.Add(new MovingPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.MovingPlatformTex));
@@ -34,10 +34,10 @@ namespace NogardTheDragon.Map
                         objectList.Add(new IcePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.IcePlatformTex));
                         break;
                     case DummyObject.TypeEnum.Player:
-                        objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlayerTex));
+                        objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), NogardGame.PlayerSheet));
                         break;
                     case DummyObject.TypeEnum.Goal:
-                        objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), TextureManager.GoalTex));
+                        objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), NogardGame.Goal));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
