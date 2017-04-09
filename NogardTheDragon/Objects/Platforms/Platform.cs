@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Objects
 {
-    internal class Platform : GameObject
+    public class Platform : GameObject
     {
         public Platform(Vector2 pos, Texture2D tex)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects
 {
-    abstract class BaseSpecialPlatform : MovingObject
+    public abstract class BaseSpecialPlatform : MovingObject
     {
         public BaseSpecialPlatform(Vector2 pos, Texture2D tex)
         {

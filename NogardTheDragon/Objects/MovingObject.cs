@@ -72,8 +72,9 @@ namespace NogardTheDragon.Objects
                 LayerDepth);
         }
 
-        protected virtual void HandleCollision()
+        protected virtual bool HandleCollision()
         {
+            return false;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -92,6 +93,11 @@ namespace NogardTheDragon.Objects
         public void ChangeVelocity(Vector2 vel)
         {
             Velocity += vel;
+        }
+
+        public void SetVelocity(Vector2 vel)
+        {
+            Velocity = vel;
         }
     }
 }

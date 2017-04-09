@@ -53,6 +53,7 @@ namespace NogardTheDragon.Objects
 
         public void SetColorData()
         {
+            if (Texture == null) return;
             ColorData = new Color[Texture.Width * Texture.Height];
             Texture.GetData(ColorData);
         }

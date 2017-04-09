@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    class CloudPlatform : BaseSpecialPlatform
+    public class CloudPlatform : BaseSpecialPlatform
     {
         public CloudPlatform(Vector2 pos, Texture2D tex)
             :base(pos, tex)

@@ -118,9 +118,9 @@ namespace NogardTheDragon.Objects
             base.Draw(spriteBatch);
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision()
         {
-            if (CollidingWith == null || !(Velocity.Y > 0)) return;
+            if (CollidingWith == null || !(Velocity.Y > 0)) return false;
 
             if (CollidingWith is Platform || CollidingWith is MovingPlatform)
             {
@@ -156,11 +156,14 @@ namespace NogardTheDragon.Objects
                     Velocity.X -= 1;
                 }
             }
+
+            return true;
         }
 
         private void LandOnPlatform()
         {
-            DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
+            if(Texture != null)
+                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
             Airborn = false;
             Direction.Y = 0;
             Velocity.Y = 0;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects
 {
-    class SpikePlatform : BaseSpecialPlatform
+    public class SpikePlatform : BaseSpecialPlatform
     {
         public SpikePlatform(Vector2 pos, Texture2D tex)
             :base(pos, tex)
