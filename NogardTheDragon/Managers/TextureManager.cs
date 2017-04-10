@@ -29,7 +29,7 @@ namespace NogardTheDragon.Managers
         {
             PlayerTex = c.Load<Texture2D>(@"playersquare");
 
-            //StandardEnemyTex = c.Load<Texture2D>(@"FILENAME");
+            StandardEnemyTex = c.Load<Texture2D>(@"BaseEnemysquare");
             //ScoreEnemyTex = c.Load<Texture2D>(@"FILENAME");
             //FlyingEnemyTex = c.Load<Texture2D>(@"FILENAME");
 

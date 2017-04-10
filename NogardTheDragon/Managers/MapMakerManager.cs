@@ -58,7 +58,9 @@ namespace NogardTheDragon.Managers
                 SelectedObject = ObjectEnum.Player;
             if (KeyMouseReader.KeyPressed(Keys.G))
                 SelectedObject = ObjectEnum.Goal;
-            if (KeyMouseReader.KeyPressed(Keys.C))
+            if (Keyboard.GetState().IsKeyDown(Keys.E))
+                SelectedObject = ObjectEnum.Enemy;
+            if (Keyboard.GetState().IsKeyDown(Keys.C))
                 SelectedObject = ObjectEnum.None;
             if (KeyMouseReader.KeyPressed(Keys.S))
                 SaveToFile();
@@ -133,7 +135,8 @@ namespace NogardTheDragon.Managers
                         Objects.Add(new Player(PlacePosition, TextureManager.PlayerTex));
                         break;
                     case ObjectEnum.Enemy:
-                        throw new NotImplementedException();
+                        Objects.Add(new BaseEnemy(MousePosition, TextureManager.StandardEnemyTex));
+                        break;
                     case ObjectEnum.Goal:
                         Objects.Add(new Goal(PlacePosition, TextureManager.GoalTex));
                         break;
@@ -169,7 +172,8 @@ namespace NogardTheDragon.Managers
                     Sb.Draw(TextureManager.PlayerTex, PlacePosition);
                     break;
                 case ObjectEnum.Enemy:
-                    throw new NotImplementedException();
+                    Sb.Draw(TextureManager.StandardEnemyTex, MousePosition);
+                    break; ;
                 case ObjectEnum.Goal:
                     Sb.Draw(TextureManager.GoalTex, PlacePosition);
                     break;

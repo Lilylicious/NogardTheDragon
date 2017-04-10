@@ -58,6 +58,7 @@
     <Compile Include="Objects\Obstacles\BoulderObstacle.cs" />
     <Compile Include="Objects\Obstacles\CaveMonsterObstacle.cs" />
     <Compile Include="Objects\Obstacles\SpikeObstacle.cs" />
+    <Compile Include="Animation\Background.cs" />
     <Compile Include="Utilities\Camera.cs" />
     <Compile Include="Abilities\BaseAbility.cs" />
     <Compile Include="Abilities\BasePowerup.cs" />
@@ -102,6 +103,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\indicatorline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\BaseEnemysquare.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\map1.txt">
