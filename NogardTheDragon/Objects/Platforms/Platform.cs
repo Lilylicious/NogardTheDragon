@@ -4,24 +4,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Objects
 {
-    public class Platform : GameObject
+    internal class Platform : BasePlatform
     {
         public Platform(Vector2 pos, Texture2D tex)
+            :base(pos, tex)
         {
-            DrawPos = pos;
-            Texture = tex;
 
-            SetColorData();
-        }
-        
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, DrawPos, Color.White);
         }
 
-        public override void CheckCollision()
+        protected override bool HandleCollision()
         {
-            throw new NotImplementedException();
+            if(CollidingWith is Player)
+            {
+                ((Player)CollidingWith).LandOnPlatform(1, true, false, false);
+                return true;
+            }
+            return false;
         }
     }
 }

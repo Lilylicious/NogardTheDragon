@@ -47,7 +47,7 @@
     <Compile Include="Managers\TextureManager.cs" />
     <Compile Include="Objects\Goal.cs" />
     <Compile Include="Objects\Obstacles\BaseObstacle.cs" />
-    <Compile Include="Objects\Platforms\BaseSpecialPlatform.cs" />
+    <Compile Include="Objects\Platforms\BasePlatform.cs" />
     <Compile Include="Objects\Platforms\CloudPlatform.cs" />
     <Compile Include="Objects\Platforms\IcePlatform.cs" />
     <Compile Include="Objects\Platforms\MovingPlatform.cs" />

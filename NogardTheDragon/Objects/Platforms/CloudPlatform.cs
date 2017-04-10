@@ -8,17 +8,22 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    public class CloudPlatform : BaseSpecialPlatform
+    class CloudPlatform : BasePlatform
     {
         public CloudPlatform(Vector2 pos, Texture2D tex)
             :base(pos, tex)
         {
-
+            
         }
 
-        public override void Update(GameTime gameTime)
+        protected override bool HandleCollision()
         {
-            
+            if (CollidingWith is Player)
+            {
+                ((Player)CollidingWith).LandOnPlatform(1, false, true, false);
+                return true;
+            }
+            return false;
         }
     }
 }

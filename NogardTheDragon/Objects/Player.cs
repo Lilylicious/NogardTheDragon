@@ -16,8 +16,8 @@ namespace NogardTheDragon.Objects
         public int Score;
         private ShootProjectileAbility ShootProjectileAbility;
         public double Timer;
-        bool left;
-        bool right;
+        public bool left;
+        public bool right;
 
         public Player(Vector2 pos, Texture2D tex)
         {
@@ -120,54 +120,46 @@ namespace NogardTheDragon.Objects
 
         protected override bool HandleCollision()
         {
-            if (CollidingWith == null || !(Velocity.Y > 0)) return false;
-
-            if (CollidingWith is Platform || CollidingWith is MovingPlatform)
-            {
-                LandOnPlatform();
-            }
-            else if (CollidingWith is SpikePlatform)
-            {
-                LandOnPlatform();
-                TakeDamage(1);
-            }
-            else if (CollidingWith is CloudPlatform)
-            {
-                Airborn = false;
-                Velocity.Y *= 0.3f;
-                DoubleJumpAbility?.Reset();
-            }
-            else if (CollidingWith is Goal)
+            if (CollidingWith is Goal)
             {
                 NogardGame.GameOverManager.Win();
-            }
-            else if (CollidingWith is IcePlatform)
-            {
-                LandOnPlatform();
-
-                if (right)
-                {
-                    Direction.X += 1;
-                    Velocity.X += 1;
-                }
-                else if (left)
-                {
-                    Direction.X -= 1;
-                    Velocity.X -= 1;
-                }
+                return true;
             }
 
-            return true;
+            return false;
         }
 
-        private void LandOnPlatform()
+        public void LandOnPlatform(int offset, bool normal, bool cloud, bool ice)
         {
-            if(Texture != null)
-                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
-            Airborn = false;
-            Direction.Y = 0;
-            Velocity.Y = 0;
-            DoubleJumpAbility?.Reset();
+            if (CollidingWith == null || !(Velocity.Y > 0)) return;
+
+            if (normal)
+            {
+                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + offset;
+                Direction.Y = 0;
+                Velocity.Y = 0;
+            }
+
+            if (normal || cloud)
+            {
+                Airborn = false;
+                DoubleJumpAbility?.Reset();
+                if (cloud)
+                    Velocity.Y *= 0.2f;
+                if (ice)
+                {
+                    if (right)
+                    {
+                        Direction.X += 1;
+                        Velocity.X += 1;
+                    }
+                    else if (left)
+                    {
+                        Direction.X -= 1;
+                        Velocity.X -= 1;
+                    }
+                }
+            }
         }
     }
 }

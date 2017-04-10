@@ -8,13 +8,25 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects
 {
-    public abstract class BaseSpecialPlatform : MovingObject
+    abstract class BasePlatform : MovingObject
     {
-        public BaseSpecialPlatform(Vector2 pos, Texture2D tex)
+        public BasePlatform(Vector2 pos, Texture2D tex)
         {
             DrawPos = pos;
             Texture = tex;
+
             SetColorData();
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+        }
+
+        protected override bool HandleCollision()
+        {
+            if (CollidingWith == null) return false;
+            return true;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
