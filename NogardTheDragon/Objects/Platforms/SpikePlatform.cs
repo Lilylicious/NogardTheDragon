@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects
 {
-    class SpikePlatform : BaseSpecialPlatform
+    class SpikePlatform : BasePlatform
     {
         public SpikePlatform(Vector2 pos, Texture2D tex)
             :base(pos, tex)
@@ -16,9 +16,14 @@ namespace NogardTheDragon.Objects
 
         }
 
-        public override void Update(GameTime gameTime)
+        protected override void HandleCollision()
         {
-            
+            if (CollidingWith is Player)
+            {
+                ((Player)CollidingWith).LandOnPlatform(1, true, false, false);
+                ((Player)CollidingWith).TakeDamage(1);
+            }
+            base.HandleCollision();
         }
     }
 }

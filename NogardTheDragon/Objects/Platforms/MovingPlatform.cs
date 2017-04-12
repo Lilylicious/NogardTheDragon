@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    class MovingPlatform : BaseSpecialPlatform
+    class MovingPlatform : BasePlatform
     {
         private Vector2 startPos;
         private bool moveUp;
@@ -31,14 +31,27 @@ namespace NogardTheDragon.Objects.Platforms
                 moveUp = true;
             }
 
-            if (moveUp == false)
+            if (!moveUp)
             {
                 DrawPos.Y += 1f;
             }
-            else if (moveUp == true)
+            else if (moveUp)
             {
                 DrawPos.Y -= 1;
             }
+            base.Update(gameTime);
+        }
+
+        protected override void HandleCollision()
+        {
+            if (CollidingWith is Player)
+            {
+                if (moveUp)
+                    ((Player)CollidingWith).LandOnPlatform(1, true, false, false);
+                else if (!moveUp)
+                    ((Player)CollidingWith).LandOnPlatform(2, true, false, false);
+            }
+            base.HandleCollision();
         }
     }
 }
