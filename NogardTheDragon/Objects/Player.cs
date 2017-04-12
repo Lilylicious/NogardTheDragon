@@ -101,10 +101,10 @@ namespace NogardTheDragon.Objects
             {
                 DoubleJumpAbility?.TriggerAbility();
             }
-            
+
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
-
+            
                 Velocity.Y += GravitySpeed;
 
                 Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
@@ -121,6 +121,7 @@ namespace NogardTheDragon.Objects
         protected override void HandleCollision()
         {
 
+            if(CollidingWithPlatform != null && Velocity.Y > 0)
             {
                 if (CollidingWithPlatform is Platform || CollidingWithPlatform is MovingPlatform)
                 {
