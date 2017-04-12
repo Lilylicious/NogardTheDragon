@@ -16,8 +16,8 @@ namespace NogardTheDragon.Objects
         public int Score;
         private ShootProjectileAbility ShootProjectileAbility;
         public double Timer;
-        bool left;
-        bool right;
+        public bool left;
+        public bool right;
 
         public Player(Vector2 pos, Texture2D tex)
         {
@@ -120,28 +120,31 @@ namespace NogardTheDragon.Objects
 
         protected override void HandleCollision()
         {
-
-            if(CollidingWithPlatform != null && Velocity.Y > 0)
+            if (CollidingWith is Goal)
             {
-                if (CollidingWithPlatform is Platform || CollidingWithPlatform is MovingPlatform)
-                {
-                    LandOnPlatform();
-                }
-                else if (CollidingWithPlatform is SpikePlatform)
-                {
-                    LandOnPlatform();
-                    TakeDamage(1);
-                }
-                else if (CollidingWithPlatform is CloudPlatform)
-                {
-                    Airborn = false;
-                    Velocity.Y *= 0.3f;
-                    DoubleJumpAbility?.Reset();
-                }
-                else if (CollidingWithPlatform is IcePlatform)
-                {
-                    LandOnPlatform();
+                NogardGame.GameOverManager.Win();
+            }
+        }
 
+        public void LandOnPlatform(int offset, bool normal, bool cloud, bool ice)
+        {
+            if (CollidingWith == null || !(Velocity.Y > 0)) return;
+
+            if (normal)
+            {
+                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + offset;
+                Direction.Y = 0;
+                Velocity.Y = 0;
+            }
+
+            if (normal || cloud)
+            {
+                Airborn = false;
+                DoubleJumpAbility?.Reset();
+                if (cloud)
+                    Velocity.Y *= 0.2f;
+                if (ice)
+                {
                     if (right)
                     {
                         Direction.X += 1;
@@ -159,15 +162,6 @@ namespace NogardTheDragon.Objects
             {
                 NogardGame.GameOverManager.Win();
             }
-        }
-
-        private void LandOnPlatform()
-        {
-            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + 1;
-            Airborn = false;
-            Direction.Y = 0;
-            Velocity.Y = 0;
-            DoubleJumpAbility?.Reset();
         }
     }
 }

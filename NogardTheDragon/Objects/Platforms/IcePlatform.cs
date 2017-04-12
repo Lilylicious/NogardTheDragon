@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    class IcePlatform : BaseSpecialPlatform
+    class IcePlatform : BasePlatform
     {
         public IcePlatform(Vector2 pos, Texture2D tex)
             :base(pos, tex)
@@ -16,9 +16,13 @@ namespace NogardTheDragon.Objects.Platforms
 
         }
 
-        public override void Update(GameTime gameTime)
+        protected override void HandleCollision()
         {
-            
+            if (CollidingWith is Player)
+            {
+                ((Player)CollidingWith).LandOnPlatform(1, true, false, true);
+            }
+            base.HandleCollision();
         }
     }
 }
