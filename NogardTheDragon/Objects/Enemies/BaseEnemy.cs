@@ -8,7 +8,7 @@ namespace NogardTheDragon.Objects
 {
     internal class BaseEnemy : MovingObject, IDamageable
     {
-        private bool Airborn;
+        private bool Airborn = true;
         private int Health;
         public int Score;
         bool left;
@@ -28,7 +28,7 @@ namespace NogardTheDragon.Objects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
+            
             Velocity.Y += GravitySpeed;
 
             //if (!Airborn)
@@ -61,36 +61,15 @@ namespace NogardTheDragon.Objects
 
         protected override void HandleCollision()
         {
-            if (CollidingWith == null) return;
-
-
-            if (CollidingWith is Platform)
+            if (CollidingWithPlatform != null)
             {
-                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
-                Airborn = false;
-                Direction.Y = 0;
-                Velocity.Y = 0;
-
+                LandOnPlatform();
             }
 
-            else if (CollidingWith is Player)
+            if (CollidingWith != null && CollidingWith is Player)
                 {
                     ((Player)CollidingWith).TakeDamage(1);
                 }
-
-            if (CollidingWith is Platform == true)
-            {
-                right = true;
-                left = false;
-                Direction.X = 1f;
-            }
-
-            else if (CollidingWith is Platform == false)
-            {
-                right = false;
-                left = true;
-                Direction.X = -1f;
-            }
         }
 
         public void TakeDamage(int damage)
@@ -100,7 +79,7 @@ namespace NogardTheDragon.Objects
 
         private void LandOnPlatform()
         {
-            DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
+            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + 1;
             Airborn = false;
             Direction.Y = 0;
             Velocity.Y = 0;

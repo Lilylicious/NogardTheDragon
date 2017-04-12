@@ -101,7 +101,7 @@ namespace NogardTheDragon.Objects
             {
                 DoubleJumpAbility?.TriggerAbility();
             }
-
+            
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
 
@@ -120,47 +120,49 @@ namespace NogardTheDragon.Objects
 
         protected override void HandleCollision()
         {
-            if (CollidingWith == null || !(Velocity.Y > 0)) return;
 
-            if (CollidingWith is Platform || CollidingWith is MovingPlatform)
             {
-                LandOnPlatform();
+                if (CollidingWithPlatform is Platform || CollidingWithPlatform is MovingPlatform)
+                {
+                    LandOnPlatform();
+                }
+                else if (CollidingWithPlatform is SpikePlatform)
+                {
+                    LandOnPlatform();
+                    TakeDamage(1);
+                }
+                else if (CollidingWithPlatform is CloudPlatform)
+                {
+                    Airborn = false;
+                    Velocity.Y *= 0.3f;
+                    DoubleJumpAbility?.Reset();
+                }
+                else if (CollidingWithPlatform is IcePlatform)
+                {
+                    LandOnPlatform();
+
+                    if (right)
+                    {
+                        Direction.X += 1;
+                        Velocity.X += 1;
+                    }
+                    else if (left)
+                    {
+                        Direction.X -= 1;
+                        Velocity.X -= 1;
+                    }
+                }
             }
-            else if (CollidingWith is SpikePlatform)
-            {
-                LandOnPlatform();
-                TakeDamage(1);
-            }
-            else if (CollidingWith is CloudPlatform)
-            {
-                Airborn = false;
-                Velocity.Y *= 0.3f;
-                DoubleJumpAbility?.Reset();
-            }
-            else if (CollidingWith is Goal)
+
+            if (CollidingWith != null && CollidingWith is Goal)
             {
                 NogardGame.GameOverManager.Win();
-            }
-            else if (CollidingWith is IcePlatform)
-            {
-                LandOnPlatform();
-
-                if (right)
-                {
-                    Direction.X += 1;
-                    Velocity.X += 1;
-                }
-                else if (left)
-                {
-                    Direction.X -= 1;
-                    Velocity.X -= 1;
-                }
             }
         }
 
         private void LandOnPlatform()
         {
-            DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + 1;
+            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + 1;
             Airborn = false;
             Direction.Y = 0;
             Velocity.Y = 0;
