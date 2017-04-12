@@ -35,7 +35,7 @@ namespace NogardTheDragon.Objects
                     // The reason is that we don't want to collide with ourselves.
                     if (this == gameObject) continue;
 
-                    if(!(gameObject is Platform || gameObject is BaseSpecialPlatform))
+                    if(!(gameObject is BasePlatform))
                     {
                         found = true;
                         CollidingWith = gameObject;
