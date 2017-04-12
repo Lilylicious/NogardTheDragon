@@ -11,8 +11,7 @@ namespace NogardTheDragon.Objects
         private bool Airborn = true;
         private int Health;
         public int Score;
-        bool left;
-        bool right;
+        private bool Walk;
 
         public BaseEnemy(Vector2 pos, Texture2D tex)
         {
@@ -30,27 +29,6 @@ namespace NogardTheDragon.Objects
             base.Update(gameTime);
             
             Velocity.Y += GravitySpeed;
-
-            //if (!Airborn)
-            //{
-            //    Direction.X = 0f;
-            //    Velocity.X = 0f;
-            //}
-
-            //Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
-            //            (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), Velocity.Y);
-
-            //for (int i = 0; i < Enemies.Count; i++)
-            //{
-            //    //If player intersects enemy
-            //    if (player.Bounds.Intersects(Enemies[i].Bounds))
-            //    {
-            //        Enemies.RemoveAt(i);
-            //        i--;
-            //        continue;
-            //    }
-            //}
         }
 
         public override void Draw(SpriteBatch spriteBatch)
