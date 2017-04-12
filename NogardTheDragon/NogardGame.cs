@@ -32,7 +32,6 @@ namespace NogardTheDragon
             Content.RootDirectory = "Content";
         }
 
-
         public static SpriteFont Font { get; private set; }
 
         protected override void Initialize()
@@ -43,7 +42,7 @@ namespace NogardTheDragon
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
             TextureManager.LoadTextures(Content);
             Font = Content.Load<SpriteFont>(@"font1");
 

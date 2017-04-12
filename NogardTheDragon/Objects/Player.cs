@@ -104,7 +104,7 @@ namespace NogardTheDragon.Objects
 
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
-
+            
                 Velocity.Y += GravitySpeed;
 
                 Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
@@ -156,6 +156,11 @@ namespace NogardTheDragon.Objects
                         Velocity.X -= 1;
                     }
                 }
+            }
+
+            if (CollidingWith != null && CollidingWith is Goal)
+            {
+                NogardGame.GameOverManager.Win();
             }
         }
     }

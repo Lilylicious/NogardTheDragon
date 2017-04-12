@@ -39,6 +39,9 @@ namespace NogardTheDragon.Map
                     case DummyObject.TypeEnum.Goal:
                         objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), TextureManager.GoalTex));
                         break;
+                    case DummyObject.TypeEnum.Enemy:
+                        objectList.Add(new BaseEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.StandardEnemyTex));
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
