@@ -15,7 +15,8 @@ namespace NogardTheDragon.Utilities
             CloudPlatform,
             IcePlatform,
             Player,
-            Goal
+            Goal,
+            Enemy
         }
 
         public float PosX;
@@ -38,6 +39,8 @@ namespace NogardTheDragon.Utilities
                 Type = TypeEnum.Player;
             if (obj is Goal)
                 Type = TypeEnum.Goal;
+            if (obj is BaseEnemy)
+                Type = TypeEnum.Enemy;
 
             PosX = obj.GetPosition().X;
             PosY = obj.GetPosition().Y;

@@ -104,7 +104,7 @@ namespace NogardTheDragon.Objects
 
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
-
+            
                 Velocity.Y += GravitySpeed;
 
                 Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
@@ -128,11 +128,11 @@ namespace NogardTheDragon.Objects
 
         public void LandOnPlatform(int offset, bool normal, bool cloud, bool ice)
         {
-            if (CollidingWith == null || !(Velocity.Y > 0)) return;
+            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
 
             if (normal)
             {
-                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + offset;
+                DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
                 Direction.Y = 0;
                 Velocity.Y = 0;
             }
@@ -156,6 +156,11 @@ namespace NogardTheDragon.Objects
                         Velocity.X -= 1;
                     }
                 }
+            }
+
+            if (CollidingWith != null && CollidingWith is Goal)
+            {
+                NogardGame.GameOverManager.Win();
             }
         }
     }
