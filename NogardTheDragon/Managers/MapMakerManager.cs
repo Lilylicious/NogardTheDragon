@@ -49,25 +49,25 @@ namespace NogardTheDragon.Managers
                 clickCounter++;
                 clickCounter %= 5;
 
-                if (clickCounter == 0)
+                switch (clickCounter)
                 {
-                SelectedObject = ObjectEnum.Platform;
-                }
-                else if (clickCounter == 1)
-                {
-                    SelectedObject = ObjectEnum.MovingPlatform;
-                }
-                else if (clickCounter == 2)
-                {
-                    SelectedObject = ObjectEnum.SpikePlatform;
-                }
-                else if (clickCounter == 3)
-                {
-                    SelectedObject = ObjectEnum.CloudPlatform;
-                }
-                else if (clickCounter == 4)
-                {
-                    SelectedObject = ObjectEnum.IcePlatform;
+                    case (0):
+                        SelectedObject = ObjectEnum.Platform;
+                        break;
+                    case (1):
+                        SelectedObject = ObjectEnum.MovingPlatform;
+                        break;
+                    case (2):
+                        SelectedObject = ObjectEnum.SpikePlatform;
+                        break;
+                    case (3):
+                        SelectedObject = ObjectEnum.CloudPlatform;
+                        break;
+                    case (4):
+                        SelectedObject = ObjectEnum.IcePlatform;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
 
@@ -190,7 +190,7 @@ namespace NogardTheDragon.Managers
                     break;
                 case ObjectEnum.Enemy:
                     Sb.Draw(TextureManager.StandardEnemyTex, MousePosition);
-                    break; ;
+                    break;
                 case ObjectEnum.Goal:
                     Sb.Draw(TextureManager.GoalTex, PlacePosition);
                     break;
