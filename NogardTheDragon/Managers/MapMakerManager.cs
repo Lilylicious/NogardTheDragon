@@ -20,6 +20,7 @@ namespace NogardTheDragon.Managers
         private ObjectEnum SelectedObject = ObjectEnum.Platform;
         public Camera cam;
         public Vector2 camPos;
+        private int clickCounter;
 
         public MapMakerManager(NogardGame game)
         {
@@ -35,7 +36,6 @@ namespace NogardTheDragon.Managers
             Objects.Clear();
         }
 
-
         private void SaveToFile()
         {
             var dummyList = Objects.Select(obj => new DummyObject(obj)).ToList();
@@ -45,15 +45,32 @@ namespace NogardTheDragon.Managers
         public override void Update(GameTime gameTime)
         {
             if (KeyMouseReader.KeyPressed(Keys.P))
+            {
+                clickCounter++;
+                clickCounter %= 5;
+
+                if (clickCounter == 0)
+                {
                 SelectedObject = ObjectEnum.Platform;
-            if (KeyMouseReader.KeyPressed(Keys.O))
-                SelectedObject = ObjectEnum.MovingPlatform;
-            if (KeyMouseReader.KeyPressed(Keys.Y))
-                SelectedObject = ObjectEnum.SpikePlatform;
-            if (KeyMouseReader.KeyPressed(Keys.K))
-                SelectedObject = ObjectEnum.CloudPlatform;
-            if (KeyMouseReader.KeyPressed(Keys.I))
-                SelectedObject = ObjectEnum.IcePlatform;
+                }
+                else if (clickCounter == 1)
+                {
+                    SelectedObject = ObjectEnum.MovingPlatform;
+                }
+                else if (clickCounter == 2)
+                {
+                    SelectedObject = ObjectEnum.SpikePlatform;
+                }
+                else if (clickCounter == 3)
+                {
+                    SelectedObject = ObjectEnum.CloudPlatform;
+                }
+                else if (clickCounter == 4)
+                {
+                    SelectedObject = ObjectEnum.IcePlatform;
+                }
+            }
+
             if (KeyMouseReader.KeyPressed(Keys.U))
                 SelectedObject = ObjectEnum.Player;
             if (KeyMouseReader.KeyPressed(Keys.G))
