@@ -64,10 +64,6 @@ namespace NogardTheDragon.Objects
                 Color = Color.White;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.K))
-            {
-                TakeDamage(1);
-            }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
