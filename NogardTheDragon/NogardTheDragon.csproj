@@ -84,6 +84,7 @@
     <Compile Include="Utilities\BinarySerializer.cs" />
     <Compile Include="Utilities\DummyObject.cs" />
     <Compile Include="Utilities\KeyMouseReader.cs" />
+    <Compile Include="Utilities\Variables.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -12,5 +12,6 @@ namespace NogardTheDragon.Abilities
         }
 
         public abstract void TriggerAbility();
+        public abstract void Update();
     }
 }

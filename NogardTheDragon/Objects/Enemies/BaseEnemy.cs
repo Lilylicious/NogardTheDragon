@@ -8,7 +8,6 @@ namespace NogardTheDragon.Objects
 {
     internal class BaseEnemy : MovingObject, IDamageable
     {
-        private bool Airborn = true;
         private int Health;
         public int Score;
         private bool Walk;

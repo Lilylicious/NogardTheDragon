@@ -11,6 +11,7 @@ namespace NogardTheDragon.Objects
         protected GameObject CollidingWith;
         protected GameObject CollidingWithPlatform;
 
+        public bool Airborn;
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
         protected bool Gravity = false;
