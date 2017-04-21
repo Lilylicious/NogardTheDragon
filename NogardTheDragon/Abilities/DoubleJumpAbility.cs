@@ -15,6 +15,7 @@ namespace NogardTheDragon.Abilities
 
         public override void TriggerAbility()
         {
+            Owner.ChangeVelocity(new Vector2(0, -6 * ((Owner.GetVelocity().Y + 12) / 6)));
             CanTrigger = false;
         }
 
