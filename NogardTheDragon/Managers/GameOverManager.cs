@@ -3,17 +3,30 @@ using NogardTheDragon.Objects;
 
 namespace NogardTheDragon.Managers
 {
-    public class GameOverManager
+    public class GameOverManager : BaseManager
     {
         private readonly NogardGame Instance;
         private Player Player;
+        private bool Won;
 
         public GameOverManager(NogardGame game)
         {
             Instance = game;
         }
 
-        public void Init()
+        public void Win()
+        {
+            NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
+            Won = true;
+        }
+
+        public void Lose()
+        {
+            NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
+            Won = false;
+        }
+        
+        public override void Init()
         {
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
             {
@@ -31,13 +44,15 @@ namespace NogardTheDragon.Managers
             }
         }
 
-        public void Update()
+        public override void Update(GameTime gameTime)
         {
         }
 
-        public void Draw()
+        public override void Draw()
         {
             Instance.GraphicsDevice.Clear(Color.Black);
+
+            //if won then Victory! If not won then Losing screen
         }
     }
 }

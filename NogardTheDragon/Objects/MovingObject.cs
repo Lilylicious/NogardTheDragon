@@ -3,12 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Objects
 {
-    public class MovingObject : GameObject
+    public abstract class MovingObject : GameObject
     {
         protected int Acceleration = 2;
         protected int AccelerationConstant = 2;
 
         protected GameObject CollidingWith;
+        protected GameObject CollidingWithPlatform;
 
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
@@ -24,6 +25,7 @@ namespace NogardTheDragon.Objects
         public override void CheckCollision()
         {
             var found = false;
+            var foundPlatform = false;
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
                 if (PixelCollision(this, gameObject))
                 {
@@ -33,12 +35,24 @@ namespace NogardTheDragon.Objects
                     // The reason is that we don't want to collide with ourselves.
                     if (this == gameObject) continue;
 
-                    found = true;
-                    CollidingWith = gameObject;
+                    if(!(gameObject is BasePlatform))
+                    {
+                        found = true;
+                        CollidingWith = gameObject;
+                    }
+                    else
+                    {
+                        foundPlatform = true;
+                        CollidingWithPlatform = gameObject;
+                    }
+                    
                 }
 
             if (!found)
                 CollidingWith = null;
+
+            if (!foundPlatform)
+                CollidingWithPlatform = null;
         }
 
         public static bool PixelCollision(GameObject p1, GameObject p2)

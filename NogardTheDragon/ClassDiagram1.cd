@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NogardTheDragon.Abilities.ArmorPower" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abilities\ArmorPower.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Abilities.BaseAbility" Collapsed="true">
+    <Position X="10.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abilities\BaseAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Abilities.BasePowerup" Collapsed="true">
+    <Position X="3.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abilities\BasePowerup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Abilities.DoubleJumpAbility" Collapsed="true">
+    <Position X="8.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAABAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Abilities\DoubleJumpAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Abilities.FlightPower" Collapsed="true">
+    <Position X="7.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abilities\FlightPower.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Abilities.HeadbuttAbility" Collapsed="true">
+    <Position X="10.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abilities\HeadbuttAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Abilities.ShootProjectileAbility" Collapsed="true">
+    <Position X="13" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abilities\ShootProjectileAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Abilities.SlowWorldPower" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abilities\SlowWorldPower.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Abilities.UnlimitedPower" Collapsed="true">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abilities\UnlimitedPower.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Managers.BaseManager" Collapsed="true">
+    <Position X="2.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\BaseManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Managers.GameOverManager" Collapsed="true">
+    <Position X="2.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAQAACAQAAAAA=</HashCode>
+      <FileName>Managers\GameOverManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Managers.GamePlayManager" Collapsed="true">
+    <Position X="5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAAAAAAgAAAAAAAAAgAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Managers\GamePlayManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Managers.MapMakerManager" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAgAAAAAhACBAAAAgAAEAgAAAEAAGAAAAACAAA=</HashCode>
+      <FileName>Managers\MapMakerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Managers.Camera" Collapsed="true">
+    <Position X="34.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAABAAIAAAAAEAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Map.Map" Collapsed="true">
+    <Position X="34.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAAAgAAAAAAAAAAAAAAAAEBAAAAAAAABAA=</HashCode>
+      <FileName>Map\Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Map.MapReader" Collapsed="true">
+    <Position X="31" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Map\MapReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.NogardGame" Collapsed="true">
+    <Position X="32.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAUAAAAAAAAwAAAAAAQAAACAAAAEAAQAAgAAACJAQ=</HashCode>
+      <FileName>NogardGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Program" Collapsed="true">
+    <Position X="34.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.BaseEnemy" Collapsed="true">
+    <Position X="24" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Objects\Enemies\BaseEnemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NogardTheDragon.Objects.FlyingEnemy" Collapsed="true">
+    <Position X="21.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Enemies\FlyingEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.ScoreEnemy" Collapsed="true">
+    <Position X="24" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Enemies\ScoreEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.StandardEnemy" Collapsed="true">
+    <Position X="26.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Enemies\StandardEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.GameObject" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAiAAA4EABAcAAAAAIIAAAADwAAoAgAgAAAA=</HashCode>
+      <FileName>Objects\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.MovingObject" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASQAAAABAAIAgAAICgCAAABAAAAAEGAIAAEAABEYAA=</HashCode>
+      <FileName>Objects\MovingObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.BaseObstacle" Collapsed="true">
+    <Position X="15" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Obstacles\BaseObstacle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.BoulderObstacle" Collapsed="true">
+    <Position X="17.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Obstacles\BoulderObstacle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.CaveMonsterObstacle" Collapsed="true">
+    <Position X="12.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Obstacles\CaveMonsterObstacle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.SpikeObstacle" Collapsed="true">
+    <Position X="15" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Obstacles\SpikeObstacle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.BaseSpecialPlatform" Collapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Platforms\BaseSpecialPlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.Platform" Collapsed="true">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAQAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Platforms\Platform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.SpikePlatform" Collapsed="true">
+    <Position X="10.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Platforms\SpikePlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.Player" Collapsed="true">
+    <Position X="19.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQQCAAAAAAAAggAAAAAAgAiAAAAAAAAAAAAgAAEAAA=</HashCode>
+      <FileName>Objects\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NogardTheDragon.Objects.Projectile" Collapsed="true">
+    <Position X="28.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAACAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Projectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.Platforms.BouncePlatform" Collapsed="true">
+    <Position X="3.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Platforms\BouncePlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.Platforms.CloudPlatform" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Platforms\CloudPlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Objects.Platforms.IcePlatform" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Platforms\IcePlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.TempFolder.BettyTest" Collapsed="true">
+    <Position X="31" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TempFolder\BettyTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Utilities.BinarySerializer" Collapsed="true">
+    <Position X="32.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\BinarySerializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NogardTheDragon.Utilities.DummyObject" Collapsed="true">
+    <Position X="31" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Utilities\DummyObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyMouseReader" Collapsed="true">
+    <Position X="32.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBYCAAAAAAAAgAEAAAAAAAACEAAAAAAAAAAOAABAAAA=</HashCode>
+      <FileName>Utilities\KeyMouseReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="NogardTheDragon.Abilities.IAbilityUser" Collapsed="true">
+    <Position X="31" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAbilityUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NogardTheDragon.Interfaces.IDamageable" Collapsed="true">
+    <Position X="32.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Interfaces\IDamageable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

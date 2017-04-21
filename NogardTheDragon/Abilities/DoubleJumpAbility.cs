@@ -3,11 +3,11 @@ using NogardTheDragon.Objects;
 
 namespace NogardTheDragon.Abilities
 {
-    internal class DoubleJump : BaseAbility
+    internal class DoubleJumpAbility : BaseAbility
     {
         private bool CanTrigger = true;
 
-        public DoubleJump(MovingObject owner) : base(owner)
+        public DoubleJumpAbility(MovingObject owner) : base(owner)
         {
         }
 

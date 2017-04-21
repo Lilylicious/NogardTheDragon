@@ -24,19 +24,13 @@ namespace NogardTheDragon
         public static GamePlayManager GamePlayManager;
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
-        private GraphicsDeviceManager Graphics;
-
+        public static GraphicsDeviceManager Graphics;
 
         public NogardGame()
         {
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
-        // Here I'm just making the textures public, but making the setters private. You can only set the textures from here, but read from everywhere.
-        public static Texture2D PlatformTexture { get; private set; }
-
-        public static Texture2D PlayerSheet { get; private set; }
 
         public static SpriteFont Font { get; private set; }
 
@@ -48,9 +42,8 @@ namespace NogardTheDragon
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-
-            PlatformTexture = Content.Load<Texture2D>(@"plattform");
-            PlayerSheet = Content.Load<Texture2D>(@"playersquare");
+            
+            TextureManager.LoadTextures(Content);
             Font = Content.Load<SpriteFont>(@"font1");
 
             GamePlayManager = new GamePlayManager();
@@ -62,7 +55,6 @@ namespace NogardTheDragon
         {
         }
 
-
         protected override void Update(GameTime gameTime)
         {
             KeyMouseReader.Update();
@@ -71,9 +63,12 @@ namespace NogardTheDragon
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                GamePlayManager.StartGame();
+            {
+                GamePlayManager.Init();
+            }
+
             if (Keyboard.GetState().IsKeyDown(Keys.Tab))
-                MapMakerManager.StartMapMaker();
+                MapMakerManager.Init();
 
             switch (GameState)
             {
@@ -83,7 +78,7 @@ namespace NogardTheDragon
                     GamePlayManager.Update(gameTime);
                     break;
                 case GameStateEnum.GameOver:
-                    GameOverManager.Update();
+                    GameOverManager.Update(gameTime);
                     break;
                 case GameStateEnum.Pause:
                     break;
@@ -93,7 +88,6 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
             base.Update(gameTime);
         }
 
@@ -101,12 +95,13 @@ namespace NogardTheDragon
         {
             GraphicsDevice.Clear(Color.White);
 
-            SpriteBatch.Begin();
             switch (GameState)
             {
                 case GameStateEnum.MainMenu:
+                    SpriteBatch.Begin();
                     break;
                 case GameStateEnum.GameActive:
+                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GamePlayManager.ActiveMap?.cam.GetTransform());
                     GamePlayManager.Draw();
                     break;
                 case GameStateEnum.GameOver:
@@ -115,11 +110,13 @@ namespace NogardTheDragon
                 case GameStateEnum.Pause:
                     break;
                 case GameStateEnum.MapMaker:
+                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, MapMakerManager?.cam.GetTransform());
                     MapMakerManager.Draw();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             SpriteBatch.End();
 
             base.Draw(gameTime);

@@ -6,90 +6,177 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Utilities;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Managers
 {
-    public class MapMakerManager
+    public class MapMakerManager : BaseManager
     {
         private readonly NogardGame Game;
         private readonly SpriteBatch Sb = NogardGame.SpriteBatch;
-        private KeyboardState KState;
-        private bool LastWasPressed;
         private Vector2 MousePosition;
+        private Vector2 PlacePosition;
         public List<GameObject> Objects = new List<GameObject>();
         private ObjectEnum SelectedObject = ObjectEnum.Platform;
+        public Camera cam;
+        public Vector2 camPos;
 
         public MapMakerManager(NogardGame game)
         {
             Game = game;
+            cam = new Camera(game.GraphicsDevice.Viewport);
+            camPos = new Vector2(game.Window.ClientBounds.Width / 2, game.Window.ClientBounds.Height / 2);
         }
 
-
-        public void StartMapMaker()
+        public override void Init()
         {
             NogardGame.GameState = NogardGame.GameStateEnum.MapMaker;
             Game.IsMouseVisible = true;
             Objects.Clear();
         }
 
+
         private void SaveToFile()
         {
             var dummyList = Objects.Select(obj => new DummyObject(obj)).ToList();
-            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/SavedMap.bin", dummyList);
+            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/" + DateTime.Now.Ticks + ".bin", dummyList);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.P))
+            if (KeyMouseReader.KeyPressed(Keys.P))
                 SelectedObject = ObjectEnum.Platform;
-            if (Keyboard.GetState().IsKeyDown(Keys.U))
+            if (KeyMouseReader.KeyPressed(Keys.O))
+                SelectedObject = ObjectEnum.MovingPlatform;
+            if (KeyMouseReader.KeyPressed(Keys.Y))
+                SelectedObject = ObjectEnum.SpikePlatform;
+            if (KeyMouseReader.KeyPressed(Keys.K))
+                SelectedObject = ObjectEnum.CloudPlatform;
+            if (KeyMouseReader.KeyPressed(Keys.I))
+                SelectedObject = ObjectEnum.IcePlatform;
+            if (KeyMouseReader.KeyPressed(Keys.U))
                 SelectedObject = ObjectEnum.Player;
+            if (KeyMouseReader.KeyPressed(Keys.G))
+                SelectedObject = ObjectEnum.Goal;
+            if (Keyboard.GetState().IsKeyDown(Keys.E))
+                SelectedObject = ObjectEnum.Enemy;
             if (Keyboard.GetState().IsKeyDown(Keys.C))
                 SelectedObject = ObjectEnum.None;
-            if (Keyboard.GetState().IsKeyDown(Keys.S) && !KState.IsKeyDown(Keys.S))
+            if (KeyMouseReader.KeyPressed(Keys.S))
                 SaveToFile();
 
-            var mState = Mouse.GetState();
-            MousePosition = new Vector2(mState.Position.X, Mouse.GetState().Position.Y);
+            if (KeyMouseReader.KeyDown(Keys.Right))
+            {
+                camPos.X += 1;
+                camPos.Y += 0;
+            }
+            else if (KeyMouseReader.KeyDown(Keys.Left))
+            {
+                camPos.X += -1;
+                camPos.Y += 0;
+            }
 
-            if (mState.LeftButton == ButtonState.Pressed && !LastWasPressed)
+            if (KeyMouseReader.KeyDown(Keys.Up))
+            {
+                camPos.X += 0;
+                camPos.Y += -1;
+            }
+            else if (KeyMouseReader.KeyDown(Keys.Down))
+            {
+                camPos.X += 0;
+                camPos.Y += 1;
+            }
+
+            cam.SetPos(camPos);
+
+
+            MousePosition = KeyMouseReader.mousePosition;
+            var transform = Matrix.Invert(cam.GetTransform());
+            Vector2.Transform(ref MousePosition, ref transform, out MousePosition);
+            
+            PlacePosition = MousePosition;
+
+            if(Objects.Count > 0 && SelectedObject != ObjectEnum.Player)
+            {
+                var closestObj = Objects[0];
+                foreach (GameObject obj in Objects)
+                    if (Vector2.Distance(obj.GetCenter(), MousePosition) < Vector2.Distance(closestObj.GetCenter(), MousePosition))
+                        closestObj = obj;
+
+                if (Vector2.Distance(closestObj.GetCenter(), MousePosition) < 25)
+                {
+                    if(closestObj.GetCenter().X - MousePosition.X < 0)
+                        PlacePosition = new Vector2(closestObj.Dest.Right, closestObj.Dest.Top);
+                    else
+                        PlacePosition = new Vector2(closestObj.Dest.Left - closestObj.Dest.Width, closestObj.Dest.Top);
+                }
+            }
+
+
+            if (KeyMouseReader.LeftClick())
                 switch (SelectedObject)
                 {
                     case ObjectEnum.Platform:
-                        Objects.Add(new Platform(MousePosition, NogardGame.PlatformTexture));
+                        Objects.Add(new Platform(PlacePosition, TextureManager.StandardPlatformTex));
+                        break;
+                    case ObjectEnum.MovingPlatform:
+                        Objects.Add(new MovingPlatform(PlacePosition, TextureManager.MovingPlatformTex));
+                        break;
+                    case ObjectEnum.SpikePlatform:
+                        Objects.Add(new SpikePlatform(PlacePosition, TextureManager.SpikePlatformTex));
+                        break;
+                    case ObjectEnum.CloudPlatform:
+                        Objects.Add(new CloudPlatform(PlacePosition, TextureManager.CloudPlatformTex));
+                        break;
+                    case ObjectEnum.IcePlatform:
+                        Objects.Add(new IcePlatform(PlacePosition, TextureManager.IcePlatformTex));
                         break;
                     case ObjectEnum.Player:
-                        Objects.Add(new Player(MousePosition, NogardGame.PlayerSheet));
+                        Objects.Add(new Player(PlacePosition, TextureManager.PlayerTex));
                         break;
                     case ObjectEnum.Enemy:
-                        throw new NotImplementedException();
+                        Objects.Add(new BaseEnemy(MousePosition, TextureManager.StandardEnemyTex));
+                        break;
                     case ObjectEnum.Goal:
-                        throw new NotImplementedException();
+                        Objects.Add(new Goal(PlacePosition, TextureManager.GoalTex));
+                        break;
                     case ObjectEnum.None:
                         Objects.RemoveAll(item => Vector2.Distance(item.GetCenter(), MousePosition) < 25);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-
-            LastWasPressed = Mouse.GetState().LeftButton == ButtonState.Pressed;
-            KState = Keyboard.GetState();
         }
 
-        public void Draw()
+        public override void Draw()
         {
             switch (SelectedObject)
             {
                 case ObjectEnum.Platform:
-                    Sb.Draw(NogardGame.PlatformTexture, MousePosition);
+                    Sb.Draw(TextureManager.StandardPlatformTex, PlacePosition);
+                    Sb.Draw(TextureManager.IndicatorLineTex, PlacePosition + new Vector2(0, 200));
+                    break;
+                case ObjectEnum.MovingPlatform:
+                    Sb.Draw(TextureManager.MovingPlatformTex, PlacePosition);
+                    break;
+                case ObjectEnum.SpikePlatform:
+                    Sb.Draw(TextureManager.SpikePlatformTex, PlacePosition);
+                    break;
+                case ObjectEnum.CloudPlatform:
+                    Sb.Draw(TextureManager.CloudPlatformTex, PlacePosition);
+                    break;
+                case ObjectEnum.IcePlatform:
+                    Sb.Draw(TextureManager.IcePlatformTex, PlacePosition);
                     break;
                 case ObjectEnum.Player:
-                    Sb.Draw(NogardGame.PlayerSheet, MousePosition);
+                    Sb.Draw(TextureManager.PlayerTex, PlacePosition);
                     break;
                 case ObjectEnum.Enemy:
-                    throw new NotImplementedException();
+                    Sb.Draw(TextureManager.StandardEnemyTex, MousePosition);
+                    break; ;
                 case ObjectEnum.Goal:
-                    throw new NotImplementedException();
+                    Sb.Draw(TextureManager.GoalTex, PlacePosition);
+                    break;
                 case ObjectEnum.None:
                     break;
                 default:
@@ -100,9 +187,14 @@ namespace NogardTheDragon.Managers
                 obj.Draw(Sb);
         }
 
+        
         private enum ObjectEnum
         {
             Platform,
+            MovingPlatform,
+            SpikePlatform,
+            CloudPlatform,
+            IcePlatform,
             Player,
             Enemy,
             Goal,
