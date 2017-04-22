@@ -47,9 +47,8 @@ namespace NogardTheDragon.Managers
             if (KeyMouseReader.KeyPressed(Keys.P))
             {
                 clickCounter++;
-                clickCounter %= 5;
 
-                switch (clickCounter)
+                switch (clickCounter % 5)
                 {
                     case (0):
                         SelectedObject = ObjectEnum.Platform;

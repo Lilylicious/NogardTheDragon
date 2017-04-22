@@ -153,11 +153,6 @@ namespace NogardTheDragon.Objects
                     }
                 }
             }
-
-            if (CollidingWith != null && CollidingWith is Goal)
-            {
-                NogardGame.GameOverManager.Win();
-            }
         }
     }
 }
