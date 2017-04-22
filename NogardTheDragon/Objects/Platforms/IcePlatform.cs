@@ -20,7 +20,7 @@ namespace NogardTheDragon.Objects.Platforms
         {
             if (CollidingWith is Player)
             {
-                ((Player)CollidingWith).LandOnPlatform(1, true, false, true);
+                ((Player)CollidingWith).LandOnIcePlatform();
             }
             base.HandleCollision();
         }

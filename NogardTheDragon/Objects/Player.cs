@@ -122,36 +122,39 @@ namespace NogardTheDragon.Objects
             }
         }
 
-        public void LandOnPlatform(int offset, bool normal, bool cloud, bool ice)
+        public void LandOnPlatform(int offset)
         {
             if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
 
-            if (normal)
-            {
-                DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
-                Direction.Y = 0;
-                Velocity.Y = 0;
-            }
+            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
+            Airborn = false;
+            DoubleJumpAbility?.Reset();
+            Direction.Y = 0;
+            Velocity.Y = 0;
+        }
 
-            if (normal || cloud)
+        public void LandOnCloudPlatform()
+        {
+            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
+
+            Airborn = false;
+            DoubleJumpAbility?.Reset();
+            Velocity.Y *= 0.2f;
+        }
+
+        public void LandOnIcePlatform()
+        {
+            LandOnPlatform(1);
+
+            if (right)
             {
-                Airborn = false;
-                DoubleJumpAbility?.Reset();
-                if (cloud)
-                    Velocity.Y *= 0.2f;
-                if (ice)
-                {
-                    if (right)
-                    {
-                        Direction.X += 1;
-                        Velocity.X += 1;
-                    }
-                    else if (left)
-                    {
-                        Direction.X -= 1;
-                        Velocity.X -= 1;
-                    }
-                }
+                Direction.X += 1;
+                Velocity.X += 1;
+            }
+            else if (left)
+            {
+                Direction.X -= 1;
+                Velocity.X -= 1;
             }
         }
     }
