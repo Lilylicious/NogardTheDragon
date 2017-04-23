@@ -20,6 +20,7 @@ namespace NogardTheDragon.Managers
         private ObjectEnum SelectedObject = ObjectEnum.Platform;
         public Camera cam;
         public Vector2 camPos;
+        private int clickCounter;
 
         public MapMakerManager(NogardGame game)
         {
@@ -35,7 +36,6 @@ namespace NogardTheDragon.Managers
             Objects.Clear();
         }
 
-
         private void SaveToFile()
         {
             var dummyList = Objects.Select(obj => new DummyObject(obj)).ToList();
@@ -45,15 +45,31 @@ namespace NogardTheDragon.Managers
         public override void Update(GameTime gameTime)
         {
             if (KeyMouseReader.KeyPressed(Keys.P))
-                SelectedObject = ObjectEnum.Platform;
-            if (KeyMouseReader.KeyPressed(Keys.O))
-                SelectedObject = ObjectEnum.MovingPlatform;
-            if (KeyMouseReader.KeyPressed(Keys.Y))
-                SelectedObject = ObjectEnum.SpikePlatform;
-            if (KeyMouseReader.KeyPressed(Keys.K))
-                SelectedObject = ObjectEnum.CloudPlatform;
-            if (KeyMouseReader.KeyPressed(Keys.I))
-                SelectedObject = ObjectEnum.IcePlatform;
+            {
+                clickCounter++;
+
+                switch (clickCounter % 5)
+                {
+                    case (0):
+                        SelectedObject = ObjectEnum.Platform;
+                        break;
+                    case (1):
+                        SelectedObject = ObjectEnum.MovingPlatform;
+                        break;
+                    case (2):
+                        SelectedObject = ObjectEnum.SpikePlatform;
+                        break;
+                    case (3):
+                        SelectedObject = ObjectEnum.CloudPlatform;
+                        break;
+                    case (4):
+                        SelectedObject = ObjectEnum.IcePlatform;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
             if (KeyMouseReader.KeyPressed(Keys.U))
                 SelectedObject = ObjectEnum.Player;
             if (KeyMouseReader.KeyPressed(Keys.G))
@@ -173,7 +189,7 @@ namespace NogardTheDragon.Managers
                     break;
                 case ObjectEnum.Enemy:
                     Sb.Draw(TextureManager.StandardEnemyTex, MousePosition);
-                    break; ;
+                    break;
                 case ObjectEnum.Goal:
                     Sb.Draw(TextureManager.GoalTex, PlacePosition);
                     break;

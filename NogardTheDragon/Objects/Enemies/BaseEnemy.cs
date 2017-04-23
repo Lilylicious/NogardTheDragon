@@ -53,6 +53,7 @@ namespace NogardTheDragon.Objects
         public void TakeDamage(int damage)
         {
             Health -= damage;
+            Active = false;
         }
 
         private void LandOnPlatform()
