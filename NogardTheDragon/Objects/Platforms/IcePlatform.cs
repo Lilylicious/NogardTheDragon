@@ -18,7 +18,7 @@ namespace NogardTheDragon.Objects.Platforms
 
         protected override void HandleCollision()
         {
-            if (CollidingWith is Player)
+            if (CollidingWith is Player && !((Player)CollidingWith).Gliding)
             {
                 ((Player)CollidingWith).LandOnIcePlatform();
             }

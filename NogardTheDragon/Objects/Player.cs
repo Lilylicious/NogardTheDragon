@@ -18,6 +18,7 @@ namespace NogardTheDragon.Objects
         public double Timer;
         public bool left;
         public bool right;
+        public bool Gliding;
 
         public Player(Vector2 pos, Texture2D tex)
         {
@@ -51,6 +52,7 @@ namespace NogardTheDragon.Objects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            Gliding = false;
 
             if (Timer > 0)
             {
@@ -145,6 +147,7 @@ namespace NogardTheDragon.Objects
         public void LandOnIcePlatform()
         {
             LandOnPlatform(1);
+            Gliding = true;
 
             if (right)
             {
