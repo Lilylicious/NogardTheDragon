@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NogardTheDragon.Managers
 {
-    static class TextureManager
+    public static class TextureManager
     {
         public static Texture2D PlayerTex { get; private set; }
 

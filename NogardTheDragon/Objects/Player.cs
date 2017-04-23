@@ -201,5 +201,10 @@ namespace NogardTheDragon.Objects
                 jumpAbility?.Reset();
             }
         }
+
+        public void SetVelocity(Vector2 vector2)
+        {
+            Velocity = vector2;
+        }
     }
 }
