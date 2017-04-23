@@ -9,27 +9,21 @@ using NogardTheDragon.Abilities;
 
 namespace NogardTheDragon.Objects
 {
-    class PowerupObject : MovingObject
+    abstract class PowerupObject : MovingObject
     {
-        private BasePowerup Powerup;
-
-        public PowerupObject(BasePowerup powerup)
+        public PowerupObject(Vector2 pos, Texture2D tex)
         {
-            Powerup = powerup;
+            DrawPos = pos;
+            Texture = tex;
+            
+            SetColorData();
         }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             SourceRect = Source;
             base.Draw(spriteBatch);
         }
 
-        protected override void HandleCollision()
-        {
-            var Player = CollidingWith as Player;
-            if (Player == null) return;
-            Player.AddPowerup(Powerup);
-            Active = false;
-        }
+        public abstract void AddPowerup(GameTime gameTime);
     }
 }

@@ -68,9 +68,6 @@ namespace NogardTheDragon.Objects
         {
             base.Update(gameTime);
 
-            if(Airborn)
-                Console.WriteLine(GetVelocity().Y + " : " + GetPosition().Y);
-
             UpdateAbilitiesPowerups();
 
             if (Timer > 0)

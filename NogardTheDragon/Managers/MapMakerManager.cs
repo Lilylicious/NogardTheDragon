@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Objects;
+using NogardTheDragon.Objects.AbilitysPowerups;
 using NogardTheDragon.Utilities;
 using NogardTheDragon.Objects.Platforms;
 
@@ -62,6 +63,10 @@ namespace NogardTheDragon.Managers
                 SelectedObject = ObjectEnum.Enemy;
             if (Keyboard.GetState().IsKeyDown(Keys.C))
                 SelectedObject = ObjectEnum.None;
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+                SelectedObject = ObjectEnum.UnlimitedPower;
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+                SelectedObject = ObjectEnum.SlowWorld;
             if (KeyMouseReader.KeyPressed(Keys.S))
                 SaveToFile();
 
@@ -143,6 +148,12 @@ namespace NogardTheDragon.Managers
                     case ObjectEnum.None:
                         Objects.RemoveAll(item => Vector2.Distance(item.GetCenter(), MousePosition) < 25);
                         break;
+                    case ObjectEnum.UnlimitedPower:
+                        Objects.Add(new UnlimitedPowerObject(PlacePosition, TextureManager.UnlimitedPowerTex));
+                        break;
+                    case ObjectEnum.SlowWorld:
+                        Objects.Add(new SlowWorldPowerObject(PlacePosition, TextureManager.SlowWorldTex));
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -179,6 +190,12 @@ namespace NogardTheDragon.Managers
                     break;
                 case ObjectEnum.None:
                     break;
+                case ObjectEnum.UnlimitedPower:
+                    Sb.Draw(TextureManager.UnlimitedPowerTex, PlacePosition);
+                    break;
+                case ObjectEnum.SlowWorld:
+                    Sb.Draw(TextureManager.SlowWorldTex, PlacePosition);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -198,6 +215,8 @@ namespace NogardTheDragon.Managers
             Player,
             Enemy,
             Goal,
+            UnlimitedPower,
+            SlowWorld,
             None
         }
     }
