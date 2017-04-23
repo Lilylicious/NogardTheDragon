@@ -17,6 +17,7 @@ namespace NogardTheDragon.Objects
         public double Timer;
         public bool left;
         public bool right;
+        public bool Gliding;
 
         private List<BasePowerup> Powerups = new List<BasePowerup>();
         private List<BaseAbility> Abilities = new List<BaseAbility>();
@@ -67,6 +68,7 @@ namespace NogardTheDragon.Objects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            Gliding = false;
 
             UpdateAbilitiesPowerups();
 
@@ -82,10 +84,6 @@ namespace NogardTheDragon.Objects
                 Color = Color.White;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.K))
-            {
-                TakeDamage(1);
-            }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
@@ -137,41 +135,40 @@ namespace NogardTheDragon.Objects
             }
         }
 
-        public void LandOnPlatform(int offset, bool normal, bool cloud, bool ice)
+        public void LandOnPlatform(int offset)
         {
             if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
 
-            if (normal)
-            {
-                DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
-                Direction.Y = 0;
-                Velocity.Y = 0;
-            }
+            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
+            Airborn = false;
+            ResetDoubleJump();
+            Direction.Y = 0;
+            Velocity.Y = 0;
+        }
 
-            if (normal || cloud)
-            {
-                Airborn = false;
-                ResetDoubleJump();
-                if (cloud)
-                    Velocity.Y *= 0.2f;
-                if (ice)
-                {
-                    if (right)
-                    {
-                        Direction.X += 1;
-                        Velocity.X += 1;
-                    }
-                    else if (left)
-                    {
-                        Direction.X -= 1;
-                        Velocity.X -= 1;
-                    }
-                }
-            }
+        public void LandOnCloudPlatform()
+        {
+            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
 
-            if (CollidingWith != null && CollidingWith is Goal)
+            Airborn = false;
+            ResetDoubleJump();
+            Velocity.Y *= 0.2f;
+        }
+
+        public void LandOnIcePlatform()
+        {
+            LandOnPlatform(1);
+            Gliding = true;
+
+            if (right)
             {
-                NogardGame.GameOverManager.Win();
+                Direction.X += 1;
+                Velocity.X += 1;
+            }
+            else if (left)
+            {
+                Direction.X -= 1;
+                Velocity.X -= 1;
             }
         }
 

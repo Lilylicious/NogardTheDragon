@@ -51,9 +51,9 @@ namespace NogardTheDragon.Objects.Platforms
             if (CollidingWith is Player)
             {
                 if (moveUp)
-                    ((Player)CollidingWith).LandOnPlatform(1, true, false, false);
+                    ((Player)CollidingWith).LandOnPlatform(1);
                 else if (!moveUp)
-                    ((Player)CollidingWith).LandOnPlatform(2, true, false, false);
+                    ((Player)CollidingWith).LandOnPlatform(2);
             }
             base.HandleCollision();
         }
