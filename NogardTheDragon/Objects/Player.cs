@@ -17,7 +17,6 @@ namespace NogardTheDragon.Objects
         public double Timer;
         public bool left;
         public bool right;
-        private bool test = true;
 
         private List<BasePowerup> Powerups = new List<BasePowerup>();
         private List<BaseAbility> Abilities = new List<BaseAbility>();
@@ -68,13 +67,6 @@ namespace NogardTheDragon.Objects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (test)
-            {
-                AddPowerup(new SlowWorldPower(gameTime));
-                AddPowerup(new UnlimitedPower(gameTime));
-                test = false;
-            }
 
             if(Airborn)
                 Console.WriteLine(GetVelocity().Y + " : " + GetPosition().Y);
