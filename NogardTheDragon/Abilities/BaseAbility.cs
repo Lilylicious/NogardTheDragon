@@ -2,7 +2,7 @@
 
 namespace NogardTheDragon.Abilities
 {
-    internal abstract class BaseAbility
+    public abstract class BaseAbility
     {
         protected MovingObject Owner;
 
@@ -12,5 +12,6 @@ namespace NogardTheDragon.Abilities
         }
 
         public abstract void TriggerAbility();
+        public abstract void Update();
     }
 }

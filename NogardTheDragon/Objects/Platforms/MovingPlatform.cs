@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects.Platforms
 {
@@ -31,14 +32,17 @@ namespace NogardTheDragon.Objects.Platforms
                 moveUp = true;
             }
 
-            if (!moveUp)
-            {
-                DrawPos.Y += 1f;
+            if(Variables.UpdateTick) {
+                if (!moveUp)
+                {
+                    DrawPos.Y += 1f;
+                }
+                else if (moveUp)
+                {
+                    DrawPos.Y -= 1;
+                }
             }
-            else if (moveUp)
-            {
-                DrawPos.Y -= 1;
-            }
+            
             base.Update(gameTime);
         }
 
