@@ -2,7 +2,7 @@
 
 namespace NogardTheDragon.Abilities
 {
-    internal abstract class BasePowerup
+    public abstract class BasePowerup
     {
         protected GameTime GameTime;
         protected double Timer;

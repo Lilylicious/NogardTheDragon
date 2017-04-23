@@ -25,6 +25,9 @@ namespace NogardTheDragon.Managers
         public static Texture2D IndicatorLineTex { get; private set; }
         public static Texture2D GoalTex { get; private set; }
 
+        public static Texture2D UnlimitedPowerTex { get; private set; }
+        public static Texture2D SlowWorldTex { get; private set; }
+
         public static void LoadTextures(ContentManager c)
         {
             PlayerTex = c.Load<Texture2D>(@"playersquare");
@@ -41,6 +44,9 @@ namespace NogardTheDragon.Managers
 
             IndicatorLineTex = c.Load<Texture2D>(@"indicatorline");
             GoalTex = c.Load<Texture2D>(@"goal");
+
+            UnlimitedPowerTex = c.Load<Texture2D>(@"UnlimitedPower");
+            SlowWorldTex = c.Load<Texture2D>(@"SlowWorld");
         }
     }
 }

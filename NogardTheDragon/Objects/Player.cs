@@ -178,12 +178,12 @@ namespace NogardTheDragon.Objects
             }
         }
 
-        private void AddAbility(BaseAbility ability)
+        public void AddAbility(BaseAbility ability)
         {
             Abilities.Add(ability);
         }
 
-        private void AddPowerup(BasePowerup powerup)
+        public void AddPowerup(BasePowerup powerup)
         {
             Powerups.Add(powerup);
         }
