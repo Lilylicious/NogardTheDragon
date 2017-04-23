@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Utilities;
 using NogardTheDragon.Managers;
+using NogardTheDragon.Objects.AbilitysPowerups;
 using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Map
@@ -41,6 +42,12 @@ namespace NogardTheDragon.Map
                         break;
                     case DummyObject.TypeEnum.Enemy:
                         objectList.Add(new BaseEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.StandardEnemyTex));
+                        break;
+                    case DummyObject.TypeEnum.UnlimitedPowerPowerup:
+                        objectList.Add(new UnlimitedPowerObject(new Vector2(dObj.PosX, dObj.PosY), TextureManager.UnlimitedPowerTex));
+                        break;
+                    case DummyObject.TypeEnum.SlowWorldPowerup:
+                        objectList.Add(new SlowWorldPowerObject(new Vector2(dObj.PosX, dObj.PosY), TextureManager.SlowWorldTex));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
