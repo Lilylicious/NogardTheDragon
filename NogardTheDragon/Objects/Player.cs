@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,15 +12,15 @@ namespace NogardTheDragon.Objects
 {
     public class Player : MovingObject, IAbilityUser, IDamageable
     {
-        private bool Airborn;
-        private DoubleJumpAbility DoubleJumpAbility;
         public int Health;
         public int Score;
-        private ShootProjectileAbility ShootProjectileAbility;
         public double Timer;
         public bool left;
         public bool right;
         public bool Gliding;
+
+        private List<BasePowerup> Powerups = new List<BasePowerup>();
+        private List<BaseAbility> Abilities = new List<BaseAbility>();
 
         public Player(Vector2 pos, Texture2D tex)
         {
@@ -35,24 +37,40 @@ namespace NogardTheDragon.Objects
 
         public void RegisterAbilities()
         {
-            DoubleJumpAbility = new DoubleJumpAbility(this);
-            ShootProjectileAbility = new ShootProjectileAbility(this);
+            AddAbility(new DoubleJumpAbility(this));
+            AddAbility(new ShootProjectileAbility(this));
         }
 
         public void TakeDamage(int damage)
         {
-
             if (Timer == 0)
             {
-                Health -= damage;
+                var index = FindIndex();
+
                 Timer = 2;
+                if (index >= 0)
+                    Powerups.RemoveAt(index);
+                else
+                    Health -= damage;
             }
+        }
+
+        private int FindIndex()
+        {
+            foreach (BasePowerup powerup in Powerups)
+                if (powerup is ArmorPower)
+                {
+                    return Powerups.IndexOf(powerup);
+                }
+            return -1;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             Gliding = false;
+
+            UpdateAbilitiesPowerups();
 
             if (Timer > 0)
             {
@@ -87,17 +105,10 @@ namespace NogardTheDragon.Objects
                 Velocity.X = 0f;
             }
 
-            if (KeyMouseReader.KeyPressed(Keys.Space))
-                ShootProjectileAbility?.TriggerAbility();
-
             if (!Airborn && KeyMouseReader.KeyPressed(Keys.Up))
             {
-                Velocity.Y = -12f;
+                Velocity.Y = -12;
                 Airborn = true;
-            }
-            else if (KeyMouseReader.KeyPressed(Keys.Up))
-            {
-                DoubleJumpAbility?.TriggerAbility();
             }
 
             if (Health <= 0)
@@ -130,7 +141,7 @@ namespace NogardTheDragon.Objects
 
             DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
             Airborn = false;
-            DoubleJumpAbility?.Reset();
+            ResetDoubleJump();
             Direction.Y = 0;
             Velocity.Y = 0;
         }
@@ -140,7 +151,7 @@ namespace NogardTheDragon.Objects
             if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
 
             Airborn = false;
-            DoubleJumpAbility?.Reset();
+            ResetDoubleJump();
             Velocity.Y *= 0.2f;
         }
 
@@ -158,6 +169,36 @@ namespace NogardTheDragon.Objects
             {
                 Direction.X -= 1;
                 Velocity.X -= 1;
+            }
+        }
+
+        public void AddAbility(BaseAbility ability)
+        {
+            Abilities.Add(ability);
+        }
+
+        public void AddPowerup(BasePowerup powerup)
+        {
+            Powerups.Add(powerup);
+        }
+
+        private void UpdateAbilitiesPowerups()
+        {
+            foreach(BaseAbility ability in Abilities)
+                ability.Update();
+
+            foreach(BasePowerup powerup in Powerups)
+                powerup.Update();
+
+            Powerups.RemoveAll(item => !item.Active);
+        }
+
+        private void ResetDoubleJump()
+        {
+            foreach(var ability in Abilities)
+            {
+                var jumpAbility = ability as DoubleJumpAbility;
+                jumpAbility?.Reset();
             }
         }
     }

@@ -47,6 +47,8 @@
     <Compile Include="Managers\ButtonManager.cs" />
     <Compile Include="Managers\MainMenuManager.cs" />
     <Compile Include="Managers\TextureManager.cs" />
+    <Compile Include="Objects\AbilitysPowerups\SlowWorldPowerObject.cs" />
+    <Compile Include="Objects\AbilitysPowerups\UnlimitedPowerObject.cs" />
     <Compile Include="Objects\Goal.cs" />
     <Compile Include="Objects\Obstacles\BaseObstacle.cs" />
     <Compile Include="Objects\Platforms\BasePlatform.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Objects\Obstacles\CaveMonsterObstacle.cs" />
     <Compile Include="Objects\Obstacles\SpikeObstacle.cs" />
     <Compile Include="Animation\Background.cs" />
+    <Compile Include="Objects\AbilitysPowerups\PowerupObject.cs" />
     <Compile Include="Utilities\Camera.cs" />
     <Compile Include="Abilities\BaseAbility.cs" />
     <Compile Include="Abilities\BasePowerup.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Utilities\DummyObject.cs" />
     <Compile Include="Utilities\KeyMouseReader.cs" />
     <Compile Include="Utilities\StandardButton.cs" />
+    <Compile Include="Utilities\Variables.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -126,7 +130,13 @@
     <Content Include="Content\playersquare.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\SlowWorld.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\spikeplatform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UnlimitedPower.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

@@ -17,5 +17,10 @@ namespace NogardTheDragon.Abilities
         {
             throw new NotImplementedException();
         }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

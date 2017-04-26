@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Managers;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon
 {
@@ -65,6 +66,7 @@ namespace NogardTheDragon
         protected override void Update(GameTime gameTime)
         {
             KeyMouseReader.Update();
+            Variables.Update();
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))

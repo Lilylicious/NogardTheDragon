@@ -29,6 +29,8 @@ namespace NogardTheDragon.Managers
         public static Texture2D GoalTex { get; private set; }
 
         public static SpriteFont Font { get; private set; }
+        public static Texture2D UnlimitedPowerTex { get; private set; }
+        public static Texture2D SlowWorldTex { get; private set; }
 
         public static void LoadTextures(ContentManager c)
         {
@@ -47,10 +49,12 @@ namespace NogardTheDragon.Managers
             MainMenuBackTex = c.Load<Texture2D>(@"MainMenuBack");
             IndicatorLineTex = c.Load<Texture2D>(@"indicatorline");
             GoalTex = c.Load<Texture2D>(@"goal");
-
             Font = c.Load<SpriteFont>(@"font1");
             RectButton = new Texture2D(NogardGame.SpriteBatch.GraphicsDevice, 1, 1);
             RectButton.SetData<Color>(new Color[] { Color.White });
+          
+            UnlimitedPowerTex = c.Load<Texture2D>(@"UnlimitedPower");
+            SlowWorldTex = c.Load<Texture2D>(@"SlowWorld");
         }
     }
 }
