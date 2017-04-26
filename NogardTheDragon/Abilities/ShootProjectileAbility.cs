@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Managers;
 using NogardTheDragon.Objects;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Abilities
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace NogardTheDragon.Objects
+namespace NogardTheDragon.Objects.Obstacles
 {
     internal class BaseObstacle : MovingObject
     {

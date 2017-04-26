@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace NogardTheDragon.Objects
+namespace NogardTheDragon.Objects.AbilitysPowerups
 {
     internal abstract class PowerupObject : MovingObject
     {
-        public PowerupObject(Vector2 pos, Texture2D tex)
+        protected PowerupObject(Vector2 pos, Texture2D tex)
         {
             DrawPos = pos;
             Texture = tex;

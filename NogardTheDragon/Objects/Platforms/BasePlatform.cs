@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace NogardTheDragon.Objects
+namespace NogardTheDragon.Objects.Platforms
 {
     internal abstract class BasePlatform : MovingObject
     {

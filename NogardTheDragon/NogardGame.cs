@@ -117,8 +117,8 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.MapMaker:
                     SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
-                        MapMakerManager?.Cam.GetTransform());
-                    MapMakerManager.Draw();
+                    MapMakerManager?.Cam.GetTransform());
+                    MapMakerManager?.Draw();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

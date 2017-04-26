@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Managers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NogardTheDragon.Utilities
 {
@@ -17,7 +12,7 @@ namespace NogardTheDragon.Utilities
 
         public StandardButton(Rectangle rect)
         {
-            this.Rect = rect;
+            Rect = rect;
         }
 
         public void Update(Color color)

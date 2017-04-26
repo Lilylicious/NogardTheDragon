@@ -8,7 +8,7 @@ namespace NogardTheDragon.Abilities
         protected GameTime GameTime;
         protected double Timer;
 
-        public BasePowerup(GameTime gameTime)
+        protected BasePowerup(GameTime gameTime)
         {
             GameTime = gameTime;
         }

@@ -8,7 +8,7 @@ namespace NogardTheDragon.Managers
 
         public MainMenuManager(NogardGame game)
         {
-            this.Game = game;
+            Game = game;
         }
 
         public override void Init()

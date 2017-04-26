@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using NogardTheDragon.Managers;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Objects.AbilitysPowerups;
+using NogardTheDragon.Objects.Enemies;
 using NogardTheDragon.Objects.Platforms;
 using NogardTheDragon.Utilities;
 

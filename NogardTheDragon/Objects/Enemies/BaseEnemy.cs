@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Interfaces;
 
-namespace NogardTheDragon.Objects
+namespace NogardTheDragon.Objects.Enemies
 {
     internal class BaseEnemy : MovingObject, IDamageable
     {

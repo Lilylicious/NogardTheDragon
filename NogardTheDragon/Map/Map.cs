@@ -2,13 +2,14 @@
 using Microsoft.Xna.Framework;
 using NogardTheDragon.Managers;
 using NogardTheDragon.Objects;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Map
 {
     public class Map
     {
         public Camera Cam;
-        public List<GameObject> Objects = new List<GameObject>();
+        public List<GameObject> Objects;
         private Player Player;
 
         public List<Projectile> ProjectilesToAdd = new List<Projectile>();

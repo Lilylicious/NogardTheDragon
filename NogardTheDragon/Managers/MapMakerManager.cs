@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Objects.AbilitysPowerups;
+using NogardTheDragon.Objects.Enemies;
 using NogardTheDragon.Objects.Platforms;
 using NogardTheDragon.Utilities;
 
@@ -126,10 +127,7 @@ namespace NogardTheDragon.Managers
                         closestObj = obj;
 
                 if (Vector2.Distance(closestObj.GetCenter(), MousePosition) < 25)
-                    if (closestObj.GetCenter().X - MousePosition.X < 0)
-                        PlacePosition = new Vector2(closestObj.Dest.Right, closestObj.Dest.Top);
-                    else
-                        PlacePosition = new Vector2(closestObj.Dest.Left - closestObj.Dest.Width, closestObj.Dest.Top);
+                    PlacePosition = closestObj.GetCenter().X - MousePosition.X < 0 ? new Vector2(closestObj.Dest.Right, closestObj.Dest.Top) : new Vector2(closestObj.Dest.Left - closestObj.Dest.Width, closestObj.Dest.Top);
             }
 
 

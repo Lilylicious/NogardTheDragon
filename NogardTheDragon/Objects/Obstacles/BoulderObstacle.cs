@@ -1,4 +1,4 @@
-﻿namespace NogardTheDragon.Objects
+﻿namespace NogardTheDragon.Objects.Obstacles
 {
     internal class BoulderObstacle : BaseObstacle
     {

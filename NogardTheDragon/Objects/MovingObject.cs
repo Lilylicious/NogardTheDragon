@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Abilities;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Objects
 {
@@ -16,21 +17,16 @@ namespace NogardTheDragon.Objects
         protected List<BaseAbility> Abilities = new List<BaseAbility>();
         protected int Acceleration = 2;
         protected int AccelerationConstant = 2;
-
         public bool Airborn;
-
         protected GameObject CollidingWith;
         protected GameObject CollidingWithPlatform;
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
-
         public bool Gliding;
         protected bool Gravity = false;
-
         protected Facing LastFacing = Facing.Left;
         protected bool Moving = false;
         protected int NumberOfFrames;
-
         protected List<BasePowerup> Powerups = new List<BasePowerup>();
         protected float Speed;
         protected int Step = 1;
@@ -151,15 +147,16 @@ namespace NogardTheDragon.Objects
             LandOnPlatform(1);
             Gliding = true;
 
-            if (LastFacing == Facing.Right)
+            switch (LastFacing)
             {
-                Direction.X += 1;
-                Velocity.X += 1;
-            }
-            else if (LastFacing == Facing.Left)
-            {
-                Direction.X -= 1;
-                Velocity.X -= 1;
+                case Facing.Right:
+                    Direction.X += 1;
+                    Velocity.X += 1;
+                    break;
+                case Facing.Left:
+                    Direction.X -= 1;
+                    Velocity.X -= 1;
+                    break;
             }
             return true;
         }

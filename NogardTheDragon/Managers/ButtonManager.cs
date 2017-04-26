@@ -7,7 +7,6 @@ namespace NogardTheDragon.Managers
     public class ButtonManager : BaseManager
     {
         public List<StandardButton> Buttons;
-        private Color Color;
         public StandardButton ExitButton;
         public StandardButton MapButton;
         public StandardButton PlayButton;
@@ -55,7 +54,6 @@ namespace NogardTheDragon.Managers
             switch (NogardGame.GameState)
             {
                 case NogardGame.GameStateEnum.MainMenu:
-                    Color = Color.Goldenrod;
                     PlayButton.DrawStandardButton(5, "Play", 1);
                     ScoreButton.DrawStandardButton(5, "Highscore", 0.5f);
                     ExitButton.DrawStandardButton(5, "Exit", 0.4f);

@@ -6,7 +6,6 @@ namespace NogardTheDragon.Managers
     public class GameOverManager : BaseManager
     {
         private readonly NogardGame Instance;
-        private Player Player;
         private bool Won;
 
         public GameOverManager(NogardGame game)
@@ -28,20 +27,6 @@ namespace NogardTheDragon.Managers
 
         public override void Init()
         {
-            foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
-            {
-                /*The keyword "as" tries to assign the variable o as a Player object. If it can't, o becomes null.
-                 * This is equivalent to doing the following
-                 * 
-                 * if(gameObject is Player){
-                 * Player = gameObject;
-                 * }
-                 */
-
-                var o = gameObject as Player;
-                if (o != null)
-                    Player = o;
-            }
         }
 
         public override void Update(GameTime gameTime)
@@ -52,7 +37,10 @@ namespace NogardTheDragon.Managers
         {
             Instance.GraphicsDevice.Clear(Color.Black);
 
-            //if won then Victory! If not won then Losing screen
+            if(Won)
+                NogardGame.SpriteBatch.Draw(TextureManager.PlayerTex, Vector2.One, Color.White);
+            else
+                NogardGame.SpriteBatch.Draw(TextureManager.StandardEnemyTex, Vector2.One, Color.White);
         }
     }
 }
