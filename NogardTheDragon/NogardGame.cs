@@ -22,9 +22,11 @@ namespace NogardTheDragon
 
         public static GameStateEnum GameState = GameStateEnum.MainMenu;
 
+        public static MainMenuManager MainMenuManager;
         public static GamePlayManager GamePlayManager;
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
+        public static ButtonManager ButtonManager;
         public static GraphicsDeviceManager Graphics;
 
         public NogardGame()
@@ -33,23 +35,28 @@ namespace NogardTheDragon
             Content.RootDirectory = "Content";
         }
 
-        public static SpriteFont Font { get; private set; }
-
         protected override void Initialize()
         {
+            Graphics.PreferredBackBufferWidth = 900;
+            Graphics.PreferredBackBufferHeight = 700;
+            Graphics.ApplyChanges();
+            IsMouseVisible = true;
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            
             TextureManager.LoadTextures(Content);
-            Font = Content.Load<SpriteFont>(@"font1");
 
+            MainMenuManager = new MainMenuManager(this);
             GamePlayManager = new GamePlayManager();
             GameOverManager = new GameOverManager(this);
             MapMakerManager = new MapMakerManager(this);
+            ButtonManager = new ButtonManager();
+            ButtonManager.Init();
+
         }
 
         protected override void UnloadContent()
@@ -66,15 +73,13 @@ namespace NogardTheDragon
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
-                GamePlayManager.Init();
+                MainMenuManager.Init();
             }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Tab))
-                MapMakerManager.Init();
 
             switch (GameState)
             {
                 case GameStateEnum.MainMenu:
+                    MainMenuManager.Update(gameTime);
                     break;
                 case GameStateEnum.GameActive:
                     GamePlayManager.Update(gameTime);
@@ -101,6 +106,7 @@ namespace NogardTheDragon
             {
                 case GameStateEnum.MainMenu:
                     SpriteBatch.Begin();
+                    MainMenuManager.Draw();
                     break;
                 case GameStateEnum.GameActive:
                     SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GamePlayManager.ActiveMap?.cam.GetTransform());
