@@ -1,14 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects
 {
-    abstract class BasePlatform : MovingObject
+    internal abstract class BasePlatform : MovingObject
     {
         public BasePlatform(Vector2 pos, Texture2D tex)
         {

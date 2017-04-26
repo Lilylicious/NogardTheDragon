@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Objects.AbilitysPowerups;
-using NogardTheDragon.Utilities;
 using NogardTheDragon.Objects.Platforms;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Managers
 {
@@ -15,19 +15,19 @@ namespace NogardTheDragon.Managers
     {
         private readonly NogardGame Game;
         private readonly SpriteBatch Sb = NogardGame.SpriteBatch;
+        public Camera Cam;
+        public Vector2 CamPos;
+        private int ClickCounter;
         private Vector2 MousePosition;
-        private Vector2 PlacePosition;
         public List<GameObject> Objects = new List<GameObject>();
+        private Vector2 PlacePosition;
         private ObjectEnum SelectedObject = ObjectEnum.Platform;
-        public Camera cam;
-        public Vector2 camPos;
-        private int clickCounter;
 
         public MapMakerManager(NogardGame game)
         {
             Game = game;
-            cam = new Camera(game.GraphicsDevice.Viewport);
-            camPos = new Vector2(game.Window.ClientBounds.Width / 2, game.Window.ClientBounds.Height / 2);
+            Cam = new Camera(game.GraphicsDevice.Viewport);
+            CamPos = new Vector2(game.Window.ClientBounds.Width / 2, game.Window.ClientBounds.Height / 2);
         }
 
         public override void Init()
@@ -47,23 +47,23 @@ namespace NogardTheDragon.Managers
         {
             if (KeyMouseReader.KeyPressed(Keys.P))
             {
-                clickCounter++;
+                ClickCounter++;
 
-                switch (clickCounter % 5)
+                switch (ClickCounter % 5)
                 {
-                    case (0):
+                    case 0:
                         SelectedObject = ObjectEnum.Platform;
                         break;
-                    case (1):
+                    case 1:
                         SelectedObject = ObjectEnum.MovingPlatform;
                         break;
-                    case (2):
+                    case 2:
                         SelectedObject = ObjectEnum.SpikePlatform;
                         break;
-                    case (3):
+                    case 3:
                         SelectedObject = ObjectEnum.CloudPlatform;
                         break;
-                    case (4):
+                    case 4:
                         SelectedObject = ObjectEnum.IcePlatform;
                         break;
                     default:
@@ -88,49 +88,48 @@ namespace NogardTheDragon.Managers
 
             if (KeyMouseReader.KeyDown(Keys.Right))
             {
-                camPos.X += 1;
-                camPos.Y += 0;
+                CamPos.X += 1;
+                CamPos.Y += 0;
             }
             else if (KeyMouseReader.KeyDown(Keys.Left))
             {
-                camPos.X += -1;
-                camPos.Y += 0;
+                CamPos.X += -1;
+                CamPos.Y += 0;
             }
 
             if (KeyMouseReader.KeyDown(Keys.Up))
             {
-                camPos.X += 0;
-                camPos.Y += -1;
+                CamPos.X += 0;
+                CamPos.Y += -1;
             }
             else if (KeyMouseReader.KeyDown(Keys.Down))
             {
-                camPos.X += 0;
-                camPos.Y += 1;
+                CamPos.X += 0;
+                CamPos.Y += 1;
             }
 
-            cam.SetPos(camPos);
+            Cam.SetPos(CamPos);
 
 
-            MousePosition = KeyMouseReader.mousePosition;
-            var transform = Matrix.Invert(cam.GetTransform());
+            MousePosition = KeyMouseReader.MousePosition;
+            var transform = Matrix.Invert(Cam.GetTransform());
             Vector2.Transform(ref MousePosition, ref transform, out MousePosition);
-            
+
             PlacePosition = MousePosition;
 
-            if(Objects.Count > 0 && SelectedObject != ObjectEnum.Player)
+            if (Objects.Count > 0 && SelectedObject != ObjectEnum.Player)
             {
                 var closestObj = Objects[0];
-                foreach (GameObject obj in Objects)
-                    if (Vector2.Distance(obj.GetCenter(), MousePosition) < Vector2.Distance(closestObj.GetCenter(), MousePosition))
+                foreach (var obj in Objects)
+                    if (Vector2.Distance(obj.GetCenter(), MousePosition) <
+                        Vector2.Distance(closestObj.GetCenter(), MousePosition))
                         closestObj = obj;
 
                 if (Vector2.Distance(closestObj.GetCenter(), MousePosition) < 25)
-                {
-                    if(closestObj.GetCenter().X - MousePosition.X < 0)
+                    if (closestObj.GetCenter().X - MousePosition.X < 0)
                         PlacePosition = new Vector2(closestObj.Dest.Right, closestObj.Dest.Top);
                     else
                         PlacePosition = new Vector2(closestObj.Dest.Left - closestObj.Dest.Width, closestObj.Dest.Top);
-                }
             }
 
 
@@ -220,7 +219,7 @@ namespace NogardTheDragon.Managers
                 obj.Draw(Sb);
         }
 
-        
+
         private enum ObjectEnum
         {
             Platform,

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using NogardTheDragon.Objects;
-using NogardTheDragon.Utilities;
 using NogardTheDragon.Managers;
+using NogardTheDragon.Objects;
 using NogardTheDragon.Objects.AbilitysPowerups;
 using NogardTheDragon.Objects.Platforms;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Map
 {
@@ -20,16 +20,20 @@ namespace NogardTheDragon.Map
                 switch (dObj.Type)
                 {
                     case DummyObject.TypeEnum.Platform:
-                        objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.StandardPlatformTex));
+                        objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.StandardPlatformTex));
                         break;
                     case DummyObject.TypeEnum.MovingPlatform:
-                        objectList.Add(new MovingPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.MovingPlatformTex));
+                        objectList.Add(new MovingPlatform(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.MovingPlatformTex));
                         break;
                     case DummyObject.TypeEnum.SpikePlatform:
-                        objectList.Add(new SpikePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.SpikePlatformTex));
+                        objectList.Add(new SpikePlatform(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.SpikePlatformTex));
                         break;
                     case DummyObject.TypeEnum.CloudPlatform:
-                        objectList.Add(new CloudPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.CloudPlatformTex));
+                        objectList.Add(new CloudPlatform(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.CloudPlatformTex));
                         break;
                     case DummyObject.TypeEnum.IcePlatform:
                         objectList.Add(new IcePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.IcePlatformTex));
@@ -44,10 +48,12 @@ namespace NogardTheDragon.Map
                         objectList.Add(new BaseEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.StandardEnemyTex));
                         break;
                     case DummyObject.TypeEnum.UnlimitedPowerPowerup:
-                        objectList.Add(new UnlimitedPowerObject(new Vector2(dObj.PosX, dObj.PosY), TextureManager.UnlimitedPowerTex));
+                        objectList.Add(new UnlimitedPowerObject(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.UnlimitedPowerTex));
                         break;
                     case DummyObject.TypeEnum.SlowWorldPowerup:
-                        objectList.Add(new SlowWorldPowerObject(new Vector2(dObj.PosX, dObj.PosY), TextureManager.SlowWorldTex));
+                        objectList.Add(new SlowWorldPowerObject(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.SlowWorldTex));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

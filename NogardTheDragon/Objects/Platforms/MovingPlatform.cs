@@ -1,48 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    class MovingPlatform : BasePlatform
+    internal class MovingPlatform : BasePlatform
     {
-        private Vector2 startPos;
-        private bool moveUp;
+        private bool MoveUp;
+        private Vector2 StartPos;
 
         public MovingPlatform(Vector2 pos, Texture2D tex)
-            :base(pos, tex)
+            : base(pos, tex)
         {
-            startPos = pos;
+            StartPos = pos;
             SetColorData();
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (DrawPos.Y <= startPos.Y - 200)
-            {
-                moveUp = false;
-            }
-            else if (DrawPos.Y >= startPos.Y + 200)
-            {
-                moveUp = true;
-            }
+            if (DrawPos.Y <= StartPos.Y - 200)
+                MoveUp = false;
+            else if (DrawPos.Y >= StartPos.Y + 200)
+                MoveUp = true;
 
-            if(Variables.UpdateTick) {
-                if (!moveUp)
-                {
+            if (Variables.UpdateTick)
+                if (!MoveUp)
                     DrawPos.Y += 1f;
-                }
-                else if (moveUp)
-                {
+                else if (MoveUp)
                     DrawPos.Y -= 1;
-                }
-            }
-            
+
             base.Update(gameTime);
         }
 
@@ -51,9 +37,9 @@ namespace NogardTheDragon.Objects.Platforms
             var o = CollidingWith as MovingObject;
             if (o == null) return false;
 
-            if (moveUp)
+            if (MoveUp)
                 o.LandOnPlatform(1);
-            else if (!moveUp)
+            else if (!MoveUp)
                 o.LandOnPlatform(2);
 
             return true;

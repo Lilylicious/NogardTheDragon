@@ -22,7 +22,7 @@ namespace NogardTheDragon.Abilities
 
         public override void Update()
         {
-            if(KeyMouseReader.KeyPressed(Keys.Space))
+            if (KeyMouseReader.KeyPressed(Keys.Space))
                 TriggerAbility();
         }
     }

@@ -1,33 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NogardTheDragon.Managers
 {
     public class Camera
     {
-        private Viewport view;
-        private Vector2 pos;
-        private Matrix transform;
+        private Vector2 Pos;
+        private Matrix Transform;
+        private Viewport View;
 
         public Camera(Viewport view)
         {
-            this.view = view;
+            this.View = view;
         }
 
         public void SetPos(Vector2 pos)
         {
-            this.pos = pos;
-            transform = Matrix.CreateTranslation(-this.pos.X + view.Width / 2, -this.pos.Y + view.Height / 2, 0);
+            this.Pos = pos;
+            Transform = Matrix.CreateTranslation(-this.Pos.X + View.Width / 2, -this.Pos.Y + View.Height / 2, 0);
         }
 
         public Matrix GetTransform()
         {
-            return transform;
+            return Transform;
         }
     }
 }

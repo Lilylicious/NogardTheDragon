@@ -7,30 +7,36 @@ namespace NogardTheDragon.Objects
 {
     public abstract class MovingObject : GameObject
     {
+        public enum Facing
+        {
+            Left,
+            Right
+        }
+
+        protected List<BaseAbility> Abilities = new List<BaseAbility>();
         protected int Acceleration = 2;
         protected int AccelerationConstant = 2;
 
+        public bool Airborn;
+
         protected GameObject CollidingWith;
         protected GameObject CollidingWithPlatform;
-
-        public bool Airborn;
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
+
+        public bool Gliding;
         protected bool Gravity = false;
+
+        protected Facing LastFacing = Facing.Left;
         protected bool Moving = false;
         protected int NumberOfFrames;
+
+        protected List<BasePowerup> Powerups = new List<BasePowerup>();
         protected float Speed;
         protected int Step = 1;
         protected double TimeBetweenFrames = 0.1;
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
-
-        public bool Gliding;
-
-        protected Facing LastFacing = Facing.Left;
-
-        protected List<BasePowerup> Powerups = new List<BasePowerup>();
-        protected List<BaseAbility> Abilities = new List<BaseAbility>();
 
         public override void CheckCollision()
         {
@@ -45,7 +51,7 @@ namespace NogardTheDragon.Objects
                     // The reason is that we don't want to collide with ourselves.
                     if (this == gameObject) continue;
 
-                    if(!(gameObject is BasePlatform))
+                    if (!(gameObject is BasePlatform))
                     {
                         found = true;
                         CollidingWith = gameObject;
@@ -55,7 +61,6 @@ namespace NogardTheDragon.Objects
                         foundPlatform = true;
                         CollidingWithPlatform = gameObject;
                     }
-                    
                 }
 
             if (!found)
@@ -171,10 +176,10 @@ namespace NogardTheDragon.Objects
 
         private void UpdateAbilitiesPowerups()
         {
-            foreach (BaseAbility ability in Abilities)
+            foreach (var ability in Abilities)
                 ability.Update();
 
-            foreach (BasePowerup powerup in Powerups)
+            foreach (var powerup in Powerups)
                 powerup.Update();
 
             Powerups.RemoveAll(item => !item.Active);
@@ -192,12 +197,6 @@ namespace NogardTheDragon.Objects
         public void SetVelocity(Vector2 vector2)
         {
             Velocity = vector2;
-        }
-
-        public enum Facing
-        {
-            Left,
-            Right
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using NogardTheDragon.Abilities;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Objects.AbilitysPowerups;
 using NogardTheDragon.Objects.Platforms;

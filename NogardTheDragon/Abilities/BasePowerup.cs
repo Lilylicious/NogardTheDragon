@@ -4,6 +4,7 @@ namespace NogardTheDragon.Abilities
 {
     public abstract class BasePowerup
     {
+        public bool Active = true;
         protected GameTime GameTime;
         protected double Timer;
 
@@ -11,8 +12,6 @@ namespace NogardTheDragon.Abilities
         {
             GameTime = gameTime;
         }
-
-        public bool Active = true;
 
         public virtual void Update()
         {

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Abilities;
 
 namespace NogardTheDragon.Objects.AbilitysPowerups
 {
-    class SlowWorldPowerObject : PowerupObject
+    internal class SlowWorldPowerObject : PowerupObject
     {
         public SlowWorldPowerObject(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
@@ -17,7 +12,7 @@ namespace NogardTheDragon.Objects.AbilitysPowerups
 
         public override void AddPowerup(GameTime gameTime)
         {
-            ((Player)CollidingWith).AddPowerup(new SlowWorldPower(gameTime));
+            ((Player) CollidingWith).AddPowerup(new SlowWorldPower(gameTime));
             Active = false;
         }
 

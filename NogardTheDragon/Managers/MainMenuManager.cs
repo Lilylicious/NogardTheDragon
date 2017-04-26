@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using NogardTheDragon.Utilities;
+﻿using Microsoft.Xna.Framework;
 
 namespace NogardTheDragon.Managers
 {
     public class MainMenuManager : BaseManager
     {
-        private NogardGame game;
-        
+        private readonly NogardGame Game;
+
         public MainMenuManager(NogardGame game)
         {
-            this.game = game;
+            this.Game = game;
         }
 
         public override void Init()
@@ -26,24 +20,17 @@ namespace NogardTheDragon.Managers
         {
             NogardGame.ButtonManager.Update(gameTime);
 
-            foreach (StandardButton b in NogardGame.ButtonManager.Buttons)
+            foreach (var b in NogardGame.ButtonManager.Buttons)
             {
-                if (b.buttonClicked && b.Equals(NogardGame.ButtonManager.PlayButton))
-                {
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.PlayButton))
                     NogardGame.GamePlayManager.Init();
-                }
-                if (b.buttonClicked && b.Equals(NogardGame.ButtonManager.ScoreButton))
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ScoreButton))
                 {
-
                 }
-                if (b.buttonClicked && b.Equals(NogardGame.ButtonManager.ExitButton))
-                {
-                    game.Exit();
-                }
-                if (b.buttonClicked && b.Equals(NogardGame.ButtonManager.MapButton))
-                {
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ExitButton))
+                    Game.Exit();
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MapButton))
                     NogardGame.MapMakerManager.Init();
-                }
             }
         }
 

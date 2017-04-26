@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Abilities;
 using NogardTheDragon.Interfaces;
-using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Objects
 {
@@ -51,11 +48,9 @@ namespace NogardTheDragon.Objects
 
         private int FindIndex()
         {
-            foreach (BasePowerup powerup in Powerups)
+            foreach (var powerup in Powerups)
                 if (powerup is ArmorPower)
-                {
                     return Powerups.IndexOf(powerup);
-                }
             return -1;
         }
 
@@ -63,7 +58,7 @@ namespace NogardTheDragon.Objects
         {
             base.Update(gameTime);
             Gliding = false;
-            
+
             if (Timer > 0)
             {
                 Timer -= gameTime.ElapsedGameTime.TotalSeconds;
@@ -103,12 +98,12 @@ namespace NogardTheDragon.Objects
 
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
-            
-                Velocity.Y += GravitySpeed;
 
-                Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
-                            (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), Velocity.Y);
+            Velocity.Y += GravitySpeed;
+
+            Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
+                        (float) gameTime.ElapsedGameTime.TotalSeconds;
+            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), Velocity.Y);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

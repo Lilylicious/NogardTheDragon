@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Interfaces;
 
 namespace NogardTheDragon.Objects
@@ -23,10 +21,16 @@ namespace NogardTheDragon.Objects
             SetColorData();
         }
 
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+            Active = false;
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            
+
             Velocity.Y += GravitySpeed;
         }
 
@@ -39,12 +43,6 @@ namespace NogardTheDragon.Objects
         protected override bool HandleCollision(GameTime gameTime)
         {
             return false;
-        }
-
-        public void TakeDamage(int damage)
-        {
-            Health -= damage;
-            Active = false;
         }
     }
 }
