@@ -12,7 +12,7 @@ using NogardTheDragon.Managers;
 namespace NogardUnitTesting
 {
     [TestClass]
-    public class CollisionTests
+    public class PlayerTests
     {
         private static Player Player;
         private static PrivateObject PrivatePlayer;
@@ -42,10 +42,10 @@ namespace NogardUnitTesting
 
             var platform = new Platform(new Vector2(50, 75), TextureManager.StandardPlatformTex);
 
-            PrivateObject.SetField("CollidingWith", platform);
+            PrivatePlayer.SetField("CollidingWith", platform);
             Player.SetVelocity(new Vector2(0, 10));
 
-            Result = (bool)PrivateObject.Invoke("HandleCollision");
+            Result = (bool)PrivatePlayer.Invoke("HandleCollision");
 
             Assert.IsTrue(Result);
         }
@@ -56,11 +56,11 @@ namespace NogardUnitTesting
 
             var platform = new SpikePlatform(new Vector2(50, 75), TextureManager.StandardPlatformTex);
 
-            PrivateObject.SetField("CollidingWith", platform);
+            PrivatePlayer.SetField("CollidingWith", platform);
             Player.SetVelocity(new Vector2(0, 10));
             var health = Player.Health;
 
-            PrivateObject.Invoke("HandleCollision");
+            PrivatePlayer.Invoke("HandleCollision");
 
             Assert.AreEqual(Player.Health, health - 1);
         }
