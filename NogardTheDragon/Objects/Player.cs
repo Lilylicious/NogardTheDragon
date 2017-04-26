@@ -15,12 +15,6 @@ namespace NogardTheDragon.Objects
         public int Health;
         public int Score;
         public double Timer;
-        public bool left;
-        public bool right;
-        public bool Gliding;
-
-        private List<BasePowerup> Powerups = new List<BasePowerup>();
-        private List<BaseAbility> Abilities = new List<BaseAbility>();
 
         public Player(Vector2 pos, Texture2D tex)
         {
@@ -69,9 +63,7 @@ namespace NogardTheDragon.Objects
         {
             base.Update(gameTime);
             Gliding = false;
-
-            UpdateAbilitiesPowerups();
-
+            
             if (Timer > 0)
             {
                 Timer -= gameTime.ElapsedGameTime.TotalSeconds;
@@ -87,15 +79,13 @@ namespace NogardTheDragon.Objects
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                left = false;
-                right = true;
+                LastFacing = Facing.Right;
                 Direction.X = 1f;
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                right = false;
-                left = true;
+                LastFacing = Facing.Left;
                 Direction.X = -1f;
             }
 
@@ -127,84 +117,9 @@ namespace NogardTheDragon.Objects
             base.Draw(spriteBatch);
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWith is Goal)
-            {
-                NogardGame.GameOverManager.Win();
-            }
-        }
-
-        public void LandOnPlatform(int offset)
-        {
-            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
-
-            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
-            Airborn = false;
-            ResetDoubleJump();
-            Direction.Y = 0;
-            Velocity.Y = 0;
-        }
-
-        public void LandOnCloudPlatform()
-        {
-            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
-
-            Airborn = false;
-            ResetDoubleJump();
-            Velocity.Y *= 0.2f;
-        }
-
-        public void LandOnIcePlatform()
-        {
-            LandOnPlatform(1);
-            Gliding = true;
-
-            if (right)
-            {
-                Direction.X += 1;
-                Velocity.X += 1;
-            }
-            else if (left)
-            {
-                Direction.X -= 1;
-                Velocity.X -= 1;
-            }
-        }
-
-        public void AddAbility(BaseAbility ability)
-        {
-            Abilities.Add(ability);
-        }
-
-        public void AddPowerup(BasePowerup powerup)
-        {
-            Powerups.Add(powerup);
-        }
-
-        private void UpdateAbilitiesPowerups()
-        {
-            foreach(BaseAbility ability in Abilities)
-                ability.Update();
-
-            foreach(BasePowerup powerup in Powerups)
-                powerup.Update();
-
-            Powerups.RemoveAll(item => !item.Active);
-        }
-
-        private void ResetDoubleJump()
-        {
-            foreach(var ability in Abilities)
-            {
-                var jumpAbility = ability as DoubleJumpAbility;
-                jumpAbility?.Reset();
-            }
-        }
-
-        public void SetVelocity(Vector2 vector2)
-        {
-            Velocity = vector2;
+            return false;
         }
     }
 }

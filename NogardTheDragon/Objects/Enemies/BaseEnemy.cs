@@ -36,31 +36,15 @@ namespace NogardTheDragon.Objects
             base.Draw(spriteBatch);
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWithPlatform != null)
-            {
-                LandOnPlatform();
-            }
-
-            if (CollidingWith != null && CollidingWith is Player)
-                {
-                    ((Player)CollidingWith).TakeDamage(1);
-                }
+            return false;
         }
 
         public void TakeDamage(int damage)
         {
             Health -= damage;
             Active = false;
-        }
-
-        private void LandOnPlatform()
-        {
-            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + 1;
-            Airborn = false;
-            Direction.Y = 0;
-            Velocity.Y = 0;
         }
     }
 }

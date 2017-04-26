@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NogardTheDragon.Abilities;
 
 namespace NogardTheDragon.Objects
 {
@@ -22,6 +24,13 @@ namespace NogardTheDragon.Objects
         protected double TimeBetweenFrames = 0.1;
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
+
+        public bool Gliding;
+
+        protected Facing LastFacing = Facing.Left;
+
+        protected List<BasePowerup> Powerups = new List<BasePowerup>();
+        protected List<BaseAbility> Abilities = new List<BaseAbility>();
 
         public override void CheckCollision()
         {
@@ -87,14 +96,13 @@ namespace NogardTheDragon.Objects
                 LayerDepth);
         }
 
-        protected virtual void HandleCollision()
-        {
-        }
+        protected abstract bool HandleCollision(GameTime gameTime);
 
         public virtual void Update(GameTime gameTime)
         {
             CheckCollision();
-            HandleCollision();
+            HandleCollision(gameTime);
+            UpdateAbilitiesPowerups();
 
             DrawPos += Velocity;
         }
@@ -107,6 +115,89 @@ namespace NogardTheDragon.Objects
         public void ChangeVelocity(Vector2 vel)
         {
             Velocity += vel;
+        }
+
+        public bool LandOnPlatform(int offset)
+        {
+            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return false;
+
+            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
+            Airborn = false;
+            ResetDoubleJump();
+            Direction.Y = 0;
+            Velocity.Y = 0;
+            return true;
+        }
+
+        public bool LandOnCloudPlatform()
+        {
+            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return false;
+
+            Airborn = false;
+            ResetDoubleJump();
+            Velocity.Y *= 0.2f;
+            return true;
+        }
+
+        public bool LandOnIcePlatform()
+        {
+            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return false;
+
+            LandOnPlatform(1);
+            Gliding = true;
+
+            if (LastFacing == Facing.Right)
+            {
+                Direction.X += 1;
+                Velocity.X += 1;
+            }
+            else if (LastFacing == Facing.Left)
+            {
+                Direction.X -= 1;
+                Velocity.X -= 1;
+            }
+            return true;
+        }
+
+        public void AddAbility(BaseAbility ability)
+        {
+            Abilities.Add(ability);
+        }
+
+        public void AddPowerup(BasePowerup powerup)
+        {
+            Powerups.Add(powerup);
+        }
+
+        private void UpdateAbilitiesPowerups()
+        {
+            foreach (BaseAbility ability in Abilities)
+                ability.Update();
+
+            foreach (BasePowerup powerup in Powerups)
+                powerup.Update();
+
+            Powerups.RemoveAll(item => !item.Active);
+        }
+
+        private void ResetDoubleJump()
+        {
+            foreach (var ability in Abilities)
+            {
+                var jumpAbility = ability as DoubleJumpAbility;
+                jumpAbility?.Reset();
+            }
+        }
+
+        public void SetVelocity(Vector2 vector2)
+        {
+            Velocity = vector2;
+        }
+
+        public enum Facing
+        {
+            Left,
+            Right
         }
     }
 }

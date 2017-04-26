@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NogardTheDragon.Interfaces;
 
 namespace NogardTheDragon.Objects
 {
@@ -16,14 +17,16 @@ namespace NogardTheDragon.Objects
 
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWith is Player)
-            {
-                ((Player)CollidingWith).LandOnPlatform(1);
-                ((Player)CollidingWith).TakeDamage(1);
-            }
-            base.HandleCollision();
+            var o = CollidingWith as MovingObject;
+            if (o == null) return false;
+
+            o.LandOnPlatform(1);
+
+            var d = o as IDamageable;
+            d?.TakeDamage(1);
+            return true;
         }
     }
 }

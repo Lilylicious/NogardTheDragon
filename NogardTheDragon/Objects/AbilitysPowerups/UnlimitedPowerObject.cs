@@ -15,18 +15,19 @@ namespace NogardTheDragon.Objects.AbilitysPowerups
         {
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-
-            if(CollidingWith is Player)
-                AddPowerup(gameTime);
-        }
-
         public override void AddPowerup(GameTime gameTime)
         {
             ((Player)CollidingWith).AddPowerup(new UnlimitedPower(gameTime));
             Active = false;
+        }
+
+        protected override bool HandleCollision(GameTime gameTime)
+        {
+            var p = CollidingWith as Player;
+            if (p == null) return false;
+
+            AddPowerup(gameTime);
+            return true;
         }
     }
 }

@@ -23,9 +23,9 @@ namespace NogardTheDragon.Objects
             base.Update(gameTime);
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWith == null) return;
+            return false;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

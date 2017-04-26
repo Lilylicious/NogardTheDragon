@@ -46,16 +46,17 @@ namespace NogardTheDragon.Objects.Platforms
             base.Update(gameTime);
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWith is Player)
-            {
-                if (moveUp)
-                    ((Player)CollidingWith).LandOnPlatform(1);
-                else if (!moveUp)
-                    ((Player)CollidingWith).LandOnPlatform(2);
-            }
-            base.HandleCollision();
+            var o = CollidingWith as MovingObject;
+            if (o == null) return false;
+
+            if (moveUp)
+                o.LandOnPlatform(1);
+            else if (!moveUp)
+                o.LandOnPlatform(2);
+
+            return true;
         }
     }
 }
