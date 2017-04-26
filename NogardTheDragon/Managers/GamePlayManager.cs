@@ -26,7 +26,5 @@ namespace NogardTheDragon.Managers
         {
             ActiveMap.Draw();
         }
-
-        
     }
 }
