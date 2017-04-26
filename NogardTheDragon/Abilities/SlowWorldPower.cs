@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Abilities
 {
-    class SlowWorldPower : BasePowerup
+    internal class SlowWorldPower : BasePowerup
     {
         public SlowWorldPower(GameTime gameTime) : base(gameTime)
         {

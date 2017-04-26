@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Interfaces;
 
-namespace NogardTheDragon.Objects
+namespace NogardTheDragon.Objects.Enemies
 {
     internal class BaseEnemy : MovingObject, IDamageable
     {
@@ -23,10 +21,16 @@ namespace NogardTheDragon.Objects
             SetColorData();
         }
 
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+            Active = false;
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            
+
             Velocity.Y += GravitySpeed;
         }
 
@@ -36,31 +40,9 @@ namespace NogardTheDragon.Objects
             base.Draw(spriteBatch);
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWithPlatform != null)
-            {
-                LandOnPlatform();
-            }
-
-            if (CollidingWith != null && CollidingWith is Player)
-                {
-                    ((Player)CollidingWith).TakeDamage(1);
-                }
-        }
-
-        public void TakeDamage(int damage)
-        {
-            Health -= damage;
-            Active = false;
-        }
-
-        private void LandOnPlatform()
-        {
-            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + 1;
-            Airborn = false;
-            Direction.Y = 0;
-            Velocity.Y = 0;
+            return false;
         }
     }
 }

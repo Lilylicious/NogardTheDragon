@@ -56,7 +56,6 @@ namespace NogardTheDragon
             MapMakerManager = new MapMakerManager(this);
             ButtonManager = new ButtonManager();
             ButtonManager.Init();
-
         }
 
         protected override void UnloadContent()
@@ -72,9 +71,7 @@ namespace NogardTheDragon
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-            {
                 MainMenuManager.Init();
-            }
 
             switch (GameState)
             {
@@ -109,7 +106,8 @@ namespace NogardTheDragon
                     MainMenuManager.Draw();
                     break;
                 case GameStateEnum.GameActive:
-                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GamePlayManager.ActiveMap?.cam.GetTransform());
+                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
+                        GamePlayManager.ActiveMap?.Cam.GetTransform());
                     GamePlayManager.Draw();
                     break;
                 case GameStateEnum.GameOver:
@@ -118,8 +116,9 @@ namespace NogardTheDragon
                 case GameStateEnum.Pause:
                     break;
                 case GameStateEnum.MapMaker:
-                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, MapMakerManager?.cam.GetTransform());
-                    MapMakerManager.Draw();
+                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
+                    MapMakerManager?.Cam.GetTransform());
+                    MapMakerManager?.Draw();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

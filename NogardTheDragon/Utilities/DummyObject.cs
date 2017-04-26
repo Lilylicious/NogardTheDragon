@@ -1,7 +1,7 @@
 ﻿using System;
-using NogardTheDragon.Abilities;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Objects.AbilitysPowerups;
+using NogardTheDragon.Objects.Enemies;
 using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Utilities

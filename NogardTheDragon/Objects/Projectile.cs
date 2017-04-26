@@ -33,15 +33,14 @@ namespace NogardTheDragon.Objects
             base.Draw(spriteBatch);
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
             var target = CollidingWith as IDamageable;
-            if (target != null && Owner != target)
-            {
-                target.TakeDamage(1);
-                Active = false;
-            }
-                
+            if (target == null || Owner == target) return false;
+
+            target.TakeDamage(1);
+            Active = false;
+            return true;
         }
     }
 }

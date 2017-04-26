@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Abilities;
 using NogardTheDragon.Interfaces;
-using NogardTheDragon.Objects.Platforms;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects
 {
@@ -15,12 +13,6 @@ namespace NogardTheDragon.Objects
         public int Health;
         public int Score;
         public double Timer;
-        public bool left;
-        public bool right;
-        public bool Gliding;
-
-        private List<BasePowerup> Powerups = new List<BasePowerup>();
-        private List<BaseAbility> Abilities = new List<BaseAbility>();
 
         public Player(Vector2 pos, Texture2D tex)
         {
@@ -57,11 +49,9 @@ namespace NogardTheDragon.Objects
 
         private int FindIndex()
         {
-            foreach (BasePowerup powerup in Powerups)
+            foreach (var powerup in Powerups)
                 if (powerup is ArmorPower)
-                {
                     return Powerups.IndexOf(powerup);
-                }
             return -1;
         }
 
@@ -69,8 +59,6 @@ namespace NogardTheDragon.Objects
         {
             base.Update(gameTime);
             Gliding = false;
-
-            UpdateAbilitiesPowerups();
 
             if (Timer > 0)
             {
@@ -87,15 +75,13 @@ namespace NogardTheDragon.Objects
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                left = false;
-                right = true;
+                LastFacing = Facing.Right;
                 Direction.X = 1f;
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                right = false;
-                left = true;
+                LastFacing = Facing.Left;
                 Direction.X = -1f;
             }
 
@@ -113,12 +99,12 @@ namespace NogardTheDragon.Objects
 
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
-            
-                Velocity.Y += GravitySpeed;
 
-                Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
-                            (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), Velocity.Y);
+            Velocity.Y += GravitySpeed;
+
+            Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
+                        (float) gameTime.ElapsedGameTime.TotalSeconds;
+            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 20));
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -127,79 +113,9 @@ namespace NogardTheDragon.Objects
             base.Draw(spriteBatch);
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWith is Goal)
-            {
-                NogardGame.GameOverManager.Win();
-            }
-        }
-
-        public void LandOnPlatform(int offset)
-        {
-            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
-
-            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
-            Airborn = false;
-            ResetDoubleJump();
-            Direction.Y = 0;
-            Velocity.Y = 0;
-        }
-
-        public void LandOnCloudPlatform()
-        {
-            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return;
-
-            Airborn = false;
-            ResetDoubleJump();
-            Velocity.Y *= 0.2f;
-        }
-
-        public void LandOnIcePlatform()
-        {
-            LandOnPlatform(1);
-            Gliding = true;
-
-            if (right)
-            {
-                Direction.X += 1;
-                Velocity.X += 1;
-            }
-            else if (left)
-            {
-                Direction.X -= 1;
-                Velocity.X -= 1;
-            }
-        }
-
-        public void AddAbility(BaseAbility ability)
-        {
-            Abilities.Add(ability);
-        }
-
-        public void AddPowerup(BasePowerup powerup)
-        {
-            Powerups.Add(powerup);
-        }
-
-        private void UpdateAbilitiesPowerups()
-        {
-            foreach(BaseAbility ability in Abilities)
-                ability.Update();
-
-            foreach(BasePowerup powerup in Powerups)
-                powerup.Update();
-
-            Powerups.RemoveAll(item => !item.Active);
-        }
-
-        private void ResetDoubleJump()
-        {
-            foreach(var ability in Abilities)
-            {
-                var jumpAbility = ability as DoubleJumpAbility;
-                jumpAbility?.Reset();
-            }
+            return false;
         }
     }
 }

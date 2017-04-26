@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Managers;
 using NogardTheDragon.Objects;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Abilities
 {
@@ -22,7 +23,7 @@ namespace NogardTheDragon.Abilities
 
         public override void Update()
         {
-            if(KeyMouseReader.KeyPressed(Keys.Space))
+            if (KeyMouseReader.KeyPressed(Keys.Space))
                 TriggerAbility();
         }
     }

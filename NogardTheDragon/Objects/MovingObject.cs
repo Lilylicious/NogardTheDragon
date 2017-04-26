@@ -1,22 +1,33 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NogardTheDragon.Abilities;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Objects
 {
     public abstract class MovingObject : GameObject
     {
+        public enum Facing
+        {
+            Left,
+            Right
+        }
+
+        protected List<BaseAbility> Abilities = new List<BaseAbility>();
         protected int Acceleration = 2;
         protected int AccelerationConstant = 2;
-
+        public bool Airborn;
         protected GameObject CollidingWith;
         protected GameObject CollidingWithPlatform;
-
-        public bool Airborn;
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
+        public bool Gliding;
         protected bool Gravity = false;
+        protected Facing LastFacing = Facing.Left;
         protected bool Moving = false;
         protected int NumberOfFrames;
+        protected List<BasePowerup> Powerups = new List<BasePowerup>();
         protected float Speed;
         protected int Step = 1;
         protected double TimeBetweenFrames = 0.1;
@@ -36,7 +47,7 @@ namespace NogardTheDragon.Objects
                     // The reason is that we don't want to collide with ourselves.
                     if (this == gameObject) continue;
 
-                    if(!(gameObject is BasePlatform))
+                    if (!(gameObject is BasePlatform))
                     {
                         found = true;
                         CollidingWith = gameObject;
@@ -46,7 +57,6 @@ namespace NogardTheDragon.Objects
                         foundPlatform = true;
                         CollidingWithPlatform = gameObject;
                     }
-                    
                 }
 
             if (!found)
@@ -87,14 +97,13 @@ namespace NogardTheDragon.Objects
                 LayerDepth);
         }
 
-        protected virtual void HandleCollision()
-        {
-        }
+        protected abstract bool HandleCollision(GameTime gameTime);
 
         public virtual void Update(GameTime gameTime)
         {
             CheckCollision();
-            HandleCollision();
+            HandleCollision(gameTime);
+            UpdateAbilitiesPowerups();
 
             DrawPos += Velocity;
         }
@@ -107,6 +116,84 @@ namespace NogardTheDragon.Objects
         public void ChangeVelocity(Vector2 vel)
         {
             Velocity += vel;
+        }
+
+        public bool LandOnPlatform(int offset)
+        {
+            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return false;
+
+            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
+            Airborn = false;
+            ResetDoubleJump();
+            Direction.Y = 0;
+            Velocity.Y = 0;
+            return true;
+        }
+
+        public bool LandOnCloudPlatform()
+        {
+            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return false;
+
+            Airborn = false;
+            ResetDoubleJump();
+            Velocity.Y *= 0.2f;
+            return true;
+        }
+
+        public bool LandOnIcePlatform()
+        {
+            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return false;
+
+            LandOnPlatform(1);
+            Gliding = true;
+
+            switch (LastFacing)
+            {
+                case Facing.Right:
+                    Direction.X += 1;
+                    Velocity.X += 1;
+                    break;
+                case Facing.Left:
+                    Direction.X -= 1;
+                    Velocity.X -= 1;
+                    break;
+            }
+            return true;
+        }
+
+        public void AddAbility(BaseAbility ability)
+        {
+            Abilities.Add(ability);
+        }
+
+        public void AddPowerup(BasePowerup powerup)
+        {
+            Powerups.Add(powerup);
+        }
+
+        private void UpdateAbilitiesPowerups()
+        {
+            foreach (var ability in Abilities)
+                ability.Update();
+
+            foreach (var powerup in Powerups)
+                powerup.Update();
+
+            Powerups.RemoveAll(item => !item.Active);
+        }
+
+        private void ResetDoubleJump()
+        {
+            foreach (var ability in Abilities)
+            {
+                var jumpAbility = ability as DoubleJumpAbility;
+                jumpAbility?.Reset();
+            }
+        }
+
+        public void SetVelocity(Vector2 vector2)
+        {
+            Velocity = vector2;
         }
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NogardTheDragon.Utilities
+﻿namespace NogardTheDragon.Utilities
 {
-    static class Variables
+    internal static class Variables
     {
         //Worldspeed works like: Speed = 1 / WorldSpeed. Increase worldspeed for slower game.
         public const int DefaultWorldSpeed = 1;

@@ -26,7 +26,7 @@ namespace NogardTheDragon.Abilities
 
         public override void Update()
         {
-            if(Owner.Airborn && KeyMouseReader.KeyPressed(Keys.Up) && (CanTrigger || Variables.UnlimitedPower))
+            if (Owner.Airborn && KeyMouseReader.KeyPressed(Keys.Up) && (CanTrigger || Variables.UnlimitedPower))
                 TriggerAbility();
         }
     }
