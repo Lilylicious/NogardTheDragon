@@ -11,7 +11,7 @@ namespace NogardTheDragon.Objects
         private bool Airborn = true;
         private int Health;
         public int Score;
-        private bool Walk;
+        protected bool Walk;
 
         public BaseEnemy(Vector2 pos, Texture2D tex)
         {
