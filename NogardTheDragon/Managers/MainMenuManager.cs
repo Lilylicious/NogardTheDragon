@@ -1,10 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Managers
 {
     public class MainMenuManager : BaseManager
     {
         private readonly NogardGame Game;
+        private Texture2D backgroundTex;
+        private float timer;
+        private Vector2 texPos;
 
         public MainMenuManager(NogardGame game)
         {
@@ -18,6 +22,26 @@ namespace NogardTheDragon.Managers
 
         public override void Update(GameTime gameTime)
         {
+            texPos.X -= 0.5f;
+
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (timer > 10)
+            {
+                timer = 0;
+            }
+
+            if (timer > 6.9f && timer < 7)
+            {
+                backgroundTex = TextureManager.MainMenuBackTex2;
+            }
+            else if (timer > 1.9f && timer < 2)
+            {
+                backgroundTex = TextureManager.MainMenuBackTex3;
+            }
+            else
+                backgroundTex = TextureManager.MainMenuBackTex1;
+
             NogardGame.ButtonManager.Update(gameTime);
 
             foreach (var b in NogardGame.ButtonManager.Buttons)
@@ -36,7 +60,9 @@ namespace NogardTheDragon.Managers
 
         public override void Draw()
         {
-            NogardGame.SpriteBatch.Draw(TextureManager.MainMenuBackTex, new Vector2(-100, 0), Color.White);
+            NogardGame.SpriteBatch.Draw(TextureManager.MainMenuCloudTex1, new Vector2(texPos.X + 200, texPos.Y + 100), Color.White);
+            NogardGame.SpriteBatch.Draw(TextureManager.MainMenuCloudTex2, new Vector2(texPos.X + 700, texPos.Y + 200), Color.White);
+            NogardGame.SpriteBatch.Draw(backgroundTex, new Vector2(-100, 0), Color.White);
             NogardGame.ButtonManager.Draw();
         }
     }

@@ -103,6 +103,7 @@ namespace NogardTheDragon
             {
                 case GameStateEnum.MainMenu:
                     SpriteBatch.Begin();
+                    GraphicsDevice.Clear(Color.DeepSkyBlue);
                     MainMenuManager.Draw();
                     break;
                 case GameStateEnum.GameActive:
