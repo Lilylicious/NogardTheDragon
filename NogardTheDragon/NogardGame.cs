@@ -112,6 +112,7 @@ namespace NogardTheDragon
                     GamePlayManager.Draw();
                     break;
                 case GameStateEnum.GameOver:
+                    SpriteBatch.Begin();
                     GameOverManager.Draw();
                     break;
                 case GameStateEnum.Pause:

@@ -14,11 +14,6 @@ namespace NogardTheDragon.Objects
             SetColorData();
         }
 
-        public override void CheckCollision()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, DrawPos, Color.White);
