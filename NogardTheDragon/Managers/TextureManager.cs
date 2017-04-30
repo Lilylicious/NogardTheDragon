@@ -24,6 +24,8 @@ namespace NogardTheDragon.Managers
         public static Texture2D MainMenuCloudTex1 { get; private set; }
         public static Texture2D MainMenuCloudTex2 { get; private set; }
 
+        public static Texture2D GameBackgroundTex1 { get; private set; }
+
         public static Texture2D RectButton { get; private set; }
         public static Texture2D IndicatorLineTex { get; private set; }
         public static Texture2D GoalTex { get; private set; }
@@ -51,6 +53,8 @@ namespace NogardTheDragon.Managers
             MainMenuBackTex3 = c.Load<Texture2D>(@"MainMenuBack1.2");
             MainMenuCloudTex1 = c.Load<Texture2D>(@"cloud1");
             MainMenuCloudTex2 = c.Load<Texture2D>(@"cloud2");
+
+            //GameBackgroundTex1 = c.Load<Texture2D>(@"fileName");
 
             IndicatorLineTex = c.Load<Texture2D>(@"indicatorline");
             GoalTex = c.Load<Texture2D>(@"goal");

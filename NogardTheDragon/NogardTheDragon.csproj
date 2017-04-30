@@ -43,6 +43,7 @@
     <Compile Include="Abilities\FlightPower.cs" />
     <Compile Include="Abilities\SlowWorldPower.cs" />
     <Compile Include="Abilities\UnlimitedPower.cs" />
+    <Compile Include="Animation\MainMenuBackground.cs" />
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\ButtonManager.cs" />
     <Compile Include="Managers\MainMenuManager.cs" />
