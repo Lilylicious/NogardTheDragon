@@ -13,6 +13,8 @@ namespace NogardTheDragon.Objects
         private bool Airborn = false;
         private bool Fly;
 
+        private bool isVisible = true;
+
         public FlyingEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
         }
@@ -21,10 +23,27 @@ namespace NogardTheDragon.Objects
         {
             base.Update(gameTime);
 
-            if (DrawPos.X >= DrawPos.X + 5)
+            if (DrawPos.Y <= 0 || DrawPos.Y >= gameTime.Viewport.Height - Texture.Height)
             {
                 Fly = true;
                 //Speed = +Speed;
+            }
+
+            if(DrawPos.X < 0 - Texture.Width)
+            {
+                isVisible = false;
+            }
+        }
+
+        public void LoadFlyingEnemies()
+        {
+            for(int i = 0; i <flyingEnemy.count; i++)
+            {
+                if (!flyingEnemy[i].isVisible)
+                {
+                    flyingEnemy.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }
