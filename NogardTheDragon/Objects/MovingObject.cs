@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Abilities;
+using NogardTheDragon.Objects.Enemies;
 using NogardTheDragon.Objects.Platforms;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects
 {
@@ -18,8 +20,8 @@ namespace NogardTheDragon.Objects
         protected int Acceleration = 2;
         protected int AccelerationConstant = 2;
         public bool Airborn;
-        protected GameObject CollidingWith;
-        protected GameObject CollidingWithPlatform;
+
+        protected List<GameObject> Collides = new List<GameObject>();
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
         public bool Gliding;
@@ -36,34 +38,24 @@ namespace NogardTheDragon.Objects
 
         public override void CheckCollision()
         {
-            var found = false;
-            var foundPlatform = false;
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
-                if (PixelCollision(this, gameObject))
+            {
+                if (this != gameObject)
                 {
-                    // This is just an inverted if statement. 
-                    // Instead of nesting found and collidingwith inside of if (this != gameObject), I just reversed the if statement
-                    // and told the foreach statement to go to the next thing if this == gameObject.
-                    // The reason is that we don't want to collide with ourselves.
-                    if (this == gameObject) continue;
-
-                    if (!(gameObject is BasePlatform))
+                    if (PixelCollision(this, gameObject))
                     {
-                        found = true;
-                        CollidingWith = gameObject;
+                        if (!Collides.Contains(gameObject))
+                            Collides.Add(gameObject);
                     }
                     else
                     {
-                        foundPlatform = true;
-                        CollidingWithPlatform = gameObject;
+                        if (Collides.Contains(gameObject))
+                            Collides.Remove(gameObject);
                     }
                 }
+            }
 
-            if (!found)
-                CollidingWith = null;
-
-            if (!foundPlatform)
-                CollidingWithPlatform = null;
+            Collides.RemoveAll(item => item.Active == false);
         }
 
         public static bool PixelCollision(GameObject p1, GameObject p2)
@@ -118,11 +110,11 @@ namespace NogardTheDragon.Objects
             Velocity += vel;
         }
 
-        public bool LandOnPlatform(int offset)
+        public bool LandOnPlatform(int offset, BasePlatform platform)
         {
-            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return false;
+            if (!(Velocity.Y > 0)) return false;
 
-            DrawPos.Y = CollidingWithPlatform.GetPosition().Y - Texture.Height + offset;
+            DrawPos.Y = platform.GetPosition().Y - Texture.Height + offset;
             Airborn = false;
             ResetDoubleJump();
             Direction.Y = 0;
@@ -132,7 +124,7 @@ namespace NogardTheDragon.Objects
 
         public bool LandOnCloudPlatform()
         {
-            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return false;
+            if (!(Velocity.Y > 0)) return false;
 
             Airborn = false;
             ResetDoubleJump();
@@ -140,11 +132,11 @@ namespace NogardTheDragon.Objects
             return true;
         }
 
-        public bool LandOnIcePlatform()
+        public bool LandOnIcePlatform(BasePlatform platform)
         {
-            if (CollidingWithPlatform == null || !(Velocity.Y > 0)) return false;
+            if (!(Velocity.Y > 0)) return false;
 
-            LandOnPlatform(1);
+            LandOnPlatform(1, platform);
             Gliding = true;
 
             switch (LastFacing)

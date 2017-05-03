@@ -19,6 +19,6 @@ namespace NogardTheDragon.Objects.AbilitysPowerups
             base.Draw(spriteBatch);
         }
 
-        public abstract void AddPowerup(GameTime gameTime);
+        public abstract void AddPowerup(GameTime gameTime, Player player);
     }
 }

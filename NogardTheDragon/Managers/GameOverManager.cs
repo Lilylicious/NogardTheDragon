@@ -37,10 +37,12 @@ namespace NogardTheDragon.Managers
         {
             Instance.GraphicsDevice.Clear(Color.Black);
 
+            NogardGame.SpriteBatch.Begin();
             if(Won)
                 NogardGame.SpriteBatch.Draw(TextureManager.PlayerTex, Vector2.One, Color.White);
             else
                 NogardGame.SpriteBatch.Draw(TextureManager.StandardEnemyTex, Vector2.One, Color.White);
+            NogardGame.SpriteBatch.End();
         }
     }
 }

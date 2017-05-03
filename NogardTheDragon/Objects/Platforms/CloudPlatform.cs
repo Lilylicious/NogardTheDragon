@@ -12,9 +12,18 @@ namespace NogardTheDragon.Objects.Platforms
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            var o = CollidingWith as MovingObject;
-            o?.LandOnCloudPlatform();
-            return true;
+            var found = false;
+            foreach (GameObject gameObject in Collides)
+            {
+                if (!(gameObject is BasePlatform))
+                {
+                    var movingObject = gameObject as MovingObject;
+                    movingObject?.LandOnCloudPlatform();
+                    found = true;
+                }
+            }
+
+            return found;
         }
     }
 }
