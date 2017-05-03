@@ -20,13 +20,13 @@ namespace NogardTheDragon.Managers
         public override void Init()
         {
             NogardGame.GameState = NogardGame.GameStateEnum.MainMenu;
+            base.Init();
         }
 
         public override void Update(GameTime gameTime)
         {
             MainMenuBackground.Update(gameTime);
 
-            NogardGame.ButtonManager.Update(gameTime);
             foreach (var b in NogardGame.ButtonManager.Buttons)
             {
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.PlayButton))
@@ -39,12 +39,13 @@ namespace NogardTheDragon.Managers
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MapButton))
                     NogardGame.MapMakerManager.Init();
             }
+            base.Update(gameTime);
         }
 
         public override void Draw()
         {
             MainMenuBackground.Draw();
-            NogardGame.ButtonManager.Draw();
+            base.Draw();
         }
     }
 }

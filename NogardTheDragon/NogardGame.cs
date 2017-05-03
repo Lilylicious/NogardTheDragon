@@ -19,6 +19,7 @@ namespace NogardTheDragon
         }
 
         public static SpriteBatch SpriteBatch;
+        public static int TotalScore, HealthBonus, KillBonus, LevlBonus, TimeBonus;
 
         public static GameStateEnum GameState = GameStateEnum.MainMenu;
 
@@ -27,6 +28,7 @@ namespace NogardTheDragon
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
         public static ButtonManager ButtonManager;
+
         public static GraphicsDeviceManager Graphics;
 
         public NogardGame()
@@ -55,7 +57,8 @@ namespace NogardTheDragon
             GameOverManager = new GameOverManager(this);
             MapMakerManager = new MapMakerManager(this);
             ButtonManager = new ButtonManager();
-            ButtonManager.Init();
+            MainMenuManager.Init();
+
         }
 
         protected override void UnloadContent()
@@ -70,8 +73,8 @@ namespace NogardTheDragon
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                MainMenuManager.Init();
+
+            TotalScore = KillBonus + HealthBonus;
 
             switch (GameState)
             {

@@ -4,10 +4,17 @@ namespace NogardTheDragon.Managers
 {
     public abstract class BaseManager
     {
-        public ButtonManager ButtonManager;
-
-        public abstract void Init();
-        public abstract void Update(GameTime gameTime);
-        public abstract void Draw();
+        public virtual void Init()
+        {
+            NogardGame.ButtonManager.Init();
+        }
+        public virtual void Update(GameTime gameTime)
+        {
+            NogardGame.ButtonManager.Update(gameTime);
+        }
+        public virtual void Draw()
+        {
+            NogardGame.ButtonManager.Draw();
+        }
     }
 }
