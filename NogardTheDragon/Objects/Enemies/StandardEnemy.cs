@@ -17,22 +17,22 @@ namespace NogardTheDragon.Objects
         {
             base.Update(gameTime);
 
-            if (DrawPos.X <= DrawPos.X - 5)
+            if (Velocity.X <= Velocity.X - 5)
             {
                 Walk = false;
             }
-            else if (DrawPos.X >= DrawPos.X + 5)
+            else if (Velocity.X >= Velocity.X + 5)
             {
                 Walk = true;
             }
 
             if (Walk == false)
             {
-                DrawPos.X += 1f;
+                Velocity.X += 1f;
             }
             else if (Walk == true)
             {
-                DrawPos.X -= 1;
+                Velocity.X -= 1;
             }
         }
     }

@@ -13,5 +13,15 @@ namespace NogardTheDragon.Objects
         public ScoreEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
         }
+
+        public override void Update(GameTime gameTime)
+        {
+
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Score++;
+        }
     }
 }
