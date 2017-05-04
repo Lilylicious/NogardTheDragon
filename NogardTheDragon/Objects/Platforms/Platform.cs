@@ -3,14 +3,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    internal class Platform : BasePlatform
+    public class Platform : BasePlatform
     {
         public Platform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
         {
         }
-
-        protected override bool HandleCollision(GameTime gameTime)
+        public Platform(Vector2 pos)
+            : base(pos)
+        {
+        }
+        protected override bool HandleCollision()
         {
             var found = false;
             foreach (GameObject gameObject in Collides)

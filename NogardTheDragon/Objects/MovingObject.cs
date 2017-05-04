@@ -21,7 +21,7 @@ namespace NogardTheDragon.Objects
         protected int AccelerationConstant = 2;
         public bool Airborn;
 
-        protected List<GameObject> Collides = new List<GameObject>();
+        public List<GameObject> Collides = new List<GameObject>();
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
         public bool Gliding;
@@ -89,12 +89,14 @@ namespace NogardTheDragon.Objects
                 LayerDepth);
         }
 
+        protected abstract bool HandleCollision();
+
         protected abstract bool HandleCollision(GameTime gameTime);
 
         public virtual void Update(GameTime gameTime)
         {
             CheckCollision();
-            HandleCollision(gameTime);
+            HandleCollision();
             UpdateAbilitiesPowerups();
 
             DrawPos += Velocity;
@@ -114,7 +116,7 @@ namespace NogardTheDragon.Objects
         {
             if (!(Velocity.Y > 0)) return false;
 
-            DrawPos.Y = platform.GetPosition().Y - Texture.Height + offset;
+            DrawPos.Y = platform.GetPosition().Y - (Texture != null ? Texture.Height : 0) + offset;
             Airborn = false;
             ResetDoubleJump();
             Direction.Y = 0;
@@ -186,6 +188,11 @@ namespace NogardTheDragon.Objects
         public void SetVelocity(Vector2 vector2)
         {
             Velocity = vector2;
+        }
+
+        public void SetPosition(Vector2 vector2)
+        {
+            DrawPos = vector2;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace NogardTheDragon.Utilities
 {
-    internal static class Variables
+    public static class Variables
     {
         //Worldspeed works like: Speed = 1 / WorldSpeed. Increase worldspeed for slower game.
         public const int DefaultWorldSpeed = 1;
@@ -8,6 +8,7 @@
         public static int Ticks;
         public static bool UpdateTick;
         public static bool UnlimitedPower = false;
+        public static float CloudVelocityModifier = 0.2f;
 
         public static void Update()
         {

@@ -6,12 +6,19 @@ using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Objects.Enemies
 {
-    internal class BaseEnemy : MovingObject, IDamageable
+    public class BaseEnemy : MovingObject, IDamageable
     {
-        private int Health;
+        public int Health;
         public int Score;
         private bool Walk;
 
+        public BaseEnemy(Vector2 pos)
+        {
+            Speed = 2;
+            Health = 1;
+
+            DrawPos = pos;
+        }
         public BaseEnemy(Vector2 pos, Texture2D tex)
         {
             Speed = 2;
@@ -42,13 +49,18 @@ namespace NogardTheDragon.Objects.Enemies
             base.Draw(spriteBatch);
         }
 
-        protected override bool HandleCollision(GameTime gameTime)
+        protected override bool HandleCollision()
         {
             var player = Collides.Find(item => item is Player) as Player;
             if (player == null) return false;
 
             player.TakeDamage(1);
             return true;
+        }
+
+        protected override bool HandleCollision(GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
     }
 }

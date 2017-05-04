@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    internal class MovingPlatform : BasePlatform
+    public class MovingPlatform : BasePlatform
     {
         private bool MoveUp;
         private Vector2 StartPos;
@@ -13,7 +14,11 @@ namespace NogardTheDragon.Objects.Platforms
             : base(pos, tex)
         {
             StartPos = pos;
-            SetColorData();
+        }
+
+        public MovingPlatform(Vector2 pos)
+            : base(pos)
+        {
         }
 
         public override void Update(GameTime gameTime)
@@ -32,9 +37,8 @@ namespace NogardTheDragon.Objects.Platforms
             base.Update(gameTime);
         }
 
-        protected override bool HandleCollision(GameTime gameTime)
+        protected override bool HandleCollision()
         {
-
             var found = false;
             foreach (GameObject gameObject in Collides)
             {
@@ -46,10 +50,17 @@ namespace NogardTheDragon.Objects.Platforms
                         movingObject?.LandOnPlatform(1, this);
                     else if (!MoveUp)
                         movingObject?.LandOnPlatform(2, this);
+
+                    found = true;
                 }
             }
 
             return found;
+        }
+
+        protected override bool HandleCollision(GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
     }
 }
