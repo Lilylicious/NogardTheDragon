@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    internal abstract class BasePlatform : MovingObject
+    public abstract class BasePlatform : MovingObject
     {
         public BasePlatform(Vector2 pos, Texture2D tex)
         {
@@ -11,11 +11,6 @@ namespace NogardTheDragon.Objects.Platforms
             Texture = tex;
 
             SetColorData();
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
         }
 
         protected override bool HandleCollision(GameTime gameTime)

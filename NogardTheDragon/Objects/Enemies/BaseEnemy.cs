@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Interfaces;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Objects.Enemies
 {
@@ -43,7 +45,11 @@ namespace NogardTheDragon.Objects.Enemies
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            return false;
+            var player = Collides.Find(item => item is Player) as Player;
+            if (player == null) return false;
+
+            player.TakeDamage(1);
+            return true;
         }
     }
 }

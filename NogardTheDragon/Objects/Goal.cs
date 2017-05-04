@@ -21,12 +21,17 @@ namespace NogardTheDragon.Objects
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWith is Player)
+            var found = false;
+            foreach (GameObject gameObject in Collides)
             {
-                NogardGame.GameOverManager.Win();
-                return true;
+                if (gameObject is Player)
+                {
+                    NogardGame.GameOverManager.Win();
+                    found = true;
+                }
             }
-            return false;
+
+            return found;
         }
     }
 }

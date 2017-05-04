@@ -56,15 +56,20 @@ namespace NogardTheDragon.Managers
         {
             Instance.GraphicsDevice.Clear(Color.Black);
 
+
             if(Won)
                 NogardGame.SpriteBatch.Draw(TextureManager.PlayerTex, Vector2.One, Color.White);
             else
                 NogardGame.SpriteBatch.Draw(TextureManager.StandardEnemyTex, Vector2.One, Color.White);
 
+
             NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Total Score = " + NogardGame.TotalScore,
                 new Vector2(260, 200), Color.White, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 1);
 
             base.Draw();
+
+
+
         }
     }
 }
