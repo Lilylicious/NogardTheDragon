@@ -1,4 +1,4 @@
-﻿namespace NogardTheDragon.Abilities
+﻿namespace NogardTheDragon.Interfaces
 {
     internal interface IAbilityUser
     {

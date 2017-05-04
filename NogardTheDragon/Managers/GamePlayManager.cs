@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using NogardTheDragon.Map;
 using NogardTheDragon.Objects;
 
@@ -26,7 +25,5 @@ namespace NogardTheDragon.Managers
         {
             ActiveMap.Draw();
         }
-
-        
     }
 }

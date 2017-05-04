@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Managers;
 using NogardTheDragon.Objects;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Abilities
 {
@@ -17,6 +19,12 @@ namespace NogardTheDragon.Abilities
                 TextureManager.PlayerTex,
                 new Vector2(Owner.GetVelocity().X > 0 ? 1 : -1, 0),
                 Owner));
+        }
+
+        public override void Update()
+        {
+            if (KeyMouseReader.KeyPressed(Keys.Space))
+                TriggerAbility();
         }
     }
 }

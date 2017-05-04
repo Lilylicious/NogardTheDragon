@@ -1,5 +1,7 @@
 ﻿using System;
 using NogardTheDragon.Objects;
+using NogardTheDragon.Objects.AbilitysPowerups;
+using NogardTheDragon.Objects.Enemies;
 using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Utilities
@@ -16,7 +18,9 @@ namespace NogardTheDragon.Utilities
             IcePlatform,
             Player,
             Goal,
-            Enemy
+            Enemy,
+            UnlimitedPowerPowerup,
+            SlowWorldPowerup
         }
 
         public float PosX;
@@ -41,6 +45,10 @@ namespace NogardTheDragon.Utilities
                 Type = TypeEnum.Goal;
             if (obj is BaseEnemy)
                 Type = TypeEnum.Enemy;
+            if (obj is UnlimitedPowerObject)
+                Type = TypeEnum.UnlimitedPowerPowerup;
+            if (obj is SlowWorldPowerObject)
+                Type = TypeEnum.SlowWorldPowerup;
 
             PosX = obj.GetPosition().X;
             PosY = obj.GetPosition().Y;

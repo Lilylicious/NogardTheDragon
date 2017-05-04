@@ -1,28 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    class IcePlatform : BasePlatform
+    internal class IcePlatform : BasePlatform
     {
         public IcePlatform(Vector2 pos, Texture2D tex)
-            :base(pos, tex)
+            : base(pos, tex)
         {
-
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWith is Player)
+            var o = CollidingWith as MovingObject;
+            if (o != null && !o.Gliding)
             {
-                ((Player)CollidingWith).LandOnPlatform(1, true, false, true);
+                o.LandOnIcePlatform();
+                return true;
             }
-            base.HandleCollision();
+            return false;
         }
     }
 }

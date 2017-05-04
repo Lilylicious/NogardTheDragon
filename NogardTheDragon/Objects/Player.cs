@@ -4,20 +4,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Abilities;
 using NogardTheDragon.Interfaces;
-using NogardTheDragon.Objects.Platforms;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects
 {
     public class Player : MovingObject, IAbilityUser, IDamageable
     {
-        private bool Airborn;
-        private DoubleJumpAbility DoubleJumpAbility;
         public int Health;
         public int Score;
-        private ShootProjectileAbility ShootProjectileAbility;
         public double Timer;
-        public bool left;
-        public bool right;
 
         public Player(Vector2 pos, Texture2D tex)
         {
@@ -34,23 +29,36 @@ namespace NogardTheDragon.Objects
 
         public void RegisterAbilities()
         {
-            DoubleJumpAbility = new DoubleJumpAbility(this);
-            ShootProjectileAbility = new ShootProjectileAbility(this);
+            AddAbility(new DoubleJumpAbility(this));
+            AddAbility(new ShootProjectileAbility(this));
         }
 
         public void TakeDamage(int damage)
         {
-
             if (Timer == 0)
             {
-                Health -= damage;
+                var index = FindIndex();
+
                 Timer = 2;
+                if (index >= 0)
+                    Powerups.RemoveAt(index);
+                else
+                    Health -= damage;
             }
+        }
+
+        private int FindIndex()
+        {
+            foreach (var powerup in Powerups)
+                if (powerup is ArmorPower)
+                    return Powerups.IndexOf(powerup);
+            return -1;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            Gliding = false;
 
             if (Timer > 0)
             {
@@ -64,22 +72,16 @@ namespace NogardTheDragon.Objects
                 Color = Color.White;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.K))
-            {
-                TakeDamage(1);
-            }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                left = false;
-                right = true;
+                LastFacing = Facing.Right;
                 Direction.X = 1f;
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                right = false;
-                left = true;
+                LastFacing = Facing.Left;
                 Direction.X = -1f;
             }
 
@@ -89,27 +91,20 @@ namespace NogardTheDragon.Objects
                 Velocity.X = 0f;
             }
 
-            if (KeyMouseReader.KeyPressed(Keys.Space))
-                ShootProjectileAbility?.TriggerAbility();
-
             if (!Airborn && KeyMouseReader.KeyPressed(Keys.Up))
             {
-                Velocity.Y = -12f;
+                Velocity.Y = -12;
                 Airborn = true;
-            }
-            else if (KeyMouseReader.KeyPressed(Keys.Up))
-            {
-                DoubleJumpAbility?.TriggerAbility();
             }
 
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
-            
-                Velocity.Y += GravitySpeed;
 
-                Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
-                            (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), Velocity.Y);
+            Velocity.Y += GravitySpeed;
+
+            Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
+                        (float) gameTime.ElapsedGameTime.TotalSeconds;
+            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 20));
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -118,50 +113,9 @@ namespace NogardTheDragon.Objects
             base.Draw(spriteBatch);
         }
 
-        protected override void HandleCollision()
+        protected override bool HandleCollision(GameTime gameTime)
         {
-            if (CollidingWith is Goal)
-            {
-                NogardGame.GameOverManager.Win();
-            }
-        }
-
-        public void LandOnPlatform(int offset, bool normal, bool cloud, bool ice)
-        {
-            if (CollidingWith == null || !(Velocity.Y > 0)) return;
-
-            if (normal)
-            {
-                DrawPos.Y = CollidingWith.GetPosition().Y - Texture.Height + offset;
-                Direction.Y = 0;
-                Velocity.Y = 0;
-            }
-
-            if (normal || cloud)
-            {
-                Airborn = false;
-                DoubleJumpAbility?.Reset();
-                if (cloud)
-                    Velocity.Y *= 0.2f;
-                if (ice)
-                {
-                    if (right)
-                    {
-                        Direction.X += 1;
-                        Velocity.X += 1;
-                    }
-                    else if (left)
-                    {
-                        Direction.X -= 1;
-                        Velocity.X -= 1;
-                    }
-                }
-            }
-
-            if (CollidingWith != null && CollidingWith is Goal)
-            {
-                NogardGame.GameOverManager.Win();
-            }
+            return false;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Objects;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Abilities
 {
@@ -13,14 +15,19 @@ namespace NogardTheDragon.Abilities
 
         public override void TriggerAbility()
         {
-            if (!CanTrigger) return;
-            Owner.ChangeVelocity(new Vector2(0, -6));
+            Owner.ChangeVelocity(new Vector2(0, -(Owner.GetVelocity().Y + 12)));
             CanTrigger = false;
         }
 
         public void Reset()
         {
             CanTrigger = true;
+        }
+
+        public override void Update()
+        {
+            if (Owner.Airborn && KeyMouseReader.KeyPressed(Keys.Up) && (CanTrigger || Variables.UnlimitedPower))
+                TriggerAbility();
         }
     }
 }

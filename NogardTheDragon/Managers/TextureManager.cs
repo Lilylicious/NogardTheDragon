@@ -1,14 +1,10 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NogardTheDragon.Managers
 {
-    static class TextureManager
+    public static class TextureManager
     {
         public static Texture2D PlayerTex { get; private set; }
 
@@ -22,8 +18,14 @@ namespace NogardTheDragon.Managers
         public static Texture2D SpikePlatformTex { get; private set; }
         public static Texture2D IcePlatformTex { get; private set; }
 
+        public static Texture2D MainMenuBackTex { get; private set; }
+        public static Texture2D RectButton { get; private set; }
         public static Texture2D IndicatorLineTex { get; private set; }
         public static Texture2D GoalTex { get; private set; }
+
+        public static SpriteFont Font { get; private set; }
+        public static Texture2D UnlimitedPowerTex { get; private set; }
+        public static Texture2D SlowWorldTex { get; private set; }
 
         public static void LoadTextures(ContentManager c)
         {
@@ -39,8 +41,15 @@ namespace NogardTheDragon.Managers
             SpikePlatformTex = c.Load<Texture2D>(@"spikeplatform");
             IcePlatformTex = c.Load<Texture2D>(@"iceplatform");
 
+            MainMenuBackTex = c.Load<Texture2D>(@"MainMenuBack");
             IndicatorLineTex = c.Load<Texture2D>(@"indicatorline");
             GoalTex = c.Load<Texture2D>(@"goal");
+            Font = c.Load<SpriteFont>(@"font1");
+            RectButton = new Texture2D(NogardGame.SpriteBatch.GraphicsDevice, 1, 1);
+            RectButton.SetData(new[] {Color.White});
+
+            UnlimitedPowerTex = c.Load<Texture2D>(@"UnlimitedPower");
+            SlowWorldTex = c.Load<Texture2D>(@"SlowWorld");
         }
     }
 }
