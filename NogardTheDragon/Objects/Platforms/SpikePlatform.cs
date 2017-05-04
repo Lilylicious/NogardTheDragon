@@ -24,7 +24,7 @@ namespace NogardTheDragon.Objects.Platforms
                     found = true;
 
                     var damageable = movingObject as IDamageable;
-                        damageable.TakeDamage(1);
+                        damageable?.TakeDamage(1);
                 }
             }
 
