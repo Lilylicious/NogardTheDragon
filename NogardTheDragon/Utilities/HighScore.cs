@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using NogardTheDragon.Managers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,6 +25,15 @@ namespace NogardTheDragon.Utilities
         public override string ToString()
         {
             return name + "," + score;
+        }
+
+        public string ScoreToString()
+        {
+            return score.ToString();
+        }
+        public string NameToString()
+        {
+            return name;
         }
 
         public void ReadFromFile()

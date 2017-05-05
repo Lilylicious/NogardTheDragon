@@ -22,6 +22,7 @@ namespace NogardTheDragon
         public static int TotalScore, HealthBonus, KillBonus, LevlBonus, TimeBonus;
 
         public static GameStateEnum GameState = GameStateEnum.MainMenu;
+        HighScoreDisplay hd;
 
         public static MainMenuManager MainMenuManager;
         public static GamePlayManager GamePlayManager;
@@ -58,7 +59,8 @@ namespace NogardTheDragon
             MapMakerManager = new MapMakerManager(this);
             ButtonManager = new ButtonManager();
             MainMenuManager.Init();
-
+            //hd = new HighScoreDisplay();
+            //hd.DisplayScore();
         }
 
         protected override void UnloadContent()
@@ -108,6 +110,7 @@ namespace NogardTheDragon
                     SpriteBatch.Begin();
                     GraphicsDevice.Clear(Color.DeepSkyBlue);
                     MainMenuManager.Draw();
+                    //hd.Draw();
                     break;
                 case GameStateEnum.GameActive:
                     SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
@@ -128,6 +131,9 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            //SpriteBatch.Begin();
+            //hd.Draw();
+
 
             SpriteBatch.End();
 

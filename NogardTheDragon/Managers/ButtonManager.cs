@@ -46,7 +46,11 @@ namespace NogardTheDragon.Managers
                     break;
                 case NogardGame.GameStateEnum.GameOver:
                     foreach (var b in Buttons)
+                    {
                         b.Update(Color.BlueViolet, Color.White);
+                        if (b.Equals(SaveScoreButton) && GameOverManager.ScoreForm.GameSaved == true)
+                            b.Update(Color.White, Color.White);
+                    }
                     break;
                 case NogardGame.GameStateEnum.MapMaker:
                     break;
@@ -70,7 +74,10 @@ namespace NogardTheDragon.Managers
                 case NogardGame.GameStateEnum.Pause:
                     break;
                 case NogardGame.GameStateEnum.GameOver:
-                    SaveScoreButton.DrawStandardButton(5, "Save Score", 0.5f);
+                    if (GameOverManager.ScoreForm.GameSaved == false)
+                        SaveScoreButton.DrawStandardButton(5, "Save Score", 0.5f);
+                    else
+                        SaveScoreButton.DrawStandardButton(5, "Score saved", 0.45f);
                     MainMenuButton.DrawStandardButton(5, " MainMenu", 0.4f);
                     QuitButton.DrawStandardButton(5, " Quit Game", 0.4f);
                     break;

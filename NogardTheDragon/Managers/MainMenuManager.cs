@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Animation;
+using NogardTheDragon.Utilities;
 using System.Collections.Generic;
 using System.IO;
+using NogardTheDragon.Managers;
 
 namespace NogardTheDragon.Managers
 {
@@ -10,6 +12,7 @@ namespace NogardTheDragon.Managers
     {
         private readonly NogardGame Game;
         private MainMenuBackground MainMenuBackground;
+        
 
         public MainMenuManager(NogardGame game)
         {
@@ -33,6 +36,7 @@ namespace NogardTheDragon.Managers
                     NogardGame.GamePlayManager.Init();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ScoreButton))
                 {
+                    
                 }
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ExitButton))
                     Game.Exit();

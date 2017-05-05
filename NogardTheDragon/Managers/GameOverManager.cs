@@ -8,7 +8,7 @@ namespace NogardTheDragon.Managers
     {
         private readonly NogardGame Instance;
         private bool Won;
-        Form1 ScoreForm;
+        public static Form1 ScoreForm;
 
         public GameOverManager(NogardGame game)
         {

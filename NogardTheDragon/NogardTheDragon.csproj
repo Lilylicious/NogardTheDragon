@@ -100,6 +100,7 @@
     <Compile Include="Utilities\BinarySerializer.cs" />
     <Compile Include="Utilities\DummyObject.cs" />
     <Compile Include="Utilities\HighScore.cs" />
+    <Compile Include="Utilities\HighScoreDisplay.cs" />
     <Compile Include="Utilities\KeyMouseReader.cs" />
     <Compile Include="Utilities\StandardButton.cs" />
     <Compile Include="Utilities\Variables.cs" />
