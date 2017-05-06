@@ -12,11 +12,10 @@ namespace NogardTheDragon.Managers
     {
         private readonly NogardGame Game;
         private MainMenuBackground MainMenuBackground;
-        
 
         public MainMenuManager(NogardGame game)
         {
-            this.Game = game;
+            Game = game;
             MainMenuBackground = new MainMenuBackground(game.Window);
         }
 
@@ -36,7 +35,8 @@ namespace NogardTheDragon.Managers
                     NogardGame.GamePlayManager.Init();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ScoreButton))
                 {
-                    
+                    NogardGame.HighScoreDisplay.Init();
+                    break;
                 }
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ExitButton))
                     Game.Exit();
@@ -48,8 +48,8 @@ namespace NogardTheDragon.Managers
 
         public override void Draw()
         {
-            MainMenuBackground.Draw();
-            base.Draw();
+                MainMenuBackground.Draw();
+                base.Draw();
         }
     }
 }

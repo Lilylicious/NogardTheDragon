@@ -41,7 +41,10 @@ namespace NogardTheDragon.Managers
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.SaveScoreButton) && !ScoreForm.GameSaved)
                     ScoreForm.Show();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MainMenuButton))
+                {
                     NogardGame.MainMenuManager.Init();
+                    break;
+                }
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.QuitButton))
                     Instance.Exit();
             }
@@ -56,7 +59,6 @@ namespace NogardTheDragon.Managers
         {
             Instance.GraphicsDevice.Clear(Color.Black);
 
-
             if(Won)
                 NogardGame.SpriteBatch.Draw(TextureManager.PlayerTex, Vector2.One, Color.White);
             else
@@ -67,9 +69,6 @@ namespace NogardTheDragon.Managers
                 new Vector2(260, 200), Color.White, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 1);
 
             base.Draw();
-
-
-
         }
     }
 }

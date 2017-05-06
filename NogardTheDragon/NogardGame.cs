@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Managers;
 using NogardTheDragon.Utilities;
+using System.IO;
+using System.Collections.Generic;
 
 namespace NogardTheDragon
 {
@@ -13,6 +15,7 @@ namespace NogardTheDragon
         {
             MainMenu,
             GameActive,
+            HighScoreView,
             GameOver,
             Pause,
             MapMaker
@@ -22,13 +25,13 @@ namespace NogardTheDragon
         public static int TotalScore, HealthBonus, KillBonus, LevlBonus, TimeBonus;
 
         public static GameStateEnum GameState = GameStateEnum.MainMenu;
-        HighScoreDisplay hd;
 
         public static MainMenuManager MainMenuManager;
         public static GamePlayManager GamePlayManager;
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
         public static ButtonManager ButtonManager;
+        public static HighScoreDisplay HighScoreDisplay;
 
         public static GraphicsDeviceManager Graphics;
 
@@ -58,9 +61,8 @@ namespace NogardTheDragon
             GameOverManager = new GameOverManager(this);
             MapMakerManager = new MapMakerManager(this);
             ButtonManager = new ButtonManager();
+            HighScoreDisplay = new HighScoreDisplay();
             MainMenuManager.Init();
-            //hd = new HighScoreDisplay();
-            //hd.DisplayScore();
         }
 
         protected override void UnloadContent()
@@ -86,6 +88,9 @@ namespace NogardTheDragon
                 case GameStateEnum.GameActive:
                     GamePlayManager.Update(gameTime);
                     break;
+                case GameStateEnum.HighScoreView:
+                    HighScoreDisplay.Update(gameTime);
+                    break;
                 case GameStateEnum.GameOver:
                     GameOverManager.Update(gameTime);
                     break;
@@ -110,12 +115,15 @@ namespace NogardTheDragon
                     SpriteBatch.Begin();
                     GraphicsDevice.Clear(Color.DeepSkyBlue);
                     MainMenuManager.Draw();
-                    //hd.Draw();
                     break;
                 case GameStateEnum.GameActive:
                     SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
                         GamePlayManager.ActiveMap?.Cam.GetTransform());
                     GamePlayManager.Draw();
+                    break;
+                case GameStateEnum.HighScoreView:
+                    SpriteBatch.Begin();
+                    HighScoreDisplay.Draw();
                     break;
                 case GameStateEnum.GameOver:
                     SpriteBatch.Begin();
@@ -131,9 +139,6 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            //SpriteBatch.Begin();
-            //hd.Draw();
-
 
             SpriteBatch.End();
 

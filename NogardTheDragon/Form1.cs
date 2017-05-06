@@ -14,7 +14,7 @@ namespace NogardTheDragon
     public partial class Form1 : Form
     {
         NogardGame game;
-        public static HighScore hs;
+        public HighScore hs;
         public bool GameSaved;
 
         public Form1(NogardGame game)
