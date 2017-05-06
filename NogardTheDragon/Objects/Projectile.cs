@@ -35,7 +35,7 @@ namespace NogardTheDragon.Objects
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            var target = CollidingWith as IDamageable;
+            var target = Collides.Find(item => item is IDamageable) as IDamageable;
             if (target == null || Owner == target) return false;
 
             target.TakeDamage(1);
