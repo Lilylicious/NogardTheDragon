@@ -23,7 +23,6 @@ namespace NogardTheDragon.Utilities
         public override void Init()
         {
             NogardGame.GameState = NogardGame.GameStateEnum.HighScoreView;
-            base.Init();
         }
 
         public override void Update(GameTime gameTime)
@@ -48,7 +47,6 @@ namespace NogardTheDragon.Utilities
             if (NogardGame.ButtonManager.BackButton.ButtonClicked)
                 NogardGame.MainMenuManager.Init();
 
-            base.Update(gameTime);
         }
 
         public override void Draw()
@@ -70,8 +68,6 @@ namespace NogardTheDragon.Utilities
                 if (i >= 9)
                     break;
             }
-
-            base.Draw();         
         }
     }
 }

@@ -6,15 +6,12 @@ namespace NogardTheDragon.Managers
     {
         public virtual void Init()
         {
-            NogardGame.ButtonManager.Init();
         }
         public virtual void Update(GameTime gameTime)
         {
-            NogardGame.ButtonManager.Update(gameTime);
         }
         public virtual void Draw()
         {
-            NogardGame.ButtonManager.Draw();
         }
     }
 }

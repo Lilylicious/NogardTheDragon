@@ -22,7 +22,6 @@ namespace NogardTheDragon.Managers
         public override void Init()
         {
             NogardGame.GameState = NogardGame.GameStateEnum.MainMenu;
-            base.Init();
         }
 
         public override void Update(GameTime gameTime)
@@ -43,13 +42,11 @@ namespace NogardTheDragon.Managers
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MapButton))
                     NogardGame.MapMakerManager.Init();
             }
-            base.Update(gameTime);
         }
 
         public override void Draw()
         {
                 MainMenuBackground.Draw();
-                base.Draw();
         }
     }
 }

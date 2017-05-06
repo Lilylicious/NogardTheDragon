@@ -63,6 +63,7 @@ namespace NogardTheDragon
             ButtonManager = new ButtonManager();
             HighScoreDisplay = new HighScoreDisplay();
             MainMenuManager.Init();
+            ButtonManager.Init();
         }
 
         protected override void UnloadContent()
@@ -102,6 +103,7 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            ButtonManager.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -140,6 +142,7 @@ namespace NogardTheDragon
                     throw new ArgumentOutOfRangeException();
             }
 
+            ButtonManager.Draw();
             SpriteBatch.End();
 
             base.Draw(gameTime);

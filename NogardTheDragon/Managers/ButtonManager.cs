@@ -15,27 +15,11 @@ namespace NogardTheDragon.Managers
 
         public override void Init()
         {
-            switch (NogardGame.GameState)
-            {
-                case NogardGame.GameStateEnum.MainMenu:
-                    Buttons?.Clear();
-                    MainMenuButtons();
-                    break;
-                case NogardGame.GameStateEnum.GameActive:
-                    break;
-                case NogardGame.GameStateEnum.HighScoreView:
-                    Buttons.Clear();
-                    HighScoreButtons();
-                    break;
-                case NogardGame.GameStateEnum.Pause:
-                    break;
-                case NogardGame.GameStateEnum.GameOver:
-                    Buttons.Clear();
-                    GameOverButtons();
-                    break;
-                case NogardGame.GameStateEnum.MapMaker:
-                    break;
-            }
+            Buttons = new List<StandardButton>();
+
+            MainMenuButtons();
+            HighScoreButtons();
+            GameOverButtons();
         }
 
         public override void Update(GameTime gameTime)
@@ -101,7 +85,6 @@ namespace NogardTheDragon.Managers
 
         public void MainMenuButtons()
         {
-            Buttons = new List<StandardButton>();
             PlayButton = new StandardButton(new Rectangle(600, 70, 260, 120));
             Buttons.Add(PlayButton);
             ScoreButton = new StandardButton(new Rectangle(600, 200, 260, 70));
@@ -118,7 +101,6 @@ namespace NogardTheDragon.Managers
 
         public void GameOverButtons()
         {
-            Buttons = new List<StandardButton>();
             SaveScoreButton = new StandardButton(new Rectangle(300, 300, 260, 70));
             Buttons.Add(SaveScoreButton);
             MainMenuButton = new StandardButton(new Rectangle(230, 410, 185, 55));
@@ -129,7 +111,6 @@ namespace NogardTheDragon.Managers
 
         public void HighScoreButtons()
         {
-            Buttons = new List<StandardButton>();
             BackButton = new StandardButton(new Rectangle(380, 635, 130, 55));
             Buttons.Add(BackButton);
         }

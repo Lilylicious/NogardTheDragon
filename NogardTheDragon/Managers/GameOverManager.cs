@@ -31,7 +31,6 @@ namespace NogardTheDragon.Managers
         {
             NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
             ScoreForm = new Form1(Instance);
-            base.Init();
         }
 
         public override void Update(GameTime gameTime)
@@ -51,8 +50,6 @@ namespace NogardTheDragon.Managers
 
             if (ScoreForm.GameSaved)
                 ScoreForm.Close();
-
-            base.Update(gameTime);
         }
 
         public override void Draw()
@@ -64,11 +61,8 @@ namespace NogardTheDragon.Managers
             else
                 NogardGame.SpriteBatch.Draw(TextureManager.StandardEnemyTex, Vector2.One, Color.White);
 
-
             NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Total Score = " + NogardGame.TotalScore,
                 new Vector2(260, 200), Color.White, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 1);
-
-            base.Draw();
         }
     }
 }
