@@ -49,6 +49,7 @@
     <Compile Include="Managers\TextureManager.cs" />
     <Compile Include="Objects\AbilitysPowerups\SlowWorldPowerObject.cs" />
     <Compile Include="Objects\AbilitysPowerups\UnlimitedPowerObject.cs" />
+    <Compile Include="Objects\Enemies\FlyingHunterEnemy.cs" />
     <Compile Include="Objects\Goal.cs" />
     <Compile Include="Objects\Obstacles\BaseObstacle.cs" />
     <Compile Include="Objects\Platforms\BasePlatform.cs" />

@@ -18,19 +18,19 @@ namespace NogardTheDragon.Objects.Enemies
         {
             base.Update(gameTime);
 
-            if (DrawPos.Y <= 0 || DrawPos.Y >= gameTime.Viewport.Height - Texture.Height)
+            if (Velocity.Y <= 0 || Velocity.Y >= gameTime.Viewport.Height - Texture.Height)
             {
                 Fly = true;
                 //Speed = +Speed;
             }
 
-            if(DrawPos.X < 0 - Texture.Width)
+            if(Velocity.X < 0 - Texture.Width)
             {
                 isVisible = false;
             }
         }
 
-        public void LoadFlyingEnemies()
+        public void LoadFlyingEnemy()
         {
             for(int i = 0; i <flyingEnemy.count; i++)
             {
