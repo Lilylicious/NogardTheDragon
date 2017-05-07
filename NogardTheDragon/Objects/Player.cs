@@ -77,12 +77,14 @@ namespace NogardTheDragon.Objects
             {
                 LastFacing = Facing.Right;
                 Direction.X = 1f;
+                rotation = MathHelper.ToRadians(180);
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 LastFacing = Facing.Left;
                 Direction.X = -1f;
+                rotation = MathHelper.ToRadians(-180);
             }
 
             else
@@ -105,12 +107,22 @@ namespace NogardTheDragon.Objects
             Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
                         (float) gameTime.ElapsedGameTime.TotalSeconds;
             Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 20));
+
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+                Player.X = (CurrentFrame % 10) * 32;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             SourceRect = Source;
             base.Draw(spriteBatch);
+            spriteBatch.Draw(spritesheet, new Vector2(100, 100), Player, rotation, new Vector2(16, 16));
         }
 
         protected override bool HandleCollision(GameTime gameTime)

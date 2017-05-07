@@ -12,13 +12,15 @@ namespace NogardTheDragon.Objects.Enemies
         {
             base.Update(gameTime);
 
-            if (Velocity.X <= Velocity.X - 5)
+                if (Velocity.X <= Velocity.X - 5)
             {
                 Walk = false;
+                rotation = MathHelper.ToRadians(-180);
             }
             else if (Velocity.X >= Velocity.X + 5)
             {
                 Walk = true;
+                rotation = MathHelper.ToRadians(180);
             }
 
             if (Walk == false)
@@ -28,6 +30,15 @@ namespace NogardTheDragon.Objects.Enemies
             else if (Walk == true)
             {
                 Velocity.X -= 1;
+            }
+
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+                StandardEnemy.X = (CurrentFrame % 10) * 32;
             }
         }
     }

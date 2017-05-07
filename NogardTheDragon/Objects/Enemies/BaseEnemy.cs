@@ -34,7 +34,15 @@ namespace NogardTheDragon.Objects.Enemies
             base.Update(gameTime);
 
             Velocity.Y += GravitySpeed;
-        }
+
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+                BaseEnemy.X = (CurrentFrame % 10) * 32;
+            }
 
         public override void Draw(SpriteBatch spriteBatch)
         {

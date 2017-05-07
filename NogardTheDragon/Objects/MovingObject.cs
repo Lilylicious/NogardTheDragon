@@ -35,6 +35,9 @@ namespace NogardTheDragon.Objects
         protected double TimeBetweenFrames = 0.1;
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
+        protected int frame;
+        protected double frameTimer = 100, frameInterval = 100;
+        protected float rotation = 0;
 
         public override void CheckCollision()
         {
