@@ -19,7 +19,7 @@ namespace NogardTheDragon.Objects
             spriteBatch.Draw(Texture, DrawPos, Color.White);
         }
 
-        protected override bool HandleCollision(GameTime gameTime)
+        protected override bool HandleCollision()
         {
             var found = false;
             foreach (GameObject gameObject in Collides)
@@ -32,6 +32,11 @@ namespace NogardTheDragon.Objects
             }
 
             return found;
+        }
+
+        protected override bool HandleCollision(GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,6 +5,10 @@ namespace NogardTheDragon.Objects.Platforms
 {
     public abstract class BasePlatform : MovingObject
     {
+        public BasePlatform(Vector2 pos)
+        {
+            DrawPos = pos;
+        }
         public BasePlatform(Vector2 pos, Texture2D tex)
         {
             DrawPos = pos;

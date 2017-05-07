@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Abilities;
 
@@ -14,6 +15,11 @@ namespace NogardTheDragon.Objects.AbilitysPowerups
         {
             player.AddPowerup(new SlowWorldPower(gameTime));
             Active = false;
+        }
+
+        protected override bool HandleCollision()
+        {
+            throw new NotImplementedException();
         }
 
         protected override bool HandleCollision(GameTime gameTime)
