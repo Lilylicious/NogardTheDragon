@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NogardTheDragon.Map;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Objects.AbilitysPowerups;
 using NogardTheDragon.Objects.Enemies;
@@ -42,6 +43,11 @@ namespace NogardTheDragon.Managers
         {
             var dummyList = Objects.Select(obj => new DummyObject(obj)).ToList();
             BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/" + DateTime.Now.Ticks + ".bin", dummyList);
+        }
+
+        private void ReadFromFile()
+        {
+            Objects = MapReader.ReadFile("Map");
         }
 
         public override void Update(GameTime gameTime)
@@ -86,7 +92,8 @@ namespace NogardTheDragon.Managers
                 SelectedObject = ObjectEnum.SlowWorld;
             if (KeyMouseReader.KeyPressed(Keys.S))
                 SaveToFile();
-
+            if(KeyMouseReader.KeyPressed(Keys.L))
+                ReadFromFile();
             if (KeyMouseReader.KeyDown(Keys.Right))
             {
                 CamPos.X += 1;
