@@ -5,6 +5,7 @@ using NogardTheDragon.Abilities;
 using NogardTheDragon.Objects.Enemies;
 using NogardTheDragon.Objects.Platforms;
 using NogardTheDragon.Utilities;
+using NogardTheDragon.Interfaces;
 
 namespace NogardTheDragon.Objects
 {
@@ -116,12 +117,21 @@ namespace NogardTheDragon.Objects
         {
             if (!(Velocity.Y > 0)) return false;
 
+            var movingObject = this as IDamageable;
+            if (Velocity.Y > 25 && Velocity.Y <= 30)
+                movingObject?.TakeDamage(1);
+            if (Velocity.Y > 30 && Velocity.Y <= 40)
+                movingObject?.TakeDamage(2);
+            if (Velocity.Y > 40)
+                movingObject?.TakeDamage(3);
+
             DrawPos.Y = platform.GetPosition().Y - (Texture != null ? Texture.Height : 0) + offset;
             Airborn = false;
             ResetDoubleJump();
             Direction.Y = 0;
             Velocity.Y = 0;
             return true;
+
         }
 
         public bool LandOnCloudPlatform()

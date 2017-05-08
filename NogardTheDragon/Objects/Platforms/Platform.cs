@@ -20,15 +20,12 @@ namespace NogardTheDragon.Objects.Platforms
             {
                 if (!(gameObject is BasePlatform))
                 {
-                    var movingObject = gameObject as Player;
-                    if (movingObject.GetVelocity().Y > 20)
-                        movingObject.TakeDamage(1);
-
+                    var movingObject = gameObject as MovingObject;
                     movingObject?.LandOnPlatform(1, this);
                     found = true;
                 }
             }
-
+            
             return found;
         }
     }

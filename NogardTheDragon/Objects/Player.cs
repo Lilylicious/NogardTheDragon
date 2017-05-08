@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Abilities;
 using NogardTheDragon.Interfaces;
 using NogardTheDragon.Utilities;
+using NogardTheDragon.Managers;
 
 namespace NogardTheDragon.Objects
 {
@@ -17,7 +18,7 @@ namespace NogardTheDragon.Objects
         public Player(Vector2 pos, Texture2D tex)
         {
             Speed = 9;
-            Health = 3;
+            Health = 20;
 
             DrawPos = pos;
             Texture = tex;
@@ -31,7 +32,7 @@ namespace NogardTheDragon.Objects
         public Player(Vector2 pos)
         {
             Speed = 9;
-            Health = 3;
+            Health = 20;
 
             DrawPos = pos;
 
@@ -116,7 +117,7 @@ namespace NogardTheDragon.Objects
 
             Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
                         (float) gameTime.ElapsedGameTime.TotalSeconds;
-            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 100));
+            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 45));
 
         }
 
