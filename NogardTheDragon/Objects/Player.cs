@@ -116,7 +116,8 @@ namespace NogardTheDragon.Objects
 
             Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
                         (float) gameTime.ElapsedGameTime.TotalSeconds;
-            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 20));
+            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 100));
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -127,12 +128,12 @@ namespace NogardTheDragon.Objects
 
         protected override bool HandleCollision()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }
