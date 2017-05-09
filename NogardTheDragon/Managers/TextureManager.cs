@@ -7,6 +7,8 @@ namespace NogardTheDragon.Managers
     public static class TextureManager
     {
         public static Texture2D PlayerTex { get; private set; }
+        public static Texture2D HpTex { get; private set; }
+        public static Texture2D LostHPTex { get; private set; }
 
         public static Texture2D StandardEnemyTex { get; private set; }
         public static Texture2D ScoreEnemyTex { get; private set; }
@@ -37,6 +39,8 @@ namespace NogardTheDragon.Managers
         public static void LoadTextures(ContentManager c)
         {
             PlayerTex = c.Load<Texture2D>(@"playersquare");
+            HpTex = c.Load<Texture2D>(@"hpTex");
+            LostHPTex = c.Load<Texture2D>(@"hpspentTex");
 
             StandardEnemyTex = c.Load<Texture2D>(@"BaseEnemysquare");
             //ScoreEnemyTex = c.Load<Texture2D>(@"FILENAME");
