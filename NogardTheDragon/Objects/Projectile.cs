@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Interfaces;
 
@@ -33,7 +34,7 @@ namespace NogardTheDragon.Objects
             base.Draw(spriteBatch);
         }
 
-        protected override bool HandleCollision(GameTime gameTime)
+        protected override bool HandleCollision()
         {
             var target = Collides.Find(item => item is IDamageable) as IDamageable;
             if (target == null || Owner == target) return false;
@@ -41,6 +42,11 @@ namespace NogardTheDragon.Objects
             target.TakeDamage(1);
             Active = false;
             return true;
+        }
+
+        protected override bool HandleCollision(GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
     }
 }

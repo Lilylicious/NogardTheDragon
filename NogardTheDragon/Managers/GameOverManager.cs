@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Objects;
 
 namespace NogardTheDragon.Managers
@@ -7,6 +8,7 @@ namespace NogardTheDragon.Managers
     {
         private readonly NogardGame Instance;
         private bool Won;
+        public static Form1 ScoreForm;
 
         public GameOverManager(NogardGame game)
         {
@@ -15,34 +17,52 @@ namespace NogardTheDragon.Managers
 
         public void Win()
         {
-            NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
             Won = true;
+            Init();
         }
 
         public void Lose()
         {
-            NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
             Won = false;
+            Init();
         }
 
         public override void Init()
         {
+            NogardGame.GameState = NogardGame.GameStateEnum.GameOver;
+            ScoreForm = new Form1(Instance);
         }
 
         public override void Update(GameTime gameTime)
         {
+            foreach (var b in NogardGame.ButtonManager.Buttons)
+            {
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.SaveScoreButton) && !ScoreForm.GameSaved)
+                    ScoreForm.Show();
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MainMenuButton))
+                {
+                    NogardGame.MainMenuManager.Init();
+                    break;
+                }
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.QuitButton))
+                    Instance.Exit();
+            }
+
+            if (ScoreForm.GameSaved)
+                ScoreForm.Close();
         }
 
         public override void Draw()
         {
             Instance.GraphicsDevice.Clear(Color.Black);
 
-            NogardGame.SpriteBatch.Begin();
             if(Won)
                 NogardGame.SpriteBatch.Draw(TextureManager.PlayerTex, Vector2.One, Color.White);
             else
                 NogardGame.SpriteBatch.Draw(TextureManager.StandardEnemyTex, Vector2.One, Color.White);
-            NogardGame.SpriteBatch.End();
+
+            NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Total Score = " + NogardGame.TotalScore,
+                new Vector2(260, 200), Color.White, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 1);
         }
     }
 }

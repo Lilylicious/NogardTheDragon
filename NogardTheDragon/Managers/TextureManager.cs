@@ -18,7 +18,14 @@ namespace NogardTheDragon.Managers
         public static Texture2D SpikePlatformTex { get; private set; }
         public static Texture2D IcePlatformTex { get; private set; }
 
-        public static Texture2D MainMenuBackTex { get; private set; }
+        public static Texture2D MainMenuBackTex1 { get; private set; }
+        public static Texture2D MainMenuBackTex2 { get; private set; }
+        public static Texture2D MainMenuBackTex3 { get; private set; }
+        public static Texture2D MainMenuCloudTex1 { get; private set; }
+        public static Texture2D MainMenuCloudTex2 { get; private set; }
+
+        public static Texture2D GameBackgroundTex1 { get; private set; }
+
         public static Texture2D RectButton { get; private set; }
         public static Texture2D IndicatorLineTex { get; private set; }
         public static Texture2D GoalTex { get; private set; }
@@ -41,7 +48,14 @@ namespace NogardTheDragon.Managers
             SpikePlatformTex = c.Load<Texture2D>(@"spikeplatform");
             IcePlatformTex = c.Load<Texture2D>(@"iceplatform");
 
-            MainMenuBackTex = c.Load<Texture2D>(@"MainMenuBack");
+            MainMenuBackTex1 = c.Load<Texture2D>(@"MainMenuBack1.0");
+            MainMenuBackTex2 = c.Load<Texture2D>(@"MainMenuBack1.1");
+            MainMenuBackTex3 = c.Load<Texture2D>(@"MainMenuBack1.2");
+            MainMenuCloudTex1 = c.Load<Texture2D>(@"cloud1");
+            MainMenuCloudTex2 = c.Load<Texture2D>(@"cloud2");
+
+            //GameBackgroundTex1 = c.Load<Texture2D>(@"fileName");
+
             IndicatorLineTex = c.Load<Texture2D>(@"indicatorline");
             GoalTex = c.Load<Texture2D>(@"goal");
             Font = c.Load<SpriteFont>(@"font1");

@@ -22,7 +22,18 @@ namespace NogardTheDragon.Objects
             DrawPos = pos;
             Texture = tex;
 
+            if (Texture != null)
             SetColorData();
+
+            RegisterAbilities();
+        }
+
+        public Player(Vector2 pos)
+        {
+            Speed = 9;
+            Health = 3;
+
+            DrawPos = pos;
 
             RegisterAbilities();
         }
@@ -57,6 +68,7 @@ namespace NogardTheDragon.Objects
 
         public override void Update(GameTime gameTime)
         {
+            NogardGame.HealthBonus = Health;
             base.Update(gameTime);
             Gliding = false;
 
@@ -125,9 +137,14 @@ namespace NogardTheDragon.Objects
             spriteBatch.Draw(spritesheet, new Vector2(100, 100), Player, rotation, new Vector2(16, 16));
         }
 
+        protected override bool HandleCollision()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override bool HandleCollision(GameTime gameTime)
         {
-            return false;
+            throw new NotImplementedException();
         }
     }
 }

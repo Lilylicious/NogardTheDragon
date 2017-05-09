@@ -4,14 +4,18 @@ using NogardTheDragon.Interfaces;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    internal class SpikePlatform : BasePlatform
+    public class SpikePlatform : BasePlatform
     {
         public SpikePlatform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
         {
         }
+        public SpikePlatform(Vector2 pos)
+            : base(pos)
+        {
+        }
 
-        protected override bool HandleCollision(GameTime gameTime)
+        protected override bool HandleCollision()
         {
 
             var found = false;
@@ -21,10 +25,12 @@ namespace NogardTheDragon.Objects.Platforms
                 {
                     var movingObject = gameObject as MovingObject;
                     movingObject?.LandOnPlatform(1, this);
-                    found = true;
+                    
 
                     var damageable = movingObject as IDamageable;
                         damageable?.TakeDamage(1);
+
+                    found = true;
                 }
             }
 
