@@ -22,7 +22,7 @@ namespace NogardTheDragon.Animation
         {
             this.window = window;
 
-            StreamReader sr = new StreamReader(@"Clouds.txt");
+            StreamReader sr = new StreamReader(@"Content\\Clouds.txt");
             strings = new List<string>();
 
             while (!sr.EndOfStream)
