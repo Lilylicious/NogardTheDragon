@@ -16,6 +16,9 @@ namespace NogardUnitTesting
     [TestClass]
     public class PlatformTests
     {
+        /* Notes!
+         * Test collision with multiple platforms and one player
+         */
         private static Platform Platform;
         private static PrivateObject PrivatePlatform;
         private static SpikePlatform SpikePlatform;
