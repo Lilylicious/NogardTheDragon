@@ -12,7 +12,9 @@ namespace NogardTheDragon.Managers
         public override void Init()
         {
             ActiveMap = MapReader.CreateMap("SavedMap");
+
             NogardGame.KillBonus = 0;
+
             NogardGame.TotalScore = 0;
             NogardGame.GameState = NogardGame.GameStateEnum.GameActive;
         }
