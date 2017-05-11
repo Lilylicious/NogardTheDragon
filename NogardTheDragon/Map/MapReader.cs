@@ -12,10 +12,15 @@ namespace NogardTheDragon.Map
 {
     internal class MapReader
     {
-        public static Map ReadMap(string fileName)
+        public static Map CreateMap(string fileName)
         {
-            var objectList = new List<GameObject>();
+            return new Map(ReadFile(fileName));
+        }
+
+        public static List<GameObject> ReadFile(string fileName)
+        {
             var dummyList = BinarySerializer.ReadFromBinaryFile<List<DummyObject>>("Content\\" + fileName + ".bin");
+            var objectList = new List<GameObject>();
 
             foreach (var dObj in dummyList)
                 switch (dObj.Type)
@@ -60,7 +65,7 @@ namespace NogardTheDragon.Map
                         throw new ArgumentOutOfRangeException();
                 }
 
-            return new Map(objectList);
+            return objectList;
         }
     }
 }

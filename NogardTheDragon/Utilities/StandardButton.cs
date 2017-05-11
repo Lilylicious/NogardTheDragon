@@ -7,7 +7,7 @@ namespace NogardTheDragon.Utilities
     public class StandardButton
     {
         public Rectangle Rect;
-        public Color C = Color.Goldenrod;
+        public Color C;
         public bool ButtonClicked;
 
         public StandardButton(Rectangle rect)
@@ -15,14 +15,14 @@ namespace NogardTheDragon.Utilities
             Rect = rect;
         }
 
-        public void Update(Color color)
+        public void Update(Color color, Color hoverColor)
         {
             if (Rect.Contains(KeyMouseReader.MousePosition))
             {
-                C = color;
+                C = hoverColor;
             }
             else
-                C = Color.Goldenrod;
+                C = color;
 
             if (Rect.Contains(KeyMouseReader.MousePosition) && KeyMouseReader.LeftClick())
             {
@@ -40,7 +40,7 @@ namespace NogardTheDragon.Utilities
             NogardGame.SpriteBatch.Draw(TextureManager.RectButton, new Rectangle(Rect.X, Rect.Y + Rect.Height, Rect.Width + lineWidth, lineWidth), C);
 
             NogardGame.SpriteBatch.DrawString(TextureManager.Font, buttonText, 
-                new Vector2((Rect.X  + Rect.Width / 10), (Rect.Y + Rect.Height / 5)),
+                new Vector2((Rect.X  + Rect.Width / 10 * textSize), (Rect.Y + Rect.Height / 5)),
                 C, 0f, Vector2.Zero, textSize, SpriteEffects.None, 1f);
         }
 

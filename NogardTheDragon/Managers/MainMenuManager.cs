@@ -1,14 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using NogardTheDragon.Animation;
+using NogardTheDragon.Utilities;
+using System.Collections.Generic;
+using System.IO;
+using NogardTheDragon.Managers;
 
 namespace NogardTheDragon.Managers
 {
     public class MainMenuManager : BaseManager
     {
         private readonly NogardGame Game;
+        private MainMenuBackground MainMenuBackground;
 
         public MainMenuManager(NogardGame game)
         {
             Game = game;
+            MainMenuBackground = new MainMenuBackground(game.Window);
         }
 
         public override void Init()
@@ -18,7 +26,7 @@ namespace NogardTheDragon.Managers
 
         public override void Update(GameTime gameTime)
         {
-            NogardGame.ButtonManager.Update(gameTime);
+            MainMenuBackground.Update(gameTime);
 
             foreach (var b in NogardGame.ButtonManager.Buttons)
             {
@@ -26,6 +34,8 @@ namespace NogardTheDragon.Managers
                     NogardGame.GamePlayManager.Init();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ScoreButton))
                 {
+                    NogardGame.HighScoreDisplay.Init();
+                    break;
                 }
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ExitButton))
                     Game.Exit();
@@ -36,8 +46,7 @@ namespace NogardTheDragon.Managers
 
         public override void Draw()
         {
-            NogardGame.SpriteBatch.Draw(TextureManager.MainMenuBackTex, new Vector2(-100, 0), Color.White);
-            NogardGame.ButtonManager.Draw();
+                MainMenuBackground.Draw();
         }
     }
 }

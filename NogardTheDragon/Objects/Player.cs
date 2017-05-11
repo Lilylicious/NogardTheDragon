@@ -68,6 +68,7 @@ namespace NogardTheDragon.Objects
 
         public override void Update(GameTime gameTime)
         {
+            NogardGame.HealthBonus = Health;
             base.Update(gameTime);
             Gliding = false;
 
@@ -126,12 +127,12 @@ namespace NogardTheDragon.Objects
 
         protected override bool HandleCollision()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }

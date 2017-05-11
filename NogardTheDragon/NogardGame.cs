@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Managers;
 using NogardTheDragon.Utilities;
+using System.IO;
+using System.Collections.Generic;
 
 namespace NogardTheDragon
 {
@@ -13,12 +15,14 @@ namespace NogardTheDragon
         {
             MainMenu,
             GameActive,
+            HighScoreView,
             GameOver,
             Pause,
             MapMaker
         }
 
         public static SpriteBatch SpriteBatch;
+        public static int TotalScore, HealthBonus, KillBonus, LevlBonus, TimeBonus;
 
         public static GameStateEnum GameState = GameStateEnum.MainMenu;
 
@@ -27,6 +31,8 @@ namespace NogardTheDragon
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
         public static ButtonManager ButtonManager;
+        public static HighScoreDisplay HighScoreDisplay;
+
         public static GraphicsDeviceManager Graphics;
 
         public NogardGame()
@@ -55,6 +61,8 @@ namespace NogardTheDragon
             GameOverManager = new GameOverManager(this);
             MapMakerManager = new MapMakerManager(this);
             ButtonManager = new ButtonManager();
+            HighScoreDisplay = new HighScoreDisplay();
+            MainMenuManager.Init();
             ButtonManager.Init();
         }
 
@@ -70,8 +78,8 @@ namespace NogardTheDragon
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                MainMenuManager.Init();
+
+            TotalScore = KillBonus + HealthBonus;
 
             switch (GameState)
             {
@@ -80,6 +88,9 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.GameActive:
                     GamePlayManager.Update(gameTime);
+                    break;
+                case GameStateEnum.HighScoreView:
+                    HighScoreDisplay.Update(gameTime);
                     break;
                 case GameStateEnum.GameOver:
                     GameOverManager.Update(gameTime);
@@ -92,6 +103,7 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            ButtonManager.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -103,6 +115,7 @@ namespace NogardTheDragon
             {
                 case GameStateEnum.MainMenu:
                     SpriteBatch.Begin();
+                    GraphicsDevice.Clear(Color.DeepSkyBlue);
                     MainMenuManager.Draw();
                     break;
                 case GameStateEnum.GameActive:
@@ -110,7 +123,12 @@ namespace NogardTheDragon
                         GamePlayManager.ActiveMap?.Cam.GetTransform());
                     GamePlayManager.Draw();
                     break;
+                case GameStateEnum.HighScoreView:
+                    SpriteBatch.Begin();
+                    HighScoreDisplay.Draw();
+                    break;
                 case GameStateEnum.GameOver:
+                    SpriteBatch.Begin();
                     GameOverManager.Draw();
                     break;
                 case GameStateEnum.Pause:
@@ -124,6 +142,7 @@ namespace NogardTheDragon
                     throw new ArgumentOutOfRangeException();
             }
 
+            ButtonManager.Draw();
             SpriteBatch.End();
 
             base.Draw(gameTime);

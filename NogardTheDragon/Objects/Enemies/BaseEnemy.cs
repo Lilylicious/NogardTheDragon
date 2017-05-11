@@ -33,6 +33,7 @@ namespace NogardTheDragon.Objects.Enemies
         public void TakeDamage(int damage)
         {
             Health -= damage;
+            NogardGame.KillBonus += 2;
             Active = false;
         }
 

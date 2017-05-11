@@ -6,6 +6,8 @@
 //using Microsoft.Xna.Framework;
 //using Microsoft.Xna.Framework.Graphics;
 //using Microsoft.Xna.Framework.Input;
+//using Microsoft.Xna.Framework.Content;
+//using NogardTheDragon.Managers;
 
 //namespace NogardTheDragon.Animation
 //{
@@ -15,12 +17,13 @@
 //        int bgSpacing;
 //        float bgSpeed;
 //        Texture2D[] tex;
-//        GameWindow window;
-//        public Background(ContentManager Content, GameWindow window)
+//        protected GameWindow window;
+//        public Background(GameWindow window)
 //        {
 //            this.tex = new Texture2D[3];
 //            this.window = window;
-//            tex[0] = Content.Load<Texture2D>("");
+//            //Lägg till och välj bild från TextureManager
+//            tex[0] = TextureManager.GameBackgroundTex1;
 
 //            background = new List<Vector2>();
 //            bgSpacing = tex[0].Width;
@@ -31,7 +34,7 @@
 //            }
 //        }
 
-//        public void Update()
+//        public virtual void Update(GameTime gameTime)
 //        {
 //            for (int i = 0; i < background.Count; i++)
 //            {
@@ -48,7 +51,7 @@
 //            }
 //        }
 
-//        public void Draw(SpriteBatch sb)
+//        public virtual void Draw(SpriteBatch sb)
 //        {
 //            foreach (Vector2 v in background)
 //            {
