@@ -6,12 +6,8 @@ namespace NogardTheDragon.Objects
 {
     internal class Goal : MovingObject
     {
-        public Goal(Vector2 pos, Texture2D tex)
+        public Goal(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            DrawPos = pos;
-            Texture = tex;
-
-            SetColorData();
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -12,22 +12,15 @@ namespace NogardTheDragon.Objects.Enemies
         public int Score;
         protected bool Walk;
 
-        public BaseEnemy(Vector2 pos)
+        public BaseEnemy(Vector2 pos) : base(pos)
         {
             Speed = 2;
             Health = 1;
-
-            DrawPos = pos;
         }
-        public BaseEnemy(Vector2 pos, Texture2D tex)
+        public BaseEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
             Speed = 2;
             Health = 1;
-
-            DrawPos = pos;
-            Texture = tex;
-
-            SetColorData();
         }
 
         public void TakeDamage(int damage)

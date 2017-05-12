@@ -9,7 +9,7 @@ namespace NogardTheDragon.Objects
     {
         private readonly MovingObject Owner;
 
-        public Projectile(Vector2 pos, Texture2D tex, Vector2 dir, MovingObject owner)
+        public Projectile(Vector2 pos, Texture2D tex, Vector2 dir, MovingObject owner) : base(pos, tex)
         {
             Speed = 10;
 

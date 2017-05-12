@@ -39,9 +39,19 @@ namespace NogardTheDragon.Objects
         protected double frameTimer = 100, frameInterval = 100;
         protected float rotation = 0;
 
-        protected MovingObject()
+        protected MovingObject(Vector2 pos, Texture2D tex)
         {
+            DrawPos = pos;
+            Texture = tex;
             Source = new Rectangle(0, 0, Texture.Width, Texture.Height);
+
+            if (Texture != null)
+                SetColorData();
+        }
+
+        protected MovingObject(Vector2 pos)
+        {
+            DrawPos = pos;
         }
 
         public override void CheckCollision()
