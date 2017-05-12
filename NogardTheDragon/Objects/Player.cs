@@ -121,7 +121,6 @@ namespace NogardTheDragon.Objects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            SourceRect = Source;
             base.Draw(spriteBatch);
         }
 

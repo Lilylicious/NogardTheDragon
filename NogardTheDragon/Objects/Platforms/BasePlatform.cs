@@ -21,11 +21,5 @@ namespace NogardTheDragon.Objects.Platforms
         {
             return false;
         }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            SourceRect = Source;
-            base.Draw(spriteBatch);
-        }
     }
 }

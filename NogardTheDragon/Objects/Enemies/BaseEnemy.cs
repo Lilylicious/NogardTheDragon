@@ -44,12 +44,6 @@ namespace NogardTheDragon.Objects.Enemies
             Velocity.Y += GravitySpeed;
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            SourceRect = Source;
-            base.Draw(spriteBatch);
-        }
-
         protected override bool HandleCollision()
         {
             var player = Collides.Find(item => item is Player) as Player;
