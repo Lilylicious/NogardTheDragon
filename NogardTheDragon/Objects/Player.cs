@@ -14,27 +14,19 @@ namespace NogardTheDragon.Objects
         public int Score;
         public double Timer;
 
-        public Player(Vector2 pos, Texture2D tex)
+        public Player(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
             Speed = 9;
             Health = 3;
-
-            DrawPos = pos;
-            Texture = tex;
-
-            if (Texture != null)
-            SetColorData();
 
             RegisterAbilities();
         }
 
-        public Player(Vector2 pos)
+        public Player(Vector2 pos) : base(pos)
         {
             Speed = 9;
             Health = 3;
-
-            DrawPos = pos;
-
+            
             RegisterAbilities();
         }
 

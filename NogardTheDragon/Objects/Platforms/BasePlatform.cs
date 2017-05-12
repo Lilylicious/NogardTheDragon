@@ -5,16 +5,11 @@ namespace NogardTheDragon.Objects.Platforms
 {
     public abstract class BasePlatform : MovingObject
     {
-        public BasePlatform(Vector2 pos)
+        public BasePlatform(Vector2 pos) : base(pos)
         {
-            DrawPos = pos;
         }
-        public BasePlatform(Vector2 pos, Texture2D tex)
+        public BasePlatform(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            DrawPos = pos;
-            Texture = tex;
-
-            SetColorData();
         }
 
         protected override bool HandleCollision(GameTime gameTime)
