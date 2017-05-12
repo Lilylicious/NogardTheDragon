@@ -17,21 +17,14 @@ namespace NogardTheDragon.Objects
         protected float Rotation = 0;
         protected float Scale = 1.0f;
         protected Texture2D Texture;
+        protected Rectangle SourceRect;
         public bool UsingSpritesheet = false;
-
-        // 
-
-        /* The lambda operator => can be interpreted as a block containing a single return statement.
-         * It is no different functionality wise, it just looks a bit cleaner to me.
-         * For example, the Source property below is the equivalent of
-         * 
+        
          public virtual Rectangle Source 
          {
-            get { return new Rectangle(0, 0, Texture.Width, Texture.Height); }
+            get { return SourceRect; }
+            set { SourceRect = value; }
          }
-
-        */
-        public virtual Rectangle Source => new Rectangle(0, 0, Texture.Width, Texture.Height);
 
         public virtual Rectangle Dest => new Rectangle((int) DrawPos.X, (int) DrawPos.Y, Source.Width, Source.Height);
 

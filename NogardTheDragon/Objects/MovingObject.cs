@@ -39,6 +39,11 @@ namespace NogardTheDragon.Objects
         protected double frameTimer = 100, frameInterval = 100;
         protected float rotation = 0;
 
+        protected MovingObject()
+        {
+            Source = new Rectangle(0, 0, Texture.Width, Texture.Height);
+        }
+
         public override void CheckCollision()
         {
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
