@@ -13,12 +13,6 @@ namespace NogardTheDragon.Objects.AbilitysPowerups
             SetColorData();
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            SourceRect = Source;
-            base.Draw(spriteBatch);
-        }
-
         public abstract void AddPowerup(GameTime gameTime, Player player);
     }
 }

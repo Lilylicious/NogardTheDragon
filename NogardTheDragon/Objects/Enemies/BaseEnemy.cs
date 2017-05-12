@@ -52,12 +52,6 @@ namespace NogardTheDragon.Objects.Enemies
                 BaseEnemy.X = (CurrentFrame % 10) * 32;
             }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            SourceRect = Source;
-            base.Draw(spriteBatch);
-        }
-
         protected override bool HandleCollision()
         {
             var player = Collides.Find(item => item is Player) as Player;

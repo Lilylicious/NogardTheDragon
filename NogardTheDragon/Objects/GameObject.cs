@@ -16,8 +16,8 @@ namespace NogardTheDragon.Objects
         protected Vector2 Origin;
         protected float Rotation = 0;
         protected float Scale = 1.0f;
-        protected Rectangle SourceRect = new Rectangle();
         protected Texture2D Texture;
+        public bool UsingSpritesheet = false;
 
         // 
 
@@ -33,7 +33,7 @@ namespace NogardTheDragon.Objects
         */
         public virtual Rectangle Source => new Rectangle(0, 0, Texture.Width, Texture.Height);
 
-        public virtual Rectangle Dest => new Rectangle((int) DrawPos.X, (int) DrawPos.Y, Texture.Width, Texture.Height);
+        public virtual Rectangle Dest => new Rectangle((int) DrawPos.X, (int) DrawPos.Y, Source.Width, Source.Height);
 
         public virtual Rectangle HitBox => Dest;
 
@@ -44,7 +44,7 @@ namespace NogardTheDragon.Objects
 
         public Vector2 GetCenter()
         {
-            return new Vector2(DrawPos.X + Texture.Width / 2, DrawPos.Y + Texture.Height / 2);
+            return new Vector2(DrawPos.X + Source.Width / 2, DrawPos.Y + Source.Height / 2);
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);

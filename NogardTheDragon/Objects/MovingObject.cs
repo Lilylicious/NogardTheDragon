@@ -65,6 +65,9 @@ namespace NogardTheDragon.Objects
         {
             if (!p1.HitBox.Intersects(p2.HitBox))
                 return false;
+            if (p1.UsingSpritesheet || p2.UsingSpritesheet)
+                return true;
+
             float collLeft = MathHelper.Max(p1.Dest.X, p2.Dest.X);
             float collTop = MathHelper.Max(p1.Dest.Y, p2.Dest.Y);
             float collRight = MathHelper.Min(p1.Dest.Right, p2.Dest.Right);
@@ -83,7 +86,7 @@ namespace NogardTheDragon.Objects
             spriteBatch.Draw(
                 Texture,
                 DrawPos,
-                SourceRect,
+                Source,
                 Color,
                 Rotation,
                 Origin,
@@ -119,7 +122,7 @@ namespace NogardTheDragon.Objects
         {
             if (!(Velocity.Y > 0)) return false;
 
-            DrawPos.Y = platform.GetPosition().Y - (Texture != null ? Texture.Height : 0) + offset;
+            DrawPos.Y = platform.GetPosition().Y - (Texture != null ? Source.Height : 0) + offset;
             Airborn = false;
             ResetDoubleJump();
             Direction.Y = 0;

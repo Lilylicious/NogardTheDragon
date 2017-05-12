@@ -28,12 +28,6 @@ namespace NogardTheDragon.Objects
             Velocity = Direction * Speed;
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            SourceRect = Source;
-            base.Draw(spriteBatch);
-        }
-
         protected override bool HandleCollision()
         {
             var target = Collides.Find(item => item is IDamageable) as IDamageable;
