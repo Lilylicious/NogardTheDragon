@@ -100,6 +100,7 @@ namespace NogardTheDragon.Objects
         {
             CheckCollision();
             HandleCollision();
+            HandleCollision(gameTime);
             UpdateAbilitiesPowerups();
 
             DrawPos += Velocity;

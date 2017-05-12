@@ -19,7 +19,7 @@ namespace NogardTheDragon.Objects.AbilitysPowerups
 
         protected override bool HandleCollision()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         protected override bool HandleCollision(GameTime gameTime)
