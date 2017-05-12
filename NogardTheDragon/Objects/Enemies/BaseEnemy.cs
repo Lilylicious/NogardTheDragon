@@ -19,6 +19,8 @@ namespace NogardTheDragon.Objects.Enemies
         }
         public BaseEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
+            Source = Goblin = new Rectangle(48, 96, 0, 48);
+
             Speed = 2;
             Health = 1;
         }
@@ -38,12 +40,12 @@ namespace NogardTheDragon.Objects.Enemies
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (frameTimer <= 0)
-            {
-                frameTimer = frameInterval;
-                frame++;
-                BaseEnemy.X = (CurrentFrame % 10) * 32;
-            }
+            //if (frameTimer <= 0)
+            //{
+            //    frameTimer = frameInterval;
+            //    frame++;
+            //    Goblin.X = (CurrentFrame % 10) * 32;
+            //}
 
         protected override bool HandleCollision()
         {

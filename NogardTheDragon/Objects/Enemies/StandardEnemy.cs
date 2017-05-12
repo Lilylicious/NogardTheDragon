@@ -7,6 +7,7 @@ namespace NogardTheDragon.Objects.Enemies
     {
         public StandardEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
+            Source = Goblin1 = new Rectangle(48, 96, 48, 240);
         }
             public override void Update(GameTime gameTime)
         {
@@ -38,7 +39,7 @@ namespace NogardTheDragon.Objects.Enemies
             {
                 frameTimer = frameInterval;
                 frame++;
-                StandardEnemy.X = (CurrentFrame % 10) * 32;
+                Goblin1.X = (CurrentFrame % 10) * 32;
             }
         }
     }

@@ -5,9 +5,9 @@ namespace NogardTheDragon.Objects.Enemies
 {
     internal class FlyingHunterEnemy : BaseEnemy
     {
-        FlyingHunterEnemy Flyinghunterenemy;
         private int MaxDist;
         private int MinDist;
+        private bool getPosition;
 
         public FlyingHunterEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
@@ -17,20 +17,9 @@ namespace NogardTheDragon.Objects.Enemies
 
         public override void Update(GameTime gameTime)
         {
-            Flyinghunterenemy.LookAt(Player);
-
-            if (Vector3.Distance(Flyinghunterenemy.position, Player.position) >= MinDist)
-            {
-
-                Flyinghunterenemy.position += Flyinghunterenemy.forward * Speed * Time.deltaTime;
-
-
-
-                if (Vector3.Distance(Flyinghunterenemy.position, Player.position) <= MaxDist)
-                {
-                    //Here Call any function U want Like Shoot at here or something
-                }
-            }
+            var Direction = player.getPosition - this.getPosition;
+            Direction.Normalize();
+            ChangeVelocity(Direction);
         }
     }
 }

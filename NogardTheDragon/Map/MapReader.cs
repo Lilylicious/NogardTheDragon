@@ -51,7 +51,7 @@ namespace NogardTheDragon.Map
                         objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), TextureManager.GoalTex));
                         break;
                     case DummyObject.TypeEnum.Enemy:
-                        objectList.Add(new BaseEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.StandardEnemyTex));
+                        objectList.Add(new BaseEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
                         break;
                     case DummyObject.TypeEnum.UnlimitedPowerPowerup:
                         objectList.Add(new UnlimitedPowerObject(new Vector2(dObj.PosX, dObj.PosY),

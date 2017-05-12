@@ -18,7 +18,7 @@ namespace NogardTheDragon.Objects.Enemies
         {
             base.Update(gameTime);
 
-            if (Velocity.Y <= 0 || Velocity.Y >= gameTime.Viewport.Height - Texture.Height)
+            if (Velocity.Y <= 0 || Velocity.Y >= Texture.Height)
             {
                 Fly = true;
                 //Speed = +Speed;

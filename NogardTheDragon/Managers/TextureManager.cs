@@ -34,6 +34,10 @@ namespace NogardTheDragon.Managers
         public static Texture2D UnlimitedPowerTex { get; private set; }
         public static Texture2D SlowWorldTex { get; private set; }
 
+        public static Texture2D NogardAbilitySpritesheet { get; private set; }
+        public static Texture2D EnemySpritesheet { get; private set; }
+        public static Texture2D PlatformSpritesheet { get; private set; }
+
         public static void LoadTextures(ContentManager c)
         {
             PlayerTex = c.Load<Texture2D>(@"playersquare");
@@ -64,6 +68,10 @@ namespace NogardTheDragon.Managers
 
             UnlimitedPowerTex = c.Load<Texture2D>(@"UnlimitedPower");
             SlowWorldTex = c.Load<Texture2D>(@"SlowWorld");
+
+            NogardAbilitySpritesheet = c.Load<Texture2D>(@"Nogard and Ability Spritesheet");
+            EnemySpritesheet = c.Load<Texture2D>(@"Enemy Spritesheet");
+            PlatformSpritesheet = c.Load<Texture2D>(@"Platform Spritesheet");
         }
     }
 }
