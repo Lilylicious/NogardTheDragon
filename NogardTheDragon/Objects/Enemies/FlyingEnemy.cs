@@ -12,6 +12,7 @@ namespace NogardTheDragon.Objects.Enemies
 
         public FlyingEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
+            Source = new Rectangle(0, 0, 0, 0);
         }
 
         public override void Update(GameTime gameTime)
@@ -27,6 +28,13 @@ namespace NogardTheDragon.Objects.Enemies
             if(Velocity.X < 0 - Texture.Width)
             {
                 isVisible = false;
+            }
+
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+                Source = (CurrentFrame % 4) * 32;
             }
         }
 

@@ -20,6 +20,8 @@ namespace NogardTheDragon.Objects
             Health = 3;
 
             RegisterAbilities();
+
+            Source = new Rectangle(0, 0, 0, 0);
         }
 
         public Player(Vector2 pos) : base(pos)
@@ -118,14 +120,13 @@ namespace NogardTheDragon.Objects
             {
                 frameTimer = frameInterval;
                 frame++;
-                Player.X = (CurrentFrame % 10) * 32;
+                Source.X = (CurrentFrame % 4) * 32;
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            spriteBatch.Draw(spritesheet, new Vector2(100, 100), Player, rotation, new Vector2(16, 16));
         }
 
         protected override bool HandleCollision()
