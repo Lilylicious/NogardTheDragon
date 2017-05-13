@@ -12,22 +12,15 @@ namespace NogardTheDragon.Objects.Enemies
         public int Score;
         private bool Walk;
 
-        public BaseEnemy(Vector2 pos)
+        public BaseEnemy(Vector2 pos) : base(pos)
         {
             Speed = 2;
             Health = 1;
-
-            DrawPos = pos;
         }
-        public BaseEnemy(Vector2 pos, Texture2D tex)
+        public BaseEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
             Speed = 2;
             Health = 1;
-
-            DrawPos = pos;
-            Texture = tex;
-
-            SetColorData();
         }
 
         public void TakeDamage(int damage)
@@ -44,12 +37,6 @@ namespace NogardTheDragon.Objects.Enemies
             Velocity.Y += GravitySpeed;
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            SourceRect = Source;
-            base.Draw(spriteBatch);
-        }
-
         protected override bool HandleCollision()
         {
             var player = Collides.Find(item => item is Player) as Player;
@@ -61,7 +48,7 @@ namespace NogardTheDragon.Objects.Enemies
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }

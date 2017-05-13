@@ -57,7 +57,6 @@
     <Compile Include="Objects\AbilitysPowerups\SlowWorldPowerObject.cs" />
     <Compile Include="Objects\AbilitysPowerups\UnlimitedPowerObject.cs" />
     <Compile Include="Objects\Goal.cs" />
-    <Compile Include="Objects\Obstacles\BaseObstacle.cs" />
     <Compile Include="Objects\Platforms\BasePlatform.cs" />
     <Compile Include="Objects\Platforms\CloudPlatform.cs" />
     <Compile Include="Objects\Platforms\FadingPlatform.cs" />
@@ -68,9 +67,6 @@
     <Compile Include="Objects\Enemies\FlyingEnemy.cs" />
     <Compile Include="Objects\Enemies\ScoreEnemy.cs" />
     <Compile Include="Objects\Enemies\StandardEnemy.cs" />
-    <Compile Include="Objects\Obstacles\BoulderObstacle.cs" />
-    <Compile Include="Objects\Obstacles\CaveMonsterObstacle.cs" />
-    <Compile Include="Objects\Obstacles\SpikeObstacle.cs" />
     <Compile Include="Animation\Background.cs" />
     <Compile Include="Objects\AbilitysPowerups\PowerupObject.cs" />
     <Compile Include="Objects\Platforms\VerticalPlatform.cs" />

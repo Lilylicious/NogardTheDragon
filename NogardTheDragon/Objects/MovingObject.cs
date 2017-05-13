@@ -39,6 +39,20 @@ namespace NogardTheDragon.Objects
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
 
+        protected MovingObject(Vector2 pos, Texture2D tex)
+        {
+            DrawPos = pos;
+            Texture = tex;
+            Source = new Rectangle(0, 0, Texture.Width, Texture.Height);
+
+            if (Texture != null)
+                SetColorData();
+        }
+
+        protected MovingObject(Vector2 pos)
+        {
+            DrawPos = pos;
+        }
 
         public override void CheckCollision()
         {
@@ -66,6 +80,9 @@ namespace NogardTheDragon.Objects
         {
             if (!p1.HitBox.Intersects(p2.HitBox) || !p1.CollideEnabled || !p2.CollideEnabled)
                 return false;
+            if (p1.UsingSpritesheet || p2.UsingSpritesheet)
+                return true;
+
             float collLeft = MathHelper.Max(p1.Dest.X, p2.Dest.X);
             float collTop = MathHelper.Max(p1.Dest.Y, p2.Dest.Y);
             float collRight = MathHelper.Min(p1.Dest.Right, p2.Dest.Right);
@@ -84,7 +101,7 @@ namespace NogardTheDragon.Objects
             spriteBatch.Draw(
                 Texture,
                 DrawPos,
-                SourceRect,
+                Source,
                 Color,
                 Rotation,
                 Origin,
@@ -101,6 +118,7 @@ namespace NogardTheDragon.Objects
         {
             CheckCollision();
             HandleCollision();
+            HandleCollision(gameTime);
             UpdateAbilitiesPowerups();
 
             DrawPos += Velocity;
@@ -129,6 +147,9 @@ namespace NogardTheDragon.Objects
                 movingObject?.TakeDamage(3);
 
             DrawPos.Y = platform.GetPosition().Y - (Texture != null ? Texture.Height : 0) + offset;
+
+            DrawPos.Y = platform.GetPosition().Y - (Texture != null ? Source.Height : 0) + offset;
+
             Airborn = false;
             ResetDoubleJump();
             Direction.Y = 0;

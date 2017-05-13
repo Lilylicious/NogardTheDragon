@@ -65,7 +65,7 @@ namespace NogardTheDragon.Objects.Platforms
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }
