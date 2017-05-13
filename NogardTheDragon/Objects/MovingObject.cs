@@ -6,7 +6,6 @@ using NogardTheDragon.Objects.Enemies;
 using NogardTheDragon.Objects.Platforms;
 using NogardTheDragon.Utilities;
 using NogardTheDragon.Interfaces;
-using System.Drawing;
 
 namespace NogardTheDragon.Objects
 {
