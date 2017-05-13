@@ -18,7 +18,7 @@ namespace NogardTheDragon.Objects
         public Player(Vector2 pos, Texture2D tex)
         {
             Speed = 9;
-            Health = 20;
+            Health = 5;
 
             DrawPos = pos;
             Texture = tex;
@@ -32,7 +32,7 @@ namespace NogardTheDragon.Objects
         public Player(Vector2 pos)
         {
             Speed = 9;
-            Health = 20;
+            Health = 5;
 
             DrawPos = pos;
 
@@ -72,6 +72,8 @@ namespace NogardTheDragon.Objects
             NogardGame.HealthBonus = Health;
             base.Update(gameTime);
             Gliding = false;
+            Sinking = false;
+            Moving = false;
 
             if (Timer > 0)
             {
@@ -112,17 +114,29 @@ namespace NogardTheDragon.Objects
 
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
+            if (Velocity.Y >= 60)
+                Health = 0;
 
             Velocity.Y += GravitySpeed;
 
             Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
                         (float) gameTime.ElapsedGameTime.TotalSeconds;
-            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 45));
+            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 60));
 
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            for (int i = 0; i < 5; i++)
+            {
+                spriteBatch.Draw(TextureManager.LostHPTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), Color.White);
+            }
+
+            for (int i = 0; i < Health; i++)
+            {
+                spriteBatch.Draw(TextureManager.HpTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), Color.White);
+            }
+
             SourceRect = Source;
             base.Draw(spriteBatch);
         }

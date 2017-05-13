@@ -6,6 +6,7 @@ using NogardTheDragon.Objects.Enemies;
 using NogardTheDragon.Objects.Platforms;
 using NogardTheDragon.Utilities;
 using NogardTheDragon.Interfaces;
+using System.Drawing;
 
 namespace NogardTheDragon.Objects
 {
@@ -26,9 +27,10 @@ namespace NogardTheDragon.Objects
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
         public bool Gliding;
+        public bool Sinking;
         protected bool Gravity = false;
         protected Facing LastFacing = Facing.Left;
-        protected bool Moving = false;
+        public bool Moving = false;
         protected int NumberOfFrames;
         protected List<BasePowerup> Powerups = new List<BasePowerup>();
         protected float Speed;
@@ -36,6 +38,7 @@ namespace NogardTheDragon.Objects
         protected double TimeBetweenFrames = 0.1;
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
+
 
         public override void CheckCollision()
         {
@@ -61,7 +64,7 @@ namespace NogardTheDragon.Objects
 
         public static bool PixelCollision(GameObject p1, GameObject p2)
         {
-            if (!p1.HitBox.Intersects(p2.HitBox))
+            if (!p1.HitBox.Intersects(p2.HitBox) || !p1.CollideEnabled || !p2.CollideEnabled)
                 return false;
             float collLeft = MathHelper.Max(p1.Dest.X, p2.Dest.X);
             float collTop = MathHelper.Max(p1.Dest.Y, p2.Dest.Y);
@@ -122,7 +125,7 @@ namespace NogardTheDragon.Objects
                 movingObject?.TakeDamage(1);
             if (Velocity.Y > 30 && Velocity.Y <= 40)
                 movingObject?.TakeDamage(2);
-            if (Velocity.Y > 40)
+            if (Velocity.Y > 40 && Velocity.Y <= 55)
                 movingObject?.TakeDamage(3);
 
             DrawPos.Y = platform.GetPosition().Y - (Texture != null ? Texture.Height : 0) + offset;
@@ -134,13 +137,28 @@ namespace NogardTheDragon.Objects
 
         }
 
+        public bool LandOnHorizontalPlatform(HorizontalPlatform platform)
+        {
+            LandOnPlatform(1, platform);
+            Moving = true;
+
+            if (platform.MoveRight)
+                DrawPos.X += 1;
+            else
+                DrawPos.X -= 1;
+
+            return true;
+        }
+
         public bool LandOnCloudPlatform()
         {
             if (!(Velocity.Y > 0)) return false;
 
+            Sinking = true;
             Airborn = false;
             ResetDoubleJump();
             Velocity.Y *= 0.2f;
+
             return true;
         }
 

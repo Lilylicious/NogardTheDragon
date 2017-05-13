@@ -60,6 +60,8 @@
     <Compile Include="Objects\Obstacles\BaseObstacle.cs" />
     <Compile Include="Objects\Platforms\BasePlatform.cs" />
     <Compile Include="Objects\Platforms\CloudPlatform.cs" />
+    <Compile Include="Objects\Platforms\FadingPlatform.cs" />
+    <Compile Include="Objects\Platforms\HorizontalPlatform.cs" />
     <Compile Include="Objects\Platforms\IcePlatform.cs" />
     <Compile Include="Objects\Platforms\MovingPlatform.cs" />
     <Compile Include="Objects\Platforms\SpikePlatform.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Objects\Obstacles\SpikeObstacle.cs" />
     <Compile Include="Animation\Background.cs" />
     <Compile Include="Objects\AbilitysPowerups\PowerupObject.cs" />
+    <Compile Include="Objects\Platforms\VerticalPlatform.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -128,20 +131,18 @@
     <Content Include="Content\Clouds.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\dissplatform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\goal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\HighScore.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-
-    <Content Include="Content\hpspentTex.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\hpTex.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-
     <Content Include="Content\iceplatform.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -164,6 +165,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\movingplatform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\movingplatform2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\noHpTex.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\plattform.png">

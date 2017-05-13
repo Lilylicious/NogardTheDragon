@@ -18,6 +18,7 @@ namespace NogardTheDragon.Objects
         protected float Scale = 1.0f;
         protected Rectangle SourceRect = new Rectangle();
         protected Texture2D Texture;
+        public bool CollideEnabled = true;
 
         // 
 
