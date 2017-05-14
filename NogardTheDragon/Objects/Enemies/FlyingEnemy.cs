@@ -30,24 +30,24 @@ namespace NogardTheDragon.Objects.Enemies
                 isVisible = false;
             }
 
-            if (frameTimer <= 0)
-            {
-                frameTimer = frameInterval;
-                frame++;
-                Source = (CurrentFrame % 4) * 32;
-            }
+            //if (frameTimer <= 0)
+            //{
+            //    frameTimer = frameInterval;
+            //    frame++;
+            //    Source = (CurrentFrame % 4) * 32;
+            //}
         }
 
-        public void LoadFlyingEnemy()
-        {
-            for(int i = 0; i <flyingEnemy.count; i++)
-            {
-                if (!flyingEnemy[i].isVisible)
-                {
-                    flyingEnemy.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
+        //public void LoadFlyingEnemy()
+        //{
+        //    for(int i = 0; i <flyingEnemy.count; i++)
+        //    {
+        //        if (!flyingEnemy[i].isVisible)
+        //        {
+        //            flyingEnemy.RemoveAt(i);
+        //            i--;
+        //        }
+        //    }
+        //}
     }
 }

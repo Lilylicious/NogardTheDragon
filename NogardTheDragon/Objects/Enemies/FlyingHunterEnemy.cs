@@ -15,11 +15,11 @@ namespace NogardTheDragon.Objects.Enemies
             MinDist = 5;
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            var Direction = player.getPosition - this.getPosition;
-            Direction.Normalize();
-            ChangeVelocity(Direction);
-        }
+        //public override void Update(GameTime gameTime)
+        //{
+        //    var Direction = player.getPosition - this.getPosition;
+        //    Direction.Normalize();
+        //    ChangeVelocity(Direction);
+        //}
     }
 }

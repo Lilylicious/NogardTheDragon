@@ -16,7 +16,7 @@ namespace NogardTheDragon.Objects.Enemies
                 if (Velocity.X <= Velocity.X - 5)
             {
                 Walk = false;
-                EnemyFx = SpriteEffects.FlipHorizontally;
+                Effects = SpriteEffects.FlipHorizontally;
             }
             else if (Velocity.X >= Velocity.X + 5)
             {
@@ -38,7 +38,7 @@ namespace NogardTheDragon.Objects.Enemies
             {
                 frameTimer = frameInterval;
                 frame++;
-                Source = (CurrentFrame % 4) * 32;
+                Source = new Rectangle((CurrentFrame % 4) * 32, Source.Y, Source.Width, Source.Height);
             }
         }
     }

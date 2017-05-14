@@ -37,7 +37,7 @@ namespace NogardTheDragon.Objects.Enemies
             base.Update(gameTime);
 
             Velocity.Y += GravitySpeed;
-
+        }
         protected override bool HandleCollision()
         {
             var player = Collides.Find(item => item is Player) as Player;

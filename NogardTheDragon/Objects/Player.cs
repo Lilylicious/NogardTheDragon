@@ -116,12 +116,12 @@ namespace NogardTheDragon.Objects
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (frameTimer <= 0)
-            {
-                frameTimer = frameInterval;
-                frame++;
-                Source.X = (CurrentFrame % 4) * 32;
-            }
+            //if (frameTimer <= 0)
+            //{
+            //    frameTimer = frameInterval;
+            //    frame++;
+            //    Source.X = (CurrentFrame % 4) * 32;
+            //}
         }
 
         public override void Draw(SpriteBatch spriteBatch)
