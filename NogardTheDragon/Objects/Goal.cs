@@ -32,7 +32,7 @@ namespace NogardTheDragon.Objects
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

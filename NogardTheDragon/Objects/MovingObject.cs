@@ -54,6 +54,21 @@ namespace NogardTheDragon.Objects
             DrawPos = pos;
         }
 
+        protected MovingObject(Vector2 pos, Texture2D tex)
+        {
+            DrawPos = pos;
+            Texture = tex;
+            Source = new Rectangle(0, 0, Texture.Width, Texture.Height);
+
+            if (Texture != null)
+                SetColorData();
+        }
+
+        protected MovingObject(Vector2 pos)
+        {
+            DrawPos = pos;
+        }
+
         public override void CheckCollision()
         {
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
@@ -118,6 +133,7 @@ namespace NogardTheDragon.Objects
         {
             CheckCollision();
             HandleCollision();
+            HandleCollision(gameTime);
             UpdateAbilitiesPowerups();
 
             DrawPos += Velocity;
