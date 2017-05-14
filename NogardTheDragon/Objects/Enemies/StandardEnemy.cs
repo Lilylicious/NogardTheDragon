@@ -16,12 +16,11 @@ namespace NogardTheDragon.Objects.Enemies
                 if (Velocity.X <= Velocity.X - 5)
             {
                 Walk = false;
-                rotation = MathHelper.ToRadians(-180);
+                EnemyFx = SpriteEffects.FlipHorizontally;
             }
             else if (Velocity.X >= Velocity.X + 5)
             {
                 Walk = true;
-                rotation = MathHelper.ToRadians(180);
             }
 
             if (Walk == false)

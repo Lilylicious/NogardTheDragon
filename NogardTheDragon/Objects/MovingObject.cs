@@ -38,6 +38,8 @@ namespace NogardTheDragon.Objects
         protected int frame;
         protected double frameTimer = 100, frameInterval = 100;
         protected float rotation = 0;
+        protected SpriteEffects PlayerFx = SpriteEffects.None;
+        protected SpriteEffects EnemyFx = SpriteEffects.None;
 
         protected MovingObject(Vector2 pos, Texture2D tex)
         {

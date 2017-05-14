@@ -19,7 +19,7 @@ namespace NogardTheDragon.Objects.Enemies
         }
         public BaseEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            Source = Goblin = new Rectangle(48, 96, 0, 48);
+            Source = new Rectangle(48, 96, 0, 48);
 
             Speed = 2;
             Health = 1;
