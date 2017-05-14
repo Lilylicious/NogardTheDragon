@@ -223,7 +223,7 @@
 /processorParam:TextureFormat=Color
 /build:Spritesheets/Background.png
 
-#begin Spritesheets/Enemy Spritesheet.png
+#begin Spritesheets/EnemySpritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -233,9 +233,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Spritesheets/Enemy Spritesheet.png
+/build:Spritesheets/EnemySpritesheet.png
 
-#begin Spritesheets/Nogard and Ability Spritesheet.png
+#begin Spritesheets/NogardAbilitySpritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -245,9 +245,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Spritesheets/Nogard and Ability Spritesheet.png
+/build:Spritesheets/NogardAbilitySpritesheet.png
 
-#begin Spritesheets/Platform Spritesheet.png
+#begin Spritesheets/PlatformSpritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -257,5 +257,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Spritesheets/Platform Spritesheet.png
+/build:Spritesheets/PlatformSpritesheet.png
 
