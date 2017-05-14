@@ -38,15 +38,6 @@ namespace NogardTheDragon.Objects.Enemies
 
             Velocity.Y += GravitySpeed;
 
-            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            //if (frameTimer <= 0)
-            //{
-            //    frameTimer = frameInterval;
-            //    frame++;
-            //    Goblin.X = (CurrentFrame % 10) * 32;
-            //}
-
         protected override bool HandleCollision()
         {
             var player = Collides.Find(item => item is Player) as Player;
@@ -58,7 +49,7 @@ namespace NogardTheDragon.Objects.Enemies
 
         protected override bool HandleCollision(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }
