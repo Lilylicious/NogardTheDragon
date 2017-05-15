@@ -160,7 +160,7 @@ namespace NogardTheDragon.Managers
                         Objects.Add(new Player(PlacePosition, TextureManager.PlayerTex));
                         break;
                     case ObjectEnum.Enemy:
-                        Objects.Add(new BaseEnemy(MousePosition, TextureManager.StandardEnemyTex));
+                        Objects.Add(new BaseEnemy(MousePosition, TextureManager.EnemySpritesheet));
                         break;
                     case ObjectEnum.Goal:
                         Objects.Add(new Goal(PlacePosition, TextureManager.GoalTex));
@@ -203,7 +203,7 @@ namespace NogardTheDragon.Managers
                     Sb.Draw(TextureManager.PlayerTex, PlacePosition);
                     break;
                 case ObjectEnum.Enemy:
-                    Sb.Draw(TextureManager.StandardEnemyTex, MousePosition);
+                    Sb.Draw(TextureManager.EnemySpritesheet, MousePosition);
                     break;
                 case ObjectEnum.Goal:
                     Sb.Draw(TextureManager.GoalTex, PlacePosition);
