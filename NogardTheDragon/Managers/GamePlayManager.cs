@@ -1,20 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using NogardTheDragon.Map;
-using NogardTheDragon.Objects;
 
 namespace NogardTheDragon.Managers
 {
     public class GamePlayManager : BaseManager
     {
         public Map.Map ActiveMap;
-        public Player Player;
-
-        public override void Init()
-        {
-            ActiveMap = MapReader.CreateMap("SavedMap");
-            NogardGame.TotalScore = 0;
-            NogardGame.GameState = NogardGame.GameStateEnum.GameActive;
-        }
 
         public override void Update(GameTime gameTime)
         {
@@ -24,6 +15,13 @@ namespace NogardTheDragon.Managers
         public override void Draw()
         {
             ActiveMap.Draw();
+        }
+
+        public void StartMap(string mapName)
+        {
+            ActiveMap = MapReader.CreateMap(mapName);
+            NogardGame.TotalScore = 0;
+            NogardGame.GameState = NogardGame.GameStateEnum.GameActive;
         }
     }
 }
