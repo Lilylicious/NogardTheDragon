@@ -21,7 +21,7 @@ namespace NogardTheDragon.Objects
 
             RegisterAbilities();
 
-            Source = new Rectangle(0, 0, 0, 0);
+            //Source = new Rectangle(0, 0, 0, 0);
         }
 
         public Player(Vector2 pos) : base(pos)
@@ -114,7 +114,7 @@ namespace NogardTheDragon.Objects
                         (float) gameTime.ElapsedGameTime.TotalSeconds;
             Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 20));
 
-            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            //frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
             //if (frameTimer <= 0)
             //{
