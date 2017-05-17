@@ -5,6 +5,7 @@ using NogardTheDragon.Abilities;
 using NogardTheDragon.Objects.Enemies;
 using NogardTheDragon.Objects.Platforms;
 using NogardTheDragon.Utilities;
+using NogardTheDragon.Interfaces;
 
 namespace NogardTheDragon.Objects
 {
@@ -25,9 +26,10 @@ namespace NogardTheDragon.Objects
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
         public bool Gliding;
+        public bool Sinking;
         protected bool Gravity = false;
         protected Facing LastFacing = Facing.Left;
-        protected bool Moving = false;
+        public bool Moving = false;
         protected int NumberOfFrames;
         protected List<BasePowerup> Powerups = new List<BasePowerup>();
         protected float Speed;
@@ -75,7 +77,7 @@ namespace NogardTheDragon.Objects
 
         public static bool PixelCollision(GameObject p1, GameObject p2)
         {
-            if (!p1.HitBox.Intersects(p2.HitBox))
+            if (!p1.HitBox.Intersects(p2.HitBox) || !p1.CollideEnabled || !p2.CollideEnabled)
                 return false;
             if (p1.UsingSpritesheet || p2.UsingSpritesheet)
                 return true;
@@ -135,11 +137,36 @@ namespace NogardTheDragon.Objects
         {
             if (!(Velocity.Y > 0)) return false;
 
+            var movingObject = this as IDamageable;
+            if (Velocity.Y > 25 && Velocity.Y <= 30)
+                movingObject?.TakeDamage(1);
+            if (Velocity.Y > 30 && Velocity.Y <= 40)
+                movingObject?.TakeDamage(2);
+            if (Velocity.Y > 40 && Velocity.Y <= 55)
+                movingObject?.TakeDamage(3);
+
+            DrawPos.Y = platform.GetPosition().Y - (Texture != null ? Texture.Height : 0) + offset;
+
             DrawPos.Y = platform.GetPosition().Y - (Texture != null ? Source.Height : 0) + offset;
+
             Airborn = false;
             ResetDoubleJump();
             Direction.Y = 0;
             Velocity.Y = 0;
+            return true;
+
+        }
+
+        public bool LandOnHorizontalPlatform(HorizontalPlatform platform)
+        {
+            LandOnPlatform(1, platform);
+            Moving = true;
+
+            if (platform.MoveRight)
+                DrawPos.X += 1;
+            else
+                DrawPos.X -= 1;
+
             return true;
         }
 
@@ -147,9 +174,11 @@ namespace NogardTheDragon.Objects
         {
             if (!(Velocity.Y > 0)) return false;
 
+            Sinking = true;
             Airborn = false;
             ResetDoubleJump();
             Velocity.Y *= 0.2f;
+
             return true;
         }
 

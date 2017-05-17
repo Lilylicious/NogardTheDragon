@@ -1,18 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NogardTheDragon.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    public class CloudPlatform : BasePlatform
+    public class HorizontalPlatform : MovingPlatform
     {
-        public CloudPlatform(Vector2 pos, Texture2D tex)
-            : base(pos, tex)
+        public HorizontalPlatform(Vector2 pos, Texture2D tex)
+            :base (pos, tex)
         {
-        }
-
-        public CloudPlatform(Vector2 pos)
-            : base(pos)
-        {
+            Vertical = false;
         }
 
         protected override bool HandleCollision()
@@ -24,9 +26,9 @@ namespace NogardTheDragon.Objects.Platforms
                 {
                     var movingObject = gameObject as MovingObject;
 
-                    if (movingObject != null && !movingObject.Sinking)
+                    if (movingObject != null && !movingObject.Moving)
                     {
-                        movingObject?.LandOnCloudPlatform();
+                        movingObject?.LandOnHorizontalPlatform(this);
                         found = true;
                     }
                 }

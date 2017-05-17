@@ -5,10 +5,12 @@ using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    public class MovingPlatform : BasePlatform
+    public abstract class MovingPlatform : BasePlatform
     {
-        private bool MoveUp;
-        private Vector2 StartPos;
+        public bool MoveRight;
+        protected bool MoveUp;
+        protected Vector2 StartPos;
+        protected bool Vertical;
 
         public MovingPlatform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
@@ -23,39 +25,42 @@ namespace NogardTheDragon.Objects.Platforms
 
         public override void Update(GameTime gameTime)
         {
-            if (DrawPos.Y <= StartPos.Y - 200)
-                MoveUp = false;
-            else if (DrawPos.Y >= StartPos.Y + 200)
-                MoveUp = true;
 
-            if (Variables.UpdateTick)
-                if (!MoveUp)
-                    DrawPos.Y += 1f;
-                else if (MoveUp)
-                    DrawPos.Y -= 1;
+            switch (Vertical)
+            {
+                case true:
+                    if (DrawPos.Y <= StartPos.Y - 200)
+                        MoveUp = false;
+                    else if (DrawPos.Y >= StartPos.Y + 200)
+                        MoveUp = true;
+
+                    if (Variables.UpdateTick)
+                        if (!MoveUp)
+                            DrawPos.Y += 1f;
+                        else if (MoveUp)
+                            DrawPos.Y -= 1;
+                    break;
+
+                case false:
+                    if (DrawPos.X <= StartPos.X - 200)
+                        MoveRight = true;
+                    else if (DrawPos.X >= StartPos.X + 200)
+                        MoveRight = false;
+
+                    if (Variables.UpdateTick)
+                        if (!MoveRight)
+                            DrawPos.X -= 1f;
+                        else if (MoveRight)
+                            DrawPos.X += 1;
+                    break;
+            }
 
             base.Update(gameTime);
         }
 
         protected override bool HandleCollision()
         {
-            var found = false;
-            foreach (GameObject gameObject in Collides)
-            {
-                if (!(gameObject is BasePlatform))
-                {
-                    var movingObject = gameObject as MovingObject;
-
-                    if (MoveUp)
-                        movingObject?.LandOnPlatform(1, this);
-                    else if (!MoveUp)
-                        movingObject?.LandOnPlatform(2, this);
-
-                    found = true;
-                }
-            }
-
-            return found;
+            throw new NotImplementedException();
         }
 
         protected override bool HandleCollision(GameTime gameTime)

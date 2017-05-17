@@ -20,6 +20,7 @@ namespace NogardTheDragon.Managers
         public void StartMap(string mapName)
         {
             ActiveMap = MapReader.CreateMap(mapName);
+            NogardGame.KillBonus = 0;
             NogardGame.TotalScore = 0;
             NogardGame.GameState = NogardGame.GameStateEnum.GameActive;
         }

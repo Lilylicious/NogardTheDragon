@@ -6,6 +6,7 @@ using NogardTheDragon.Managers;
 using NogardTheDragon.Utilities;
 using System.IO;
 using System.Collections.Generic;
+using NogardTheDragon.Objects;
 
 namespace NogardTheDragon
 {
@@ -49,7 +50,6 @@ namespace NogardTheDragon
             Graphics.PreferredBackBufferHeight = 700;
             Graphics.ApplyChanges();
             IsMouseVisible = true;
-
             base.Initialize();
         }
 
@@ -67,6 +67,8 @@ namespace NogardTheDragon
             LevelSelectorManager = new LevelSelectorManager();
             MainMenuManager.Init();
             ButtonManager.Init();
+            
+
         }
 
         protected override void UnloadContent()
@@ -126,7 +128,7 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.GameActive:
                     SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
-                        GamePlayManager.ActiveMap?.Cam.GetTransform());
+                    GamePlayManager.ActiveMap?.Cam.GetTransform());
                     GamePlayManager.Draw();
                     break;
                 case GameStateEnum.HighScoreView:
@@ -151,8 +153,8 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
             ButtonManager.Draw();
+            Window.Title = TotalScore.ToString();
             SpriteBatch.End();
 
             base.Draw(gameTime);
