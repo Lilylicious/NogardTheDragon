@@ -53,6 +53,12 @@ namespace NogardTheDragon.Map
                     case DummyObject.TypeEnum.Enemy:
                         objectList.Add(new BaseEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
                         break;
+                    case DummyObject.TypeEnum.WalkingEnemy:
+                        objectList.Add(new StandardEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
+                        break;
+                    case DummyObject.TypeEnum.FlyingEnemy:
+                        objectList.Add(new FlyingEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
+                        break;
                     case DummyObject.TypeEnum.UnlimitedPowerPowerup:
                         objectList.Add(new UnlimitedPowerObject(new Vector2(dObj.PosX, dObj.PosY),
                             TextureManager.UnlimitedPowerTex));

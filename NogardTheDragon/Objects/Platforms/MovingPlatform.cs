@@ -14,6 +14,7 @@ namespace NogardTheDragon.Objects.Platforms
             : base(pos, tex)
         {
             StartPos = pos;
+            Source = new Rectangle(50, 144, 50, 48);
         }
 
         public MovingPlatform(Vector2 pos)

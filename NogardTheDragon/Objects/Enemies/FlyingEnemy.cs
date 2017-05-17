@@ -12,7 +12,7 @@ namespace NogardTheDragon.Objects.Enemies
 
         public FlyingEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            Source = new Rectangle(0, 0, 0, 0);
+            Source = new Rectangle(0, 144, 192, 48);
         }
 
         public override void Update(GameTime gameTime)
@@ -30,24 +30,24 @@ namespace NogardTheDragon.Objects.Enemies
                 isVisible = false;
             }
 
-            //if (frameTimer <= 0)
-            //{
-            //    frameTimer = frameInterval;
-            //    frame++;
-            //    Source = (CurrentFrame % 4) * 32;
-            //}
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+                Source = new Rectangle((CurrentFrame % 4) * 32, Source.Y, Source.Width, Source.Height);
+            }
         }
 
-        //public void LoadFlyingEnemy()
-        //{
-        //    for(int i = 0; i <flyingEnemy.count; i++)
-        //    {
-        //        if (!flyingEnemy[i].isVisible)
-        //        {
-        //            flyingEnemy.RemoveAt(i);
-        //            i--;
-        //        }
-        //    }
-        //}
+        public void LoadFlyingEnemy()
+        {
+            for (int i = 0; i < Source.count; i++)
+            {
+                if (!Source[i].isVisible)
+                {
+                    Source.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
     }
 }
