@@ -25,6 +25,7 @@ namespace NogardTheDragon
 
         public static SpriteBatch SpriteBatch;
         public static int TotalScore, HealthBonus, KillBonus, LevlBonus, TimeBonus;
+        public static bool Admin = false;
 
         public static GameStateEnum GameState = GameStateEnum.MainMenu;
 
