@@ -19,7 +19,7 @@ namespace NogardTheDragon.Map
 
         public static List<GameObject> ReadFile(string fileName)
         {
-            var dummyList = BinarySerializer.ReadFromBinaryFile<List<DummyObject>>("Content\\" + fileName + ".bin");
+            var dummyList = BinarySerializer.ReadFromBinaryFile<List<DummyObject>>("Content\\Maps\\" + fileName + ".bin");
             var objectList = new List<GameObject>();
 
             foreach (var dObj in dummyList)

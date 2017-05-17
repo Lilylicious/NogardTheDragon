@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using NogardTheDragon.Utilities;
 
@@ -12,6 +13,7 @@ namespace NogardTheDragon.Managers
             InstuctionsButton, ExitButton, MapButton;
         public StandardButton SaveScoreButton, MainMenuButton, QuitButton;
         public StandardButton BackButton;
+        public StandardButton LevelOneButton, LevelTwoButton, LevelThreeButton;
 
         public override void Init()
         {
@@ -20,6 +22,7 @@ namespace NogardTheDragon.Managers
             MainMenuButtons();
             HighScoreButtons();
             GameOverButtons();
+            LevelSelectorButtons();
         }
 
         public override void Update(GameTime gameTime)
@@ -48,6 +51,12 @@ namespace NogardTheDragon.Managers
                     break;
                 case NogardGame.GameStateEnum.MapMaker:
                     break;
+                case NogardGame.GameStateEnum.LevelSelector:
+                    foreach (var b in Buttons)
+                        b.Update(Color.Goldenrod, Color.Yellow);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -80,6 +89,14 @@ namespace NogardTheDragon.Managers
                     break;
                 case NogardGame.GameStateEnum.MapMaker:
                     break;
+                case NogardGame.GameStateEnum.LevelSelector:
+                    LevelOneButton.DrawStandardButton(5, " Level One", 0.5f);
+                    LevelTwoButton.DrawStandardButton(5, " Level Two", 0.5f);
+                    LevelThreeButton.DrawStandardButton(5, " Level Three", 0.5f);
+                    BackButton.DrawStandardButton(5, " Back", 0.5f);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -112,6 +129,18 @@ namespace NogardTheDragon.Managers
         public void HighScoreButtons()
         {
             BackButton = new StandardButton(new Rectangle(380, 635, 130, 55));
+            Buttons.Add(BackButton);
+        }
+
+        public void LevelSelectorButtons()
+        {
+            LevelOneButton = new StandardButton(new Rectangle(50, 50, 300, 55));
+            Buttons.Add(LevelOneButton);
+            LevelTwoButton = new StandardButton(new Rectangle(50, 120, 300, 55));
+            Buttons.Add(LevelTwoButton);
+            LevelThreeButton = new StandardButton(new Rectangle(50, 190, 300, 55));
+            Buttons.Add(LevelThreeButton);
+            BackButton = new StandardButton(new Rectangle(50, 635, 130, 55));
             Buttons.Add(BackButton);
         }
     }
