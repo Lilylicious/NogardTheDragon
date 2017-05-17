@@ -58,6 +58,7 @@
     <Compile Include="Objects\AbilitysPowerups\SlowWorldPowerObject.cs" />
     <Compile Include="Objects\AbilitysPowerups\UnlimitedPowerObject.cs" />
     <Compile Include="Objects\Goal.cs" />
+    <Compile Include="Objects\HealthGain.cs" />
     <Compile Include="Objects\Platforms\BasePlatform.cs" />
     <Compile Include="Objects\Platforms\CloudPlatform.cs" />
     <Compile Include="Objects\Platforms\FadingPlatform.cs" />
@@ -135,6 +136,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\HighScore.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\HpGain.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\hpTex.png">

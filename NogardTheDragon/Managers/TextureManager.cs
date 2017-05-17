@@ -37,6 +37,8 @@ namespace NogardTheDragon.Managers
         public static SpriteFont Font { get; private set; }
         public static Texture2D UnlimitedPowerTex { get; private set; }
         public static Texture2D SlowWorldTex { get; private set; }
+        public static Texture2D HpGainTex { get; private set; }
+
 
         public static void LoadTextures(ContentManager c)
         {
@@ -72,6 +74,7 @@ namespace NogardTheDragon.Managers
 
             UnlimitedPowerTex = c.Load<Texture2D>(@"UnlimitedPower");
             SlowWorldTex = c.Load<Texture2D>(@"SlowWorld");
+            HpGainTex = c.Load<Texture2D>(@"HpGain");
         }
     }
 }
