@@ -68,6 +68,9 @@ namespace NogardTheDragon.Map
                         objectList.Add(new SlowWorldPowerObject(new Vector2(dObj.PosX, dObj.PosY),
                             TextureManager.SlowWorldTex));
                         break;
+                    case DummyObject.TypeEnum.HealthGain:
+                        objectList.Add(new HealthGain(new Vector2(dObj.PosX, dObj.PosY), TextureManager.HpGainTex));
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

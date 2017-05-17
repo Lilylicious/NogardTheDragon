@@ -123,7 +123,6 @@ namespace NogardTheDragon.Objects
             SourceRect = Source;
             base.Draw(spriteBatch);
             if (NogardGame.GameState == NogardGame.GameStateEnum.GameActive ||
-                NogardGame.GameState == NogardGame.GameStateEnum.GameOver ||
                 NogardGame.GameState == NogardGame.GameStateEnum.Pause)
             {
                 for (int i = 0; i < 5; i++)

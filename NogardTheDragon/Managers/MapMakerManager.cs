@@ -97,6 +97,8 @@ namespace NogardTheDragon.Managers
                 SelectedObject = ObjectEnum.UnlimitedPower;
             if (Keyboard.GetState().IsKeyDown(Keys.W))
                 SelectedObject = ObjectEnum.SlowWorld;
+            if (Keyboard.GetState().IsKeyDown(Keys.H))
+                SelectedObject = ObjectEnum.HpGain;
             if (KeyMouseReader.KeyPressed(Keys.S))
                 SaveToFile();
             if(KeyMouseReader.KeyPressed(Keys.L))
@@ -187,6 +189,9 @@ namespace NogardTheDragon.Managers
                     case ObjectEnum.SlowWorld:
                         Objects.Add(new SlowWorldPowerObject(PlacePosition, TextureManager.SlowWorldTex));
                         break;
+                    case ObjectEnum.HpGain:
+                        Objects.Add(new HealthGain(PlacePosition, TextureManager.HpGainTex));
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -235,6 +240,9 @@ namespace NogardTheDragon.Managers
                 case ObjectEnum.SlowWorld:
                     Sb.Draw(TextureManager.SlowWorldTex, PlacePosition);
                     break;
+                case ObjectEnum.HpGain:
+                    Sb.Draw(TextureManager.HpGainTex, PlacePosition);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -258,6 +266,7 @@ namespace NogardTheDragon.Managers
             Goal,
             UnlimitedPower,
             SlowWorld,
+            HpGain,
             None
         }
     }

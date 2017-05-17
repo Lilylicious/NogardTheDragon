@@ -23,6 +23,7 @@ namespace NogardTheDragon
             LevelSelector
         }
 
+        public static bool Admin = true;
         public static SpriteBatch SpriteBatch;
         public static int TotalScore, HealthBonus, KillBonus, LevlBonus, TimeBonus;
 

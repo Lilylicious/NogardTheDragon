@@ -22,7 +22,8 @@ namespace NogardTheDragon.Utilities
             Goal,
             Enemy,
             UnlimitedPowerPowerup,
-            SlowWorldPowerup
+            SlowWorldPowerup,
+            HealthGain
         }
 
         public float PosX;
@@ -55,6 +56,8 @@ namespace NogardTheDragon.Utilities
                 Type = TypeEnum.UnlimitedPowerPowerup;
             if (obj is SlowWorldPowerObject)
                 Type = TypeEnum.SlowWorldPowerup;
+            if (obj is HealthGain)
+                Type = TypeEnum.HealthGain;
 
             PosX = obj.GetPosition().X;
             PosY = obj.GetPosition().Y;
