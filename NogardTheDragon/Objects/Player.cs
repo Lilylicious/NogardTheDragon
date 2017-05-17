@@ -119,18 +119,23 @@ namespace NogardTheDragon.Objects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                spriteBatch.Draw(TextureManager.LostHPTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), Color.White);
-            }
-
-            for (int i = 0; i < Health; i++)
-            {
-                spriteBatch.Draw(TextureManager.HpTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), Color.White);
-            }
 
             SourceRect = Source;
             base.Draw(spriteBatch);
+            if (NogardGame.GameState == NogardGame.GameStateEnum.GameActive ||
+                NogardGame.GameState == NogardGame.GameStateEnum.GameOver ||
+                NogardGame.GameState == NogardGame.GameStateEnum.Pause)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    spriteBatch.Draw(TextureManager.LostHPTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), Color.White);
+                }
+
+                for (int i = 0; i < Health; i++)
+                {
+                    spriteBatch.Draw(TextureManager.HpTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                }
+            }
         }
 
         protected override bool HandleCollision()

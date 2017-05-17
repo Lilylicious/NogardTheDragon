@@ -46,6 +46,7 @@ namespace NogardTheDragon
 
         protected override void Initialize()
         {
+            Window.Title = "Nogard the Dragon";
             Graphics.PreferredBackBufferWidth = 900;
             Graphics.PreferredBackBufferHeight = 700;
             Graphics.ApplyChanges();
@@ -127,7 +128,7 @@ namespace NogardTheDragon
                     MainMenuManager.Draw();
                     break;
                 case GameStateEnum.GameActive:
-                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
+                    SpriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null,
                     GamePlayManager.ActiveMap?.Cam.GetTransform());
                     GamePlayManager.Draw();
                     break;
@@ -154,7 +155,13 @@ namespace NogardTheDragon
                     throw new ArgumentOutOfRangeException();
             }
             ButtonManager.Draw();
-            Window.Title = TotalScore.ToString();
+            if (GameState == GameStateEnum.GameActive ||
+                GameState == GameStateEnum.Pause ||
+                GameState == GameStateEnum.GameOver)
+                Window.Title = TotalScore.ToString();
+            else
+                Window.Title = "Nogard the Dragon";
+
             SpriteBatch.End();
 
             base.Draw(gameTime);

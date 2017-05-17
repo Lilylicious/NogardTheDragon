@@ -22,6 +22,8 @@ namespace NogardTheDragon.Managers
         public override void Init()
         {
             NogardGame.GameState = NogardGame.GameStateEnum.MainMenu;
+            NogardGame.KillBonus = 0;
+            NogardGame.TotalScore = 0;
         }
 
         public override void Update(GameTime gameTime)
