@@ -19,7 +19,8 @@ namespace NogardTheDragon
             HighScoreView,
             GameOver,
             Pause,
-            MapMaker
+            MapMaker,
+            LevelSelector
         }
 
         public static SpriteBatch SpriteBatch;
@@ -31,6 +32,7 @@ namespace NogardTheDragon
         public static GamePlayManager GamePlayManager;
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
+        public static LevelSelectorManager LevelSelectorManager;
         public static ButtonManager ButtonManager;
         public static HighScoreDisplay HighScoreDisplay;
 
@@ -62,6 +64,7 @@ namespace NogardTheDragon
             MapMakerManager = new MapMakerManager(this);
             ButtonManager = new ButtonManager();
             HighScoreDisplay = new HighScoreDisplay();
+            LevelSelectorManager = new LevelSelectorManager();
             MainMenuManager.Init();
             ButtonManager.Init();
             
@@ -79,7 +82,7 @@ namespace NogardTheDragon
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+                MainMenuManager.Init();
 
             TotalScore = KillBonus + HealthBonus;
 
@@ -101,6 +104,9 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.MapMaker:
                     MapMakerManager.Update(gameTime);
+                    break;
+                case GameStateEnum.LevelSelector:
+                    LevelSelectorManager.Update(gameTime);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -139,6 +145,10 @@ namespace NogardTheDragon
                     SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
                     MapMakerManager?.Cam.GetTransform());
                     MapMakerManager?.Draw();
+                    break;
+                case GameStateEnum.LevelSelector:
+                    SpriteBatch.Begin();
+                    LevelSelectorManager.Draw();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

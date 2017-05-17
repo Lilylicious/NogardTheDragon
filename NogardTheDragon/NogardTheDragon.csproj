@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\ButtonManager.cs" />
+    <Compile Include="Managers\LevelSelectorManager.cs" />
     <Compile Include="Managers\MainMenuManager.cs" />
     <Compile Include="Managers\TextureManager.cs" />
     <Compile Include="Objects\AbilitysPowerups\SlowWorldPowerObject.cs" />
@@ -185,6 +186,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
+    <None Include="Content\Maps\LevelOne.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Maps\TestPlatforms.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\purple.png" />
   </ItemGroup>
   <ItemGroup>
@@ -193,9 +200,6 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
     <None Include="Content\font1.spritefont">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\SavedMap.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -31,7 +31,7 @@ namespace NogardTheDragon.Managers
             foreach (var b in NogardGame.ButtonManager.Buttons)
             {
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.PlayButton))
-                    NogardGame.GamePlayManager.Init();
+                    NogardGame.LevelSelectorManager.Init();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ScoreButton))
                 {
                     NogardGame.HighScoreDisplay.Init();
