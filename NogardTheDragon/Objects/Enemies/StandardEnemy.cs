@@ -7,7 +7,7 @@ namespace NogardTheDragon.Objects.Enemies
     {
         public StandardEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            Source = new Rectangle(48, 48, 192, 48);
+            Source = new Rectangle(48, 48, 48, 48);
         }
             public override void Update(GameTime gameTime)
         {

@@ -5,29 +5,47 @@ namespace NogardTheDragon.Objects.Enemies
 {
     internal class FlyingEnemy : BaseEnemy
     {
-        private bool Airborn = false;
-        private bool Fly;
-
-        private bool isVisible = true;
+        //private bool Fly;
+        //private bool isVisible = true;
 
         public FlyingEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            Source = new Rectangle(0, 144, 192, 48);
+            Source = new Rectangle(0, 144, 48 48);
+            AffectedByGravity = false;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (Velocity.Y <= 0 || Velocity.Y >= Texture.Height)
+            //if (Velocity.Y <= 0 || Velocity.Y >= Texture.Height)
+            //{
+            //    Fly = true;
+            //    //Speed = +Speed;
+            //}
+
+            //if(Velocity.X < 0 - Texture.Width)
+            //{
+            //    isVisible = false;
+            //}
+
+            if (Velocity.X <= Velocity.X - 5)
             {
-                Fly = true;
-                //Speed = +Speed;
+                Walk = false;
+                Effects = SpriteEffects.FlipHorizontally;
+            }
+            else if (Velocity.X >= Velocity.X + 5)
+            {
+                Walk = true;
             }
 
-            if(Velocity.X < 0 - Texture.Width)
+            if (Walk == false)
             {
-                isVisible = false;
+                Velocity.X += 1f;
+            }
+            else if (Walk == true)
+            {
+                Velocity.X -= 1;
             }
 
             if (frameTimer <= 0)
@@ -38,16 +56,16 @@ namespace NogardTheDragon.Objects.Enemies
             }
         }
 
-        public void LoadFlyingEnemy()
-        {
-            for (int i = 0; i < Source.count; i++)
-            {
-                if (!Source[i].isVisible)
-                {
-                    Source.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
+        //public void LoadFlyingEnemy()
+        //{
+        //    for (int i = 0; i < Source; i++)
+        //    {
+        //        if (!Source[i].isVisible)
+        //        {
+        //            Source.RemoveAt(i);
+        //            i--;
+        //        }
+        //    }
+        //}
     }
 }
