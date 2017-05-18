@@ -11,6 +11,8 @@ namespace NogardTheDragon.Objects
 
         public Projectile(Vector2 pos, Texture2D tex, Vector2 dir, MovingObject owner) : base(pos, tex)
         {
+            Source = new Rectangle(0, 144, 48, 48);
+
             Speed = 10;
 
             DrawPos = pos;
@@ -26,6 +28,15 @@ namespace NogardTheDragon.Objects
             base.Update(gameTime);
 
             Velocity = Direction * Speed;
+
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+                Source = new Rectangle((CurrentFrame % 3) * 32, Source.Y, Source.Width, Source.Height);
+            }
         }
 
         protected override bool HandleCollision()

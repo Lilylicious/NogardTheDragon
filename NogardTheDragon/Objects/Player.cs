@@ -21,7 +21,7 @@ namespace NogardTheDragon.Objects
 
             RegisterAbilities();
 
-            //Source = new Rectangle(0, 0, 0, 0);
+            Source = new Rectangle(48, 48, 48, 48);
         }
 
         public Player(Vector2 pos) : base(pos)
@@ -83,14 +83,13 @@ namespace NogardTheDragon.Objects
             {
                 LastFacing = Facing.Right;
                 Direction.X = 1f;
-                rotation = MathHelper.ToRadians(180);
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 LastFacing = Facing.Left;
                 Direction.X = -1f;
-                rotation = MathHelper.ToRadians(-180);
+                Effects = SpriteEffects.FlipHorizontally;
             }
 
             else
@@ -114,14 +113,14 @@ namespace NogardTheDragon.Objects
                         (float) gameTime.ElapsedGameTime.TotalSeconds;
             Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 20));
 
-            //frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            //if (frameTimer <= 0)
-            //{
-            //    frameTimer = frameInterval;
-            //    frame++;
-            //    Source.X = (CurrentFrame % 4) * 32;
-            //}
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+                Source = new Rectangle((CurrentFrame % 4) * 32, Source.Y, Source.Width, Source.Height);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

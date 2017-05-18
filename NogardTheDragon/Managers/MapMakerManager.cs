@@ -161,7 +161,7 @@ namespace NogardTheDragon.Managers
                         Objects.Add(new IcePlatform(PlacePosition, TextureManager.PlatformSpritesheet));
                         break;
                     case ObjectEnum.Player:
-                        Objects.Add(new Player(PlacePosition, TextureManager.PlayerTex));
+                        Objects.Add(new Player(PlacePosition, TextureManager.NogardAbilitySpritesheet));
                         break;
                     case ObjectEnum.Enemy:
                         Objects.Add(new BaseEnemy(MousePosition, TextureManager.EnemySpritesheet));
@@ -210,7 +210,7 @@ namespace NogardTheDragon.Managers
                     Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 240, 100, 48), Color.White);
                     break;
                 case ObjectEnum.Player:
-                    Sb.Draw(TextureManager.PlayerTex, PlacePosition);
+                    Sb.Draw(TextureManager.NogardAbilitySpritesheet, PlacePosition, new Rectangle(0, 48, 48, 48), Color.White);
                     break;
                 case ObjectEnum.Enemy:
                     Sb.Draw(TextureManager.EnemySpritesheet, MousePosition, new Rectangle(0, 48, 48, 48), Color.White);

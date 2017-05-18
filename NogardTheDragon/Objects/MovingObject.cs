@@ -38,6 +38,7 @@ namespace NogardTheDragon.Objects
         protected int frame;
         protected double frameTimer = 100, frameInterval = 100;
         protected float rotation = 0;
+        protected bool AffectedByGravity = true;
 
         protected MovingObject(Vector2 pos, Texture2D tex)
         {
