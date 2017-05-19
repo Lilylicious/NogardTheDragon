@@ -172,7 +172,7 @@
     <Content Include="Content\Spritesheets\EnemySpritesheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Spritesheets\NogardAbilitySpritesheet.png">
+    <Content Include="Content\Spritesheets\NogardandAbilitySpritesheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Spritesheets\PlatformSpritesheet.png">

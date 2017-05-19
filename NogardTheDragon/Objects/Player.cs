@@ -22,6 +22,7 @@ namespace NogardTheDragon.Objects
             RegisterAbilities();
 
             Source = new Rectangle(48, 48, 48, 48);
+            UsingSpritesheet = true;
         }
 
         public Player(Vector2 pos) : base(pos)

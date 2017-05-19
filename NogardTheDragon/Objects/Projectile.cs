@@ -12,6 +12,7 @@ namespace NogardTheDragon.Objects
         public Projectile(Vector2 pos, Texture2D tex, Vector2 dir, MovingObject owner) : base(pos, tex)
         {
             Source = new Rectangle(0, 144, 48, 48);
+            UsingSpritesheet = true;
 
             Speed = 10;
 

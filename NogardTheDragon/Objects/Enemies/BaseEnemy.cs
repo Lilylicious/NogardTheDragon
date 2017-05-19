@@ -20,6 +20,7 @@ namespace NogardTheDragon.Objects.Enemies
         public BaseEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
             Source = new Rectangle(0, 48, 48, 48);
+            UsingSpritesheet = true;
 
             Speed = 2;
             Health = 1;
