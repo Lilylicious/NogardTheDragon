@@ -28,7 +28,7 @@ namespace NogardTheDragon.Objects
         public bool Gliding;
         public bool Sinking;
         protected bool Gravity = false;
-        protected Facing LastFacing = Facing.Left;
+        public Facing LastFacing = Facing.Left;
         public bool Moving = false;
         protected int NumberOfFrames;
         protected List<BasePowerup> Powerups = new List<BasePowerup>();
