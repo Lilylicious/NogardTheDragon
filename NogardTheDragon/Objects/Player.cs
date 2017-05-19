@@ -84,6 +84,7 @@ namespace NogardTheDragon.Objects
             {
                 LastFacing = Facing.Right;
                 Direction.X = 1f;
+                Effects = SpriteEffects.None;
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))

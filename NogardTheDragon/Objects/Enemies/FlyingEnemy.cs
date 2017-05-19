@@ -10,7 +10,7 @@ namespace NogardTheDragon.Objects.Enemies
 
         public FlyingEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            Source = new Rectangle(0, 144, 48 48);
+            Source = new Rectangle(0, 144, 48, 48);
             AffectedByGravity = false;
         }
 
@@ -37,6 +37,7 @@ namespace NogardTheDragon.Objects.Enemies
             else if (Velocity.X >= Velocity.X + 5)
             {
                 Walk = true;
+                Effects = SpriteEffects.None;
             }
 
             if (Walk == false)

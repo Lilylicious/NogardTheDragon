@@ -21,6 +21,7 @@ namespace NogardTheDragon.Objects.Enemies
             else if (Velocity.X >= Velocity.X + 5)
             {
                 Walk = true;
+                Effects = SpriteEffects.None;
             }
 
             if (Walk == false)

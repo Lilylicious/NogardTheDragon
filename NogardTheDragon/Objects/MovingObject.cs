@@ -123,6 +123,7 @@ namespace NogardTheDragon.Objects
             UpdateAbilitiesPowerups();
 
             DrawPos += Velocity;
+            CurrentFrame++;
         }
 
         public Vector2 GetVelocity()
