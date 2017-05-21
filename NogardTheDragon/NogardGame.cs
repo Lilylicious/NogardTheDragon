@@ -119,7 +119,7 @@ namespace NogardTheDragon
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(new Color(240, 240, 240, 255));
 
             switch (GameState)
             {

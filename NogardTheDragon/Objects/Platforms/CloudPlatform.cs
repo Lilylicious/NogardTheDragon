@@ -8,7 +8,7 @@ namespace NogardTheDragon.Objects.Platforms
         public CloudPlatform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
         {
-            Source = new Rectangle(0, 96, 50, 48);
+            Source = new Rectangle(0, 96, 50, 16);
         }
 
         public CloudPlatform(Vector2 pos)

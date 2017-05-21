@@ -31,11 +31,11 @@ namespace NogardTheDragon.Map
                         break;
                     case DummyObject.TypeEnum.VerticalPlatform:
                         objectList.Add(new VerticalPlatform(new Vector2(dObj.PosX, dObj.PosY),
-                            TextureManager.MovingPlatformTex));
+                            TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.HorizontalPlatform:
                         objectList.Add(new HorizontalPlatform(new Vector2(dObj.PosX, dObj.PosY),
-                            TextureManager.MovingPlatformTex2));
+                            TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.SpikePlatform:
                         objectList.Add(new SpikePlatform(new Vector2(dObj.PosX, dObj.PosY),
@@ -49,7 +49,7 @@ namespace NogardTheDragon.Map
                         objectList.Add(new IcePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.FadingPlatform:
-                        objectList.Add(new FadingPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.FadingPlatformTex));
+                        objectList.Add(new FadingPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.Player:
                         objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), TextureManager.NogardAbilitySpritesheet));
