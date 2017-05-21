@@ -42,12 +42,12 @@ namespace NogardTheDragon.Managers
         private void SaveToFile()
         {
             var dummyList = Objects.Select(obj => new DummyObject(obj)).ToList();
-            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/" + DateTime.Now.Ticks + ".bin", dummyList);
+            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/Maps/" + DateTime.Now.Ticks + ".bin", dummyList);
         }
 
         private void ReadFromFile()
         {
-            Objects = MapReader.ReadFile("Map");
+            Objects = MapReader.ReadFile("LevelThree");
         }
 
         public override void Update(GameTime gameTime)

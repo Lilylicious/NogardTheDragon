@@ -14,6 +14,7 @@ namespace NogardTheDragon.Objects.Platforms
         private bool StartTimer;
         private float RESET = 0;
         private float Timer;
+        private byte StepSize = 3;
 
         public FadingPlatform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
@@ -24,7 +25,7 @@ namespace NogardTheDragon.Objects.Platforms
         {
             if (HandleCollision())
             {
-                Color.A--;
+                Color.A -= StepSize;
 
                 if (Color.A <= 20)
                 {
@@ -34,7 +35,7 @@ namespace NogardTheDragon.Objects.Platforms
             }
             else if (!HandleCollision() && !(Color.A >= 250) && !StartTimer)
             {
-                Color.A++;
+                Color.A += StepSize;
             }
 
             if (StartTimer)
