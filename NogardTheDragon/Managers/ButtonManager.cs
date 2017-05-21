@@ -72,7 +72,7 @@ namespace NogardTheDragon.Managers
                     PlayButton.DrawStandardButton(5, "Play", 1);
                     ScoreButton.DrawStandardButton(5, " Highscore", 0.5f);
                     //AboutNogardButton.DrawStandardButton(5, "About Nogard", 0.4f);
-                    //InstuctionsButton.DrawStandardButton(5, "  How to play", 0.4f);
+                    InstuctionsButton.DrawStandardButton(5, "  How to play", 0.4f);
                     ExitButton.DrawStandardButton(5, " Exit", 0.4f);
                     MapButton.DrawStandardButton(5, " MapMaker", 0.4f);
                     break;
@@ -114,9 +114,9 @@ namespace NogardTheDragon.Managers
             Buttons.Add(ScoreButton);
             //AboutNogardButton = new StandardButton(new Rectangle(620, 240, 260, 60));
             //Buttons.Add(AboutNogardButton);
-            //InstuctionsButton = new StandardButton(new Rectangle(620, 310, 260, 60));
-            //Buttons.Add(InstuctionsButton);
-            ExitButton = new StandardButton(new Rectangle(680, 280, 90, 55));
+            InstuctionsButton = new StandardButton(new Rectangle(600, 280, 260, 60));
+            Buttons.Add(InstuctionsButton);
+            ExitButton = new StandardButton(new Rectangle(680, 350, 90, 55));
             Buttons.Add(ExitButton);
             MapButton = new StandardButton(new Rectangle(10, 635, 210, 55));
             Buttons.Add(MapButton);
