@@ -44,7 +44,7 @@ namespace NogardTheDragon.Managers
                 case NogardGame.GameStateEnum.GameOver:
                     foreach (var b in Buttons)
                     {
-                        b.Update(Color.BlueViolet, Color.White);
+                        b.Update(Color.White, Color.Black);
                         if (b.Equals(SaveScoreButton) && GameOverManager.ScoreForm.GameSaved == true)
                             b.Update(Color.Transparent, Color.Transparent);
                     }
@@ -118,11 +118,11 @@ namespace NogardTheDragon.Managers
 
         public void GameOverButtons()
         {
-            SaveScoreButton = new StandardButton(new Rectangle(300, 300, 260, 70));
+            SaveScoreButton = new StandardButton(new Rectangle(300, 350, 260, 70));
             Buttons.Add(SaveScoreButton);
-            MainMenuButton = new StandardButton(new Rectangle(230, 410, 185, 55));
+            MainMenuButton = new StandardButton(new Rectangle(230, 460, 185, 55));
             Buttons.Add(MainMenuButton);
-            QuitButton = new StandardButton(new Rectangle(460, 410, 190, 55));
+            QuitButton = new StandardButton(new Rectangle(460, 460, 190, 55));
             Buttons.Add(QuitButton);
         }
 

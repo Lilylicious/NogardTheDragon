@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Abilities;
 using NogardTheDragon.Interfaces;
 using NogardTheDragon.Utilities;
+using NogardTheDragon.Managers;
 
 namespace NogardTheDragon.Objects
 {
@@ -27,7 +28,7 @@ namespace NogardTheDragon.Objects
         public Player(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
             Speed = 9;
-            Health = 3;
+            Health = 5;
 
             RegisterAbilities();
             UsingSpritesheet = true;
@@ -36,8 +37,8 @@ namespace NogardTheDragon.Objects
         public Player(Vector2 pos) : base(pos)
         {
             Speed = 9;
-            Health = 3;
-            
+            Health = 5;
+            DrawPos = pos;
             RegisterAbilities();
         }
 
@@ -74,6 +75,8 @@ namespace NogardTheDragon.Objects
             NogardGame.HealthBonus = Health;
             base.Update(gameTime);
             Gliding = false;
+            Sinking = false;
+            Moving = false;
 
             if (Timer > 0)
             {
@@ -128,12 +131,15 @@ namespace NogardTheDragon.Objects
 
             if (Health <= 0)
                 NogardGame.GameOverManager.Lose();
+            if (Velocity.Y >= 60)
+                Health = 0;
 
             Velocity.Y += GravitySpeed;
 
             Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
-                        (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 20));
+
+                        (float) gameTime.ElapsedGameTime.TotalSeconds;
+            Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 60));
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             PlayerFrames(gameTime);
@@ -141,7 +147,22 @@ namespace NogardTheDragon.Objects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+
+            SourceRect = Source;
             base.Draw(spriteBatch);
+            if (NogardGame.GameState == NogardGame.GameStateEnum.GameActive ||
+                NogardGame.GameState == NogardGame.GameStateEnum.Pause)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    spriteBatch.Draw(TextureManager.LostHPTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), Color.White);
+                }
+
+                for (int i = 0; i < Health; i++)
+                {
+                    spriteBatch.Draw(TextureManager.HpTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                }
+            }
         }
 
         public void PlayerFrames(GameTime gameTime)

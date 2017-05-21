@@ -12,17 +12,20 @@ namespace NogardTheDragon.Utilities
         public enum TypeEnum
         {
             Platform,
-            MovingPlatform,
+            VerticalPlatform,
+            HorizontalPlatform,
             SpikePlatform,
             CloudPlatform,
             IcePlatform,
+            FadingPlatform,
             Player,
             Goal,
             Enemy,
             WalkingEnemy,
             FlyingEnemy,
             UnlimitedPowerPowerup,
-            SlowWorldPowerup
+            SlowWorldPowerup,
+            HealthGain
         }
 
         public float PosX;
@@ -33,14 +36,18 @@ namespace NogardTheDragon.Utilities
         {
             if (obj is Platform)
                 Type = TypeEnum.Platform;
-            if (obj is MovingPlatform)
-                Type = TypeEnum.MovingPlatform;
+            if (obj is VerticalPlatform)
+                Type = TypeEnum.VerticalPlatform;
+            if (obj is HorizontalPlatform)
+                Type = TypeEnum.HorizontalPlatform;
             if (obj is SpikePlatform)
                 Type = TypeEnum.SpikePlatform;
             if (obj is CloudPlatform)
                 Type = TypeEnum.CloudPlatform;
             if (obj is IcePlatform)
                 Type = TypeEnum.IcePlatform;
+            if (obj is FadingPlatform)
+                Type = TypeEnum.FadingPlatform;
             if (obj is Player)
                 Type = TypeEnum.Player;
             if (obj is Goal)
@@ -55,6 +62,8 @@ namespace NogardTheDragon.Utilities
                 Type = TypeEnum.UnlimitedPowerPowerup;
             if (obj is SlowWorldPowerObject)
                 Type = TypeEnum.SlowWorldPowerup;
+            if (obj is HealthGain)
+                Type = TypeEnum.HealthGain;
 
             PosX = obj.GetPosition().X;
             PosY = obj.GetPosition().Y;

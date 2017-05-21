@@ -42,12 +42,12 @@ namespace NogardTheDragon.Managers
         private void SaveToFile()
         {
             var dummyList = Objects.Select(obj => new DummyObject(obj)).ToList();
-            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/" + DateTime.Now.Ticks + ".bin", dummyList);
+            BinarySerializer.WriteToBinaryFile(Game.Content.RootDirectory + "/Maps/" + DateTime.Now.Ticks + ".bin", dummyList);
         }
 
         private void ReadFromFile()
         {
-            Objects = MapReader.ReadFile("Map");
+            Objects = MapReader.ReadFile("LevelThree");
         }
 
         public override void Update(GameTime gameTime)
@@ -56,23 +56,30 @@ namespace NogardTheDragon.Managers
             {
                 ClickCounter++;
 
-                switch (ClickCounter % 5)
+                switch (ClickCounter % 7)
                 {
                     case 0:
                         SelectedObject = ObjectEnum.Platform;
                         break;
                     case 1:
-                        SelectedObject = ObjectEnum.MovingPlatform;
+                        SelectedObject = ObjectEnum.VerticalPlatform;
                         break;
                     case 2:
-                        SelectedObject = ObjectEnum.SpikePlatform;
+                        SelectedObject = ObjectEnum.HorizontalPlatform;
                         break;
                     case 3:
-                        SelectedObject = ObjectEnum.CloudPlatform;
+                        SelectedObject = ObjectEnum.SpikePlatform;
                         break;
                     case 4:
+                        SelectedObject = ObjectEnum.CloudPlatform;
+                        break;
+                    case 5:
                         SelectedObject = ObjectEnum.IcePlatform;
                         break;
+                    case 6:
+                        SelectedObject = ObjectEnum.FadingPlatform;
+                        break;
+
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -94,6 +101,8 @@ namespace NogardTheDragon.Managers
                 SelectedObject = ObjectEnum.UnlimitedPower;
             if (Keyboard.GetState().IsKeyDown(Keys.W))
                 SelectedObject = ObjectEnum.SlowWorld;
+            if (Keyboard.GetState().IsKeyDown(Keys.H))
+                SelectedObject = ObjectEnum.HpGain;
             if (KeyMouseReader.KeyPressed(Keys.S))
                 SaveToFile();
             if(KeyMouseReader.KeyPressed(Keys.L))
@@ -148,8 +157,11 @@ namespace NogardTheDragon.Managers
                     case ObjectEnum.Platform:
                         Objects.Add(new Platform(PlacePosition, TextureManager.PlatformSpritesheet));
                         break;
-                    case ObjectEnum.MovingPlatform:
-                        Objects.Add(new MovingPlatform(PlacePosition, TextureManager.PlatformSpritesheet));
+                    case ObjectEnum.VerticalPlatform:
+                        Objects.Add(new VerticalPlatform(PlacePosition, TextureManager.MovingPlatformTex));
+                        break;
+                    case ObjectEnum.HorizontalPlatform:
+                        Objects.Add(new HorizontalPlatform(PlacePosition, TextureManager.MovingPlatformTex2));
                         break;
                     case ObjectEnum.SpikePlatform:
                         Objects.Add(new SpikePlatform(PlacePosition, TextureManager.PlatformSpritesheet));
@@ -159,6 +171,9 @@ namespace NogardTheDragon.Managers
                         break;
                     case ObjectEnum.IcePlatform:
                         Objects.Add(new IcePlatform(PlacePosition, TextureManager.PlatformSpritesheet));
+                        break;
+                    case ObjectEnum.FadingPlatform:
+                        Objects.Add(new FadingPlatform(PlacePosition, TextureManager.FadingPlatformTex));
                         break;
                     case ObjectEnum.Player:
                         Objects.Add(new Player(PlacePosition, TextureManager.NogardAbilitySpritesheet));
@@ -184,6 +199,9 @@ namespace NogardTheDragon.Managers
                     case ObjectEnum.SlowWorld:
                         Objects.Add(new SlowWorldPowerObject(PlacePosition, TextureManager.SlowWorldTex));
                         break;
+                    case ObjectEnum.HpGain:
+                        Objects.Add(new HealthGain(PlacePosition, TextureManager.HpGainTex));
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -197,8 +215,11 @@ namespace NogardTheDragon.Managers
                     Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 48, 50, 48), Color.White);
                     Sb.Draw(TextureManager.IndicatorLineTex, PlacePosition + new Vector2(0, 200));
                     break;
-                case ObjectEnum.MovingPlatform:
-                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(50, 144, 50, 48), Color.White);
+                case ObjectEnum.VerticalPlatform:
+                    Sb.Draw(TextureManager.MovingPlatformTex, PlacePosition);
+                    break;
+                case ObjectEnum.HorizontalPlatform:
+                    Sb.Draw(TextureManager.MovingPlatformTex2, PlacePosition);
                     break;
                 case ObjectEnum.SpikePlatform:
                     Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 192, 50, 48), Color.White);
@@ -208,6 +229,9 @@ namespace NogardTheDragon.Managers
                     break;
                 case ObjectEnum.IcePlatform:
                     Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 240, 100, 48), Color.White);
+                    break;
+                case ObjectEnum.FadingPlatform:
+                    Sb.Draw(TextureManager.FadingPlatformTex, PlacePosition);
                     break;
                 case ObjectEnum.Player:
                     Sb.Draw(TextureManager.NogardAbilitySpritesheet, PlacePosition, new Rectangle(0, 48, 48, 48), Color.White);
@@ -232,6 +256,9 @@ namespace NogardTheDragon.Managers
                 case ObjectEnum.SlowWorld:
                     Sb.Draw(TextureManager.SlowWorldTex, PlacePosition);
                     break;
+                case ObjectEnum.HpGain:
+                    Sb.Draw(TextureManager.HpGainTex, PlacePosition);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -244,10 +271,12 @@ namespace NogardTheDragon.Managers
         private enum ObjectEnum
         {
             Platform,
-            MovingPlatform,
+            VerticalPlatform,
+            HorizontalPlatform,
             SpikePlatform,
             CloudPlatform,
             IcePlatform,
+            FadingPlatform,
             Player,
             Enemy,
             WalkingEnemy,
@@ -255,6 +284,7 @@ namespace NogardTheDragon.Managers
             Goal,
             UnlimitedPower,
             SlowWorld,
+            HpGain,
             None
         }
     }

@@ -6,6 +6,7 @@ using NogardTheDragon.Managers;
 using NogardTheDragon.Utilities;
 using System.IO;
 using System.Collections.Generic;
+using NogardTheDragon.Objects;
 
 namespace NogardTheDragon
 {
@@ -22,6 +23,7 @@ namespace NogardTheDragon
             LevelSelector
         }
 
+        public static bool Admin = true;
         public static SpriteBatch SpriteBatch;
         public static int TotalScore, HealthBonus, KillBonus, LevlBonus, TimeBonus;
 
@@ -45,11 +47,11 @@ namespace NogardTheDragon
 
         protected override void Initialize()
         {
+            Window.Title = "Nogard the Dragon";
             Graphics.PreferredBackBufferWidth = 900;
             Graphics.PreferredBackBufferHeight = 700;
             Graphics.ApplyChanges();
             IsMouseVisible = true;
-
             base.Initialize();
         }
 
@@ -67,6 +69,8 @@ namespace NogardTheDragon
             LevelSelectorManager = new LevelSelectorManager();
             MainMenuManager.Init();
             ButtonManager.Init();
+            
+
         }
 
         protected override void UnloadContent()
@@ -125,8 +129,8 @@ namespace NogardTheDragon
                     MainMenuManager.Draw();
                     break;
                 case GameStateEnum.GameActive:
-                    SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
-                        GamePlayManager.ActiveMap?.Cam.GetTransform());
+                    SpriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null,
+                    GamePlayManager.ActiveMap?.Cam.GetTransform());
                     GamePlayManager.Draw();
                     break;
                 case GameStateEnum.HighScoreView:
@@ -151,8 +155,14 @@ namespace NogardTheDragon
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
             ButtonManager.Draw();
+            if (GameState == GameStateEnum.GameActive ||
+                GameState == GameStateEnum.Pause ||
+                GameState == GameStateEnum.GameOver)
+                Window.Title = TotalScore.ToString();
+            else
+                Window.Title = "Nogard the Dragon";
+
             SpriteBatch.End();
 
             base.Draw(gameTime);

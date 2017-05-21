@@ -5,6 +5,7 @@ using NogardTheDragon.Utilities;
 using System.Collections.Generic;
 using System.IO;
 using NogardTheDragon.Managers;
+using System.Windows.Forms;
 
 namespace NogardTheDragon.Managers
 {
@@ -22,6 +23,8 @@ namespace NogardTheDragon.Managers
         public override void Init()
         {
             NogardGame.GameState = NogardGame.GameStateEnum.MainMenu;
+            NogardGame.KillBonus = 0;
+            NogardGame.TotalScore = 0;
         }
 
         public override void Update(GameTime gameTime)
@@ -40,7 +43,12 @@ namespace NogardTheDragon.Managers
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ExitButton))
                     Game.Exit();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MapButton))
+                {
+                    if (NogardGame.Admin == true)
                     NogardGame.MapMakerManager.Init();
+                    else
+                    MessageBox.Show("Must be game administrator\nto access the mapmaker.");
+                }
             }
         }
 

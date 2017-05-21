@@ -29,9 +29,13 @@ namespace NogardTheDragon.Map
                         objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY),
                             TextureManager.PlatformSpritesheet));
                         break;
-                    case DummyObject.TypeEnum.MovingPlatform:
-                        objectList.Add(new MovingPlatform(new Vector2(dObj.PosX, dObj.PosY),
-                            TextureManager.PlatformSpritesheet));
+                    case DummyObject.TypeEnum.VerticalPlatform:
+                        objectList.Add(new VerticalPlatform(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.MovingPlatformTex));
+                        break;
+                    case DummyObject.TypeEnum.HorizontalPlatform:
+                        objectList.Add(new HorizontalPlatform(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.MovingPlatformTex2));
                         break;
                     case DummyObject.TypeEnum.SpikePlatform:
                         objectList.Add(new SpikePlatform(new Vector2(dObj.PosX, dObj.PosY),
@@ -43,6 +47,9 @@ namespace NogardTheDragon.Map
                         break;
                     case DummyObject.TypeEnum.IcePlatform:
                         objectList.Add(new IcePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlatformSpritesheet));
+                        break;
+                    case DummyObject.TypeEnum.FadingPlatform:
+                        objectList.Add(new FadingPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.FadingPlatformTex));
                         break;
                     case DummyObject.TypeEnum.Player:
                         objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), TextureManager.NogardAbilitySpritesheet));
@@ -66,6 +73,9 @@ namespace NogardTheDragon.Map
                     case DummyObject.TypeEnum.SlowWorldPowerup:
                         objectList.Add(new SlowWorldPowerObject(new Vector2(dObj.PosX, dObj.PosY),
                             TextureManager.SlowWorldTex));
+                        break;
+                    case DummyObject.TypeEnum.HealthGain:
+                        objectList.Add(new HealthGain(new Vector2(dObj.PosX, dObj.PosY), TextureManager.HpGainTex));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

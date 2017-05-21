@@ -7,6 +7,8 @@ namespace NogardTheDragon.Managers
     public static class TextureManager
     {
         public static Texture2D PlayerTex { get; private set; }
+        public static Texture2D HpTex { get; private set; }
+        public static Texture2D LostHPTex { get; private set; }
 
         public static Texture2D StandardEnemyTex { get; private set; }
         public static Texture2D ScoreEnemyTex { get; private set; }
@@ -14,9 +16,11 @@ namespace NogardTheDragon.Managers
 
         public static Texture2D StandardPlatformTex { get; private set; }
         public static Texture2D MovingPlatformTex { get; private set; }
+        public static Texture2D MovingPlatformTex2 { get; private set; }
         public static Texture2D CloudPlatformTex { get; private set; }
         public static Texture2D SpikePlatformTex { get; private set; }
         public static Texture2D IcePlatformTex { get; private set; }
+        public static Texture2D FadingPlatformTex { get; private set; }
 
         public static Texture2D MainMenuBackTex1 { get; private set; }
         public static Texture2D MainMenuBackTex2 { get; private set; }
@@ -33,6 +37,8 @@ namespace NogardTheDragon.Managers
         public static SpriteFont Font { get; private set; }
         public static Texture2D UnlimitedPowerTex { get; private set; }
         public static Texture2D SlowWorldTex { get; private set; }
+        public static Texture2D HpGainTex { get; private set; }
+
 
         public static Texture2D NogardAbilitySpritesheet { get; private set; }
         public static Texture2D EnemySpritesheet { get; private set; }
@@ -41,6 +47,8 @@ namespace NogardTheDragon.Managers
         public static void LoadTextures(ContentManager c)
         {
             PlayerTex = c.Load<Texture2D>(@"playersquare");
+            HpTex = c.Load<Texture2D>(@"hpTex");
+            LostHPTex = c.Load<Texture2D>(@"noHpTex");
 
             StandardEnemyTex = c.Load<Texture2D>(@"BaseEnemysquare");
             //ScoreEnemyTex = c.Load<Texture2D>(@"FILENAME");
@@ -48,9 +56,11 @@ namespace NogardTheDragon.Managers
 
             StandardPlatformTex = c.Load<Texture2D>(@"plattform");
             MovingPlatformTex = c.Load<Texture2D>(@"movingplatform");
+            MovingPlatformTex2 = c.Load<Texture2D>(@"movingplatform2");
             CloudPlatformTex = c.Load<Texture2D>(@"cloudplatform");
             SpikePlatformTex = c.Load<Texture2D>(@"spikeplatform");
             IcePlatformTex = c.Load<Texture2D>(@"iceplatform");
+            FadingPlatformTex = c.Load<Texture2D>(@"dissplatform");
 
             MainMenuBackTex1 = c.Load<Texture2D>(@"MainMenuBack1.0");
             MainMenuBackTex2 = c.Load<Texture2D>(@"MainMenuBack1.1");
@@ -72,6 +82,8 @@ namespace NogardTheDragon.Managers
             NogardAbilitySpritesheet = c.Load<Texture2D>(@"Spritesheets/NogardAbilitySpritesheet");
             EnemySpritesheet = c.Load<Texture2D>(@"Spritesheets/EnemySpritesheet");
             PlatformSpritesheet = c.Load<Texture2D>(@"Spritesheets/PlatformSpritesheet");
+            HpGainTex = c.Load<Texture2D>(@"HpGain");
+
         }
     }
 }

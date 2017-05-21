@@ -17,7 +17,7 @@ namespace NogardTheDragon.Abilities
             NogardGame.GamePlayManager.ActiveMap.ProjectilesToAdd.Add(new Projectile(
                 new Vector2(Owner.GetVelocity().X > 0 ? Owner.Dest.Right : Owner.Dest.Left, Owner.Dest.Top),
                 TextureManager.NogardAbilitySpritesheet,
-                new Vector2(Owner.GetVelocity().X > 0 ? 1 : -1, 0),
+                new Vector2(Owner.LastFacing == MovingObject.Facing.Right ? 1 : -1, 0),
                 Owner));
         }
 

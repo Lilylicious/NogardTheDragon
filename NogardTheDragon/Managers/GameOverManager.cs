@@ -54,15 +54,23 @@ namespace NogardTheDragon.Managers
 
         public override void Draw()
         {
-            Instance.GraphicsDevice.Clear(Color.Black);
-
-            if(Won)
-                NogardGame.SpriteBatch.Draw(TextureManager.PlayerTex, Vector2.One, Color.White);
+            if (Won)
+            {
+                Instance.GraphicsDevice.Clear(Color.Green);
+                NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Woooohoo Nogard has safely" +
+                    "\n       returned to his family!",
+                    new Vector2(170, 70), Color.Orange, 0, Vector2.Zero, 0.4f, SpriteEffects.None, 1);
+            }
             else
-                NogardGame.SpriteBatch.Draw(TextureManager.StandardEnemyTex, Vector2.One, Color.White);
+            {
+                Instance.GraphicsDevice.Clear(Color.Black);
+                NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Oow, Nogard is too injured to carry on." +
+                    "\n         Try again by starting over!",
+                    new Vector2(100, 70), Color.Orange, 0, Vector2.Zero, 0.4f, SpriteEffects.None, 1);
+            }
 
             NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Total Score = " + NogardGame.TotalScore,
-                new Vector2(260, 200), Color.White, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 1);
+                new Vector2(260, 260), Color.White, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 1);
         }
     }
 }

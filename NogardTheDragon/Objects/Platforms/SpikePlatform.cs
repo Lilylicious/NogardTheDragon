@@ -18,7 +18,6 @@ namespace NogardTheDragon.Objects.Platforms
 
         protected override bool HandleCollision()
         {
-
             var found = false;
             foreach (GameObject gameObject in Collides)
             {
@@ -36,10 +35,6 @@ namespace NogardTheDragon.Objects.Platforms
             }
 
             return found;
-
-
-
-
         }
     }
 }
