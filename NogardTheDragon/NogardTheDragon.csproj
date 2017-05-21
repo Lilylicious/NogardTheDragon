@@ -54,6 +54,7 @@
     <Compile Include="Managers\ButtonManager.cs" />
     <Compile Include="Managers\LevelSelectorManager.cs" />
     <Compile Include="Managers\MainMenuManager.cs" />
+    <Compile Include="Managers\PauseManager.cs" />
     <Compile Include="Managers\TextureManager.cs" />
     <Compile Include="Objects\AbilitysPowerups\SlowWorldPowerObject.cs" />
     <Compile Include="Objects\AbilitysPowerups\UnlimitedPowerObject.cs" />
@@ -191,6 +192,12 @@
     </Content>
     <Content Include="Icon.ico" />
     <None Include="Content\Maps\LevelOne.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Maps\LevelThree.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Maps\LevelTwo.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Maps\TestPlatforms.bin">

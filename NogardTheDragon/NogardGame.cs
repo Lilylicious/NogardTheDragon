@@ -36,6 +36,8 @@ namespace NogardTheDragon
         public static LevelSelectorManager LevelSelectorManager;
         public static ButtonManager ButtonManager;
         public static HighScoreDisplay HighScoreDisplay;
+        public static PauseManager PauseManager;
+
 
         public static GraphicsDeviceManager Graphics;
 
@@ -67,6 +69,7 @@ namespace NogardTheDragon
             ButtonManager = new ButtonManager();
             HighScoreDisplay = new HighScoreDisplay();
             LevelSelectorManager = new LevelSelectorManager();
+            PauseManager = new PauseManager();
             MainMenuManager.Init();
             ButtonManager.Init();
             
@@ -81,10 +84,6 @@ namespace NogardTheDragon
         {
             KeyMouseReader.Update();
             Variables.Update();
-
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                Keyboard.GetState().IsKeyDown(Keys.Escape))
-                MainMenuManager.Init();
 
             TotalScore = KillBonus + HealthBonus;
 
@@ -103,6 +102,7 @@ namespace NogardTheDragon
                     GameOverManager.Update(gameTime);
                     break;
                 case GameStateEnum.Pause:
+                    PauseManager.Update(gameTime);
                     break;
                 case GameStateEnum.MapMaker:
                     MapMakerManager.Update(gameTime);
@@ -142,6 +142,12 @@ namespace NogardTheDragon
                     GameOverManager.Draw();
                     break;
                 case GameStateEnum.Pause:
+                    SpriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null,
+                    GamePlayManager.ActiveMap?.Cam.GetTransform());
+                    GamePlayManager.Draw();
+                    SpriteBatch.End();
+                    SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+                    PauseManager.Draw();
                     break;
                 case GameStateEnum.MapMaker:
                     SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,

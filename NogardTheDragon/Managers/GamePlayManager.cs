@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Map;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Managers
 {
@@ -9,6 +11,9 @@ namespace NogardTheDragon.Managers
 
         public override void Update(GameTime gameTime)
         {
+            if (KeyMouseReader.KeyPressed(Keys.Escape))
+                NogardGame.PauseManager.Init();
+
             ActiveMap.Update(gameTime);
         }
 

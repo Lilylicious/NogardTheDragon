@@ -13,7 +13,8 @@ namespace NogardTheDragon.Managers
             InstuctionsButton, ExitButton, MapButton;
         public StandardButton SaveScoreButton, MainMenuButton, QuitButton;
         public StandardButton BackButton;
-        public StandardButton LevelOneButton, LevelTwoButton, LevelThreeButton;
+        public StandardButton LevelOneButton, LevelTwoButton, LevelThreeButton, SelectorBackButton;
+        public StandardButton ResumeButton, PauseMenuButton;
 
         public override void Init()
         {
@@ -23,6 +24,7 @@ namespace NogardTheDragon.Managers
             HighScoreButtons();
             GameOverButtons();
             LevelSelectorButtons();
+            PauseButtons();
         }
 
         public override void Update(GameTime gameTime)
@@ -40,6 +42,8 @@ namespace NogardTheDragon.Managers
                         b.Update(Color.Goldenrod, Color.Black);
                     break;
                 case NogardGame.GameStateEnum.Pause:
+                    foreach (var b in Buttons)
+                        b.Update(Color.Goldenrod, Color.Yellow);
                     break;
                 case NogardGame.GameStateEnum.GameOver:
                     foreach (var b in Buttons)
@@ -78,6 +82,8 @@ namespace NogardTheDragon.Managers
                     BackButton.DrawStandardButton(5, " Back", 0.5f);
                     break;
                 case NogardGame.GameStateEnum.Pause:
+                   ResumeButton.DrawStandardButton(5, "Resume", 0.5f);
+                    PauseMenuButton.DrawStandardButton(5, "MainMenu", 0.5f);
                     break;
                 case NogardGame.GameStateEnum.GameOver:
                     if (GameOverManager.ScoreForm.GameSaved == false)
@@ -93,7 +99,7 @@ namespace NogardTheDragon.Managers
                     LevelOneButton.DrawStandardButton(5, " Level One", 0.5f);
                     LevelTwoButton.DrawStandardButton(5, " Level Two", 0.5f);
                     LevelThreeButton.DrawStandardButton(5, " Level Three", 0.5f);
-                    BackButton.DrawStandardButton(5, " Back", 0.5f);
+                    SelectorBackButton.DrawStandardButton(5, " Back", 0.5f);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -140,8 +146,16 @@ namespace NogardTheDragon.Managers
             Buttons.Add(LevelTwoButton);
             LevelThreeButton = new StandardButton(new Rectangle(50, 190, 300, 55));
             Buttons.Add(LevelThreeButton);
-            BackButton = new StandardButton(new Rectangle(50, 635, 130, 55));
-            Buttons.Add(BackButton);
+            SelectorBackButton = new StandardButton(new Rectangle(50, 635, 130, 55));
+            Buttons.Add(SelectorBackButton);
+        }
+
+        public void PauseButtons()
+        {
+            ResumeButton = new StandardButton(new Rectangle(257, 350, 170, 55));
+            Buttons.Add(ResumeButton);
+            PauseMenuButton = new StandardButton(new Rectangle(487, 350, 220, 55));
+            Buttons.Add(PauseMenuButton);
         }
     }
 }
