@@ -115,7 +115,10 @@ namespace NogardTheDragon.Objects
                         (float) gameTime.ElapsedGameTime.TotalSeconds;
             Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 20));
 
-            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            //frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            frameTimer = gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (frameTimer > 1)
+                frameTimer = 1;
 
             if (frameTimer <= 0)
             {
