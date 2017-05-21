@@ -42,12 +42,14 @@ namespace NogardTheDragon.Managers
                     ScoreForm.Show();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ContinueButton))
                 {
-                    if (NogardGame.MapsComplete % 3 == 0)
+                    if (NogardGame.MapsComplete == 0)
                         NogardGame.GamePlayManager.StartMap("LevelOne");
-                    if (NogardGame.MapsComplete % 3 == 1)
+                    if (NogardGame.MapsComplete == 1)
                         NogardGame.GamePlayManager.StartMap("LevelTwo");
-                    if (NogardGame.MapsComplete % 3 == 2)
+                    if (NogardGame.MapsComplete == 2)
                         NogardGame.GamePlayManager.StartMap("LevelThree");
+                    if(NogardGame.MapsComplete > 2)
+                        NogardGame.MainMenuManager.Init();
                 }
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MainMenuButton))
                 {
