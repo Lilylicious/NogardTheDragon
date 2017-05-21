@@ -11,7 +11,7 @@ namespace NogardTheDragon.Managers
 
         public StandardButton PlayButton, ScoreButton, AboutNogardButton, 
             InstuctionsButton, ExitButton, MapButton;
-        public StandardButton SaveScoreButton, MainMenuButton, QuitButton;
+        public StandardButton SaveScoreButton, MainMenuButton, QuitButton, ContinueButton;
         public StandardButton BackButton;
         public StandardButton LevelOneButton, LevelTwoButton, LevelThreeButton, SelectorBackButton;
         public StandardButton ResumeButton, PauseMenuButton;
@@ -91,6 +91,7 @@ namespace NogardTheDragon.Managers
                     else
                         SaveScoreButton.DrawStandardButton(5, "Score saved", 0.45f);
                     MainMenuButton.DrawStandardButton(5, " MainMenu", 0.4f);
+                    ContinueButton.DrawStandardButton(5, "Continue", 0.5f);
                     QuitButton.DrawStandardButton(5, " Quit Game", 0.4f);
                     break;
                 case NogardGame.GameStateEnum.MapMaker:
@@ -124,7 +125,9 @@ namespace NogardTheDragon.Managers
 
         public void GameOverButtons()
         {
-            SaveScoreButton = new StandardButton(new Rectangle(300, 350, 260, 70));
+            ContinueButton = new StandardButton(new Rectangle(200, 350, 240, 70));
+            Buttons.Add(ContinueButton);
+            SaveScoreButton = new StandardButton(new Rectangle(500, 350, 260, 70));
             Buttons.Add(SaveScoreButton);
             MainMenuButton = new StandardButton(new Rectangle(230, 460, 185, 55));
             Buttons.Add(MainMenuButton);

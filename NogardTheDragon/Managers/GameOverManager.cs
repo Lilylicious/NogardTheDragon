@@ -18,6 +18,7 @@ namespace NogardTheDragon.Managers
         public void Win()
         {
             Won = true;
+            NogardGame.MapsComplete++;
             Init();
         }
 
@@ -39,6 +40,15 @@ namespace NogardTheDragon.Managers
             {
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.SaveScoreButton) && !ScoreForm.GameSaved)
                     ScoreForm.Show();
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ContinueButton))
+                {
+                    if (NogardGame.MapsComplete % 3 == 0)
+                        NogardGame.GamePlayManager.StartMap("LevelOne");
+                    if (NogardGame.MapsComplete % 3 == 1)
+                        NogardGame.GamePlayManager.StartMap("LevelTwo");
+                    if (NogardGame.MapsComplete % 3 == 2)
+                        NogardGame.GamePlayManager.StartMap("LevelThree");
+                }
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MainMenuButton))
                 {
                     NogardGame.MainMenuManager.Init();
