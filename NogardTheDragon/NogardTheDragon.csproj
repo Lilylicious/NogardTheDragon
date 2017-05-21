@@ -79,6 +79,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StoryMode.cs" />
     <Compile Include="Utilities\Camera.cs" />
     <Compile Include="Abilities\BaseAbility.cs" />
     <Compile Include="Abilities\BasePowerup.cs" />

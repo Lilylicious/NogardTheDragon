@@ -17,6 +17,7 @@ namespace NogardTheDragon
             MainMenu,
             GameActive,
             HighScoreView,
+            Story,
             GameOver,
             Pause,
             MapMaker,
@@ -25,12 +26,13 @@ namespace NogardTheDragon
 
         public static bool Admin = true;
         public static SpriteBatch SpriteBatch;
-        public static int TotalScore, HealthBonus, KillBonus, LevlBonus, TimeBonus, MapsComplete;
+        public static int TotalScore, HealthBonus, KillBonus, LevelBonus, MapsComplete;
 
         public static GameStateEnum GameState = GameStateEnum.MainMenu;
 
         public static MainMenuManager MainMenuManager;
         public static GamePlayManager GamePlayManager;
+        public static StoryMode StoryMode;
         public static GameOverManager GameOverManager;
         public static MapMakerManager MapMakerManager;
         public static LevelSelectorManager LevelSelectorManager;
@@ -64,6 +66,7 @@ namespace NogardTheDragon
 
             MainMenuManager = new MainMenuManager(this);
             GamePlayManager = new GamePlayManager();
+            StoryMode = new StoryMode();
             GameOverManager = new GameOverManager(this);
             MapMakerManager = new MapMakerManager(this);
             ButtonManager = new ButtonManager();
@@ -72,8 +75,6 @@ namespace NogardTheDragon
             PauseManager = new PauseManager();
             MainMenuManager.Init();
             ButtonManager.Init();
-            
-
         }
 
         protected override void UnloadContent()
@@ -85,7 +86,7 @@ namespace NogardTheDragon
             KeyMouseReader.Update();
             Variables.Update();
 
-            TotalScore = KillBonus + HealthBonus;
+            TotalScore = KillBonus + HealthBonus + LevelBonus;
 
             switch (GameState)
             {
@@ -97,6 +98,9 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.HighScoreView:
                     HighScoreDisplay.Update(gameTime);
+                    break;
+                case GameStateEnum.Story:
+                    StoryMode.Update(gameTime);
                     break;
                 case GameStateEnum.GameOver:
                     GameOverManager.Update(gameTime);
@@ -136,6 +140,10 @@ namespace NogardTheDragon
                 case GameStateEnum.HighScoreView:
                     SpriteBatch.Begin();
                     HighScoreDisplay.Draw();
+                    break;
+                case GameStateEnum.Story:
+                    SpriteBatch.Begin();
+                    StoryMode.Draw();
                     break;
                 case GameStateEnum.GameOver:
                     SpriteBatch.Begin();

@@ -19,7 +19,9 @@ namespace NogardTheDragon.Objects
             {
                 if (gameObject is Player)
                 {
-                    NogardGame.GameOverManager.Win();
+                    StoryMode.IntroStory = false;
+                    NogardGame.MapsComplete++;
+                    NogardGame.StoryMode.Init();
                     found = true;
                 }
             }

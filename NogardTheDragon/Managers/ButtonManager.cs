@@ -25,6 +25,7 @@ namespace NogardTheDragon.Managers
             GameOverButtons();
             LevelSelectorButtons();
             PauseButtons();
+            StoryModeButtons();
         }
 
         public override void Update(GameTime gameTime)
@@ -34,6 +35,12 @@ namespace NogardTheDragon.Managers
                 case NogardGame.GameStateEnum.MainMenu:
                     foreach (var b in Buttons)
                         b.Update(Color.Goldenrod, Color.Yellow);
+                    break;
+                case NogardGame.GameStateEnum.Story:
+                    if (StoryMode.IntroStory)
+                        BackButton.Update(Color.Goldenrod, Color.Black);
+                    else
+                        ContinueButton.Update(Color.Goldenrod, Color.Black);
                     break;
                 case NogardGame.GameStateEnum.GameActive:
                     break;
@@ -71,10 +78,16 @@ namespace NogardTheDragon.Managers
                 case NogardGame.GameStateEnum.MainMenu:
                     PlayButton.DrawStandardButton(5, "Play", 1);
                     ScoreButton.DrawStandardButton(5, " Highscore", 0.5f);
-                    //AboutNogardButton.DrawStandardButton(5, "About Nogard", 0.4f);
+                    AboutNogardButton.DrawStandardButton(5, "About Nogard", 0.4f);
                     InstuctionsButton.DrawStandardButton(5, "  How to play", 0.4f);
                     ExitButton.DrawStandardButton(5, " Exit", 0.4f);
                     MapButton.DrawStandardButton(5, " MapMaker", 0.4f);
+                    break;
+                case NogardGame.GameStateEnum.Story:
+                    if (StoryMode.IntroStory)
+                    BackButton.DrawStandardButton(5, " Back", 0.5f);
+                    else
+                    ContinueButton.DrawStandardButton(5, "  Continue", 0.5f);
                     break;
                 case NogardGame.GameStateEnum.GameActive:
                     break;
@@ -91,7 +104,6 @@ namespace NogardTheDragon.Managers
                     else
                         SaveScoreButton.DrawStandardButton(5, "Score saved", 0.45f);
                     MainMenuButton.DrawStandardButton(5, " MainMenu", 0.4f);
-                    ContinueButton.DrawStandardButton(5, "Continue", 0.5f);
                     QuitButton.DrawStandardButton(5, " Quit Game", 0.4f);
                     break;
                 case NogardGame.GameStateEnum.MapMaker:
@@ -100,7 +112,7 @@ namespace NogardTheDragon.Managers
                     LevelOneButton.DrawStandardButton(5, " Level One", 0.5f);
                     LevelTwoButton.DrawStandardButton(5, " Level Two", 0.5f);
                     LevelThreeButton.DrawStandardButton(5, " Level Three", 0.5f);
-                    SelectorBackButton.DrawStandardButton(5, " Back", 0.5f);
+                    SelectorBackButton.DrawStandardButton(5, " Back", 0.4f);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -109,15 +121,15 @@ namespace NogardTheDragon.Managers
 
         public void MainMenuButtons()
         {
-            PlayButton = new StandardButton(new Rectangle(600, 70, 260, 120));
+            PlayButton = new StandardButton(new Rectangle(610, 20, 260, 120));
             Buttons.Add(PlayButton);
-            ScoreButton = new StandardButton(new Rectangle(600, 200, 260, 70));
+            ScoreButton = new StandardButton(new Rectangle(610, 150, 260, 70));
             Buttons.Add(ScoreButton);
-            //AboutNogardButton = new StandardButton(new Rectangle(620, 240, 260, 60));
-            //Buttons.Add(AboutNogardButton);
-            InstuctionsButton = new StandardButton(new Rectangle(600, 280, 260, 60));
+            AboutNogardButton = new StandardButton(new Rectangle(610, 230, 260, 60));
+            Buttons.Add(AboutNogardButton);
+            InstuctionsButton = new StandardButton(new Rectangle(610, 300, 260, 60));
             Buttons.Add(InstuctionsButton);
-            ExitButton = new StandardButton(new Rectangle(680, 350, 90, 55));
+            ExitButton = new StandardButton(new Rectangle(690, 370, 90, 55));
             Buttons.Add(ExitButton);
             MapButton = new StandardButton(new Rectangle(10, 635, 210, 55));
             Buttons.Add(MapButton);
@@ -125,9 +137,7 @@ namespace NogardTheDragon.Managers
 
         public void GameOverButtons()
         {
-            ContinueButton = new StandardButton(new Rectangle(200, 350, 240, 70));
-            Buttons.Add(ContinueButton);
-            SaveScoreButton = new StandardButton(new Rectangle(500, 350, 260, 70));
+            SaveScoreButton = new StandardButton(new Rectangle(300, 350, 260, 70));
             Buttons.Add(SaveScoreButton);
             MainMenuButton = new StandardButton(new Rectangle(230, 460, 185, 55));
             Buttons.Add(MainMenuButton);
@@ -143,13 +153,13 @@ namespace NogardTheDragon.Managers
 
         public void LevelSelectorButtons()
         {
-            LevelOneButton = new StandardButton(new Rectangle(50, 50, 300, 55));
+            LevelOneButton = new StandardButton(new Rectangle(300, 100, 300, 55));
             Buttons.Add(LevelOneButton);
-            LevelTwoButton = new StandardButton(new Rectangle(50, 120, 300, 55));
+            LevelTwoButton = new StandardButton(new Rectangle(300, 170, 300, 55));
             Buttons.Add(LevelTwoButton);
-            LevelThreeButton = new StandardButton(new Rectangle(50, 190, 300, 55));
+            LevelThreeButton = new StandardButton(new Rectangle(300, 240, 300, 55));
             Buttons.Add(LevelThreeButton);
-            SelectorBackButton = new StandardButton(new Rectangle(50, 635, 130, 55));
+            SelectorBackButton = new StandardButton(new Rectangle(400, 635, 110, 50));
             Buttons.Add(SelectorBackButton);
         }
 
@@ -159,6 +169,15 @@ namespace NogardTheDragon.Managers
             Buttons.Add(ResumeButton);
             PauseMenuButton = new StandardButton(new Rectangle(487, 350, 220, 55));
             Buttons.Add(PauseMenuButton);
+        }
+
+        public void StoryModeButtons()
+        {
+            BackButton = new StandardButton(new Rectangle(380, 635, 130, 55));
+            Buttons.Add(BackButton);
+            ContinueButton = new StandardButton(new Rectangle(330, 620, 240, 70));
+            Buttons.Add(ContinueButton);
+
         }
     }
 }

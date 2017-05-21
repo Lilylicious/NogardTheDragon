@@ -84,13 +84,11 @@ namespace NogardTheDragon.Objects
                 Timer -= gameTime.ElapsedGameTime.TotalSeconds;
                 Color = Color.Red;
             }
-
             else
             {
                 Timer = 0;
                 Color = Color.White;
             }
-
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
@@ -107,7 +105,6 @@ namespace NogardTheDragon.Objects
                 Direction.X = -1f;
                 Effects = SpriteEffects.FlipHorizontally;
             }
-
             else
             {
                 animationState = AnimationEnum.Standing;

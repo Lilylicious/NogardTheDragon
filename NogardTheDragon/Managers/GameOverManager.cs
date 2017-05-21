@@ -18,7 +18,6 @@ namespace NogardTheDragon.Managers
         public void Win()
         {
             Won = true;
-            NogardGame.MapsComplete++;
             Init();
         }
 
@@ -40,17 +39,7 @@ namespace NogardTheDragon.Managers
             {
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.SaveScoreButton) && !ScoreForm.GameSaved)
                     ScoreForm.Show();
-                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ContinueButton))
-                {
-                    if (NogardGame.MapsComplete == 0)
-                        NogardGame.GamePlayManager.StartMap("LevelOne");
-                    if (NogardGame.MapsComplete == 1)
-                        NogardGame.GamePlayManager.StartMap("LevelTwo");
-                    if (NogardGame.MapsComplete == 2)
-                        NogardGame.GamePlayManager.StartMap("LevelThree");
-                    if(NogardGame.MapsComplete > 2)
-                        NogardGame.MainMenuManager.Init();
-                }
+
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MainMenuButton))
                 {
                     NogardGame.MainMenuManager.Init();
@@ -68,9 +57,9 @@ namespace NogardTheDragon.Managers
         {
             if (Won)
             {
-                Instance.GraphicsDevice.Clear(Color.Green);
-                NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Woooohoo Nogard has safely" +
-                    "\n       returned to his family!",
+                Instance.GraphicsDevice.Clear(Color.Blue);
+                NogardGame.SpriteBatch.DrawString(TextureManager.Font, "        Thank you for playing!" +
+                    "\nPlay again to beat your record.",
                     new Vector2(170, 70), Color.Orange, 0, Vector2.Zero, 0.4f, SpriteEffects.None, 1);
             }
             else

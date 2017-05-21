@@ -25,6 +25,7 @@ namespace NogardTheDragon.Managers
             NogardGame.GameState = NogardGame.GameStateEnum.MainMenu;
             NogardGame.KillBonus = 0;
             NogardGame.TotalScore = 0;
+            NogardGame.LevelBonus = 0;
         }
 
         public override void Update(GameTime gameTime)
@@ -44,6 +45,24 @@ namespace NogardTheDragon.Managers
                     NogardGame.HighScoreDisplay.Init();
                     break;
                 }
+
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.InstuctionsButton))
+                {
+                    MessageBox.Show(
+                        "Movement:  Right & left keys." +
+                        "\nJump:  Up key once for single jump," +
+                        "\ntwice for double jump." +
+                        "\nShoot projectile:  Space key." +
+                        "\nPause game:  ESC key.");
+                    break;
+                }
+
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.AboutNogardButton))
+                {
+                    NogardGame.StoryMode.Init();
+                    break;
+                }
+
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ExitButton))
                     Game.Exit();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MapButton))
@@ -58,7 +77,7 @@ namespace NogardTheDragon.Managers
 
         public override void Draw()
         {
-                MainMenuBackground.Draw();
+            MainMenuBackground.Draw();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace NogardTheDragon.Managers
                     NogardGame.GamePlayManager.StartMap("LevelThree");
                     NogardGame.MapsComplete = 2;
                 }
-                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.BackButton))
+                if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.SelectorBackButton))
                     NogardGame.MainMenuManager.Init();
             }
         }
