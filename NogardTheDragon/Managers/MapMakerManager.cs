@@ -47,7 +47,7 @@ namespace NogardTheDragon.Managers
 
         private void ReadFromFile()
         {
-            Objects = MapReader.ReadFile("LevelThree");
+            Objects = MapReader.ReadFile("LevelOne");
         }
 
         public override void Update(GameTime gameTime)

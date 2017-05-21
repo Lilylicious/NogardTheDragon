@@ -29,13 +29,17 @@ namespace NogardTheDragon.Objects.Enemies
         public void TakeDamage(int damage)
         {
             Health -= damage;
-            NogardGame.KillBonus += 2;
-            Active = false;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (Health <= 0 && Active)
+            {
+                NogardGame.KillBonus += 2;
+                Active = false;
+            }
 
             Velocity.Y += GravitySpeed;
         }

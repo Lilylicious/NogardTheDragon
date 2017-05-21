@@ -13,11 +13,18 @@ namespace NogardTheDragon.Objects.Enemies
         {
             StartPos = pos;
             Source = new Rectangle(0, 150, 31, 32);
+            Health = 5;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (Health <= 0 && Active)
+            {
+                NogardGame.KillBonus += 2;
+                Active = false;
+            }
 
             if (DrawPos.X <= StartPos.X - 100)
                 MoveRight = true;

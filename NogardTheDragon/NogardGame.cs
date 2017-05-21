@@ -156,6 +156,7 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.LevelSelector:
                     SpriteBatch.Begin();
+                    GraphicsDevice.Clear(Color.Purple);
                     LevelSelectorManager.Draw();
                     break;
                 default:
