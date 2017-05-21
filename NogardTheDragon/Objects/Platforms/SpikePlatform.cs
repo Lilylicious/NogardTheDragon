@@ -9,7 +9,7 @@ namespace NogardTheDragon.Objects.Platforms
         public SpikePlatform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
         {
-            Source = new Rectangle(0, 192, 50, 48);
+            Source = new Rectangle(0, 192, 50, 16);
         }
         public SpikePlatform(Vector2 pos)
             : base(pos)

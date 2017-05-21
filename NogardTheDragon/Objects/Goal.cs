@@ -8,8 +8,8 @@ namespace NogardTheDragon.Objects
     {
         public Goal(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            Source = new Rectangle(50, 288, 50, 48);
             UsingSpritesheet = true;
+            Source = new Rectangle(0, 288, 50, 48);
         }
 
         protected override bool HandleCollision()

@@ -43,7 +43,6 @@ namespace NogardTheDragon.Objects
         protected double TimeBetweenFrames = 0.1;
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
-        protected int frame;
         protected double frameTimer = 200, frameInterval = 200;
         protected float rotation = 0;
         protected bool AffectedByGravity = true;

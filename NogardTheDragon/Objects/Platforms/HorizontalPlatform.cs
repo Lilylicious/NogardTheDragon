@@ -15,6 +15,7 @@ namespace NogardTheDragon.Objects.Platforms
             :base (pos, tex)
         {
             Vertical = false;
+            Source = new Rectangle(0, 145, 50, 16);
         }
 
         protected override bool HandleCollision()

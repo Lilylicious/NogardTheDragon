@@ -15,6 +15,8 @@ namespace NogardTheDragon.Objects.Platforms
             : base(pos, tex)
         {
             Vertical = true;
+            UsingSpritesheet = true;
+            Source = new Rectangle(50, 145, 50, 16);
         }
 
         protected override bool HandleCollision()

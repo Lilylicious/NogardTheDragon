@@ -15,15 +15,15 @@ namespace NogardTheDragon.Objects.Enemies
         public BaseEnemy(Vector2 pos) : base(pos)
         {
             Speed = 2;
-            Health = 1;
+            Health = 2;
         }
         public BaseEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            Source = new Rectangle(0, 48, 48, 48);
             UsingSpritesheet = true;
+            Source = new Rectangle(0, 48, 18, 40);
 
             Speed = 2;
-            Health = 1;
+            Health = 2;
         }
 
         public void TakeDamage(int damage)

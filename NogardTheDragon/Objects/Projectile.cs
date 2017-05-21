@@ -16,6 +16,8 @@ namespace NogardTheDragon.Objects
             Source = new Rectangle(0, 140, 25, 20);
             if (owner.LastFacing == Facing.Left)
                 Effects = SpriteEffects.FlipHorizontally;
+            else
+                Effects = SpriteEffects.None;
 
             Speed = 5;
 

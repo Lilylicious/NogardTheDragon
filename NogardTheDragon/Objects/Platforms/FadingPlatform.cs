@@ -19,6 +19,7 @@ namespace NogardTheDragon.Objects.Platforms
         public FadingPlatform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
         {
+            Source = new Rectangle(150, 145, 50, 16);
         }
 
         public override void Update(GameTime gameTime)

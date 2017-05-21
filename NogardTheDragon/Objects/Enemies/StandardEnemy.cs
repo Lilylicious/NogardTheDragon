@@ -1,45 +1,47 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects.Enemies
 {
     internal class StandardEnemy : BaseEnemy
     {
+        private Vector2 StartPos;
+        private bool MoveRight;
+
         public StandardEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-            Source = new Rectangle(48, 48, 48, 48);
+            StartPos = pos;
+            Source = new Rectangle(0, 150, 31, 32);
         }
-            public override void Update(GameTime gameTime)
+
+        public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-                if (Velocity.X <= Velocity.X - 5)
-            {
-                Walk = false;
-                Effects = SpriteEffects.FlipHorizontally;
-            }
-            else if (Velocity.X >= Velocity.X + 5)
-            {
-                Walk = true;
-                Effects = SpriteEffects.None;
-            }
+            if (DrawPos.X <= StartPos.X - 100)
+                MoveRight = true;
+            else if (DrawPos.X >= StartPos.X + 100)
+                MoveRight = false;
 
-            if (Walk == false)
-            {
-                Velocity.X += 1f;
-            }
-            else if (Walk == true)
-            {
-                Velocity.X -= 1;
-            }
+            if (Variables.UpdateTick)
+                if (!MoveRight)
+                {
+                    Effects = SpriteEffects.FlipHorizontally;
+                    DrawPos.X -= 1f;
+                }
+                else if (MoveRight)
+                {
+                    Effects = SpriteEffects.None;
+                    DrawPos.X += 1;
+                }
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
-
             if (frameTimer <= 0)
             {
                 frameTimer = frameInterval;
-                frame++;
-                Source = new Rectangle((CurrentFrame % 4) * 32, Source.Y, Source.Width, Source.Height);
+                CurrentFrame++;
+                Source = new Rectangle((CurrentFrame % 4) * 31, Source.Y, Source.Width, Source.Height);
             }
         }
     }

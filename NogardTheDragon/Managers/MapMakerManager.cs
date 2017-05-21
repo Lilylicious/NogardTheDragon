@@ -158,10 +158,10 @@ namespace NogardTheDragon.Managers
                         Objects.Add(new Platform(PlacePosition, TextureManager.PlatformSpritesheet));
                         break;
                     case ObjectEnum.VerticalPlatform:
-                        Objects.Add(new VerticalPlatform(PlacePosition, TextureManager.MovingPlatformTex));
+                        Objects.Add(new VerticalPlatform(PlacePosition, TextureManager.PlatformSpritesheet));
                         break;
                     case ObjectEnum.HorizontalPlatform:
-                        Objects.Add(new HorizontalPlatform(PlacePosition, TextureManager.MovingPlatformTex2));
+                        Objects.Add(new HorizontalPlatform(PlacePosition, TextureManager.PlatformSpritesheet));
                         break;
                     case ObjectEnum.SpikePlatform:
                         Objects.Add(new SpikePlatform(PlacePosition, TextureManager.PlatformSpritesheet));
@@ -173,7 +173,7 @@ namespace NogardTheDragon.Managers
                         Objects.Add(new IcePlatform(PlacePosition, TextureManager.PlatformSpritesheet));
                         break;
                     case ObjectEnum.FadingPlatform:
-                        Objects.Add(new FadingPlatform(PlacePosition, TextureManager.FadingPlatformTex));
+                        Objects.Add(new FadingPlatform(PlacePosition, TextureManager.PlatformSpritesheet));
                         break;
                     case ObjectEnum.Player:
                         Objects.Add(new Player(PlacePosition, TextureManager.NogardAbilitySpritesheet));
@@ -212,41 +212,41 @@ namespace NogardTheDragon.Managers
             switch (SelectedObject)
             {
                 case ObjectEnum.Platform:
-                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 48, 50, 48), Color.White);
+                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 0, 50, 15), Color.White);
                     Sb.Draw(TextureManager.IndicatorLineTex, PlacePosition + new Vector2(0, 200));
                     break;
                 case ObjectEnum.VerticalPlatform:
-                    Sb.Draw(TextureManager.MovingPlatformTex, PlacePosition);
+                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(50, 145, 50, 16), Color.White);
                     break;
                 case ObjectEnum.HorizontalPlatform:
-                    Sb.Draw(TextureManager.MovingPlatformTex2, PlacePosition);
+                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 145, 50, 16), Color.White);
                     break;
                 case ObjectEnum.SpikePlatform:
-                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 192, 50, 48), Color.White);
+                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 192, 50, 16), Color.White);
                     break;
                 case ObjectEnum.CloudPlatform:
-                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 96, 50, 48), Color.White);
+                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 96, 50, 16), Color.White);
                     break;
                 case ObjectEnum.IcePlatform:
-                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 240, 100, 48), Color.White);
+                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 240, 100, 15), Color.White);
                     break;
                 case ObjectEnum.FadingPlatform:
-                    Sb.Draw(TextureManager.FadingPlatformTex, PlacePosition);
+                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(150, 145, 50, 16), Color.White);
                     break;
                 case ObjectEnum.Player:
-                    Sb.Draw(TextureManager.NogardAbilitySpritesheet, PlacePosition, new Rectangle(0, 48, 48, 48), Color.White);
+                    Sb.Draw(TextureManager.NogardAbilitySpritesheet, PlacePosition, new Rectangle(0, 0, 24, 31), Color.White);
                     break;
                 case ObjectEnum.Enemy:
-                    Sb.Draw(TextureManager.EnemySpritesheet, MousePosition, new Rectangle(0, 48, 48, 48), Color.White);
+                    Sb.Draw(TextureManager.EnemySpritesheet, MousePosition, new Rectangle(0, 48, 18, 40), Color.White);
                     break;
                 case ObjectEnum.WalkingEnemy:
-                    Sb.Draw(TextureManager.EnemySpritesheet, MousePosition, new Rectangle(48, 48, 48, 48), Color.White);
+                    Sb.Draw(TextureManager.EnemySpritesheet, MousePosition, new Rectangle(0, 150, 30, 25), Color.White);
                     break;
                 case ObjectEnum.FlyingEnemy:
                     Sb.Draw(TextureManager.EnemySpritesheet, MousePosition, new Rectangle(0, 144, 48, 48), Color.White);
                     break;
                 case ObjectEnum.Goal:
-                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(50, 288, 50, 48), Color.White);
+                    Sb.Draw(TextureManager.PlatformSpritesheet, PlacePosition, new Rectangle(0, 288, 50, 48), Color.White);
                     break;
                 case ObjectEnum.None:
                     break;

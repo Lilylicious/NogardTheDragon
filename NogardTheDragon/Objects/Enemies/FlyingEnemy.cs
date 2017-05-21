@@ -52,7 +52,7 @@ namespace NogardTheDragon.Objects.Enemies
             if (frameTimer <= 0)
             {
                 frameTimer = frameInterval;
-                frame++;
+                CurrentFrame++;
                 Source = new Rectangle((CurrentFrame % 4) * 32, Source.Y, Source.Width, Source.Height);
             }
         }

@@ -8,6 +8,7 @@ namespace NogardTheDragon.Objects.Platforms
         public Platform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
         {
+            Source = new Rectangle(0, 0, 50, 15);
         }
         public Platform(Vector2 pos)
             : base(pos)
