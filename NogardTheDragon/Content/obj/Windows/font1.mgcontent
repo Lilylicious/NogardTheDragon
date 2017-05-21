@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Martin Midtgaard/Documents/GitHub/NogardTheDragon/NogardTheDragon/Content/font1.spritefont</SourceFile>
-  <SourceTime>2017-05-15T18:02:29.8323207+02:00</SourceTime>
-  <DestFile>C:/Users/Martin Midtgaard/Documents/GitHub/NogardTheDragon/NogardTheDragon/Content/bin/Windows/font1.xnb</DestFile>
-  <DestTime>2017-05-17T12:44:12.0317396+02:00</DestTime>
+  <SourceFile>C:/Users/Betty/OneDrive/Dokument/GitHub/NogardTheDragon/NogardTheDragon/Content/font1.spritefont</SourceFile>
+  <SourceTime>2017-05-21T11:18:38.6331484+02:00</SourceTime>
+  <DestFile>C:/Users/Betty/OneDrive/Dokument/GitHub/NogardTheDragon/NogardTheDragon/Content/bin/Windows/font1.xnb</DestFile>
+  <DestTime>2017-05-21T11:21:07.1184431+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

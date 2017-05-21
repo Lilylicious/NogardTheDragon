@@ -25,8 +25,12 @@ namespace NogardTheDragon.Objects
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
         public bool Gliding;
+        public bool ChangeFrameStanding;
+        public bool ChangeFrameWalking;
+        public bool ChangeFrameJumping;
+        public bool ChangeFrameShooting;
         protected bool Gravity = false;
-        protected Facing LastFacing = Facing.Left;
+        public Facing LastFacing = Facing.Left;
         protected bool Moving = false;
         protected int NumberOfFrames;
         protected List<BasePowerup> Powerups = new List<BasePowerup>();
@@ -36,7 +40,7 @@ namespace NogardTheDragon.Objects
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
         protected int frame;
-        protected double frameTimer = 100, frameInterval = 100;
+        protected double frameTimer = 200, frameInterval = 200;
         protected float rotation = 0;
         protected bool AffectedByGravity = true;
 
