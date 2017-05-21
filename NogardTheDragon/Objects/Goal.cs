@@ -8,11 +8,8 @@ namespace NogardTheDragon.Objects
     {
         public Goal(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, DrawPos, Color.White);
+            Source = new Rectangle(50, 288, 50, 48);
+            UsingSpritesheet = true;
         }
 
         protected override bool HandleCollision()

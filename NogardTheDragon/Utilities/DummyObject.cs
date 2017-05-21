@@ -21,6 +21,8 @@ namespace NogardTheDragon.Utilities
             Player,
             Goal,
             Enemy,
+            WalkingEnemy,
+            FlyingEnemy,
             UnlimitedPowerPowerup,
             SlowWorldPowerup,
             HealthGain
@@ -52,6 +54,10 @@ namespace NogardTheDragon.Utilities
                 Type = TypeEnum.Goal;
             if (obj is BaseEnemy)
                 Type = TypeEnum.Enemy;
+            if (obj is StandardEnemy)
+                Type = TypeEnum.WalkingEnemy;
+            if (obj is FlyingEnemy)
+                Type = TypeEnum.FlyingEnemy;
             if (obj is UnlimitedPowerObject)
                 Type = TypeEnum.UnlimitedPowerPowerup;
             if (obj is SlowWorldPowerObject)

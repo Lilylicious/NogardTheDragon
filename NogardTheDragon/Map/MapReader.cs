@@ -27,7 +27,7 @@ namespace NogardTheDragon.Map
                 {
                     case DummyObject.TypeEnum.Platform:
                         objectList.Add(new Platform(new Vector2(dObj.PosX, dObj.PosY),
-                            TextureManager.StandardPlatformTex));
+                            TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.VerticalPlatform:
                         objectList.Add(new VerticalPlatform(new Vector2(dObj.PosX, dObj.PosY),
@@ -39,26 +39,32 @@ namespace NogardTheDragon.Map
                         break;
                     case DummyObject.TypeEnum.SpikePlatform:
                         objectList.Add(new SpikePlatform(new Vector2(dObj.PosX, dObj.PosY),
-                            TextureManager.SpikePlatformTex));
+                            TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.CloudPlatform:
                         objectList.Add(new CloudPlatform(new Vector2(dObj.PosX, dObj.PosY),
-                            TextureManager.CloudPlatformTex));
+                            TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.IcePlatform:
-                        objectList.Add(new IcePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.IcePlatformTex));
+                        objectList.Add(new IcePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.FadingPlatform:
                         objectList.Add(new FadingPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.FadingPlatformTex));
                         break;
                     case DummyObject.TypeEnum.Player:
-                        objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlayerTex));
+                        objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), TextureManager.NogardAbilitySpritesheet));
                         break;
                     case DummyObject.TypeEnum.Goal:
-                        objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), TextureManager.GoalTex));
+                        objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.Enemy:
-                        objectList.Add(new BaseEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.StandardEnemyTex));
+                        objectList.Add(new BaseEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
+                        break;
+                    case DummyObject.TypeEnum.WalkingEnemy:
+                        objectList.Add(new StandardEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
+                        break;
+                    case DummyObject.TypeEnum.FlyingEnemy:
+                        objectList.Add(new FlyingEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
                         break;
                     case DummyObject.TypeEnum.UnlimitedPowerPowerup:
                         objectList.Add(new UnlimitedPowerObject(new Vector2(dObj.PosX, dObj.PosY),

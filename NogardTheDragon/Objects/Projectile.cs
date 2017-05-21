@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Interfaces;
+using NogardTheDragon.Managers;
 
 namespace NogardTheDragon.Objects
 {
@@ -11,7 +12,12 @@ namespace NogardTheDragon.Objects
 
         public Projectile(Vector2 pos, Texture2D tex, Vector2 dir, MovingObject owner) : base(pos, tex)
         {
-            Speed = 10;
+            UsingSpritesheet = true;
+            Source = new Rectangle(0, 140, 25, 20);
+            if (owner.LastFacing == Facing.Left)
+                Effects = SpriteEffects.FlipHorizontally;
+
+            Speed = 5;
 
             DrawPos = pos;
             Texture = tex;
@@ -26,6 +32,14 @@ namespace NogardTheDragon.Objects
             base.Update(gameTime);
 
             Velocity = Direction * Speed;
+
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                CurrentFrame++;
+                Source = new Rectangle((CurrentFrame % 3) * 25, Source.Y, Source.Width, Source.Height);
+            }
         }
 
         protected override bool HandleCollision()

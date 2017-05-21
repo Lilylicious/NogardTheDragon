@@ -10,7 +10,7 @@ namespace NogardTheDragon.Objects.Enemies
     {
         public int Health;
         public int Score;
-        private bool Walk;
+        protected bool Walk;
 
         public BaseEnemy(Vector2 pos) : base(pos)
         {
@@ -19,6 +19,9 @@ namespace NogardTheDragon.Objects.Enemies
         }
         public BaseEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
+            Source = new Rectangle(0, 48, 48, 48);
+            UsingSpritesheet = true;
+
             Speed = 2;
             Health = 1;
         }
@@ -36,7 +39,6 @@ namespace NogardTheDragon.Objects.Enemies
 
             Velocity.Y += GravitySpeed;
         }
-
         protected override bool HandleCollision()
         {
             var player = Collides.Find(item => item is Player) as Player;

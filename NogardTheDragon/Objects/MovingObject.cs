@@ -26,6 +26,12 @@ namespace NogardTheDragon.Objects
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
         public bool Gliding;
+
+        public bool ChangeFrameStanding;
+        public bool ChangeFrameWalking;
+        public bool ChangeFrameJumping;
+        public bool ChangeFrameShooting;
+
         public bool Sinking;
         protected bool Gravity = false;
         public Facing LastFacing = Facing.Left;
@@ -37,6 +43,10 @@ namespace NogardTheDragon.Objects
         protected double TimeBetweenFrames = 0.1;
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
+        protected int frame;
+        protected double frameTimer = 200, frameInterval = 200;
+        protected float rotation = 0;
+        protected bool AffectedByGravity = true;
 
         protected MovingObject(Vector2 pos, Texture2D tex)
         {
@@ -121,6 +131,7 @@ namespace NogardTheDragon.Objects
             UpdateAbilitiesPowerups();
 
             DrawPos += Velocity;
+            CurrentFrame++;
         }
 
         public Vector2 GetVelocity()
