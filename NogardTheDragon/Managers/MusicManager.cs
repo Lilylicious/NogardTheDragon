@@ -15,12 +15,8 @@ namespace NogardTheDragon.Managers
 
         public override void Update(GameTime gameTime)
         {
-                if (!(LastGameState == NogardGame.GameStateEnum.GameActive &&
-                  NogardGame.GameState == NogardGame.GameStateEnum.Pause ||
-                  LastGameState == NogardGame.GameStateEnum.Pause &&
-                  NogardGame.GameState == NogardGame.GameStateEnum.GameActive) &&
-                  NogardGame.GameState != LastGameState)
-                    MediaPlayer.Stop();
+            if (PauseCheck() && NogardGame.GameState != LastGameState)
+                MediaPlayer.Stop();
 
             if (MediaPlayer.State == MediaState.Stopped)
                 switch (NogardGame.GameState)
@@ -48,6 +44,14 @@ namespace NogardTheDragon.Managers
                 }
 
             LastGameState = NogardGame.GameState;
+        }
+
+        private bool PauseCheck()
+        {
+            return !(LastGameState == NogardGame.GameStateEnum.GameActive &&
+                     NogardGame.GameState == NogardGame.GameStateEnum.Pause ||
+                     LastGameState == NogardGame.GameStateEnum.Pause &&
+                     NogardGame.GameState == NogardGame.GameStateEnum.GameActive);
         }
     }
 }

@@ -72,7 +72,6 @@
     <Compile Include="Objects\Enemies\FlyingEnemy.cs" />
     <Compile Include="Objects\Enemies\ScoreEnemy.cs" />
     <Compile Include="Objects\Enemies\StandardEnemy.cs" />
-    <Compile Include="Animation\Background.cs" />
     <Compile Include="Objects\AbilitysPowerups\PowerupObject.cs" />
     <Compile Include="Objects\Platforms\VerticalPlatform.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
