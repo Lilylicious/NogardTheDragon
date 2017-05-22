@@ -88,8 +88,8 @@ namespace NogardTheDragon.Managers
             PlatformSpritesheet = c.Load<Texture2D>(@"Spritesheets/PlatformSpritesheet");
             HpGainTex = c.Load<Texture2D>(@"HpGain");
 
-            //Song1 = c.Load<Song>("91476_Glorious_morning");
-            //Song2 = c.Load<Song>("474655_-Toy-soliders-Orche");
+            Song1 = c.Load<Song>("Music/Glor");
+            Song2 = c.Load<Song>("Music/Toy");
         }
     }
 }

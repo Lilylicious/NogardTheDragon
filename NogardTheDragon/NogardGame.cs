@@ -39,6 +39,7 @@ namespace NogardTheDragon
         public static ButtonManager ButtonManager;
         public static HighScoreDisplay HighScoreDisplay;
         public static PauseManager PauseManager;
+        public static MusicManager MusicManager;
 
 
         public static GraphicsDeviceManager Graphics;
@@ -73,8 +74,10 @@ namespace NogardTheDragon
             HighScoreDisplay = new HighScoreDisplay();
             LevelSelectorManager = new LevelSelectorManager();
             PauseManager = new PauseManager();
+            MusicManager = new MusicManager();
             MainMenuManager.Init();
             ButtonManager.Init();
+            MusicManager.Init();
         }
 
         protected override void UnloadContent()
@@ -88,6 +91,7 @@ namespace NogardTheDragon
 
             TotalScore = KillBonus + HealthBonus + LevelBonus;
 
+            MusicManager.Update(gameTime);
             switch (GameState)
             {
                 case GameStateEnum.MainMenu:
