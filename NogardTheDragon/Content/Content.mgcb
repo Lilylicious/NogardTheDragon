@@ -259,3 +259,15 @@
 /processorParam:TextureFormat=Color
 /build:Spritesheets/PlatformSpritesheet.png
 
+#begin Music/91476_Glorious_morning.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/91476_Glorious_morning.mp3
+
+#begin Music/474655_-Toy-soliders-Orche.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/474655_-Toy-soliders-Orche.mp3
+
