@@ -6,8 +6,8 @@ namespace NogardTheDragon.Objects.Enemies
 {
     internal class StandardEnemy : BaseEnemy
     {
-        private Vector2 StartPos;
         private bool MoveRight;
+        private Vector2 StartPos;
 
         public StandardEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
@@ -48,7 +48,7 @@ namespace NogardTheDragon.Objects.Enemies
             {
                 frameTimer = frameInterval;
                 CurrentFrame++;
-                Source = new Rectangle((CurrentFrame % 4) * 31, Source.Y, Source.Width, Source.Height);
+                Source = new Rectangle(CurrentFrame % 4 * 31, Source.Y, Source.Width, Source.Height);
             }
         }
     }

@@ -10,23 +10,23 @@ namespace NogardTheDragon.Objects.Platforms
         {
             Source = new Rectangle(0, 0, 50, 15);
         }
+
         public Platform(Vector2 pos)
             : base(pos)
         {
         }
+
         protected override bool HandleCollision()
         {
             var found = false;
-            foreach (GameObject gameObject in Collides)
-            {
+            foreach (var gameObject in Collides)
                 if (!(gameObject is BasePlatform))
                 {
                     var movingObject = gameObject as MovingObject;
                     movingObject?.LandOnPlatform(1, this);
                     found = true;
                 }
-            }
-            
+
             return found;
         }
     }

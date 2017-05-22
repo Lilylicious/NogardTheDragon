@@ -1,21 +1,14 @@
-﻿using NogardTheDragon.Utilities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon
 {
     public partial class Form1 : Form
     {
-        NogardGame game;
-        public HighScore hs;
+        private NogardGame game;
         public bool GameSaved;
+        public HighScore hs;
 
         public Form1(NogardGame game)
         {
@@ -34,7 +27,6 @@ namespace NogardTheDragon
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
         }
     }
 }

@@ -26,7 +26,6 @@ namespace NogardTheDragon.Objects.Platforms
 
         public override void Update(GameTime gameTime)
         {
-
             switch (Vertical)
             {
                 case true:

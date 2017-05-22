@@ -41,24 +41,21 @@ namespace NogardTheDragon.Objects.Enemies
             }
 
             if (Walk == false)
-            {
                 Velocity.X += 1f;
-            }
-            else if (Walk == true)
-            {
+            else if (Walk)
                 Velocity.X -= 1;
-            }
 
             if (frameTimer <= 0)
             {
                 frameTimer = frameInterval;
                 CurrentFrame++;
-                Source = new Rectangle((CurrentFrame % 4) * 32, Source.Y, Source.Width, Source.Height);
+                Source = new Rectangle(CurrentFrame % 4 * 32, Source.Y, Source.Width, Source.Height);
             }
         }
 
-        //public void LoadFlyingEnemy()
         //{
+
+        //public void LoadFlyingEnemy()
         //    for (int i = 0; i < Source; i++)
         //    {
         //        if (!Source[i].isVisible)

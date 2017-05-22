@@ -1,18 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using System.Windows.Forms;
+using Microsoft.Xna.Framework;
 using NogardTheDragon.Animation;
-using NogardTheDragon.Utilities;
-using System.Collections.Generic;
-using System.IO;
-using NogardTheDragon.Managers;
-using System.Windows.Forms;
 
 namespace NogardTheDragon.Managers
 {
     public class MainMenuManager : BaseManager
     {
         private readonly NogardGame Game;
-        private MainMenuBackground MainMenuBackground;
+        private readonly MainMenuBackground MainMenuBackground;
 
         public MainMenuManager(NogardGame game)
         {
@@ -39,7 +34,7 @@ namespace NogardTheDragon.Managers
                     NogardGame.LevelSelectorManager.Init();
                     NogardGame.MapsComplete = 0;
                 }
-                    
+
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ScoreButton))
                 {
                     NogardGame.HighScoreDisplay.Init();
@@ -66,12 +61,10 @@ namespace NogardTheDragon.Managers
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ExitButton))
                     Game.Exit();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MapButton))
-                {
-                    if (NogardGame.Admin == true)
-                    NogardGame.MapMakerManager.Init();
+                    if (NogardGame.Admin)
+                        NogardGame.MapMakerManager.Init();
                     else
-                    MessageBox.Show("Must be game administrator\nto access the mapmaker.");
-                }
+                        MessageBox.Show("Must be game administrator\nto access the mapmaker.");
             }
         }
 

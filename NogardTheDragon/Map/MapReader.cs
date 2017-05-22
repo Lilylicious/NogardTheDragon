@@ -46,13 +46,16 @@ namespace NogardTheDragon.Map
                             TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.IcePlatform:
-                        objectList.Add(new IcePlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlatformSpritesheet));
+                        objectList.Add(new IcePlatform(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.FadingPlatform:
-                        objectList.Add(new FadingPlatform(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlatformSpritesheet));
+                        objectList.Add(new FadingPlatform(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.PlatformSpritesheet));
                         break;
                     case DummyObject.TypeEnum.Player:
-                        objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY), TextureManager.NogardAbilitySpritesheet));
+                        objectList.Add(new Player(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.NogardAbilitySpritesheet));
                         break;
                     case DummyObject.TypeEnum.Goal:
                         objectList.Add(new Goal(new Vector2(dObj.PosX, dObj.PosY), TextureManager.PlatformSpritesheet));
@@ -61,10 +64,12 @@ namespace NogardTheDragon.Map
                         objectList.Add(new BaseEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
                         break;
                     case DummyObject.TypeEnum.WalkingEnemy:
-                        objectList.Add(new StandardEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
+                        objectList.Add(new StandardEnemy(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.EnemySpritesheet));
                         break;
                     case DummyObject.TypeEnum.FlyingEnemy:
-                        objectList.Add(new FlyingEnemy(new Vector2(dObj.PosX, dObj.PosY), TextureManager.EnemySpritesheet));
+                        objectList.Add(new FlyingEnemy(new Vector2(dObj.PosX, dObj.PosY),
+                            TextureManager.EnemySpritesheet));
                         break;
                     case DummyObject.TypeEnum.UnlimitedPowerPowerup:
                         objectList.Add(new UnlimitedPowerObject(new Vector2(dObj.PosX, dObj.PosY),

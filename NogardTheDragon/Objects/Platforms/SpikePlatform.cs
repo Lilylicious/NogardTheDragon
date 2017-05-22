@@ -11,6 +11,7 @@ namespace NogardTheDragon.Objects.Platforms
         {
             Source = new Rectangle(0, 192, 50, 16);
         }
+
         public SpikePlatform(Vector2 pos)
             : base(pos)
         {
@@ -19,20 +20,18 @@ namespace NogardTheDragon.Objects.Platforms
         protected override bool HandleCollision()
         {
             var found = false;
-            foreach (GameObject gameObject in Collides)
-            {
+            foreach (var gameObject in Collides)
                 if (!(gameObject is BasePlatform))
                 {
                     var movingObject = gameObject as MovingObject;
                     movingObject?.LandOnPlatform(1, this);
-                    
+
 
                     var damageable = movingObject as IDamageable;
-                        damageable?.TakeDamage(1);
+                    damageable?.TakeDamage(1);
 
                     found = true;
                 }
-            }
 
             return found;
         }

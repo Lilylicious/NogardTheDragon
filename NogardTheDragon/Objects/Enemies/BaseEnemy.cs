@@ -1,8 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Interfaces;
-using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Objects.Enemies
 {
@@ -17,6 +15,7 @@ namespace NogardTheDragon.Objects.Enemies
             Speed = 2;
             Health = 2;
         }
+
         public BaseEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
             UsingSpritesheet = true;
@@ -43,6 +42,7 @@ namespace NogardTheDragon.Objects.Enemies
 
             Velocity.Y += GravitySpeed;
         }
+
         protected override bool HandleCollision()
         {
             var player = Collides.Find(item => item is Player) as Player;

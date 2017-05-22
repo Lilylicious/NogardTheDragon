@@ -7,14 +7,19 @@ namespace NogardTheDragon.Managers
 {
     public class ButtonManager : BaseManager
     {
-        public List<StandardButton> Buttons;
-
-        public StandardButton PlayButton, ScoreButton, AboutNogardButton, 
-            InstuctionsButton, ExitButton, MapButton;
-        public StandardButton SaveScoreButton, MainMenuButton, QuitButton, ContinueButton;
         public StandardButton BackButton;
+        public List<StandardButton> Buttons;
         public StandardButton LevelOneButton, LevelTwoButton, LevelThreeButton, SelectorBackButton;
+
+        public StandardButton PlayButton,
+            ScoreButton,
+            AboutNogardButton,
+            InstuctionsButton,
+            ExitButton,
+            MapButton;
+
         public StandardButton ResumeButton, PauseMenuButton;
+        public StandardButton SaveScoreButton, MainMenuButton, QuitButton, ContinueButton;
 
         public override void Init()
         {
@@ -56,7 +61,7 @@ namespace NogardTheDragon.Managers
                     foreach (var b in Buttons)
                     {
                         b.Update(Color.White, Color.Black);
-                        if (b.Equals(SaveScoreButton) && GameOverManager.ScoreForm.GameSaved == true)
+                        if (b.Equals(SaveScoreButton) && GameOverManager.ScoreForm.GameSaved)
                             b.Update(Color.Transparent, Color.Transparent);
                     }
                     break;
@@ -85,9 +90,9 @@ namespace NogardTheDragon.Managers
                     break;
                 case NogardGame.GameStateEnum.Story:
                     if (StoryMode.IntroStory)
-                    BackButton.DrawStandardButton(5, " Back", 0.5f);
+                        BackButton.DrawStandardButton(5, " Back", 0.5f);
                     else
-                    ContinueButton.DrawStandardButton(5, "  Continue", 0.5f);
+                        ContinueButton.DrawStandardButton(5, "  Continue", 0.5f);
                     break;
                 case NogardGame.GameStateEnum.GameActive:
                     break;
@@ -95,7 +100,7 @@ namespace NogardTheDragon.Managers
                     BackButton.DrawStandardButton(5, " Back", 0.5f);
                     break;
                 case NogardGame.GameStateEnum.Pause:
-                   ResumeButton.DrawStandardButton(5, "Resume", 0.5f);
+                    ResumeButton.DrawStandardButton(5, "Resume", 0.5f);
                     PauseMenuButton.DrawStandardButton(5, "MainMenu", 0.5f);
                     break;
                 case NogardGame.GameStateEnum.GameOver:
@@ -177,7 +182,6 @@ namespace NogardTheDragon.Managers
             Buttons.Add(BackButton);
             ContinueButton = new StandardButton(new Rectangle(330, 620, 240, 70));
             Buttons.Add(ContinueButton);
-
         }
     }
 }

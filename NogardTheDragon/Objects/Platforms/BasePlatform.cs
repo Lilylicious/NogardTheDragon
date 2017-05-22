@@ -8,6 +8,7 @@ namespace NogardTheDragon.Objects.Platforms
         public BasePlatform(Vector2 pos) : base(pos)
         {
         }
+
         public BasePlatform(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
             UsingSpritesheet = true;

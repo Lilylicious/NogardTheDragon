@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    class FadingPlatform : BasePlatform
+    internal class FadingPlatform : BasePlatform
     {
+        private readonly float RESET = 0;
         private bool StartTimer;
-        private float RESET = 0;
+        private readonly byte StepSize = 3;
         private float Timer;
-        private byte StepSize = 3;
 
         public FadingPlatform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
@@ -41,7 +35,7 @@ namespace NogardTheDragon.Objects.Platforms
 
             if (StartTimer)
             {
-                Timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Timer += (float) gameTime.ElapsedGameTime.TotalSeconds;
 
                 if (Timer >= 5)
                 {
@@ -57,16 +51,14 @@ namespace NogardTheDragon.Objects.Platforms
         protected override bool HandleCollision()
         {
             var found = false;
-            foreach (GameObject gameObject in Collides)
-            {
+            foreach (var gameObject in Collides)
                 if (!(gameObject is BasePlatform))
                 {
                     var movingObject = gameObject as MovingObject;
                     movingObject?.LandOnPlatform(1, this);
-                    
+
                     found = true;
                 }
-            }
 
             return found;
         }
