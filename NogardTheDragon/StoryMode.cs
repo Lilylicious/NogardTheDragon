@@ -109,7 +109,7 @@ namespace NogardTheDragon
                     NogardGame.SpriteBatch.DrawString(TextureManager.Font,
                       "The treacherous path which led back to Nogards home, was" +
                       "\nfilled with different kind of dangers lurking around" +
-                      "\nevery corner. Amongst these dangers were creapy creatures" +
+                      "\nevery corner. Amongst these dangers were creepy creatures" +
                       "\nwho waited for any kind of traveler passing through that" +
                       "\nthey could hurt and rob." +
                       "\nNogard had been terrified and the first sight of them, but" +
