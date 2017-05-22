@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace NogardTheDragon.Managers
 {
@@ -44,6 +45,9 @@ namespace NogardTheDragon.Managers
         public static Texture2D EnemySpritesheet { get; private set; }
         public static Texture2D PlatformSpritesheet { get; private set; }
 
+        public static Song Song1 { get; private set; }
+        public static Song Song2 { get; private set; }
+
         public static void LoadTextures(ContentManager c)
         {
             PlayerTex = c.Load<Texture2D>(@"playersquare");
@@ -84,6 +88,8 @@ namespace NogardTheDragon.Managers
             PlatformSpritesheet = c.Load<Texture2D>(@"Spritesheets/PlatformSpritesheet");
             HpGainTex = c.Load<Texture2D>(@"HpGain");
 
+            Song1 = c.Load<Song>("Music/Glor");
+            Song2 = c.Load<Song>("Music/Toy");
         }
     }
 }

@@ -259,3 +259,15 @@
 /processorParam:TextureFormat=Color
 /build:Spritesheets/PlatformSpritesheet.png
 
+#begin Music/Glor.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Glor.mp3
+
+#begin Music/Toy.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Toy.mp3
+

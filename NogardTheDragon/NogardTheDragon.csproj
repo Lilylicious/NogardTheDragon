@@ -54,6 +54,7 @@
     <Compile Include="Managers\ButtonManager.cs" />
     <Compile Include="Managers\LevelSelectorManager.cs" />
     <Compile Include="Managers\MainMenuManager.cs" />
+    <Compile Include="Managers\MusicManager.cs" />
     <Compile Include="Managers\PauseManager.cs" />
     <Compile Include="Managers\TextureManager.cs" />
     <Compile Include="Objects\AbilitysPowerups\SlowWorldPowerObject.cs" />
@@ -120,6 +121,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Music\Toy.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\Glor.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Spritesheets\Background.png" />
     <Content Include="Content\cloud1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
