@@ -50,10 +50,10 @@ namespace NogardTheDragon.Managers
                 {
                     MessageBox.Show(
                         "Movement:  Right & left keys." +
-                        "\nJump:  Up key once for single jump," +
+                        "\n\nJump:  Up key once for single jump," +
                         "\ntwice for double jump." +
-                        "\nShoot projectile:  Space key." +
-                        "\nPause game:  ESC key.");
+                        "\n\nShoot projectile:  Space key." +
+                        "\n\nPause game:  ESC key.");
                     break;
                 }
 

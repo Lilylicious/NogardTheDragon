@@ -58,9 +58,9 @@ namespace NogardTheDragon.Managers
             if (Won)
             {
                 Instance.GraphicsDevice.Clear(Color.Blue);
-                NogardGame.SpriteBatch.DrawString(TextureManager.Font, "        Thank you for playing!" +
-                    "\nPlay again to beat your record.",
-                    new Vector2(170, 70), Color.Orange, 0, Vector2.Zero, 0.4f, SpriteEffects.None, 1);
+                NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Thank you for saving little Nogard!" +
+                    "\n     Play again to beat your record.",
+                    new Vector2(150, 70), Color.Orange, 0, Vector2.Zero, 0.4f, SpriteEffects.None, 1);
             }
             else
             {
