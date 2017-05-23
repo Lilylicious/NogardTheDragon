@@ -122,7 +122,7 @@ namespace NogardTheDragon
                     NogardGame.SpriteBatch.GraphicsDevice.Clear(Color.CornflowerBlue);
                     NogardGame.SpriteBatch.DrawString(TextureManager.Font,
                         "When the top of the mountain was so close that Nogard could hear" +
-                        "\nhis siblings calling out his name in anxious voices, the little" +
+                        "\nhis family calling out his name in anxious voices, the little" +
                         "\ndragon faced the most dangerous jump of the entire climb. Nogard" +
                         "\nclosed his eyes and breathed heavely with smoke coming out of his" +
                         "\nnostrils, as his heart began to pound faster." +
@@ -130,8 +130,8 @@ namespace NogardTheDragon
                         "\nthem all and there is nothing I can't do'. " +
                         "\nThen he jumped so high that it almost felt like flying, and" +
                         "\nlanded right ontop of his unwitting siblings, making a big pile" +
-                        "\nof mashed dragons at the edge of the moutaintop. His siblings" +
-                        "\nthen screamed of joy as they realized it was Nogard who had" +
+                        "\nof mashed dragons at the edge of the moutaintop. His mother" +
+                        "\nthen screamed of joy as they all realized it was Nogard who had" +
                         "\ncrashed down on them, and they all wanted to hear his story and" +
                         "\nhow he was able to get back up all on his own." +
                         "\nLater on, when Nogard was being served a homecooked meal by his" +
