@@ -9,6 +9,7 @@ namespace NogardTheDragon.Utilities
         private Vector2 Pos;
         private Matrix Transform;
         private Viewport View;
+        private float Zoom = 1f;
 
         public Camera(Viewport view)
         {
