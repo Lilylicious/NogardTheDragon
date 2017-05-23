@@ -1,5 +1,4 @@
-﻿using System.Drawing.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Utilities
@@ -18,7 +17,7 @@ namespace NogardTheDragon.Utilities
         public void SetPos(Vector2 pos)
         {
             Pos = pos;
-            Transform = Matrix.CreateTranslation(-Pos.X, -Pos.Y, 0) * Matrix.CreateScale(Zoom, Zoom, 0) * Matrix.CreateTranslation(View.Width / 2, View.Height / 2, 0);
+            Transform = Matrix.CreateTranslation(-Pos.X + View.Width / 2, -Pos.Y + View.Height / 2, 0);
         }
 
         public Matrix GetTransform()
