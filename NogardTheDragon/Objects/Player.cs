@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Abilities;
 using NogardTheDragon.Interfaces;
 using NogardTheDragon.Managers;
+using NogardTheDragon.Objects.Platforms;
 using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects
@@ -228,6 +229,12 @@ namespace NogardTheDragon.Objects
 
         protected override bool HandleCollision()
         {
+            foreach (GameObject gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
+            {
+                if(gameObject is BasePlatform && Velocity.Y > 0)
+                    if (gameObject.HitBox.Intersects(PlatformCheckerRectangle))
+                        Velocity.Y *= 0.8f;
+            }
             return false;
         }
 

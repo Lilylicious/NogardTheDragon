@@ -44,6 +44,7 @@ namespace NogardTheDragon.Objects
         protected double TimeBetweenFrames = 0.1;
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
+        protected Rectangle PlatformCheckerRectangle;
 
         protected MovingObject(Vector2 pos, Texture2D tex)
         {
@@ -122,6 +123,8 @@ namespace NogardTheDragon.Objects
             HandleCollision();
             HandleCollision(gameTime);
             UpdateAbilitiesPowerups();
+
+            PlatformCheckerRectangle = new Rectangle((int) DrawPos.X, (int) DrawPos.Y + Source.Height, Source.Width, Source.Height/2);
 
             DrawPos += Velocity;
             CurrentFrame++;

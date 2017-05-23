@@ -23,7 +23,7 @@ namespace NogardTheDragon.Objects.Platforms
                 if (!(gameObject is BasePlatform))
                 {
                     var movingObject = gameObject as MovingObject;
-                    if (movingObject?.HitBox.Bottom - HitBox.Top < 20 && movingObject.HitBox.Bottom - HitBox.Top > -20)
+                    if (movingObject?.HitBox.Bottom - HitBox.Top < 10 && movingObject.HitBox.Bottom - HitBox.Top > -10)
                     {
                         movingObject.LandOnPlatform(1, this);
                         found = true;
