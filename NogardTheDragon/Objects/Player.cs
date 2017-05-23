@@ -231,9 +231,9 @@ namespace NogardTheDragon.Objects
         {
             foreach (GameObject gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
             {
-                if(gameObject is BasePlatform && Velocity.Y > 0)
+                if(gameObject is Platform && Velocity.Y > 2f)
                     if (gameObject.HitBox.Intersects(PlatformCheckerRectangle))
-                        Velocity.Y *= 0.8f;
+                        ((Platform) gameObject).CollidingPlayer = this;
             }
             return false;
         }

@@ -5,6 +5,8 @@ namespace NogardTheDragon.Objects.Platforms
 {
     public abstract class BasePlatform : MovingObject
     {
+        public Player CollidingPlayer;
+
         public BasePlatform(Vector2 pos) : base(pos)
         {
         }

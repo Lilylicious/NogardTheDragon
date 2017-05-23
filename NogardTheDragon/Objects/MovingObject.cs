@@ -124,7 +124,7 @@ namespace NogardTheDragon.Objects
             HandleCollision(gameTime);
             UpdateAbilitiesPowerups();
 
-            PlatformCheckerRectangle = new Rectangle((int) DrawPos.X, (int) DrawPos.Y + Source.Height, Source.Width, Source.Height/2);
+            PlatformCheckerRectangle = new Rectangle((int) DrawPos.X, (int) DrawPos.Y + Source.Height, Source.Width, Source.Height * 4);
 
             DrawPos += Velocity;
             CurrentFrame++;
@@ -160,6 +160,7 @@ namespace NogardTheDragon.Objects
             ResetDoubleJump();
             Direction.Y = 0;
             Velocity.Y = 0;
+            
             return true;
         }
 

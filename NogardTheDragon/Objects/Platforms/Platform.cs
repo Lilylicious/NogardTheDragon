@@ -26,9 +26,20 @@ namespace NogardTheDragon.Objects.Platforms
                     if (movingObject?.HitBox.Bottom - HitBox.Top < 10 && movingObject.HitBox.Bottom - HitBox.Top > -10)
                     {
                         movingObject.LandOnPlatform(1, this);
+                        CollidingPlayer = null;
                         found = true;
                     }
                 }
+
+            if (CollidingPlayer != null && CollidingPlayer.GetPosition().Y > HitBox.Top)
+            {
+                CollidingPlayer.LandOnPlatform(1, this);
+                CollidingPlayer = null;
+                found = true;
+            }
+
+            if (CollidingPlayer?.GetVelocity().Y < 0)
+                CollidingPlayer = null;
 
             return found;
         }
