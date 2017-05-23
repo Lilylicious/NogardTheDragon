@@ -66,7 +66,6 @@ namespace NogardTheDragon.Objects
 
         public override void Update(GameTime gameTime)
         {
-            NogardGame.HealthBonus = Health;
             base.Update(gameTime);
             Gliding = false;
             Sinking = false;

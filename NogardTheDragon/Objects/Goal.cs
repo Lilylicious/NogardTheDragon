@@ -19,6 +19,7 @@ namespace NogardTheDragon.Objects
                 {
                     StoryMode.IntroStory = false;
                     NogardGame.MapsComplete++;
+                    NogardGame.HealthBonus += ((Player)gameObject).Health;
                     NogardGame.StoryMode.Init();
                     found = true;
                 }

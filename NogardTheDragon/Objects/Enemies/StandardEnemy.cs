@@ -14,6 +14,7 @@ namespace NogardTheDragon.Objects.Enemies
             StartPos = pos;
             Source = new Rectangle(0, 150, 31, 32);
             Health = 5;
+            AffectedByGravity = false;
         }
 
         public override void Update(GameTime gameTime)

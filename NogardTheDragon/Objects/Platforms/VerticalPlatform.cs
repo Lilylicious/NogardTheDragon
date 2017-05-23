@@ -3,10 +3,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Objects.Platforms
 {
-    internal class VerticalPlatform : MovingPlatform
+    public class VerticalPlatform : MovingPlatform
     {
         public VerticalPlatform(Vector2 pos, Texture2D tex)
             : base(pos, tex)
+        {
+            Vertical = true;
+            UsingSpritesheet = true;
+            Source = new Rectangle(50, 145, 50, 16);
+        }
+
+        public VerticalPlatform(Vector2 pos) : base(pos)
         {
             Vertical = true;
             UsingSpritesheet = true;

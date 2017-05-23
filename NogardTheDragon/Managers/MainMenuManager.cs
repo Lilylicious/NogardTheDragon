@@ -21,6 +21,7 @@ namespace NogardTheDragon.Managers
             NogardGame.KillBonus = 0;
             NogardGame.TotalScore = 0;
             NogardGame.LevelBonus = 0;
+            NogardGame.HealthBonus = 0;
         }
 
         public override void Update(GameTime gameTime)

@@ -12,6 +12,13 @@ namespace NogardTheDragon.Objects.Platforms
             Source = new Rectangle(0, 145, 50, 16);
         }
 
+        public HorizontalPlatform(Vector2 pos)
+            : base(pos)
+        {
+            Vertical = false;
+            Source = new Rectangle(0, 145, 50, 16);
+        }
+
         protected override bool HandleCollision()
         {
             var found = false;

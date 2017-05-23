@@ -33,7 +33,7 @@ namespace NogardTheDragon.Utilities
 
         public void ReadFromFile()
         {
-            var file = new StreamReader(@"HighScore.txt");
+            var file = new StreamReader(@"Content/HighScore.txt");
             string line;
             hsList.Clear();
             while (!file.EndOfStream)
@@ -49,7 +49,7 @@ namespace NogardTheDragon.Utilities
 
         public void SaveToFile()
         {
-            var file = new StreamWriter(@"HighScore.txt");
+            var file = new StreamWriter(@"Content/HighScore.txt");
 
             for (var i = 0; i < hsList.Count; i++)
                 file.WriteLine(hsList[i].ToString());

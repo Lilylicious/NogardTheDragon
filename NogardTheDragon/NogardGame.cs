@@ -20,7 +20,7 @@ namespace NogardTheDragon
             LevelSelector
         }
 
-        public static bool Admin = true;
+        public static bool Admin = false;
         public static SpriteBatch SpriteBatch;
         public static int TotalScore, HealthBonus, KillBonus, LevelBonus, MapsComplete;
 
@@ -123,7 +123,7 @@ namespace NogardTheDragon
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(240, 240, 240, 255));
+            GraphicsDevice.Clear(new Color(230, 230, 230, 255));
 
             switch (GameState)
             {

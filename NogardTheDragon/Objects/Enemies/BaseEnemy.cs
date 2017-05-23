@@ -40,6 +40,7 @@ namespace NogardTheDragon.Objects.Enemies
                 Active = false;
             }
 
+            if(AffectedByGravity)
             Velocity.Y += GravitySpeed;
         }
 
