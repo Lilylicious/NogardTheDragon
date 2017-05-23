@@ -31,7 +31,7 @@ namespace NogardTheDragon.Objects.Platforms
                     }
                 }
 
-            if (CollidingPlayer != null && CollidingPlayer.GetPosition().Y > HitBox.Top)
+            if (CollidingPlayer != null && CollidingPlayer.HitBox.Bottom > HitBox.Top)
             {
                 CollidingPlayer.LandOnPlatform(1, this);
                 CollidingPlayer = null;
