@@ -6,14 +6,15 @@ namespace NogardTheDragon.Objects.Enemies
 {
     internal class StandardEnemy : BaseEnemy
     {
-        private Vector2 StartPos;
         private bool MoveRight;
+        private Vector2 StartPos;
 
         public StandardEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
             StartPos = pos;
             Source = new Rectangle(0, 150, 31, 32);
             Health = 5;
+            AffectedByGravity = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -48,7 +49,7 @@ namespace NogardTheDragon.Objects.Enemies
             {
                 frameTimer = frameInterval;
                 CurrentFrame++;
-                Source = new Rectangle((CurrentFrame % 4) * 31, Source.Y, Source.Width, Source.Height);
+                Source = new Rectangle(CurrentFrame % 4 * 31, Source.Y, Source.Width, Source.Height);
             }
         }
     }

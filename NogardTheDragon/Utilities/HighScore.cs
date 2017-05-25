@@ -1,19 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using NogardTheDragon.Managers;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NogardTheDragon.Utilities
 {
     public class HighScore
     {
         public List<HighScore> hsList;
-        string name;
+        private readonly string name;
         public int score;
 
         public HighScore(string name, int score)
@@ -32,6 +25,7 @@ namespace NogardTheDragon.Utilities
         {
             return score.ToString();
         }
+
         public string NameToString()
         {
             return name;
@@ -39,15 +33,15 @@ namespace NogardTheDragon.Utilities
 
         public void ReadFromFile()
         {
-            StreamReader file = new StreamReader(@"HighScore.txt");
+            var file = new StreamReader(@"Content/HighScore.txt");
             string line;
             hsList.Clear();
             while (!file.EndOfStream)
             {
                 line = file.ReadLine();
-                string[] temp = line.Split(',');
-                int score = int.Parse(temp[1]);
-                HighScore h = new HighScore(temp[0], score);
+                var temp = line.Split(',');
+                var score = int.Parse(temp[1]);
+                var h = new HighScore(temp[0], score);
                 hsList.Add(h);
             }
             file.Close();
@@ -55,12 +49,10 @@ namespace NogardTheDragon.Utilities
 
         public void SaveToFile()
         {
-            StreamWriter file = new StreamWriter(@"HighScore.txt");
-            
-            for (int i = 0; i < hsList.Count; i++)
-            {
+            var file = new StreamWriter(@"Content/HighScore.txt");
+
+            for (var i = 0; i < hsList.Count; i++)
                 file.WriteLine(hsList[i].ToString());
-            }
             file.Close();
         }
     }

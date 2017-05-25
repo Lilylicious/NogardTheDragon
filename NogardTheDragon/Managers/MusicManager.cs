@@ -1,8 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
-using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Managers
 {
@@ -14,14 +12,14 @@ namespace NogardTheDragon.Managers
         {
             MediaPlayer.Volume = 0.5f;
         }
+
         public override void Update(GameTime gameTime)
         {
-            if(!(LastGameState == NogardGame.GameStateEnum.GameActive && NogardGame.GameState == NogardGame.GameStateEnum.Pause || LastGameState == NogardGame.GameStateEnum.Pause && NogardGame.GameState == NogardGame.GameStateEnum.GameActive))
-            if(NogardGame.GameState != LastGameState)
+            if (PauseCheck() && NogardGame.GameState != LastGameState)
                 MediaPlayer.Stop();
 
-            if(MediaPlayer.State == MediaState.Stopped)
-                switch(NogardGame.GameState)
+            if (MediaPlayer.State == MediaState.Stopped)
+                switch (NogardGame.GameState)
                 {
                     case NogardGame.GameStateEnum.MainMenu:
                         MediaPlayer.Play(TextureManager.Song1);
@@ -46,6 +44,14 @@ namespace NogardTheDragon.Managers
                 }
 
             LastGameState = NogardGame.GameState;
+        }
+
+        private bool PauseCheck()
+        {
+            return !(LastGameState == NogardGame.GameStateEnum.GameActive &&
+                     NogardGame.GameState == NogardGame.GameStateEnum.Pause ||
+                     LastGameState == NogardGame.GameStateEnum.Pause &&
+                     NogardGame.GameState == NogardGame.GameStateEnum.GameActive);
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Interfaces;
-using NogardTheDragon.Managers;
 
 namespace NogardTheDragon.Objects
 {
@@ -40,7 +38,7 @@ namespace NogardTheDragon.Objects
             {
                 frameTimer = frameInterval;
                 CurrentFrame++;
-                Source = new Rectangle((CurrentFrame % 3) * 25, Source.Y, Source.Width, Source.Height);
+                Source = new Rectangle(CurrentFrame % 3 * 25, Source.Y, Source.Width, Source.Height);
             }
         }
 

@@ -2,10 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NogardTheDragon.Abilities;
-using NogardTheDragon.Objects.Enemies;
-using NogardTheDragon.Objects.Platforms;
-using NogardTheDragon.Utilities;
 using NogardTheDragon.Interfaces;
+using NogardTheDragon.Objects.Platforms;
 
 namespace NogardTheDragon.Objects
 {
@@ -20,32 +18,33 @@ namespace NogardTheDragon.Objects
         protected List<BaseAbility> Abilities = new List<BaseAbility>();
         protected int Acceleration = 2;
         protected int AccelerationConstant = 2;
+        protected bool AffectedByGravity = true;
         public bool Airborn;
+        public bool ChangeFrameJumping;
+        public bool ChangeFrameShooting;
+
+        public bool ChangeFrameStanding;
+        public bool ChangeFrameWalking;
 
         public List<GameObject> Collides = new List<GameObject>();
         protected int CurrentFrame;
         protected Vector2 Direction = new Vector2(0, 0);
+        protected double frameTimer = 200, frameInterval = 200;
         public bool Gliding;
-
-        public bool ChangeFrameStanding;
-        public bool ChangeFrameWalking;
-        public bool ChangeFrameJumping;
-        public bool ChangeFrameShooting;
-
-        public bool Sinking;
         protected bool Gravity = false;
         public Facing LastFacing = Facing.Right;
-        public bool Moving = false;
+        public bool Moving;
         protected int NumberOfFrames;
         protected List<BasePowerup> Powerups = new List<BasePowerup>();
+        protected float rotation = 0;
+
+        public bool Sinking;
         protected float Speed;
         protected int Step = 1;
         protected double TimeBetweenFrames = 0.1;
         protected double TimeSinceLastFrame;
         protected Vector2 Velocity;
-        protected double frameTimer = 200, frameInterval = 200;
-        protected float rotation = 0;
-        protected bool AffectedByGravity = true;
+        protected Rectangle PlatformCheckerRectangle;
 
         protected MovingObject(Vector2 pos, Texture2D tex)
         {
@@ -65,9 +64,7 @@ namespace NogardTheDragon.Objects
         public override void CheckCollision()
         {
             foreach (var gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
-            {
                 if (this != gameObject)
-                {
                     if (PixelCollision(this, gameObject))
                     {
                         if (!Collides.Contains(gameObject))
@@ -78,8 +75,6 @@ namespace NogardTheDragon.Objects
                         if (Collides.Contains(gameObject))
                             Collides.Remove(gameObject);
                     }
-                }
-            }
 
             Collides.RemoveAll(item => item.Active == false);
         }
@@ -129,6 +124,8 @@ namespace NogardTheDragon.Objects
             HandleCollision(gameTime);
             UpdateAbilitiesPowerups();
 
+            PlatformCheckerRectangle = new Rectangle((int) DrawPos.X, (int) DrawPos.Y + Source.Height, Source.Width, Source.Height * 4);
+
             DrawPos += Velocity;
             CurrentFrame++;
         }
@@ -163,8 +160,8 @@ namespace NogardTheDragon.Objects
             ResetDoubleJump();
             Direction.Y = 0;
             Velocity.Y = 0;
+            
             return true;
-
         }
 
         public bool LandOnHorizontalPlatform(HorizontalPlatform platform)

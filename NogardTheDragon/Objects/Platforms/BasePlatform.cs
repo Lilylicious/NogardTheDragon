@@ -5,9 +5,12 @@ namespace NogardTheDragon.Objects.Platforms
 {
     public abstract class BasePlatform : MovingObject
     {
+        public Player CollidingPlayer;
+
         public BasePlatform(Vector2 pos) : base(pos)
         {
         }
+
         public BasePlatform(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
             UsingSpritesheet = true;

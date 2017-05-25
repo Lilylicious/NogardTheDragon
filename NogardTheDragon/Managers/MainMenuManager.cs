@@ -1,18 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using System.Windows.Forms;
+using Microsoft.Xna.Framework;
 using NogardTheDragon.Animation;
-using NogardTheDragon.Utilities;
-using System.Collections.Generic;
-using System.IO;
-using NogardTheDragon.Managers;
-using System.Windows.Forms;
 
 namespace NogardTheDragon.Managers
 {
     public class MainMenuManager : BaseManager
     {
         private readonly NogardGame Game;
-        private MainMenuBackground MainMenuBackground;
+        private readonly MainMenuBackground MainMenuBackground;
 
         public MainMenuManager(NogardGame game)
         {
@@ -26,6 +21,7 @@ namespace NogardTheDragon.Managers
             NogardGame.KillBonus = 0;
             NogardGame.TotalScore = 0;
             NogardGame.LevelBonus = 0;
+            NogardGame.HealthBonus = 0;
         }
 
         public override void Update(GameTime gameTime)
@@ -39,7 +35,7 @@ namespace NogardTheDragon.Managers
                     NogardGame.LevelSelectorManager.Init();
                     NogardGame.MapsComplete = 0;
                 }
-                    
+
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ScoreButton))
                 {
                     NogardGame.HighScoreDisplay.Init();
@@ -50,10 +46,10 @@ namespace NogardTheDragon.Managers
                 {
                     MessageBox.Show(
                         "Movement:  Right & left keys." +
-                        "\nJump:  Up key once for single jump," +
+                        "\n\nJump:  Up key once for single jump," +
                         "\ntwice for double jump." +
-                        "\nShoot projectile:  Space key." +
-                        "\nPause game:  ESC key.");
+                        "\n\nShoot projectile:  Space key." +
+                        "\n\nPause game:  ESC key.");
                     break;
                 }
 
@@ -66,12 +62,10 @@ namespace NogardTheDragon.Managers
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.ExitButton))
                     Game.Exit();
                 if (b.ButtonClicked && b.Equals(NogardGame.ButtonManager.MapButton))
-                {
-                    if (NogardGame.Admin == true)
-                    NogardGame.MapMakerManager.Init();
+                    if (NogardGame.Admin)
+                        NogardGame.MapMakerManager.Init();
                     else
-                    MessageBox.Show("Must be game administrator\nto access the mapmaker.");
-                }
+                        MessageBox.Show("Must be game administrator\nto access the mapmaker.");
             }
         }
 

@@ -19,8 +19,7 @@ namespace NogardTheDragon.Objects.Platforms
         protected override bool HandleCollision()
         {
             var found = false;
-            foreach (GameObject gameObject in Collides)
-            {
+            foreach (var gameObject in Collides)
                 if (!(gameObject is BasePlatform))
                 {
                     var movingObject = gameObject as MovingObject;
@@ -31,7 +30,6 @@ namespace NogardTheDragon.Objects.Platforms
                         found = true;
                     }
                 }
-            }
 
             return found;
         }

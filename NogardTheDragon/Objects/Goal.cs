@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace NogardTheDragon.Objects
@@ -15,16 +14,15 @@ namespace NogardTheDragon.Objects
         protected override bool HandleCollision()
         {
             var found = false;
-            foreach (GameObject gameObject in Collides)
-            {
+            foreach (var gameObject in Collides)
                 if (gameObject is Player)
                 {
                     StoryMode.IntroStory = false;
                     NogardGame.MapsComplete++;
+                    NogardGame.HealthBonus += ((Player)gameObject).Health;
                     NogardGame.StoryMode.Init();
                     found = true;
                 }
-            }
 
             return found;
         }

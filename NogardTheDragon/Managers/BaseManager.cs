@@ -7,9 +7,11 @@ namespace NogardTheDragon.Managers
         public virtual void Init()
         {
         }
+
         public virtual void Update(GameTime gameTime)
         {
         }
+
         public virtual void Draw()
         {
         }

@@ -1,14 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using NogardTheDragon.Objects;
 
 namespace NogardTheDragon.Managers
 {
     public class GameOverManager : BaseManager
     {
+        public static Form1 ScoreForm;
         private readonly NogardGame Instance;
         private bool Won;
-        public static Form1 ScoreForm;
 
         public GameOverManager(NogardGame game)
         {
@@ -58,15 +57,15 @@ namespace NogardTheDragon.Managers
             if (Won)
             {
                 Instance.GraphicsDevice.Clear(Color.Blue);
-                NogardGame.SpriteBatch.DrawString(TextureManager.Font, "        Thank you for playing!" +
-                    "\nPlay again to beat your record.",
-                    new Vector2(170, 70), Color.Orange, 0, Vector2.Zero, 0.4f, SpriteEffects.None, 1);
+                NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Thank you for saving little Nogard!" +
+                                                                       "\n     Play again to beat your record.",
+                    new Vector2(150, 70), Color.Orange, 0, Vector2.Zero, 0.4f, SpriteEffects.None, 1);
             }
             else
             {
                 Instance.GraphicsDevice.Clear(Color.Black);
                 NogardGame.SpriteBatch.DrawString(TextureManager.Font, "Oow, Nogard is too injured to carry on." +
-                    "\n         Try again by starting over!",
+                                                                       "\n         Try again by starting over!",
                     new Vector2(100, 70), Color.Orange, 0, Vector2.Zero, 0.4f, SpriteEffects.None, 1);
             }
 

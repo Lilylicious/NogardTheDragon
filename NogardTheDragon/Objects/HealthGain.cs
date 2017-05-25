@@ -1,26 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NogardTheDragon.Objects
 {
-    class HealthGain : MovingObject
+    internal class HealthGain : MovingObject
     {
         public HealthGain(Vector2 pos, Texture2D tex)
-            :base(pos, tex)
+            : base(pos, tex)
         {
-
         }
 
         protected override bool HandleCollision()
         {
             var found = false;
-            foreach (GameObject gameObject in Collides)
-            {
+            foreach (var gameObject in Collides)
                 if (!(gameObject is HealthGain))
                 {
                     var movingObject = gameObject as Player;
@@ -28,12 +21,11 @@ namespace NogardTheDragon.Objects
                     if (movingObject != null)
                     {
                         found = true;
-                        this.Active = false;
+                        Active = false;
                         if (movingObject.Health < 5)
                             movingObject.Health += 1;
                     }
                 }
-            }
 
             return found;
         }

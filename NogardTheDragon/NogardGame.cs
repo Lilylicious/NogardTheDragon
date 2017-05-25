@@ -1,12 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Managers;
 using NogardTheDragon.Utilities;
-using System.IO;
-using System.Collections.Generic;
-using NogardTheDragon.Objects;
 
 namespace NogardTheDragon
 {
@@ -127,7 +123,7 @@ namespace NogardTheDragon
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(240, 240, 240, 255));
+            GraphicsDevice.Clear(new Color(230, 230, 230, 255));
 
             switch (GameState)
             {
@@ -138,7 +134,7 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.GameActive:
                     SpriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null,
-                    GamePlayManager.ActiveMap?.Cam.GetTransform());
+                        GamePlayManager.ActiveMap?.Cam.GetTransform());
                     GamePlayManager.Draw();
                     break;
                 case GameStateEnum.HighScoreView:
@@ -155,7 +151,7 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.Pause:
                     SpriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null,
-                    GamePlayManager.ActiveMap?.Cam.GetTransform());
+                        GamePlayManager.ActiveMap?.Cam.GetTransform());
                     GamePlayManager.Draw();
                     SpriteBatch.End();
                     SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
@@ -163,7 +159,7 @@ namespace NogardTheDragon
                     break;
                 case GameStateEnum.MapMaker:
                     SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null,
-                    MapMakerManager?.Cam.GetTransform());
+                        MapMakerManager?.Cam.GetTransform());
                     MapMakerManager?.Draw();
                     break;
                 case GameStateEnum.LevelSelector:

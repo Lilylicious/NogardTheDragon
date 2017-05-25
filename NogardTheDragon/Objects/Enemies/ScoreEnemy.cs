@@ -11,7 +11,6 @@ namespace NogardTheDragon.Objects.Enemies
 
         public override void Update(GameTime gameTime)
         {
-
         }
 
         public void TakeDamage(int damage)

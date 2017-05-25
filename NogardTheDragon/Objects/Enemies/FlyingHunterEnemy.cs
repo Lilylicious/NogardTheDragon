@@ -5,9 +5,9 @@ namespace NogardTheDragon.Objects.Enemies
 {
     internal class FlyingHunterEnemy : BaseEnemy
     {
+        private bool getPosition;
         private int MaxDist;
         private int MinDist;
-        private bool getPosition;
 
         public FlyingHunterEnemy(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
@@ -15,10 +15,11 @@ namespace NogardTheDragon.Objects.Enemies
             MinDist = 5;
         }
 
-        //public override void Update(GameTime gameTime)
-        //{
-        //    var Direction = player.getPosition - this.getPosition;
         //    Direction.Normalize();
+        //    var Direction = player.getPosition - this.getPosition;
+        //{
+
+        //public override void Update(GameTime gameTime)
         //    ChangeVelocity(Direction);
         //}
     }

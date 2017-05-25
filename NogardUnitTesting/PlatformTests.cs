@@ -20,8 +20,10 @@ namespace NogardUnitTesting
         private static PrivateObject PrivatePlatform;
         private static SpikePlatform SpikePlatform;
         private static PrivateObject PrivateSpikePlatform;
-        private static MovingPlatform MovingPlatform;
-        private static PrivateObject PrivateMovingPlatform;
+        private static HorizontalPlatform HorizontalPlatform;
+        private static PrivateObject PrivateHorizontal;
+        private static VerticalPlatform VerticalPlatform;
+        private static PrivateObject PrivateVertical;
         private static IcePlatform IcePlatform;
         private static PrivateObject PrivateIcePlatform;
         private static CloudPlatform CloudPlatform;
@@ -47,8 +49,10 @@ namespace NogardUnitTesting
             PrivatePlatform = new PrivateObject(Platform);
             SpikePlatform = new SpikePlatform(Vector2.Zero);
             PrivateSpikePlatform = new PrivateObject(SpikePlatform);
-            MovingPlatform = new MovingPlatform(Vector2.Zero);
-            PrivateMovingPlatform = new PrivateObject(MovingPlatform);
+            HorizontalPlatform = new HorizontalPlatform(Vector2.Zero);
+            PrivateHorizontal = new PrivateObject(HorizontalPlatform);
+            VerticalPlatform = new VerticalPlatform(Vector2.Zero);
+            PrivateVertical = new PrivateObject(VerticalPlatform);
             IcePlatform = new IcePlatform(Vector2.Zero);
             PrivateIcePlatform = new PrivateObject(IcePlatform);
             CloudPlatform = new CloudPlatform(Vector2.Zero); 
@@ -348,61 +352,118 @@ namespace NogardUnitTesting
 
         //### End of Ice Platform ###
 
-        //### Start of Moving Platform ###
+        //### Start of Horizontal Platform ###
         [TestMethod]
-        public void TestMovingPlatformNullCollision()
+        public void TestHorizontalPlatformNullCollision()
         {
-            MovingPlatform.Collides.Clear();
+            HorizontalPlatform.Collides.Clear();
 
-            Result = (bool)PrivateMovingPlatform.Invoke("HandleCollision");
+            Result = (bool)PrivateHorizontal.Invoke("HandleCollision");
             Assert.IsFalse(Result);
         }
 
         [TestMethod]
-        public void TestMovingPlatformPlayerCollision()
+        public void TestHorizontalPlatformPlayerCollision()
         {
-            MovingPlatform.Collides.Clear();
+            HorizontalPlatform.Collides.Clear();
 
-            MovingPlatform.Collides.Add(Player);
+            HorizontalPlatform.Collides.Add(Player);
 
-            Result = (bool)PrivateMovingPlatform.Invoke("HandleCollision");
+            Result = (bool)PrivateHorizontal.Invoke("HandleCollision");
             Assert.IsTrue(Result);
         }
 
         [TestMethod]
-        public void TestMovingPlatformEnemyCollision()
+        public void TestHorizontalPlatformEnemyCollision()
         {
-            MovingPlatform.Collides.Clear();
+            HorizontalPlatform.Collides.Clear();
 
-            MovingPlatform.Collides.Add(Enemy);
+            HorizontalPlatform.Collides.Add(Enemy);
 
-            Result = (bool)PrivateMovingPlatform.Invoke("HandleCollision");
+            Result = (bool)PrivateHorizontal.Invoke("HandleCollision");
             Assert.IsTrue(Result);
         }
 
         [TestMethod]
-        public void TestMovingPlatformPlatformCollision()
+        public void TestHorizontalPlatformPlatformCollision()
         {
-            MovingPlatform.Collides.Clear();
+            HorizontalPlatform.Collides.Clear();
 
-            MovingPlatform.Collides.Add(new Platform(Vector2.One));
+            HorizontalPlatform.Collides.Add(new Platform(Vector2.One));
 
-            Result = (bool)PrivateMovingPlatform.Invoke("HandleCollision");
+            Result = (bool)PrivateHorizontal.Invoke("HandleCollision");
             Assert.IsFalse(Result);
         }
 
         [TestMethod]
-        public void TestMovingPlatformPlatformAndPlayerCollision()
+        public void TestHorizontalPlatformPlatformAndPlayerCollision()
         {
-            MovingPlatform.Collides.Clear();
+            HorizontalPlatform.Collides.Clear();
 
-            MovingPlatform.Collides.Add(new Platform(Vector2.One));
-            MovingPlatform.Collides.Add(Player);
+            HorizontalPlatform.Collides.Add(new Platform(Vector2.One));
+            HorizontalPlatform.Collides.Add(Player);
+            Player.Moving = false;
 
-            Result = (bool)PrivateMovingPlatform.Invoke("HandleCollision");
+            Result = (bool)PrivateHorizontal.Invoke("HandleCollision");
             Assert.IsTrue(Result);
         }
-        //### End of Moving Platform ###
+        //### End of Horizontal Platform ###
+
+        //### Start of Vertical Platform ###
+        [TestMethod]
+        public void TestVerticalPlatformNullCollision()
+        {
+            VerticalPlatform.Collides.Clear();
+
+            Result = (bool)PrivateVertical.Invoke("HandleCollision");
+            Assert.IsFalse(Result);
+        }
+
+        [TestMethod]
+        public void TestVerticalPlatformPlayerCollision()
+        {
+            VerticalPlatform.Collides.Clear();
+
+            VerticalPlatform.Collides.Add(Player);
+
+            Result = (bool)PrivateVertical.Invoke("HandleCollision");
+            Assert.IsTrue(Result);
+        }
+
+        [TestMethod]
+        public void TestVerticalPlatformEnemyCollision()
+        {
+            VerticalPlatform.Collides.Clear();
+
+            VerticalPlatform.Collides.Add(Enemy);
+
+            Result = (bool)PrivateVertical.Invoke("HandleCollision");
+            Assert.IsTrue(Result);
+        }
+
+        [TestMethod]
+        public void TestVerticalPlatformPlatformCollision()
+        {
+            VerticalPlatform.Collides.Clear();
+
+            VerticalPlatform.Collides.Add(new Platform(Vector2.One));
+
+            Result = (bool)PrivateVertical.Invoke("HandleCollision");
+            Assert.IsFalse(Result);
+        }
+
+        [TestMethod]
+        public void TestVerticalPlatformPlatformAndPlayerCollision()
+        {
+            VerticalPlatform.Collides.Clear();
+
+            VerticalPlatform.Collides.Add(new Platform(Vector2.One));
+            VerticalPlatform.Collides.Add(Player);
+
+            Result = (bool)PrivateVertical.Invoke("HandleCollision");
+            Assert.IsTrue(Result);
+        }
+        //### End of Vertical Platform ###
 
         //### Start of Spike Platform ###
         [TestMethod]

@@ -4,26 +4,20 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NogardTheDragon.Abilities;
 using NogardTheDragon.Interfaces;
-using NogardTheDragon.Utilities;
 using NogardTheDragon.Managers;
+using NogardTheDragon.Objects.Platforms;
+using NogardTheDragon.Utilities;
 
 namespace NogardTheDragon.Objects
 {
     public class Player : MovingObject, IAbilityUser, IDamageable
     {
+        private AnimationEnum animationState = AnimationEnum.Standing;
         public int Health;
-        public int Score;
-        public double Timer;
-        public double ShootTimer = 0.25;
         public double JumpTimer;
-
-        enum AnimationEnum
-        {
-            Standing,
-            Walking,
-            Jumping
-        }
-        AnimationEnum animationState = AnimationEnum.Standing;
+        public int Score;
+        public double ShootTimer = 0.25;
+        public double Timer;
 
         public Player(Vector2 pos, Texture2D tex) : base(pos, tex)
         {
@@ -73,7 +67,6 @@ namespace NogardTheDragon.Objects
 
         public override void Update(GameTime gameTime)
         {
-            NogardGame.HealthBonus = Health;
             base.Update(gameTime);
             Gliding = false;
             Sinking = false;
@@ -118,7 +111,7 @@ namespace NogardTheDragon.Objects
                 Airborn = true;
             }
 
-            while (Airborn == true)
+            while (Airborn)
             {
                 animationState = AnimationEnum.Jumping;
                 break;
@@ -135,7 +128,6 @@ namespace NogardTheDragon.Objects
             Velocity.Y += GravitySpeed;
 
             Velocity += Direction * (Speed / Math.Max(1, Math.Abs(Velocity.X))) *
-
                         (float) gameTime.ElapsedGameTime.TotalSeconds;
             Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -3, 3), MathHelper.Clamp(Velocity.Y, -20, 60));
 
@@ -145,21 +137,18 @@ namespace NogardTheDragon.Objects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             SourceRect = Source;
             base.Draw(spriteBatch);
             if (NogardGame.GameState == NogardGame.GameStateEnum.GameActive ||
                 NogardGame.GameState == NogardGame.GameStateEnum.Pause)
             {
-                for (int i = 0; i < 5; i++)
-                {
-                    spriteBatch.Draw(TextureManager.LostHPTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), Color.White);
-                }
+                for (var i = 0; i < 5; i++)
+                    spriteBatch.Draw(TextureManager.LostHPTex, new Vector2(DrawPos.X - 460 + i * 50, DrawPos.Y - 360),
+                        Color.White);
 
-                for (int i = 0; i < Health; i++)
-                {
-                    spriteBatch.Draw(TextureManager.HpTex, new Vector2((DrawPos.X - 460) + (i * 50), DrawPos.Y - 360), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-                }
+                for (var i = 0; i < Health; i++)
+                    spriteBatch.Draw(TextureManager.HpTex, new Vector2(DrawPos.X - 460 + i * 50, DrawPos.Y - 360), null,
+                        Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             }
         }
 
@@ -199,7 +188,7 @@ namespace NogardTheDragon.Objects
                     {
                         frameTimer = frameInterval;
                         CurrentFrame++;
-                        SourceRect.X = (CurrentFrame % 4) * 26;
+                        SourceRect.X = CurrentFrame % 4 * 26;
                     }
 
                     if (ChangeFrameShooting)
@@ -228,7 +217,7 @@ namespace NogardTheDragon.Objects
                     {
                         frameTimer = frameInterval;
                         CurrentFrame++;
-                        SourceRect.X = (CurrentFrame % 2) * 28;
+                        SourceRect.X = CurrentFrame % 2 * 28;
                     }
 
                     ChangeFrameJumping = true;
@@ -240,12 +229,25 @@ namespace NogardTheDragon.Objects
 
         protected override bool HandleCollision()
         {
+            foreach (GameObject gameObject in NogardGame.GamePlayManager.ActiveMap.Objects)
+            {
+                if(gameObject is Platform && Velocity.Y > 2f)
+                    if (gameObject.HitBox.Intersects(PlatformCheckerRectangle))
+                        ((Platform) gameObject).CollidingPlayer = this;
+            }
             return false;
         }
 
         protected override bool HandleCollision(GameTime gameTime)
         {
             return false;
+        }
+
+        private enum AnimationEnum
+        {
+            Standing,
+            Walking,
+            Jumping
         }
     }
 }

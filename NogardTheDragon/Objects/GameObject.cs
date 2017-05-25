@@ -6,6 +6,7 @@ namespace NogardTheDragon.Objects
     public abstract class GameObject
     {
         public bool Active = true;
+        public bool CollideEnabled = true;
         protected Color Color = Color.White;
 
         private Color[] ColorData;
@@ -16,21 +17,20 @@ namespace NogardTheDragon.Objects
         protected Vector2 Origin;
         protected float Rotation = 0;
         protected float Scale = 1.0f;
-        protected Texture2D Texture;
-        public bool CollideEnabled = true;
         protected Rectangle SourceRect;
+        protected Texture2D Texture;
         public bool UsingSpritesheet = false;
-        
-         public virtual Rectangle Source 
-         {
+
+        public virtual Rectangle Source
+        {
             get { return SourceRect; }
             set { SourceRect = value; }
-         }
+        }
 
         /* The lambda operator => can be interpreted as a block containing a single return statement.
          * It is no different functionality wise, it just looks a bit cleaner to me.
          * For example, the Source property below is the equivalent of
-         */ 
+         */
 
         public virtual Rectangle Dest => new Rectangle((int) DrawPos.X, (int) DrawPos.Y, Source.Width, Source.Height);
 

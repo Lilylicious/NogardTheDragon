@@ -10,6 +10,7 @@ namespace NogardTheDragon.Objects.Platforms
         {
             Source = new Rectangle(0, 240, 100, 15);
         }
+
         public IcePlatform(Vector2 pos)
             : base(pos)
         {
@@ -18,8 +19,7 @@ namespace NogardTheDragon.Objects.Platforms
         protected override bool HandleCollision()
         {
             var found = false;
-            foreach (GameObject gameObject in Collides)
-            {
+            foreach (var gameObject in Collides)
                 if (!(gameObject is BasePlatform))
                 {
                     var movingObject = gameObject as MovingObject;
@@ -30,7 +30,6 @@ namespace NogardTheDragon.Objects.Platforms
                         found = true;
                     }
                 }
-            }
 
             return found;
         }

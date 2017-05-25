@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using NogardTheDragon.Managers;
 using NogardTheDragon.Objects;
 using NogardTheDragon.Utilities;
 
