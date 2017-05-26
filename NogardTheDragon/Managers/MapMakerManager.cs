@@ -48,7 +48,7 @@ namespace NogardTheDragon.Managers
 
         private void ReadFromFile()
         {
-            Objects = MapReader.ReadFile("LevelOne");
+            Objects = MapReader.ReadFile("LevelThree");
         }
 
         public override void Update(GameTime gameTime)
@@ -94,8 +94,6 @@ namespace NogardTheDragon.Managers
                 SelectedObject = ObjectEnum.Enemy;
             if (Keyboard.GetState().IsKeyDown(Keys.R))
                 SelectedObject = ObjectEnum.WalkingEnemy;
-            if (Keyboard.GetState().IsKeyDown(Keys.T))
-                SelectedObject = ObjectEnum.FlyingEnemy;
             if (Keyboard.GetState().IsKeyDown(Keys.C))
                 SelectedObject = ObjectEnum.None;
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
