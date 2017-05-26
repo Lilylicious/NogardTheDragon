@@ -80,16 +80,16 @@ namespace NogardTheDragon
                 case StoryState.FirstStory:
                     NogardGame.SpriteBatch.GraphicsDevice.Clear(Color.CornflowerBlue);
                     NogardGame.SpriteBatch.DrawString(TextureManager.Font,
-                        "A few hours passed before Nogard woke up again. He sat up" +
-                        "\nand rubbed his little puppyeyes. He checked to see if" +
-                        "\nhe was injured but all that he could feel acheing was" +
-                        "\nhis tummy, that was screaming for some food." +
+                        "A few hours passed before Nogard woke up again." +
+                        "\nHe sat up to check if he was injured, but all " +
+                        "\nthat he could feel acheing was his tummy," +
+                        "\nthat was screaming for some food." +
                         "\nLonging for a hot, homecooked meal, Nogard looked up" +
                         "\nat the mountain, wondering if his family was looking for" +
                         "\nhim. At the thought of how much he missed his mother, and" +
                         "\nthe embarressment he felt for failing to fly like a real" +
                         "\ndragon, Nogards eyes teared up." +
-                        "\nLater as the tears started to dry on his face, Nogards sadness" +
+                        "\nLater, as the tears started to dry on his face, Nogards sadness" +
                         "\nturned into determenation." +
                         "\n'I might not be able to fly like a dragon', he thought," +
                         "\n'but I'm gonna prove that I'm the bravest of them all!'." +
@@ -121,28 +121,26 @@ namespace NogardTheDragon
                 case StoryState.LastStory:
                     NogardGame.SpriteBatch.GraphicsDevice.Clear(Color.CornflowerBlue);
                     NogardGame.SpriteBatch.DrawString(TextureManager.Font,
-                        "When the top of the mountain was so close that Nogard could hear" +
-                        "\nhis family calling out his name in anxious voices, the little" +
-                        "\ndragon faced the most dangerous jump of the entire climb. Nogard" +
-                        "\nclosed his eyes and breathed heavely with smoke coming out of his" +
-                        "\nnostrils, as his heart began to pound faster." +
-                        "\n'I can do this' he told himself. 'I am the bravest dragon of" +
-                        "\nthem all and there is nothing I can't do'. " +
-                        "\nThen he jumped so high that it almost felt like flying, and" +
-                        "\nlanded right ontop of his unwitting siblings, making a big pile" +
-                        "\nof mashed dragons at the edge of the moutaintop. His mother" +
-                        "\nthen screamed of joy as they all realized it was Nogard who had" +
-                        "\ncrashed down on them, and they all wanted to hear his story and" +
-                        "\nhow he was able to get back up all on his own." +
-                        "\nLater on, when Nogard was being served a homecooked meal by his" +
-                        "\nloving mother, he told his family about his journey and all the" +
-                        "\ndangers he had to face along the way. His mothers eyes teared up" +
-                        "\nbecause of the pride she felt in having raised such a brave child," +
-                        "\nand all of his siblings looked at him in awe." +
+                        "When the top of the mountain was so close that Nogard could " +
+                        "\nhear his family calling out his name in anxious voices," +
+                        "\nthe little dragon faced the most dangerous jump of the" +
+                        "\nentire climb. Nogard breathed heavely with smoke coming out" +
+                        "\nof his nostrils, as his heart began to pound faster." +
+                        "\n'I can do this', he told himself. 'I am the bravest dragon" +
+                        "\nof them all, and there is nothing I can't do'. " +
+                        "\nThen he jumped so high that it almost felt like flying," +
+                        "\nand landed right ontop of his unwitting siblings, making a" +
+                        "\nbig pile of mashed dragons at the edge of the moutaintop." +
+                        "\nHis mother then screamed of joy as they all realized it" +
+                        "\nwas Nogard who had crashed down on them." +
+                        "\nLater on, when Nogard was being served a homecooked meal," +
+                        "\nhe told his family about his journey and all the" +
+                        "\ndangers he had to face along the way. His mothers eyes" +
+                        "\nteared up and all of his siblings looked at him in awe." +
                         "\nIn that very moment, Nogard truly felt like the bravest" +
                         "\ndragon in the world..." +
                         "\nThe End!",
-                        new Vector2(50, 30), Color.Black, 0, Vector2.Zero, 0.26f, SpriteEffects.None, 1);
+                        new Vector2(50, 30), Color.Black, 0, Vector2.Zero, 0.3f, SpriteEffects.None, 1);
                     break;
             }
         }
